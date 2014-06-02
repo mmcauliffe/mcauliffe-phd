@@ -19,10 +19,10 @@ hist(lexdec$RT)
 #t <- subset(t, RT > lexdecRT.mean - 2*lexdecRT.sd)
 #lexdec <- t
 
-test <- subset(lexdec, which == 'both')
+lexdec.test <- subset(lexdec, which == 'both')
 ggplot(test, aes(x=StepNum, y=RespondedS,group=1)) +geom_point() +geom_smooth(method="glm", family="binomial", size=2) +facet_wrap(~sword) + labs(title='Test words', y='Proportion <S> responses',x='Step number')
 ddply(test,~StepNum,summarise,mean(RespondedS))
-exposure <- subset(lexdec, which=='one')
+lexdec.exposure <- subset(lexdec, which=='one')
 ggplot(exposure, aes(x=StepNum, y=RespondedS,group=1)) +geom_point() +geom_smooth(method="glm", family="binomial", size=2) +facet_wrap(~sword) + labs(title='Exposure words', y='Proportion <S> responses',x='Step number')
 ddply(exposure,~StepNum,summarise,mean(RespondedS))
 
@@ -83,3 +83,34 @@ write.table(out.test, file="testItemCatBoundaries.txt",quote=F,sep='\t',row.name
 
 out.exposure <- data.frame(Word = row.names(co.shword.exposure),shwordP = co.shword.exposure$p,shwordPRound =co.shword.exposure$pRound,lexdecP = co.lexdec.exposure$p, lexdecPRound = co.lexdec.exposure$pRound)
 write.table(out.exposure, file="exposureItemCatBoundaries.txt",quote=F,sep='\t',row.names=F)
+
+
+## Combined
+lexdec.exposure <- lexdec.exposure[,c('Subject','sword','RespondedS','RT','StepNum')]
+shword.exposure <- shword.exposure[,c('Subject','sword','RespondedS','RT','StepNum')]
+
+lexdec.test <- lexdec.test[,c('Subject','sword','RespondedS','RT','StepNum')]
+shword.test <- shword.test[,c('Subject','sword','RespondedS','RT','StepNum')]
+
+lexdec.exposure$Exp <- 'lexdec'
+lexdec.test$Exp <- 'lexdec'
+
+shword.exposure$Exp <- 'shword'
+shword.test$Exp <- 'shword'
+
+expos <- rbind(lexdec.exposure,shword.exposure)
+tests <- rbind(lexdec.test,shword.test)
+
+expos$Exp <- factor(expos$Exp)
+tests$Exp <- factor(tests$Exp)
+
+glmer(RespondedS ~ StepNum + Exp + (1 + StepNum + Exp|sword) + (1+StepNum+ Exp|Subject), family="binomial", data=tests) -> lmer.test
+summary(lmer.test)
+
+glmer(RespondedS ~ StepNum * Exp + (1 + StepNum * Exp|sword), family="binomial", data=expos) -> lmer.exposure
+summary(lmer.exposure)
+co.exposure <- getCrossOver(coef(lmer.exposure)$sword)
+
+## Reinisch
+
+ddply(test, ~ sword * factor(StepNum),summarise,mean(RespondedS))
