@@ -3,7 +3,7 @@ library(lme4.0)
 library(ggplot2)
 library(plyr)
 
-cat <- read.delim('sshcat_results.txt')
+cat <- read.delim('C:\\Users\\michael\\Dropbox\\Michael_Dissertation\\Pretest\\sshcat_results.txt')
 
 cat$StepNum <- as.numeric(gsub("[^0-9]","",cat$step))
 
