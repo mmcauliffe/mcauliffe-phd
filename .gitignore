@@ -145,3 +145,4 @@ coverage.xml
 docs/_build/
 .Rproj.user
 *.bat
+*.txt
