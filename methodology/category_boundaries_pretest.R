@@ -3,7 +3,7 @@ library(lme4.0)
 library(ggplot2)
 library(plyr)
 
-cat <- read.delim('sshcat_results.txt')
+cat <- read.delim('C:\\Users\\michael\\Dropbox\\Michael_Dissertation\\Pretest\\sshcat_results.txt')
 
 cat$StepNum <- as.numeric(gsub("[^0-9]","",cat$step))
 
@@ -12,22 +12,24 @@ cat <- na.omit(cat)
 cat <- subset(cat,RT > 200)
 cat  <- subset(cat,RT < 2500)
 
+threshold = 0.4
+
 summary(cat)
 
 
 exp <- subset(cat,which=='one')
 exp$sword <- factor(exp$sword)
+exp$Type <- 'Initial'
+exp[exp$sword %in% c('carousel','castle','concert','croissant','currency','cursor','curtsy','dancer','dinosaur','faucet','fossil','galaxy','medicine','missile','monsoon','pencil','pharmacy','tassel','taxi','whistle'),]$Type <- 'Final'
+exp$Type <- factor(exp$Type)
 test <- subset(cat,which=='both')
 test$sword <- factor(test$sword)
 
 
-exp.sum <- ddply(exp, ~ sword * factor(StepNum),summarise,MeanResp = mean(ACC))
-names(exp.sum) <- c('Word','StepNum','MeanResp')
+exp.sum <- ddply(exp, ~ Type*sword * factor(StepNum),summarise,MeanResp = mean(ACC))
+names(exp.sum) <- c('Type','Word','StepNum','MeanResp')
 test.sum <- ddply(test, ~ sword * factor(StepNum),summarise,MeanResp = mean(ACC))
 names(test.sum) <- c('Word','StepNum','MeanResp')
-
-ggplot(exp, aes(x=StepNum, y=ACC,group=1)) +geom_point() +geom_smooth(method="glm", family="binomial", size=2) +facet_wrap(~sword) + labs(title='Exposure words', y='Proportion <S> responses',x='Step number')+ geom_vline(xintercept = 6) + geom_hline(yintercept=0.5)
-ggplot(test, aes(x=StepNum, y=ACC,group=1)) +geom_point() +geom_smooth(method="glm", family="binomial", size=2) +facet_wrap(~sword) + labs(title='Categorization words', y='Proportion <S> responses',x='Step number')+ geom_vline(xintercept = 6)+ geom_vline(xintercept = 6) + geom_hline(yintercept=0.5)
 
 findStep <- function(summary,thresh){
   words <- levels(summary$Word)
@@ -38,7 +40,7 @@ findStep <- function(summary,thresh){
     sub <- subset(summary,Word==w)
     for(j in 1:11){
       if (sub[sub$StepNum==j,]$MeanResp < thresh){
-        out <- rbind(out,data.frame(Word=w,Step=j))
+        out <- rbind(out,sub[sub$StepNum==j,])
         break
       }
     }
@@ -46,8 +48,10 @@ findStep <- function(summary,thresh){
   return(out)
 }
 
-expout <- findStep(exp.sum,0.4)
+expout <- findStep(exp.sum,threshold)
 expout <- rbind(expout,data.frame(Word='seedling',Step=7))
+
+exp <- merge(exp,expout,by.x=c('sword'),by.y=c('Word'))
 
 testout <- findStep(test.sum,0.5)
 
@@ -55,3 +59,11 @@ testout <- findStep(test.sum,0.5)
 #sigh 5.5 (3,4,5,6,7,8)
 #sin 5 (3,4,5,6,7,8)
 #sock 6.5 (4,5,6,7,8,9)
+
+ggplot(exp, aes(x=StepNum, y=ACC)) +geom_point() +geom_smooth(method="glm", family="binomial", size=1)  + labs(title='Exposure words', y='Proportion <S> responses',x='Step number')+facet_wrap(~sword)+ geom_vline(xintercept = 6) + geom_hline(yintercept=threshold)
+
+ggplot(subset(exp,Type=='Initial'), aes(x=StepNum, y=ACC)) +geom_point() +geom_smooth(method="glm", family="binomial", size=1)  + labs(title='S-Initial exposure words', y='Proportion <S> responses',x='Step number')+facet_wrap(~sword)+ geom_vline(aes(xintercept = Step)) + geom_hline(yintercept=threshold)
+
+ggplot(subset(exp,Type=='Final'), aes(x=StepNum, y=ACC)) +geom_point() +geom_smooth(method="glm", family="binomial", size=1)  + labs(title='S-Final exposure words', y='Proportion <S> responses',x='Step number')+facet_wrap(~sword)+ geom_vline(aes(xintercept = Step)) + geom_hline(yintercept=threshold)
+
+ggplot(test, aes(x=StepNum, y=ACC,group=1)) +geom_point() +geom_smooth(method="glm", family="binomial", size=2) +facet_wrap(~sword) + labs(title='Categorization words', y='Proportion <S> responses',x='Step number')+ geom_vline(xintercept = 6)+ geom_vline(xintercept = 6) + geom_hline(yintercept=0.5)
