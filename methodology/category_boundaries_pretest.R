@@ -49,6 +49,8 @@ findStep <- function(summary,thresh){
 expout <- findStep(exp.sum,0.4)
 expout <- rbind(expout,data.frame(Word='seedling',Step=7))
 
+testout <- findStep(test.sum,0.5)
+
 #sack 5.5 (3,4,5,6,7,8)
 #sigh 5.5 (3,4,5,6,7,8)
 #sin 5 (3,4,5,6,7,8)
