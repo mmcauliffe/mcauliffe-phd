@@ -1,11 +1,13 @@
 
-library(lme4.0)
+library(lme4)
 library(ggplot2)
 library(plyr)
 
-cat <- read.delim('C:\\Users\\michael\\Dropbox\\Michael_Dissertation\\Pretest\\sshcat_results.txt')
+#cat <- read.delim('C:\\Users\\michael\\Dropbox\\Michael_Dissertation\\Pretest\\sshcat_results.txt')
+cat <- read.delim('sshcat_results.txt')
 
 cat$StepNum <- as.numeric(gsub("[^0-9]","",cat$step))
+cat$Subject <- factor(cat$Subject)
 
 cat <- na.omit(cat)
 
@@ -47,9 +49,23 @@ findStep <- function(summary,thresh){
   }
   return(out)
 }
+exp.sum$Dprime <- 0.0
+for (i in 1:nrow(exp.sum)){
+  if (exp.sum[i,]$MeanResp == 1){
+    exp.sum[i,]$MeanResp = 0.98
+  }
+  else if (exp.sum[i,]$MeanResp == 0){
+    exp.sum[i,]$MeanResp = 0.02
+  }
+  exp.sum[i,]$Dprime <- dprime.mAFC(exp.sum[i,]$MeanResp,2)
+}
 
-expout <- findStep(exp.sum,threshold)
-expout <- rbind(expout,data.frame(Word='seedling',Step=7))
+
+expout1 <- findStep(exp.sum,0.4)
+expout1 <- rbind(expout,data.frame(Type='Initial',Word='seedling',Step=7)) #seedling 7 for exp1, 6 for exp2
+
+expout1 <- findStep(exp.sum,0.6)
+expout1 <- rbind(expout,data.frame(Type='Initial',Word='seedling',Step=6)) #seedling 7 for exp1, 6 for exp2
 
 exp <- merge(exp,expout,by.x=c('sword'),by.y=c('Word'))
 
