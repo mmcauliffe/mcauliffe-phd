@@ -64,8 +64,8 @@ for (i in 1:nrow(exp.sum)){
 expout1 <- findStep(exp.sum,0.4)
 expout1 <- rbind(expout,data.frame(Type='Initial',Word='seedling',Step=7)) #seedling 7 for exp1, 6 for exp2
 
-expout1 <- findStep(exp.sum,0.6)
-expout1 <- rbind(expout,data.frame(Type='Initial',Word='seedling',Step=6)) #seedling 7 for exp1, 6 for exp2
+expout2 <- findStep(exp.sum,0.6)
+expout2 <- rbind(expout,data.frame(Type='Initial',Word='seedling',Step=6)) #seedling 7 for exp1, 6 for exp2
 
 exp <- merge(exp,expout,by.x=c('sword'),by.y=c('Word'))
 
