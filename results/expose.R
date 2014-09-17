@@ -1,13 +1,14 @@
-data <- read.delim('exposure.txt')
 
-data$Attention <- 'attend'
+expose <- read.delim('exposure.txt')
 
-data[str_detect(data$Subject,'^s2'),]$Attention <- 'noattend'
-data[str_detect(data$Subject,'^s3'),]$Attention <- 'noattend'
+expose$Attention <- 'attend'
 
-data$Attention <- factor(data$Attention)
+expose[str_detect(expose$Subject,'^s2'),]$Attention <- 'noattend'
+expose[str_detect(expose$Subject,'^s3'),]$Attention <- 'noattend'
 
-target <- na.omit(subset(data,itemtype %in% c('S-Initial','S-Final')))
+expose$Attention <- factor(expose$Attention)
+
+target <- na.omit(subset(expose,itemtype %in% c('S-Initial','S-Final')))
 
 subj.tolerances <- ddply(target,~Subject*itemtype*Attention,summarise,WordResp = mean(ACC))
 
@@ -15,6 +16,14 @@ summary(aov(WordResp ~ itemtype*Attention,data=subj.tolerances))
 
 ggplot(target,aes(x=Trial,y=ACC)) + geom_point() + geom_smooth(method='lm')+facet_wrap(~Subject)
 
-filler = na.omit(subset(data,!itemtype %in% c('S-Initial','S-Final')))
+ggplot(target,aes(x=Trial,y=log(RT))) + geom_point() + geom_smooth(method='lm')+facet_wrap(~Subject)
+
+filler = na.omit(subset(expose,!itemtype %in% c('S-Initial','S-Final')))
 
 ddply(filler,~Subject,summarise,WordResp = mean(ACC))
+
+expose.mod <- glmer(ACC ~ Trial+itemtype+ Attention + (1+itemtype|Subject) + (1+ Attention|Word), family='binomial',data=expose)
+summary(expose.mod)
+
+expose.mod.rt <- lmer(log(RT) ~ Trial+itemtype+ Attention + (1+itemtype|Subject) + (1+ Attention|Word),data=subset(expose,Lexicality=='Word'))
+summary(expose.mod)
