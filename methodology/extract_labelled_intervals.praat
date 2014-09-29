@@ -3,7 +3,7 @@ select TextGrid sentences
 
 numIntervals = Get number of intervals... 1
 
-outdir$ = "C:\Users\SpeechInContext\Documents\Michael Stuff\Perceptual learning\SentAudio\"
+outdir$ = "C:\Users\michael\Dropbox\Michael_Dissertation\SentStimuli\Original\Sent3\"
 
 for i from 1 to numIntervals
 	select TextGrid sentences
