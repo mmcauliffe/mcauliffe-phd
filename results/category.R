@@ -8,7 +8,6 @@ library(stringr)
 #s300 initial, noattend
 #s400 final, attend
 
-expose <- read.delim('exposure.txt')
 categ <- read.delim('categorization.txt')
 categ <- na.omit(categ)
 
