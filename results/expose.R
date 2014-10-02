@@ -1,6 +1,9 @@
 
 expose <- read.delim('exposure.txt')
 
+expose.word <- subset(expose,Lexicality=='Word')
+expose.word$Word <- factor(expose.word$Word)
+
 expose$Attention <- 'attend'
 
 expose[str_detect(expose$Subject,'^s2'),]$Attention <- 'noattend'
