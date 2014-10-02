@@ -24,5 +24,10 @@ for w in widths:
         outname = re.sub('[0-9 ]','',outname)
         outpath = os.path.join(w_dir,outname +'.bmp')
         argstring = "'%s[%dx%d]'" % (inpath,w,w)
-        subprocess.call(['convert',inpath,'-resize','%dx%d'%(w,w),'-density','72x72',outpath])
+        subprocess.call(['convert',inpath,
+                        '-resize','%dx%d'%(w,w),
+                        '-density','72x72',
+                        '-background','white',
+                        '-flatten',
+                        outpath])
         
