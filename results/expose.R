@@ -1,8 +1,6 @@
 
 expose <- read.delim('exposure.txt')
 
-expose.word <- subset(expose,Lexicality=='Word')
-expose.word$Word <- factor(expose.word$Word)
 
 expose$Attention <- 'attend'
 
@@ -10,6 +8,9 @@ expose[str_detect(expose$Subject,'^s2'),]$Attention <- 'noattend'
 expose[str_detect(expose$Subject,'^s3'),]$Attention <- 'noattend'
 
 expose$Attention <- factor(expose$Attention)
+
+expose.word <- subset(expose,Lexicality=='Word')
+expose.word$Word <- factor(expose.word$Word)
 
 target <- na.omit(subset(expose,itemtype %in% c('S-Initial','S-Final')))
 

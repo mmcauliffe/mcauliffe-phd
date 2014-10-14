@@ -13,11 +13,11 @@ categ <- na.omit(categ)
 
 #fix for coding error
 categ <- subset(categ,Trial < 169)
-sub <- subset(categ,Subject %in% c('s113','s114','s115','s116','s117','s118'))
+sub <- subset(categ,Subject %in% c('s113','s114','s115','s118'))
 sub$RealAcc = 0
 sub[sub$ACC == 0,]$RealAcc = 1
 
-categ[categ$Subject %in% c('s113','s114','s115','s116','s117','s118'),]$ACC = sub$RealAcc
+categ[categ$Subject %in% c('s113','s114','s115','s118'),]$ACC = sub$RealAcc
 
 t <- paste(categ$Label1,categ$Label2,sep='-')
 
@@ -42,7 +42,7 @@ categ[str_detect(categ$Subject,'^s3'),]$Attention <- 'noattend'
 
 categ$Attention <- factor(categ$Attention)
 
-categ <- subset(categ,!Subject %in% c('s215'))
+categ <- subset(categ,!Subject %in% c('s215','s402'))
 
 ddply(categ,~ExposureType*Attention,summarise,mean(ACC))
 
@@ -63,11 +63,12 @@ t2 <- merge(t,subj.tolerances)
 t.test(t[str_detect(t$Subject,'^s2'),]$Xover,t[str_detect(t$Subject,'^s3'),]$Xover)
 
 summary(aov(Xover ~ WordResp,data=t2))
-summary(aov(Xover ~ Attention,data=t2))
+summary(aov(Xover ~ WordResp*Attention*itemtype,data=t2))
 cor.test(t2$Xover, t2$WordResp)
 
 ggplot(categ, aes(x=Step, y=ACC,group=1)) +geom_point() +geom_smooth(method="glm", family="binomial", size=2) +facet_wrap(~Subject) + labs(title='Categorization words', y='Proportion <S> responses',x='Step number')
 
 ggplot(t2,aes(x=WordResp,y=Xover,colour=Attention,shape=itemtype)) + geom_point() + geom_smooth(method='lm')
 
-cat.mod.full <- glmer(ACC ~ Step*ExposureType + (1+Step|Subject) + (1+Step|Item), family='binomial',data=categ)
+cat.mod.full <- glmer(ACC ~ Step*ExposureType*Attention + (1+Step|Subject) + (1+Step|Item), family='binomial',data=categ)
+summary(cat.mod.full)
