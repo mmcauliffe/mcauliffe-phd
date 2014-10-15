@@ -11,6 +11,8 @@ library(stringr)
 categ <- read.delim('categorization.txt')
 categ <- na.omit(categ)
 
+categ <- subset(categ, RT > 200 & RT < 2500)
+
 #fix for coding error
 categ <- subset(categ,Trial < 169)
 sub <- subset(categ,Subject %in% c('s113','s114','s115','s118'))
@@ -44,7 +46,11 @@ categ$Attention <- factor(categ$Attention)
 
 categ <- subset(categ,!Subject %in% c('s215','s402'))
 
-ddply(categ,~ExposureType*Attention,summarise,mean(ACC))
+categ$Step <- categ$Step - mean(1:6)
+
+mean_sresp <- ddply(categ,~ExposureType*Attention*Subject,summarise,meanresp = mean(ACC))
+
+ggplot(mean_sresp,aes(x=meanresp)) + geom_histogram(binwidth=0.1) + facet_grid(ExposureType~Attention) + geom_density()
 
 cat.mod <- glmer(ACC ~ Step + (1+Step|Subject) + (1+Step|Item), family='binomial',data=categ)
 summary(cat.mod)
@@ -60,15 +66,14 @@ t <- getCrossOver(coef(cat.mod)$Subject)
 
 t2 <- merge(t,subj.tolerances)
 
-t.test(t[str_detect(t$Subject,'^s2'),]$Xover,t[str_detect(t$Subject,'^s3'),]$Xover)
-
 summary(aov(Xover ~ WordResp,data=t2))
 summary(aov(Xover ~ WordResp*Attention*itemtype,data=t2))
 cor.test(t2$Xover, t2$WordResp)
 
-ggplot(categ, aes(x=Step, y=ACC,group=1)) +geom_point() +geom_smooth(method="glm", family="binomial", size=2) +facet_wrap(~Subject) + labs(title='Categorization words', y='Proportion <S> responses',x='Step number')
+ddply(t2,~Attention*itemtype,summarise,mean(Xover))
+ggplot(subset(categ,str_detect(Subject,'^s2')), aes(x=Step, y=ACC,colour=Item)) +geom_point() +geom_smooth(method="glm", family="binomial", size=2) +facet_grid(Subject~Item) + labs(title='Categorization words', y='Proportion <S> responses',x='Step number')
 
 ggplot(t2,aes(x=WordResp,y=Xover,colour=Attention,shape=itemtype)) + geom_point() + geom_smooth(method='lm')
 
-cat.mod.full <- glmer(ACC ~ Step*ExposureType*Attention + (1+Step|Subject) + (1+Step|Item), family='binomial',data=categ)
+cat.mod.full <- glmer(ACC ~ Trial + Step+ExposureType*Attention + (1+Trial+Step|Subject) + (1+Step+ExposureType+Attention|Item), family='binomial',data=categ)
 summary(cat.mod.full)

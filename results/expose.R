@@ -1,6 +1,10 @@
 
 expose <- read.delim('exposure.txt')
 
+expose <- subset(expose,RT > 200 & RT < 2500)
+#expose[expose$RT < 200,]$ACC <- 0
+#expose[expose$RT > 2500,]$ACC <- 0
+expose <- na.omit(expose)
 
 expose$Attention <- 'attend'
 
@@ -26,7 +30,7 @@ filler = na.omit(subset(expose,!itemtype %in% c('S-Initial','S-Final')))
 
 ddply(filler,~Subject,summarise,WordResp = mean(ACC))
 
-expose.mod <- glmer(ACC ~ Trial+itemtype+ Attention + (1+itemtype|Subject) + (1+ Attention|Word), family='binomial',data=expose)
+expose.mod <- glmer(ACC ~ Trial+itemtype+Attention + (1+itemtype|Subject) + (1+ Attention|Word), family='binomial',data=expose.word)
 summary(expose.mod)
 
 expose.mod.rt <- lmer(log(RT) ~ Trial+itemtype+ Attention + (1+itemtype|Subject) + (1+ Attention|Word),data=subset(expose,Lexicality=='Word'))
