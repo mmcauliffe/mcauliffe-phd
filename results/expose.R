@@ -30,6 +30,8 @@ filler = na.omit(subset(expose,!itemtype %in% c('S-Initial','S-Final')))
 
 ddply(filler,~Subject,summarise,WordResp = mean(ACC))
 
+ddply(expose.word,~Subject*itemtype,nrow)
+
 expose.mod <- glmer(ACC ~ Trial+itemtype+Attention + (1+itemtype|Subject) + (1+ Attention|Word), family='binomial',data=expose.word)
 summary(expose.mod)
 

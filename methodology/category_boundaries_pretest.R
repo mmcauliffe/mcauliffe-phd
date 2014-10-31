@@ -76,10 +76,23 @@ testout <- findStep(test.sum,0.5)
 #sin 5 (3,4,5,6,7,8)
 #sock 6.5 (4,5,6,7,8,9)
 
-ggplot(exp, aes(x=StepNum, y=ACC)) +geom_point() +geom_smooth(method="glm", family="binomial", size=1)  + labs(title='Exposure words', y='Proportion <S> responses',x='Step number')+facet_wrap(~sword)+ geom_vline(xintercept = 6) + geom_hline(yintercept=threshold)
+ggplot(exp, aes(x=StepNum, y=ACC)) +geom_point() +geom_smooth(method="glm", family="binomial", size=1)  + labs(title='Exposure words', y='Proportion <S> responses',x='Step number')+facet_wrap(~sword)+ geom_vline(xintercept = 6) + geom_hline(yintercept=0.5)
 
-ggplot(subset(exp,Type=='Initial'), aes(x=StepNum, y=ACC)) +geom_point() +geom_smooth(method="glm", family="binomial", size=1)  + labs(title='S-Initial exposure words', y='Proportion <S> responses',x='Step number')+facet_wrap(~sword)+ geom_vline(aes(xintercept = Step)) + geom_hline(yintercept=threshold)
+ggplot(subset(exp,Type=='Initial'), aes(x=StepNum, y=ACC)) +geom_smooth(method="glm", family="binomial", size=1)  + labs(title='S-Initial exposure words', y='Proportion <S> responses',x='Step number')+facet_wrap(~sword)+ geom_vline(data=subset(expout2, Type=='Initial'),aes(xintercept = as.numeric(as.character(StepNum)))) + geom_hline(yintercept=0.5) + geom_hline(yintercept=0.3,linetype=2) +geom_vline(data=subset(expout1, Type=='Initial'),aes(xintercept = as.numeric(as.character(StepNum))),linetype=2)
 
-ggplot(subset(exp,Type=='Final'), aes(x=StepNum, y=ACC)) +geom_point() +geom_smooth(method="glm", family="binomial", size=1)  + labs(title='S-Final exposure words', y='Proportion <S> responses',x='Step number')+facet_wrap(~sword)+ geom_vline(aes(xintercept = Step)) + geom_hline(yintercept=threshold)
 
-ggplot(test, aes(x=StepNum, y=ACC,group=1)) +geom_point() +geom_smooth(method="glm", family="binomial", size=2) +facet_wrap(~sword) + labs(title='Categorization words', y='Proportion <S> responses',x='Step number')+ geom_vline(xintercept = 6)+ geom_vline(xintercept = 6) + geom_hline(yintercept=0.5)
+ggplot(subset(exp,Type=='Final'), aes(x=StepNum, y=ACC)) +geom_smooth(method="glm", family="binomial", size=1)  + labs(title='S-Final exposure words', y='Proportion <S> responses',x='Step number')+facet_wrap(~sword)+ geom_vline(aes(xintercept = 6)) + geom_hline(yintercept=0.5)
+
+ggplot(test, aes(x=StepNum, y=ACC,group=1)) +geom_point() +geom_smooth(method="glm", family="binomial", size=2) +facet_wrap(~sword) + labs(title='Categorization words', y='Proportion <S> responses',x='Step number')+ geom_vline(xintercept = 6)+ geom_vline(xintercept=0.5) + geom_hline(yintercept=0.5)
+
+#For 530 presentation
+ggplot(subset(exp,sword=='silver'), aes(x=StepNum, y=ACC)) +geom_smooth(method="glm", family="binomial", size=1)  + labs(title='Silver to Shilver', y='Proportion <s> responses',x='Step number')+ geom_vline(aes(xintercept = 6)) + geom_hline(yintercept=0.5) + scale_x_continuous(breaks=1:11)
+
+#For dissertation
+ggplot(subset(exp.sum,Type=='Initial'), aes(x=as.numeric(as.character(StepNum)), y=MeanResp)) +geom_point() +geom_smooth(data =subset(exp,Type=='Initial'), aes(x=StepNum,y=ACC), method="glm", family="binomial", size=1)  + labs(title='S-Initial exposure words', y='Proportion <S> responses',x='Step number')+facet_wrap(~sword)+ geom_vline(data=subset(expout2, Type=='Initial'),aes(xintercept = as.numeric(as.character(StepNum)))) + geom_hline(yintercept=0.5) + geom_hline(yintercept=0.3,linetype=2) +geom_vline(data=subset(expout1, Type=='Initial'),aes(xintercept = as.numeric(as.character(StepNum))),linetype=2)
+
+ggplot(subset(exp.sum,Type=='Final'), aes(x=as.numeric(as.character(StepNum)), y=MeanResp)) +geom_point() +geom_smooth(data =subset(exp,Type=='Final'), aes(x=StepNum,y=ACC), method="glm", family="binomial", size=1)  + labs(title='S-Final exposure words', y='Proportion <S> responses',x='Step number')+facet_wrap(~sword)+ geom_vline(data=subset(expout2, Type=='Final'),aes(xintercept = as.numeric(as.character(StepNum)))) + geom_hline(yintercept=0.5) + geom_hline(yintercept=0.3,linetype=2) +geom_vline(data=subset(expout1, Type=='Final'),aes(xintercept = as.numeric(as.character(StepNum))),linetype=2)
+
+ddply(expout1,~Type,summarise,mean(as.numeric(as.character(StepNum))),mean(MeanResp),sd(as.numeric(as.character(StepNum))),sd(MeanResp))
+
+ddply(expout2,~Type,summarise,mean(as.numeric(as.character(StepNum))),mean(MeanResp),sd(as.numeric(as.character(StepNum))),sd(MeanResp))
