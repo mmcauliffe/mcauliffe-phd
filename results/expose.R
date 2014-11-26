@@ -1,26 +1,4 @@
 
-expose <- read.delim('exposure.txt')
-
-expose <- subset(expose,RT > 200 & RT < 2500)
-#expose[expose$RT < 200,]$ACC <- 0
-#expose[expose$RT > 2500,]$ACC <- 0
-expose <- na.omit(expose)
-
-expose$Attention <- 'attend'
-
-expose[str_detect(expose$Subject,'^s2'),]$Attention <- 'noattend'
-expose[str_detect(expose$Subject,'^s3'),]$Attention <- 'noattend'
-
-expose$Attention <- factor(expose$Attention)
-
-expose.word <- subset(expose,Lexicality=='Word')
-expose.word$Word <- factor(expose.word$Word)
-
-target <- na.omit(subset(expose,itemtype %in% c('S-Initial','S-Final')))
-
-subj.tolerances <- ddply(target,~Subject*itemtype*Attention,summarise,WordResp = mean(ACC))
-
-summary(aov(WordResp ~ itemtype*Attention,data=subj.tolerances))
 
 ggplot(target,aes(x=Trial,y=ACC)) + geom_point() + geom_smooth(method='lm')+facet_wrap(~Subject)
 
