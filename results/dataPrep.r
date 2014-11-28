@@ -42,9 +42,9 @@ expose.word$Word <- factor(expose.word$Word)
 
 target <- na.omit(subset(expose,itemtype %in% c('S-Initial','S-Final')))
 
-subj.tolerances <- ddply(target,~Subject*itemtype*Attention,summarise,WordResp = mean(ACC))
+subj.tolerances <- ddply(target,~Subject*itemtype*Attention*Experiment,summarise,WordResp = mean(ACC))
 
-summary(aov(WordResp ~ itemtype*Attention,data=subj.tolerances))
+summary(aov(WordResp ~ itemtype*Attention*Experiment,data=subj.tolerances))
 
 #CATEGORIZATION
 

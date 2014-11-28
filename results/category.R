@@ -1,8 +1,8 @@
 
 
-mean_sresp <- ddply(categ,~ExposureType*Attention*Subject,summarise,meanresp = mean(ACC))
+mean_sresp <- ddply(categ,~ExposureType*Attention*Experiment*Subject,summarise,meanresp = mean(ACC))
 
-ggplot(mean_sresp,aes(x=meanresp)) + geom_histogram(binwidth=0.1) + facet_grid(ExposureType~Attention) + geom_density()
+ggplot(mean_sresp,aes(x=meanresp)) + geom_histogram(binwidth=0.1) + facet_grid(ExposureType~Attention*Experiment) + geom_density()
 
 cat.mod <- glmer(ACC ~ Step + (1+Step|Subject) + (1+Step|Item), family='binomial',data=categ)
 summary(cat.mod)
@@ -19,10 +19,10 @@ t <- getCrossOver(coef(cat.mod)$Subject)
 t2 <- merge(t,subj.tolerances)
 
 summary(aov(Xover ~ WordResp,data=t2))
-summary(aov(Xover ~ Attention*itemtype,data=t2))
+summary(aov(Xover ~ Attention*itemtype*Experiment,data=t2))
 cor.test(t2$Xover, t2$WordResp)
 
-ddply(t2,~Attention*itemtype,summarise,mean(Xover))
+ddply(t2,~Attention*itemtype*Experiment,summarise,mean(Xover))
 ggplot(categ, aes(x=Step, y=ACC)) +geom_point() +geom_smooth(method="glm", family="binomial", size=2) +facet_wrap(~Subject) + labs(title='Categorization words', y='Proportion <S> responses',x='Step number')
 ggplot(categ, aes(x=RT)) +geom_histogram() +geom_density() +facet_wrap(~Subject)
 
