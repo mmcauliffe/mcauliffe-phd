@@ -8,6 +8,10 @@ plotData = summarySEwithin(expose.word,'ACC',c('Attention','Experiment'), c('ite
 
 ggplot(plotData,aes(y=ACC, x = itemtype, fill=Attention)) + geom_bar(stat='identity', position=position_dodge(.9), colour = 'black') + geom_errorbar(position=position_dodge(.9), aes(ymin=ACC-ci,ymax = ACC + ci)) + facet_grid(~Experiment) + ylim(c(0,1))
 
+plotData = summarySEwithin(expose.word,'RT',c('Attention','Experiment'), c('itemtype'),idvar='Subject')
+
+ggplot(plotData,aes(y=RT, x = itemtype, fill=Attention)) + geom_bar(stat='identity', position=position_dodge(.9), colour = 'black') + geom_errorbar(position=position_dodge(.9), aes(ymin=RT-ci,ymax = RT + ci)) + facet_grid(~Experiment)
+
 filler = na.omit(subset(expose,!itemtype %in% c('S-Initial','S-Final')))
 
 ddply(filler,~Subject,summarise,WordResp = mean(ACC))
