@@ -9,13 +9,13 @@ library(stringr)
 #s400 final, attend
 
 #EXPOSURE
-expose <- read.delim('exposure.txt')
+expose <- read.delim('exp1_native_expose.txt')
 expose$Experiment <- 'exp1'
 
 expose$Attention <- 'attend'
 
-expose[str_detect(expose$Subject,'^s2'),]$Attention <- 'noattend'
-expose[str_detect(expose$Subject,'^s3'),]$Attention <- 'noattend'
+expose[str_detect(expose$Subject,'^ns1-2'),]$Attention <- 'noattend'
+expose[str_detect(expose$Subject,'^ns1-3'),]$Attention <- 'noattend'
 
 expose$Attention <- factor(expose$Attention)
 
@@ -49,20 +49,20 @@ summary(aov(WordResp ~ itemtype*Attention*Experiment,data=subj.tolerances))
 #CATEGORIZATION
 
 
-categ <- read.delim('categorization.txt')
+categ <- read.delim('exp1_native_categ.txt')
 categ$Experiment <- 'exp1'
 
 categ$ExposureType <- 'initial'
 
-categ[str_detect(categ$Subject,'^s2'),]$ExposureType <- 'final'
-categ[str_detect(categ$Subject,'^s4'),]$ExposureType <- 'final'
+categ[str_detect(categ$Subject,'^ns1-2'),]$ExposureType <- 'final'
+categ[str_detect(categ$Subject,'^ns1-4'),]$ExposureType <- 'final'
 
 categ$ExposureType <- factor(categ$ExposureType)
 
 categ$Attention <- 'attend'
 
-categ[str_detect(categ$Subject,'^s2'),]$Attention <- 'noattend'
-categ[str_detect(categ$Subject,'^s3'),]$Attention <- 'noattend'
+categ[str_detect(categ$Subject,'^ns1-2'),]$Attention <- 'noattend'
+categ[str_detect(categ$Subject,'^ns1-3'),]$Attention <- 'noattend'
 
 categ$Attention <- factor(categ$Attention)
 
@@ -136,11 +136,11 @@ categ <- subset(categ, RT > 200 & RT < 2500)
 
 #fix for coding error
 categ <- subset(categ,Trial < 169)
-sub <- subset(categ,Subject %in% c('s113','s114','s115','s118'))
+sub <- subset(categ,Subject %in% c('ns1-113','ns1-114','ns1-115','ns1-118'))
 sub$RealAcc = 0
 sub[sub$ACC == 0,]$RealAcc = 1
 
-categ[categ$Subject %in% c('s113','s114','s115','s118'),]$ACC = sub$RealAcc
+categ[categ$Subject %in% c('ns1-113','ns1-114','ns1-115','ns1-118'),]$ACC = sub$RealAcc
 
 t <- paste(categ$Label1,categ$Label2,sep='-')
 
@@ -151,7 +151,7 @@ t[t=='shock-sock'] = 'sock-shock'
 
 categ$Item <- factor(t)
 
-categ <- subset(categ,!Subject %in% c('s215','s402', 'ns2-219'))
+categ <- subset(categ,!Subject %in% c('ns1-215','ns1-402', 'ns2-219'))
 
 categ$Step <- categ$Step - mean(1:6)
 

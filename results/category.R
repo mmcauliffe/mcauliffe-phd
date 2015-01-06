@@ -50,3 +50,16 @@ cat.mod.full.1 <- glmer(ACC ~ Step*ExposureType*Attention + (1+Step|Subject) + (
 summary(cat.mod.full.1)
 cat.mod.full.2 <- glmer(ACC ~ Step*ExposureType*Attention + (1+Step|Subject) + (1+Step*ExposureType*Attention|Item), family='binomial',data=subset(categ, Experiment=='exp2'), control=glmerControl(optCtrl=list(maxfun=30000) ))
 summary(cat.mod.full.2)
+
+for.icphs <- subset(categ,Attention == 'noattend')
+for.icphs$Attention <- NULL
+for.icphs$Background <- 'Native'
+cont$Experiment <- 'Control'
+cont$ExposureType <- 'Control'
+for.icphs <- rbind(for.icphs,cont)
+for.icphs$Background <- factor(for.icphs$Background)
+for.icphs$ExposureType <- factor(for.icphs$ExposureType,levels=c('Control','initial','final'))
+for.icphs$Experiment <- factor(for.icphs$Experiment,levels=c('Control','exp1','exp2'))
+
+cat.mod.full.2 <- glmer(ACC ~ Step*ExposureType*Experiment + (1+Step|Subject) + (1+Step*ExposureType*Experiment|Item), family='binomial',data=for.icphs, control=glmerControl(optCtrl=list(maxfun=30000) ))
+test <- glmer(ACC ~ Step*ExposureType*Experiment + (1+Step|Subject) + (1+Step|Item), family='binomial',data=for.icphs)
