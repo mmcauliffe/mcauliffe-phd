@@ -46,10 +46,15 @@ ggplot(categ, aes(x=RT)) +geom_histogram() +geom_density() +facet_wrap(~Subject)
 
 ggplot(t2,aes(x=WordResp,y=Xover,colour=Attention,shape=itemtype,linetype=itemtype)) + geom_point() + geom_smooth(method='lm')
 
-cat.mod.full.1 <- glmer(ACC ~ Step*ExposureType*Attention + (1+Step|Subject) + (1+Step*ExposureType*Attention|Item), family='binomial',data=subset(categ,Experiment == 'exp1'), control=glmerControl(optCtrl=list(maxfun=30000)))
+cat.mod.full.1 <- glmer(ACC ~ Step*ExposureType*Attention + (1+Step|Subject) + (1+Step|Item), family='binomial',data=subset(categ,Experiment == 'exp1'), control=glmerControl(optCtrl=list(maxfun=30000)))
 summary(cat.mod.full.1)
-cat.mod.full.2 <- glmer(ACC ~ Step*ExposureType*Attention + (1+Step|Subject) + (1+Step*ExposureType*Attention|Item), family='binomial',data=subset(categ, Experiment=='exp2'), control=glmerControl(optCtrl=list(maxfun=30000) ))
+t <- subset(categ, Experiment=='exp2')
+t$Step <- factor(t$Step,ordered=T)
+cat.mod.full.2 <- glmer(ACC ~ Step*ExposureType*Attention + (1+Step|Subject) + (1+Step|Item), family='binomial',data=t, control=glmerControl(optCtrl=list(maxfun=100000) ))
 summary(cat.mod.full.2)
+cat.mod.full.2 <- glmer(ACC ~ Step*ExposureType*Attention*Item + (1+Step|Subject), family='binomial',data=t, control=glmerControl(optCtrl=list(maxfun=100000) ))
+summary(cat.mod.full.2)
+
 
 for.icphs <- subset(categ,Attention == 'noattend')
 for.icphs$Attention <- NULL
@@ -61,5 +66,21 @@ for.icphs$Background <- factor(for.icphs$Background)
 for.icphs$ExposureType <- factor(for.icphs$ExposureType,levels=c('Control','initial','final'))
 for.icphs$Experiment <- factor(for.icphs$Experiment,levels=c('Control','exp1','exp2'))
 
-cat.mod.full.2 <- glmer(ACC ~ Step*ExposureType*Experiment + (1+Step|Subject) + (1+Step*ExposureType*Experiment|Item), family='binomial',data=for.icphs, control=glmerControl(optCtrl=list(maxfun=30000) ))
-test <- glmer(ACC ~ Step*ExposureType*Experiment + (1+Step|Subject) + (1+Step|Item), family='binomial',data=for.icphs)
+icphs.mod <- glmer(ACC ~ Step + (1+Step|Subject) + (1+Step|Item), family='binomial',data=for.icphs, control=glmerControl(optCtrl=list(maxfun=10000000) ))
+icphs.xover <- getCrossOver(coef(icphs.mod)$Subject)
+icphs.mod <- glmer(ACC ~ Step*ExposureType*Experiment + (1+Step|Subject) + (1+Step|Item), family='binomial',data=for.icphs, control=glmerControl(optCtrl=list(maxfun=10000000) ))
+
+t <- unique(for.icphs[,c('Subject','Experiment','ExposureType')])
+t2 <- merge(icphs.xover,t)
+summary(aov(Xover ~ ExposureType*Experiment,data=t2))
+
+test <- glmer(ACC ~ Step*ExposureType*Experiment + (1+Step|Subject) + (1+Step*Experiment|Item), family='binomial',data=for.icphs, control=glmerControl(optCtrl=list(maxfun=10000000) ))
+
+
+for.icphs$ExposureType <- factor(for.icphs$ExposureType,levels=c('initial','Control','final'))
+
+test.2 <- glmer(ACC ~ Step*ExposureType*Experiment + (1+Step|Subject) + (1+Step|Item), family='binomial',data=for.icphs, control=glmerControl(optCtrl=list(maxfun=10000000) ))
+
+for.icphs$Experiment <- factor(for.icphs$Experiment,levels=c('exp1','Control','exp2'))
+
+test.3 <- glmer(ACC ~ Step*ExposureType*Experiment + (1+Step|Subject) + (1+Step|Item), family='binomial',data=for.icphs, control=glmerControl(optCtrl=list(maxfun=10000000) ))

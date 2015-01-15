@@ -23,3 +23,8 @@ summary(expose.mod)
 
 expose.mod.rt <- lmer(log(RT) ~ Trial+itemtype+ Attention + (1+itemtype|Subject) + (1+ Attention|Word),data=subset(expose,Lexicality=='Word'))
 summary(expose.mod)
+
+icphs.expose <- subset(expose.word,Attention == 'noattend')
+
+icphs.expose.mod <- glmer(ACC ~ Trial+itemtype*Experiment + (1+Trial|Subject) + (1+ Experiment|Word), family='binomial',data=icphs.expose, control=glmerControl(optCtrl=list(maxfun=200000) ))
+

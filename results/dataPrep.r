@@ -151,7 +151,7 @@ t[t=='shock-sock'] = 'sock-shock'
 
 categ$Item <- factor(t)
 
-categ <- subset(categ,!Subject %in% c('ns1-215','ns1-402', 'ns2-219'))
+categ <- subset(categ,!Subject %in% c('ns1-215','ns1-402','ns2-214', 'ns2-219'))
 
 categ$Step <- categ$Step - mean(1:6)
 

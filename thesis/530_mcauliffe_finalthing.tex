@@ -1,7 +1,74 @@
-%% The following is a directive for TeXShop to indicate the main file
-%%!TEX root = diss.tex
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
 
-\chapter{Background}
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+% \geometry{margin=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage{graphicx} % support the \includegraphics command and options
+
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+\usepackage{natbib}
+\usepackage{apalike}
+\usepackage{tipa}
+% These packages are all incorporated in the memoir class to one degree or another...
+
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{Brief Article}
+\author{The Author}
+%\date{} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\begin{center}
+530 "whatever-you'd-like-to-give-us-for-your-projects"
+
+Michael McAuliffe
+\end{center}
+
+\section{Background}
 
 Listeners of a language are faced with a large degree of variability when interacting with their fellow language users.  
 Speakers can have different sizes, different genders, and different backgrounds that make speech sound categories, at first blush, overlapping in distribution and harder to separate in acoustic domains.
@@ -9,7 +76,7 @@ Despite this, listeners maintain a large degree of perceptual constancy, through
 Ambiguous vowel sounds can be mapped to different categories depending on the vowels of the preceding context \citep{Ladefoged1957}, where the previously-unheard ambiguous tokens is normalized to the vowel space present in the context.  
 Perceptual learning refers to the updating of distributions corresponding to a sound category for a particular speaker.
 
-\section{Perceptual learning}
+\subsection{Perceptual learning}
 
 \citet{Norris2003} began the investigation into perceptual learning in speech. Previous work has demonstrated perceptual learning in the visual domain (Color hue reference?) and (I think auditory as well).  
 \citet{Norris2003} exposed Dutch listeners to a fricative halfway between /s/ and /f/ at the ends of words and nonwords and tested their categorization on a fricative continuum from 100\% /s/ to 100\% /f/. 
@@ -42,7 +109,7 @@ Lipread recalibration and perceptual learning effects had comparable size, laste
 The effects did not last through prolonged testing in this study, unlike in other studies \citep{Kraljic2005,Eisner2006}.
 
 
-\section{Retention}
+\subsection{Retention}
 \label{sec:retention}
 
 \citet{Kraljic2005} looked at the strength of the perceptual learning effect across various types of unlearning tasks. 
@@ -66,9 +133,9 @@ Given no other interactions with a given speaker, a listener's behaviour for tha
 However, the perceptual system remains plastic.  
 If a listener is exposed to a speaker trait in the first interaction, but the trait disappears in later interactions, the perceptual system will reattenuate to the newer evidence.
 
-\section{Generalization}
+\subsection{Generalization}
 
-\subsection{Generalizing to new speakers}
+\subsubsection{Generalizing to new speakers}
 
 \citet{Kraljic2007} looked at different sound contrasts and the ability of participants to generalize across speakers.  
 The first contrast was voicing between /t/ and /d/.  
@@ -106,7 +173,7 @@ They performed an acoustic analysis of the spectral means for the categorization
 From these studies, the clearest thread through all of them is the degree of acoustic similarity or perceptual similarity between the exposure stimuli that prompts perceptual learning and whatever continuum the listeners are tested on.  
 Stops and fricative do not actually appear to behave categorically different, per se, but their differences in behaviour can be attributed to the fact that stops are acoustically more similar to each other in general than fricatives are.
 
-\subsection{Generalizing to other categories and contexts}
+\subsubsection{Generalizing to other categories and contexts}
 
 \citet{Kraljic2006} looked at two sound contrasts (/d/-/t/ and /b/-/p/) that shared a feature, namely voicing.  
 Participants were exposed to ambiguous in between /d/ and /t/ in English words and then tested on two continua with two different voices.  
@@ -140,7 +207,7 @@ The sibilant in /str/ often surfaces closer to [\textesh] in many varieties of E
 They argue that the interpretation of the ambiguous sound is done in context of the surrounding sounds, and only when the pronunciation variant is unexplainable from context is the variant learned and attributed to the speaker, see also \citet{Kraljic2008}.  
 In addition to a continuum of /asi/ to /a\textesh i/, they also tested a continuum from /astri/ to /a\textesh tri/, and found comparable perceptual learning effects across both continua for those exposed to the intervocalic ambiguous sibilants, but no perceptual learning effects on either continua for the other condition, showing a context insentivity absent in other studies.
 
-\section{Current contribution}
+\subsection{Current contribution}
 
 Perceptual learning effects require two important aspects to be involved in the exposure phase.  
 There must be some ambiguous acoustic aspect to be learned, and there must be an unambiguous link between the ambiguous acoustics and a sound category. 
@@ -153,3 +220,57 @@ In this dissertation,  I will induce manipulations of lexical bias and attention
 Lexical bias has been shown to affect phoneme categorization tasks \citep{Ganong1980}, and can be manipulated by position of the ambiguous sound in the word and attention \cite{Pitt2012}.  
 Sentence predictability, has likewise been found to affect phoneme categorization tasks similar to lexical bias \citep{Borsky1998}, and can be manipulated by the preceding words in the sentence \citep{Kalikow1977}.  
 The interaction of sentence predictability with attention has not been explicitly studied, but the interaction should be similar to lexical bias.
+
+\section{Experiments 1 and 2 motivation}
+
+\subsection{Lexical bias}
+
+Lexical bias is the primary way through which perceptual learning occurs in the experimental literature.  Lexical bias, also known as the Ganong Effect, refers to the tendency for listeners to interpret a speaker's production as a meaningful word rather than a nonsense word.  For instance, given a continuum from a nonword like \emph{dask} to word like \emph{task} that differs only in one sound, listeners in general are more likely to interpret any step along the continuum as the word endpoint rather than the nonword endpoint \citep{Ganong1980}. This bias is exploited in perceptual learning studies to allow for noncanonical, ambiguous productions of a sound to be linked to pre-existing sound categories.
+
+Studies looking at lexical bias use a phoneme categorization task, where participants identify a sound at the beginning or end of a word from two possible options that vary in one dimension.  For instance, given a continuum from /t/ to /d/, participants are asked to identify the sound at the beginning or end as either /t/ or /d/.  Lexical bias effects are calculated based on two continua, where words are formed at opposite ends.  For the /t/ to /d/ continua, one would form a word at the /t/ end, such as \emph{task} and one would form a word at the other end, such as \emph{dash}.  Lexical bias effects are then calculated from the different categorization behaviour for these two continua.
+
+%Word length
+Lexical bias varies in strength according to several factors.  First, the length of the word in syllables has a large effect on lexical bias, with longer words showing stronger lexical bias than shorter words \citep{Pitt2006}.  Continua formed using trisyllabic words, such as \emph{establish} and \emph{malpractice}, were found to show consistently large lexical bias effects than monosyllabic words, such as \emph{kiss} and \emph{fish}.  \citet{Pitt2006} also found that lexical bias from monosyllabic words show greater response to experimental manipulations than trisyllabic words.
+
+%Position in the word
+\citet{Pitt2012} used a lexical decision task with a continuum of fricatives from /s/ to /\textesh/ embedded in words differing in the position of a sibilant.  They found that ambiguous fricatives earlier in the word, such as \emph{serenade} or \emph{chandelier}, lead to greater nonword responses than the same ambiguous fricatives embedded later in a word, such as \emph{establish} or \emph{embarass}.  In the experiments and meta-analysis of phoneme identification results presented in \citet{Pitt1993}, they found that, for monosyllabic word frames, token-final targets produce more stable results than token-initial targets.
+
+%Attention
+\citet{Pitt2012} additionally investigated the role of attention in modulating lexical bias.  When listeners were told that the speaker's /s/ and /\textesh/ were ambiguous and to listen carefully to ensure correct responses, they were less tolerant of noncanonical productions across all positions in the word.  That is, participants attending to the speaker's sibilants were less likely to accept the modified production as a word than participants given no particular instructions about the sibilants.
+
+%Cognitive load
+Lexical bias is affected by processing conditions.  In their first experiment, \citet{Mattys2011} found that lexical bias has a larger effect when listeners have more cognitive load than when they have no cognitive load from concurrent tasks.  In their second experiment, the same cognitive load and non-cognitive load conditions were present, but listeners had to respond to the phoneme identification task within 1500 ms.  In this experiment, the lexical bias across cognitive load conditions was identical and similar to the cognitive load condition of experiment 1.  In experiment 3, listeners could only respond \emph{after} 1500 ms, and the effect of cognitive load re-emerged with similar magnitude to experiment 1.  In the remainder of their experiments, they examined whether cognitive load increased word activation or decreased sensory information, the two primary possible explanations for the pattern of results found in experiment 1.  They found that semantic priming was not significantly different across cognitive loads, but fine-grained discrimination suffered under cognitive load conditions.  Thus, the effect of cognitive load observed is a function of impoverished fine detail leading to a greater reliance on lexical information.  However, the timecourse for the incorporation of these different sources of information is interesting, with lexical information playing a larger role earlier on in processing and sensory signal information being incoporated later on.  Earlier responses are more likely to be lexically biased than later responses.
+
+\section{Experiment 3 motivation}
+
+\subsection{Semantic predictability}
+
+The type of contextual predictability used in this experiment is known as semantic predictability.  Sentences are highly predictable when they contain words prior to the final word that points almost definitively to the identity of the final word.  For instance, the sentence fragment \emph{The cow gave birth to the...} from \citet{Kalikow1977} is almost guaranteed to be completed with the word \emph{calf}.  On the other hand, a fragment like \emph{She is glad Jane called about the...} is far from having a guaranteed completion, other than having the category of noun. Semantic predictability has been found to have effects on both production and perception, which will be discussed in the two following sections
+
+\subsubsection{Acoustic realization}
+
+In general, semantic predictability has a reductive effect on the acoustics of words.  In \citet{Scarborough2010}, words produced in highly predictable frames tend to be shorter in duration and have less dispersed vowel realizations.  This semantic predictability effect did not interact with neighbourhood density, a lexical factor that proxies for the amount of lexical competition a word has.  Words with many neighbours, and therefore had lessened lexical predictability, had longer durations and more dispersed vowel realizations.  For both the lexical and the semantic predictability, high predictability led to less distinct word realizations, and low predictability led to more distinct word realizations, independently of each other.
+
+In a study looking at semantic predictability across dialects, \citet{Clopper2008} found that not all dialects realize the effects of semantic predictability the same.  For the Southern dialect of American English, the results were much the same as in \citet{Scarborough2010}, showing temporal and spectral reduction in high predictabilty environments.  However, speakers in the Midland dialect showed no such effect, and speakers of the Northern dialect showed more extreme Northen Cities shifting in the the high predictability environment.
+
+\subsubsection{Intelligibility}
+
+Despite the temporal and spectral reduction found in high predictability contexts, high predictability sentences are generally more intelligible.  Sentences that form a semantically coherent whole have higher word identification rates across varying signal-to-noise ratios \citep{Kalikow1977}.  However, when words at the ends of predictive sentences are excised from their context, they tend to be less intelligible than words excised from non-predictive contexts \citep{Lieberman1963}.  %<<I don't know if this is just due to differences in speaking rates/durations.  Do you know of any studies (maybe based on sentences excised from sponataneous speech) where words would be said with similar durations or have contextual frames that normalize the duration differences for the listener?>>
+
+\subsection{Similarity to lexical bias}
+
+A key pillar of the motivation underlying this experiment is the notion that semantic predictability is similar to, yet distinct from, lexical bias/lexical predictability.  \citet{Scarborough2010} found that lexical predictability and semantic predictability did not interact and had the same effect directions, but different effect sizes, with lexical predictability having a larger effect than semantic predictability.
+
+One line of research has attempted to show whether the semantic predictability effects are part of perceptual and phonetic processing or if they result following phonetic processing.  \citet{Connine1987a} established different reaction time profiles for perceptual and postperceptual processes in categorizing a continuum.  With lexical bias, response times to the end points of a /d/ to /t/ continuum show no difference whether the continuum forms a word at one end point (such as \emph{dice} to \emph{tice}) or at the other (such as \emph{dype} to \emph{type}).  However, at the boundary between /d/ and /t/, reaction times are faster when a subject responds consisten to the bias (i.e. interprets an ambiguous word \emph{?ice} as \emph{dice}).  For postperceptual processes, in this case a monetary payoff for responding either /d/ or /t/ along a continuum that has nonwords at both ends, the pattern is reversed, where reaction times were faster for responses consistent with the monetary bias at the end points of the continuum, but no such difference was found for the category boundary.  Both biases produced similar categorization patterns, such that the participants biased toward /d/, either lexically or monetarily, categorized more of the continuum as /d/, so the principle difference between the two biases was in the reaction time profile.
+
+Two studies that have looked at semantic predictability in this paradigm are \citet{Connine1987} and \citet{Borsky1998}, and they found conflicting results.  In \citet{Connine1987}, the reaction time profile aligned more with the monetary bias in \citet{Connine1987a}, with reaction time differences located at the end point and not the category boundary, but \citet{Borsky1998} found the reverse with a profile more similar to lexical bias.  %<<Examine differences between studies?>>
+
+\subsection{Attention?}
+
+I don't know of any work that has specifically looked at attention (to acoustics in particular) in the context of semantic predictability.
+
+\bibliographystyle{apalike}
+\bibliography{biblio}
+
+
+\end{document}
