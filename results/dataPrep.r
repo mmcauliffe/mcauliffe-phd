@@ -156,6 +156,14 @@ categ <- subset(categ,!Subject %in% c('ns1-215','ns1-402','ns2-214', 'ns2-219'))
 categ$Step <- categ$Step - mean(1:6)
 
 
+getCrossOver <- function(data){
+  data$p <- -1*data[,'(Intercept)']/data[,'Step']
+  data$pRound <- round(data$p)
+  
+  data <- data.frame(Subject = row.names(data),Xover = data$p)
+  return(data)
+}
+
 summarySE <- function(data=NULL, measurevar, groupvars=NULL, na.rm=FALSE,
                       conf.interval=.95, .drop=TRUE) {
   require(plyr)

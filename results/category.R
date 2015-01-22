@@ -8,17 +8,12 @@ mean_sresp <- ddply(categ,~ExposureType*Attention*Experiment*Subject,summarise,m
 ggplot(mean_sresp,aes(x=meanresp)) + geom_histogram(binwidth=0.1) + facet_grid(ExposureType~Attention*Experiment) + geom_density()
 
 cat.mod <- glmer(ACC ~ Step + (1+Step|Subject) + (1+Step|Item), family='binomial',data=categ)
+cat.mod <- glmer(ACC ~ Step + (1+Step|Subject) + (1+Step|Item), family='binomial',data=categ)
+t <- getCrossOver(coef(cat.mod)$Subject)
 summary(cat.mod)
 cont.mod <- glmer(ACC ~ Step + (1+Step|Subject) + (1+Step|Item), family='binomial',data=cont)
 summary(cont.mod)
 
-getCrossOver <- function(data){
-  data$p <- -1*data[,'(Intercept)']/data[,'Step']
-  data$pRound <- round(data$p)
-  
-  data <- data.frame(Subject = row.names(data),Xover = data$p)
-  return(data)
-}
 cont.xover <- getCrossOver(coef(cont.mod)$Subject)
 t <- getCrossOver(coef(cat.mod)$Subject)
 
@@ -50,9 +45,9 @@ cat.mod.full.1 <- glmer(ACC ~ Step*ExposureType*Attention + (1+Step|Subject) + (
 summary(cat.mod.full.1)
 t <- subset(categ, Experiment=='exp2')
 t$Step <- factor(t$Step,ordered=T)
-cat.mod.full.2 <- glmer(ACC ~ Step*ExposureType*Attention + (1+Step|Subject) + (1+Step|Item), family='binomial',data=t, control=glmerControl(optCtrl=list(maxfun=100000) ))
+cat.mod.full.2 <- glmer(ACC ~ Step*ExposureType*Attention + (1+Step|Subject) + (1+Step|Item), family='binomial',data=for.icphs, control=glmerControl(optCtrl=list(maxfun=100000) ))
 summary(cat.mod.full.2)
-cat.mod.full.2 <- glmer(ACC ~ Step*ExposureType*Attention*Item + (1+Step|Subject), family='binomial',data=t, control=glmerControl(optCtrl=list(maxfun=100000) ))
+cat.mod.full.2 <- glmer(ACC ~ Step*ExposureType*Attention+Item*Step + (1+Step|Subject), family='binomial',data=t, control=glmerControl(optCtrl=list(maxfun=100000) ))
 summary(cat.mod.full.2)
 
 
