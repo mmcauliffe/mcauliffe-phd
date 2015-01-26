@@ -8,14 +8,12 @@ mean_sresp <- ddply(categ,~ExposureType*Attention*Experiment*Subject,summarise,m
 ggplot(mean_sresp,aes(x=meanresp)) + geom_histogram(binwidth=0.1) + facet_grid(ExposureType~Attention*Experiment) + geom_density()
 
 cat.mod <- glmer(ACC ~ Step + (1+Step|Subject) + (1+Step|Item), family='binomial',data=categ)
-cat.mod <- glmer(ACC ~ Step + (1+Step|Subject) + (1+Step|Item), family='binomial',data=categ)
 t <- getCrossOver(coef(cat.mod)$Subject)
 summary(cat.mod)
 cont.mod <- glmer(ACC ~ Step + (1+Step|Subject) + (1+Step|Item), family='binomial',data=cont)
 summary(cont.mod)
 
 cont.xover <- getCrossOver(coef(cont.mod)$Subject)
-t <- getCrossOver(coef(cat.mod)$Subject)
 
 t2 <- merge(t,subj.tolerances)
 

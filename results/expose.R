@@ -15,6 +15,7 @@ ggplot(plotData,aes(y=RT, x = itemtype, fill=Attention)) + geom_bar(stat='identi
 filler = na.omit(subset(expose,!itemtype %in% c('S-Initial','S-Final')))
 
 ddply(filler,~Subject,summarise,WordResp = mean(ACC))
+ddply(filler,~Subject,summarise,WordResp = mean(ACC))
 
 ddply(expose.word,~Subject*itemtype,nrow)
 

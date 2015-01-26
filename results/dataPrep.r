@@ -19,6 +19,13 @@ expose[str_detect(expose$Subject,'^ns1-3'),]$Attention <- 'noattend'
 
 expose$Attention <- factor(expose$Attention)
 
+expose$ExposureType <- 'initial'
+
+expose[str_detect(expose$Subject,'^ns1-2'),]$ExposureType <- 'final'
+expose[str_detect(expose$Subject,'^ns1-4'),]$ExposureType <- 'final'
+
+expose$ExposureType <- factor(expose$ExposureType)
+
 t <- read.delim('exp2_native_expose.txt')
 t$Experiment <- 'exp2'
 t$CRESP <- NULL
@@ -29,6 +36,14 @@ t[str_detect(t$Subject,'^ns2-2'),]$Attention <- 'noattend'
 t[str_detect(t$Subject,'^ns2-3'),]$Attention <- 'noattend'
 
 t$Attention <- factor(t$Attention)
+
+t$ExposureType <- 'initial'
+
+t[str_detect(t$Subject,'^ns2-2'),]$ExposureType <- 'final'
+t[str_detect(t$Subject,'^ns2-4'),]$ExposureType <- 'final'
+
+t$ExposureType <- factor(t$ExposureType)
+
 expose <- rbind(expose,t)
 expose$Experiment <- factor(expose$Experiment)
 
