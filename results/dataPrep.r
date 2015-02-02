@@ -45,6 +45,11 @@ t[str_detect(t$Subject,'^ns2-4'),]$ExposureType <- 'final'
 t$ExposureType <- factor(t$ExposureType)
 
 expose <- rbind(expose,t)
+expose$itemtype2 <- 'Filler'
+expose[expose$itemtype%in%c('S-Final','S-Initial'),]$itemtype2 <- 'S'
+expose[expose$itemtype%in%c('SH-Final','SH-Initial'),]$itemtype2 <- 'SH'
+expose$itemtype2 <- factor(expose$itemtype2)
+
 expose$Experiment <- factor(expose$Experiment)
 
 expose <- subset(expose,RT > 200 & RT < 2500)
@@ -52,14 +57,17 @@ expose <- subset(expose,RT > 200 & RT < 2500)
 #expose[expose$RT > 2500,]$ACC <- 0
 expose <- na.omit(expose)
 
+expose <- subset(expose,!Subject %in% c('ns1-215','ns1-402','ns2-214', 'ns2-219'))
+
 expose.word <- subset(expose,Lexicality=='Word')
 expose.word$Word <- factor(expose.word$Word)
 
 target <- na.omit(subset(expose,itemtype %in% c('S-Initial','S-Final')))
 
 subj.tolerances <- ddply(target,~Subject*itemtype*Attention*Experiment,summarise,WordResp = mean(ACC))
+subj.tolerances$tWordResp <- asin(subj.tolerances$WordResp)
 
-summary(aov(WordResp ~ itemtype*Attention*Experiment,data=subj.tolerances))
+summary(aov(tWordResp ~ itemtype*Attention*Experiment,data=subj.tolerances))
 
 #CATEGORIZATION
 

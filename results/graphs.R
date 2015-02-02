@@ -1,4 +1,6 @@
 for.icphs.expose <- subset(expose,Experiment == 'exp2' & Lexicality == 'Word')
+for.icphs.expose$ExposureType <- factor(for.icphs.expose$ExposureType, levels = c('initial','final'))
+for.icphs.expose$Attention <- factor(for.icphs.expose$Attention, levels = c('noattend','attend'))
 ddply(subset(for.icphs.expose,itemtype=='S-Final'),~Subject,summarise,WordResp = sum(ACC))
 ddply(subset(for.icphs.expose,itemtype=='S-Initial'),~Subject,summarise,WordResp = sum(ACC))
 
@@ -6,9 +8,17 @@ for.icphs.expose$Trial <- for.icphs.expose$Trial - 100
 for.icphs.expose$LogRT <- log(for.icphs.expose$RT)
 for.icphs.expose$LogRT <- for.icphs.expose$LogRT - mean(for.icphs.expose$LogRT)
 
-icphs.expose.mod <- glmer(ACC ~ itemtype*Attention + (1+itemtype|Subject) + (1+ Attention|Word), family='binomial',data=subset(for.icphs.expose, ExposureType=='initial'), control=glmerControl(optCtrl=list(maxfun=200000) ))
 
-expose.mod.rt <- lmer(LogRT ~ Trial+itemtype* Attention + (1+Trial+itemtype|Subject) + (1+ Attention|Word),data=subset(for.icphs.expose, ExposureType=='initial'), control=lmerControl(optCtrl=list(maxfun=200000) ))
+
+plotData <- summarySEwithin(data = for.icphs.expose,measurevar = 'LogRT',betweenvars = c('Attention','ExposureType'),withinvars=c('itemtype','ACC'),idvar='Subject')
+ddply(for.icphs.expose,~ExposureType*itemtype*ACC, summarise, mean(LogRT))
+ggplot(plotData,aes(x=ACC,y=LogRT, colour = itemtype))+ geom_point()+geom_errorbar(aes(ymin=LogRT-ci,ymax =  LogRT+ci))+facet_grid(Attention~ExposureType)
+
+icphs.expose.mod <- glmer(ACC ~ itemtype2*Attention*ExposureType + (1+itemtype2|Subject) + (1+Attention|Word), family='binomial',data=for.icphs.expose, control=glmerControl(optCtrl=list(maxfun=200000) ))
+summary(icphs.expose.mod)
+
+icphs.expose.mod.rt <- lmer(LogRT ~ Trial+itemtype2*Attention*ExposureType + (1+Trial+itemtype2|Subject) + (1+ Attention*ExposureType|Word),data=for.icphs.expose, control=lmerControl(optCtrl=list(maxfun=200000) ))
+summary(icphs.expose.mod.rt)
 
 icphs.expose.mod.final <- glmer(ACC ~ itemtype*Attention + (1+itemtype|Subject) + (1+ Attention|Word), family='binomial',data=subset(for.icphs.expose, ExposureType=='final'), control=glmerControl(optCtrl=list(maxfun=200000) ))
 
@@ -36,13 +46,15 @@ summary(cont.mod)
 
 ggplot(for.icphs,aes(x=Step,y=ACC)) + geom_smooth(method='loess')+facet_wrap(~Subject)
 cat.mod <- glmer(ACC ~ Step + (1+Step|Subject) + (1+Step|Item), family='binomial',data=for.icphs)
+t <- getCrossOver(coef(cat.mod)$Subject)
 t <- getCrossOver(coef(icphs.mod.1)$Subject)
 
 t2 <- merge(t,subset(subj.tolerances,Experiment=='exp2'))
-ddply(t2,~itemtype*Attention, summarise,mean(WordResp),sd(WordResp))
+ddply(t2,~itemtype*Attention, summarise,mean(WordResp),sd(WordResp),min(WordResp),max(WordResp))
 t2$WordResp = asin(t2$WordResp)
 summary(aov(Xover ~ WordResp*Attention*itemtype,data=t2))
 summary(aov(WordResp~ Attention*itemtype, data=t2))
+summary()
 cor.test(t2$Xover, t2$WordResp)
 
 t2$Xover = t2$Xover + 3.5
@@ -72,13 +84,13 @@ ggplot(contPlotData,aes(x=Step,y=ACC)) + geom_point() + geom_errorbar(aes(ymin=A
 if_labeller <- function(var, value){
   value <- as.character(value)
   if (var=="ExposureType") { 
-    value[value=="initial"] <- "/s/ in first syllable"
-    value[value=="final"]   <- "/s/ in last syllable"
+    value[value=="initial"] <- "S-Initial"
+    value[value=="final"]   <- "S-Final"
   }
   return(value)
 }
 
-ggplot(plotData,aes(x=Step,y=ACC, linetype=Attention,shape=Attention,group=Attention)) + geom_point(size=1.7)+facet_grid(~ExposureType, labeller=if_labeller) + geom_errorbar(aes(ymin=ACC-ci,ymax=ACC+ci))+ ylab('Percent /s/ response') +xlab('Continua step') + scale_x_continuous(breaks = 1:6)  + theme_bw() + theme(text=element_text(size=12))+scale_linetype_manual(values = c('dashed', 'dotted','solid'),labels = c('No attention','Attention','Control'))+scale_shape_manual(values = c(21, 22,23),labels = c('No attention','Attention','Control'))#+scale_colour_manual(values = c("#0072B2", "#D55E00","#000000"),labels = c('No attention','Attention','Control'))
+ggplot(plotData,aes(x=Step,y=ACC, linetype=Attention,shape=Attention,group=Attention)) + geom_point(size=1.7)+facet_grid(~ExposureType, labeller=if_labeller) +geom_line() + geom_errorbar(aes(ymin=ACC-ci,ymax=ACC+ci),linetype='solid',size=0.1)+ ylab('Proportion /s/ response') +xlab('Continua step') + scale_x_continuous(breaks = 1:6)  + theme_bw() + theme(text=element_text(size=10),legend.title=element_text(size=8),legend.text=element_text(size=8),legend.justification=c(0,0), legend.position=c(0,0))+scale_linetype_manual(values = c('dashed', 'dotted','solid'),labels = c('No attention','Attention','Control'))+scale_shape_manual(values = c(21, 22,23),labels = c('No attention','Attention','Control'))#+scale_colour_manual(values = c("#0072B2", "#D55E00","#000000"),labels = c('No attention','Attention','Control'))
 
 ggsave('categresults.pdf',width=170,height=80,units='mm',dpi=600)
 ###
