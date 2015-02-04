@@ -109,6 +109,29 @@ t$Attention <- factor(t$Attention)
 
 categ <- rbind(categ,t)
 
+t2 <- read.delim('exp3_native_categ.txt')
+t2 <- na.omit(t2)
+t2$ACC = 0
+t2[t2$RESP == t2$SResp,]$ACC <- 1
+t2$Experiment <- 'exp3'
+
+t2$ExposureType <- 'initial'
+
+t2[str_detect(t2$Subject,'^ns3-2'),]$ExposureType <- 'final'
+t2[str_detect(t2$Subject,'^ns3-4'),]$ExposureType <- 'final'
+
+t2$ExposureType <- factor(t2$ExposureType)
+
+t2$Attention <- 'attend'
+
+t2[str_detect(t2$Subject,'^ns3-2'),]$Attention <- 'noattend'
+t2[str_detect(t2$Subject,'^ns3-3'),]$Attention <- 'noattend'
+
+t2$Attention <- factor(t2$Attention)
+
+categ <- rbind(categ,t2)
+categ$Experiment <- factor(categ$Experiment)
+
 cont <- read.delim('control_native_categ.txt')
 
 cont <- na.omit(cont)
@@ -178,6 +201,12 @@ categ <- subset(categ,!Subject %in% c('ns1-215','ns1-402','ns2-214', 'ns2-219'))
 
 categ$Step <- categ$Step - mean(1:6)
 
+
+expose3 <- read.delim('exp3_native_expose.txt')
+expose3 <- na.omit(expose3)
+expose3$LogRT <- log(expose3$RT)
+
+ddply(expose3,~Predictability*Type, summarise, mean(LogRT), sd(LogRT))
 
 getCrossOver <- function(data){
   data$p <- -1*data[,'(Intercept)']/data[,'Step']
