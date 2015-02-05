@@ -117,15 +117,15 @@ t2$Experiment <- 'exp3'
 
 t2$ExposureType <- 'initial'
 
-t2[str_detect(t2$Subject,'^ns3-2'),]$ExposureType <- 'final'
-t2[str_detect(t2$Subject,'^ns3-4'),]$ExposureType <- 'final'
+#t2[str_detect(t2$Subject,'^ns3-2'),]$ExposureType <- 'final'
+#t2[str_detect(t2$Subject,'^ns3-4'),]$ExposureType <- 'final'
 
 t2$ExposureType <- factor(t2$ExposureType)
 
 t2$Attention <- 'attend'
 
-t2[str_detect(t2$Subject,'^ns3-2'),]$Attention <- 'noattend'
-t2[str_detect(t2$Subject,'^ns3-3'),]$Attention <- 'noattend'
+#t2[str_detect(t2$Subject,'^ns3-2'),]$Attention <- 'noattend'
+#t2[str_detect(t2$Subject,'^ns3-3'),]$Attention <- 'noattend'
 
 t2$Attention <- factor(t2$Attention)
 
@@ -200,6 +200,8 @@ categ$Item <- factor(t)
 categ <- subset(categ,!Subject %in% c('ns1-215','ns1-402','ns2-214', 'ns2-219'))
 
 categ$Step <- categ$Step - mean(1:6)
+categ$ExposureType <- factor(categ$ExposureType, levels = c('initial','final'))
+categ$Attention <- factor(categ$Attention, levels = c('noattend','attend'))
 
 
 expose3 <- read.delim('exp3_native_expose.txt')

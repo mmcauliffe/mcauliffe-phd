@@ -1,5 +1,20 @@
 
 
+### EXPERIMENT 1
+
+experiment.1.expose.mod <- glmer(ACC ~ Trial+itemtype2*Attention*ExposureType + (1+Trial+itemtype2|Subject) + (1+Attention|Word), family='binomial',data=subset(expose,Experiment=='exp2'), control=glmerControl(optCtrl=list(maxfun=200000) ))
+summary(experiment.1.expose.mod)
+
+
+### END EXPERIMENT 1
+
+### EXPERIMENT 2
+
+experiment.2.expose.mod <- glmer(ACC ~ Trial+itemtype2*Attention*ExposureType + (1+Trial+itemtype2|Subject) + (1+Attention|Word), family='binomial',data=subset(expose,Experiment=='exp1'), control=glmerControl(optCtrl=list(maxfun=200000) ))
+
+### END EXPERIMENT 2
+
+
 ggplot(target,aes(x=Trial,y=ACC)) + geom_point() + geom_smooth(method='lm')+facet_wrap(~Subject)
 
 ggplot(target,aes(x=Trial,y=log(RT))) + geom_point() + geom_smooth(method='lm')+facet_wrap(~Subject)

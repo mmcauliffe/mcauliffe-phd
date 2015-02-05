@@ -1,9 +1,45 @@
+### CONTROL ###
+
+cont.mod <- glmer(ACC ~ Step + (1+Step|Subject) + (1+Step|Item), family='binomial',data=cont)
+summary(cont.mod)
+
+
+### END CONTROL ###
+
+
+### EXPERIMENT 1
+
+
+experiment.1.mod <- glmer(ACC ~ Step*ExposureType*Attention + (1+Step|Subject) + (1+Step|Item), family='binomial',data=subset(categ,Experiment=='exp2'), control=glmerControl(optCtrl=list(maxfun=100000) ))
+summary(experiment.1.mod)
+
+
+### END EXPERIMENT 1
+
+### EXPERIMENT 2
+
+
+experiment.2.mod <- glmer(ACC ~ Step*ExposureType*Attention + (1+Step|Subject) + (1+Step|Item), family='binomial',data=subset(categ,Experiment=='exp1'), control=glmerControl(optCtrl=list(maxfun=100000) ))
+summary(experiment.2.mod)
+
+### END EXPERIMENT 2
+
+###
+
+cat.mod <- glmer(ACC ~ Step + (1+Step|Subject) + (1+Step|Item), family='binomial',data=categ)
+xovers <- getCrossOver(coef(cat.mod)$Subject)
+
+xovers <- merge(xovers,subj.tolerances)
+summary(aov(Xover ~ WordResp*Attention*itemtype*Experiment,data=xovers))
+cor.test(subset(xovers,Experiment=='exp1')$Xover, subset(xovers,Experiment=='exp1')$WordResp)
+cor.test(subset(xovers,Experiment=='exp2')$Xover, subset(xovers,Experiment=='exp2')$WordResp)
+
 
 ggplot(categ,aes(x=Step,y=ACC)) + geom_smooth(method='glm',family='binomial')+facet_wrap(~Subject)
 
 ggplot(cont,aes(x=Step,y=ACC)) + geom_smooth(method='loess')+facet_wrap(~Subject)
 
-mean_sresp <- ddply(categ,~ExposureType*Attention*Experiment*Subject,summarise,meanresp = mean(ACC))
+mean_sresp <- ddply(categ,~Experiment*ExposureType*Attention*Subject,summarise,meanresp = mean(ACC))
 
 ggplot(mean_sresp,aes(x=meanresp)) + geom_histogram(binwidth=0.1) + facet_grid(ExposureType~Attention*Experiment) + geom_density()
 
