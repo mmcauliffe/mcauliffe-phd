@@ -22,6 +22,7 @@ summary(experiment.1.mod)
 experiment.2.mod <- glmer(ACC ~ Step*ExposureType*Attention + (1+Step|Subject) + (1+Step|Item), family='binomial',data=subset(categ,Experiment=='exp1'), control=glmerControl(optCtrl=list(maxfun=100000) ))
 summary(experiment.2.mod)
 
+
 ### END EXPERIMENT 2
 
 ###

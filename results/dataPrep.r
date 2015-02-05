@@ -60,6 +60,9 @@ expose <- na.omit(expose)
 expose <- subset(expose,!Subject %in% c('ns1-215','ns1-402','ns2-214', 'ns2-219'))
 
 expose.word <- subset(expose,Lexicality=='Word')
+expose.word$cTrial <- expose.word$Trial - 100
+expose.word$LogRT <- log(expose.word$RT)
+expose.word$cLogRT <- expose.word$LogRT - mean(expose.word$LogRT)
 expose.word$Word <- factor(expose.word$Word)
 
 target <- na.omit(subset(expose,itemtype %in% c('S-Initial','S-Final')))

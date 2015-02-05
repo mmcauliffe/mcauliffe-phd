@@ -2,7 +2,7 @@
 
 ### EXPERIMENT 1
 
-experiment.1.expose.mod <- glmer(ACC ~ Trial+itemtype2*Attention*ExposureType + (1+Trial+itemtype2|Subject) + (1+Attention|Word), family='binomial',data=subset(expose,Experiment=='exp2'), control=glmerControl(optCtrl=list(maxfun=200000) ))
+experiment.1.expose.mod <- glmer(ACC ~ itemtype2*Attention*ExposureType + (1+itemtype2|Subject) + (1|Word), family='binomial',data=subset(expose.word,Experiment=='exp2'), control=glmerControl(optCtrl=list(maxfun=200000) ))
 summary(experiment.1.expose.mod)
 
 
@@ -10,7 +10,10 @@ summary(experiment.1.expose.mod)
 
 ### EXPERIMENT 2
 
-experiment.2.expose.mod <- glmer(ACC ~ Trial+itemtype2*Attention*ExposureType + (1+Trial+itemtype2|Subject) + (1+Attention|Word), family='binomial',data=subset(expose,Experiment=='exp1'), control=glmerControl(optCtrl=list(maxfun=200000) ))
+experiment.2.expose.mod <- glmer(ACC ~ itemtype2*Attention*ExposureType + (1+itemtype2|Subject) + (1|Word), family='binomial',data=subset(expose.word,Experiment=='exp1'), control=glmerControl(optCtrl=list(maxfun=200000) ))
+summary(experiment.2.expose.mod)
+
+ddply(subset(expose,Experiment=='exp1'), ~ Subject*itemtype2,nrow)
 
 ### END EXPERIMENT 2
 
