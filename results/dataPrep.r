@@ -177,7 +177,7 @@ nncont$Background <- 'Non-native'
 cont <- rbind(cont, nncont)
 cont$Background <- factor(cont$Background)
 #categ <- rbind(categ, cont)
-categ$Experiment <- factor(categ$Experiment)
+categ$Experiment <- factor(categ$Experiment, levels = c('exp2','exp1'))
 
 categ <- na.omit(categ)
 

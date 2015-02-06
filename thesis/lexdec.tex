@@ -182,7 +182,7 @@ Trials containing an ambiguous /s/ were less likely to be responded to as a word
 
 Responses with reaction times less than 200 ms or greater than 2500 ms were excluded from analyses. 
 Participants were excluded if their initial estimated cross over point for the continuum lay outside of the 6 steps presented (2 participants).  
-A logistic mixed effects model was constructed with Subject and Continua as random effects and continua Step as random slopes, with 0 coded as a /ʃ/ response and 1 as a /s/ response.  Fixed effects for the model were Step, Exposure Type, Attention and their interactions.
+A logistic mixed effects model was constructed with Subject and Continua as random effects and continua Step as random slopes, with 0 coded as a /\textesh/ response and 1 as a /s/ response.  Fixed effects for the model were Step, Exposure Type, Attention and their interactions.
 
 \begin{figure*}[!ht]
 \caption{Proportion /s/ response along the 6 step continua as a function of Exposure Type and Attention in Experiment 1.    In the S-Final condition, participants in the Attention condition showed a larger perceptual learning effect than those in the No Attention condition.  In the S-Initial condition, there were no differences in perceptual learning between the Attention conditions. Error bars represent 95\% confidence intervals.}
@@ -213,9 +213,20 @@ As an individual predictor of participants' performance we took the proportion c
 The crossover point was determined from the Subject random effect in the logistic mixed effects model \citep{Kleber2011}. 
 There was a significant positive correlation between a participant's tolerance for the ambiguous exposure items and their crossover point on the continua ($r = 0.39, t (90) = 4, p < 0.01$), shown in Figure~\ref{fig:exp1xover}.
 
+An ANOVA with cross-over point as the independent variable and word endorsement rate, Exposure Type, Attention and their interactions, found only a main effect of word endorsement rate ($F(1,89) = 17.82, p < 0.01$), suggesting that listeners in different conditions were not affected differently from one another.
+
 \subsection{Discussion}
 
+Perceptual learning effects in this experiment were robust across continua and experimental conditions, indicating the general automaticity of perceptual adaptation, but the degree of adaptation differed across conditions. 
+Differences in attention only had an effect in the S-Final conditions, which replicates earlier findings that the effect of attention increased as the position of the ambiguous sound moved toward the end of the word \cite{Pitt2012}.  
+The initial sound of a word is already a prominent position and listeners focus on the initial sounds to narrow the set of possible words they might be hearing. Later in a word, expectations for particular words given the preceding phonetic content would be greater, so directed attention on the phonetic detail shows a clear effect.  
+That attention affected perceptual learning at all suggests that the adaptation is not wholly automatic and there is some degree of listener control.
+
+The threshold for stimuli selection differed from that in previous studies. The closest study to this one used 70\% of word responses in the pretest as the threshold for selection \citep{Reinisch2013}.  In that study, the lowest critical word endorsement rates in the exposure phase were 17 out of 20 (85\%).  In contrast, this experiment used 50\% as the threshold and had correspondingly lower word endorsement rates (mean = 76\%, sd = 22\%).  Interestingly, despite the lower word endorsement rates and the less canonical stimuli used, perceptual learning effects remained robust, which raises the question, can perceptual learning occur from stimuli that are farther from canonical productions than even the ones used in this experiment?
+
 \section{Experiment 2}
+
+Experiment 2 follows up on Experiment 1 by using stimuli that are farther from the canonical productions of the /s/ critical words.  If the correlation from Experiment 1 holds, we expect to see lower word endorsement rates and lower (or perhaps non-existent) perceptual learning effects.
 
 \subsection{Methodology}
 
@@ -225,11 +236,18 @@ This experiment followed an identical methodology as experiment 1, except that t
 
 \subsubsection{Exposure}
 
+Trials with nonword stimuli and responses faster than 200 ms or slower than 2500 ms were excluded from analysis. 
+Performance on the exposure task was high overall, with accuracy on filler trials averaging 92\%.  
+An ANOVA of critical word endorsement rates revealed a marginal effect of Exposure Type ($F(1,92) = 3.86, p = 0.05$), with participants in the S-Final conditions having lower word endorsement rates (S-Final/Attention: mean = 56\%, sd = 30%; S-Final/No Attention: mean = 52\%, sd = 25\%) than participants in the S-Initial conditions (S-Initial/Attention: mean = 68\%, sd = 25\%; S-Initial/No Attention: mean = 61\%, sd = 23\%).
+A logistic mixed effects model with accuracy as the dependent variable was fit with fixed effects for trial type (Filler, S, SH), Attention (No Attention, Attention), Exposure Type (S-Initial, S-Final) and their interactions. 
+The random effect structure was as maximally specified as possible with random effects for Subject and Word, and by-Subject random slopes for trial type and by-Word random slopes for Attention. 
+The only fixed effect that was significant were a main effect of trial type for /s/ trials compared to filler trials ($\beta = -2.51, SE = 0.46, z = -5.35, p < 0.01$).
+
 \subsubsection{Categorization}
 
 Responses with reaction times less than 200 ms or greater than 2500 ms were excluded from analyses. 
 Participants were excluded if their initial estimated cross over point for the continuum lay outside of the 6 steps presented (2 participants).  
-A logistic mixed effects model was constructed with Subject and Continua as random effects and continua Step as random slopes, with 0 coded as a /ʃ/ response and 1 as a /s/ response.  Fixed effects for the model were Step, Exposure Type, Attention and their interactions.
+A logistic mixed effects model was constructed with Subject and Continua as random effects and continua Step as random slopes, with 0 coded as a /\textesh/ response and 1 as a /s/ response.  Fixed effects for the model were Step, Exposure Type, Attention and their interactions.
 
 \begin{figure*}[!ht]
 \caption{Proportion /s/ response along the 6 step continua as a function of Exposure Type and Attention in Experiment 1.    In the S-Final condition, participants in the Attention condition showed a larger perceptual learning effect than those in the No Attention condition.  In the S-Initial condition, there were no differences in perceptual learning between the Attention conditions. Error bars represent 95\% confidence intervals.}
@@ -239,7 +257,7 @@ A logistic mixed effects model was constructed with Subject and Continua as rand
 \end{center}
 \end{figure*}
 
-There was a significant effect for the intercept ($\beta = 1.01, SE = 0.38, z = 2.6, p < 0.01$), indicating that participants categorized more of the continua as /s/ in general.  There was also a significant main effect of Step ($\beta = -2.67, SE = 0.23, z = -11.2, p < 0.01$).  There were no other significant main effects or interactions, though an interaction between Step and Attention trended toward significant ($\beta = 0.35, SE = 0.21, z = 1.6, p = 0.09$).
+There was a significant effect for the Intercept ($\beta = 1.01, SE = 0.38, z = 2.6, p < 0.01$), indicating that participants categorized more of the continua as /s/ in general.  There was also a significant main effect of Step ($\beta = -2.67, SE = 0.23, z = -11.2, p < 0.01$).  There were no other significant main effects or interactions, though an interaction between Step and Attention trended toward significant ($\beta = 0.35, SE = 0.21, z = 1.6, p = 0.09$).
 
 \begin{figure*}[!ht]
 
@@ -249,21 +267,32 @@ There was a significant effect for the intercept ($\beta = 1.01, SE = 0.38, z = 
 \end{center}
 \end{figure*}
 
-As in Experiment 1,  the proportion critical word endorsements was calculated for each subject and assessed for correlation with participants' crossover points. There was a significant positive correlation between a participant's tolerance for the ambiguous exposure items and their crossover point on the continua ($r = 0.22, t (92) = 2.25, p = 0.02$), shown in Figure~\ref{fig:exp2xover}.
+As in Experiment 1,  the proportion critical word endorsements was calculated for each subject and assessed for correlation with participants' crossover points. There was a significant positive correlation between a participant's tolerance for the ambiguous exposure items and their crossover point on the continua ($r = 0.22, t (92) = 2.25, p = 0.02$), shown in Figure~\ref{fig:exp2xover}.  
 
-\subsection{Discussion}
+\section{Groups results across experiments}
 
-Perceptual learning effects in this experiment were robust across continua and experimental conditions, indicating the general automaticity of perceptual adaptation, but the degree of adaptation differed across conditions. 
-In the current results, differences in attention only had an effect in the S-Final conditions, which replicates earlier findings that the effect of attention increased as the position of the ambiguous sound moved toward the end of the word \cite{Pitt2012}.  
-The initial sound of a word is already a prominent position and listeners focus on the initial sounds to narrow the set of possible words they might be hearing. Later in a word, expectations for particular words given the preceding phonetic content would be greater, so directed attention on the phonetic detail shows a clear effect.  
-That attention affected perceptual learning at all suggests that the adaptation is not wholly automatic and there is some degree of listener control.
+To see what degree the stimuli used had an effect on perceptual learning, the data from Experiment 1 and Experiment 2 were pooled and analyzed identically as above, but with Experiment and its interactions as fixed effects.  In the logistic mixed effects model, there was significant main effects for Intercept ($\beta = 1.00, SE = 0.36, z = 2.7, p < 0.01$) and Step ($\beta = -2.64, SE = 0.21, z = -12.1, p < 0.01$), and a significant two-way interaction between Experiment and Step ($\beta = 0.51, SE = 0.20, z = 2.5, p = 0.01$), and a marginal four-way interaction between Step, Exposure Type, Attention and Experiment ($\beta = 0.73, SE = 0.42, z = 1.7, p = 0.08$).  These results can be seen in Figure~\ref{fig:exp12categ}.  The four-way interaction can be seen in S-Final/No Attention conditions across the two experiments, where Experiment 1 has a significant difference between the Attention and No Attention condition, but Experiment 1 does not.  The two-way interaction between Experiment and Step and the lack of a main effect for Experiment potentially suggests that while the category boundary was not significantly different across experiments, the slope of the categorization function was.
 
-The correlation between word response rate in the exposure phase and the category boundary in categorization phase raises two possible explanations. 
+\begin{figure*}[!ht]
+\caption{Proportion /s/ response along the 6 step continua as a function of Exposure Type and Attention in Experiment 1. Error bars represent 95\% confidence intervals.}
+\label{fig:exp12categ}
+\begin{center}
+\includegraphics[width=\textwidth]{graphs/exp12_categresults}
+\end{center}
+\end{figure*}
+
+To see if there was a difference with the Experiment 1 in how word endorsement rates affected crossover points, the data was pooled for the two experiments.  An ANOVA with cross-over point as the independent variable and word endorsement rate, Exposure Type, Attention, Experiment and their interactions, found a main effect of word endorsement rate ($F(1,185) = 21.82, p < 0.01$) and marginal interaction between word endorsement rates and Experiment ($F(1, 185) = 3.11, p = 0.07$).
+
+\section{General discussion}
+
+Perceptual learning was found across all experimental conditions. Attention only had effect on perceptual learning in the S-Final condition of Experiment 1.  
+%The differences in between experiments appears to not be in the location of the new boundary, but rather in the slope of the categorization funcion.  In Experiment 1, where the ambiguous tokens are halfway between /s/ and /\textesh/, the slope 
+
+Compared to Experiment 1, Experiment 2 had a weaker, yet still significant, correlation between critical word endorsement rates and crossover boundary points, suggesting that although the stimuli used in Experiment 2 were farther from the canonical production, they did not shift the category boundary as much as the stimuli in Experiment 1.  While neither attention or position of the ambiguous sound in the word had an effect on the correlation, the distance from the canonical production did.  This potentially suggests that the degree to which a category is shifted is inversely related to its distance.  Or perhaps more likely, the distance is inversely related to its goodness or plausibility that the ambiguous sound was indeed meant to be an /s/.
+
+The correlation between word response rate in the exposure phase and the category boundary in categorization phase across both experiments raises two possible explanations. 
 In a causal interpretation between exposure and categorization, as each ambiguous sound is linked to a word and a phonetic category, the distribution for that category (for that particular speaker) is updated.
  Participants who linked more of the ambiguous sound to the /s/ category updated their perceptual category for /s/ more. 
-This explanation fits within a larger neo-generative model of spoken language processing \cite{Pierrehumbert2002}.  
+This explanation fits within a larger neo-generative model of spoken language processing \citep{Pierrehumbert2002}.  
 A non-causal story is also plausible:  the correlation may reveal individual differences on the part of the participants, where some participants are more adaptable or tolerant of variability than others, leading to greater degrees of perceptual adaptation. 
-The lack of learning with nonwords \cite{Norris2003} makes the latter interpretation particularly appealing. 
-
-Perceptual learning underscores the dynamicity of the speech perception system, and these results further underscore the flexible nature of the adaptation process. 
-Listeners adapt to varying degrees, and it is a process that is affected by context, attention, and tolerance of pronunciation variation.
+The lack of learning with nonwords \citep{Norris2003} makes the latter interpretation particularly appealing.

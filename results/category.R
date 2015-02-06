@@ -34,6 +34,8 @@ xovers <- merge(xovers,subj.tolerances)
 summary(aov(Xover ~ WordResp*Attention*itemtype*Experiment,data=xovers))
 cor.test(subset(xovers,Experiment=='exp1')$Xover, subset(xovers,Experiment=='exp1')$WordResp)
 cor.test(subset(xovers,Experiment=='exp2')$Xover, subset(xovers,Experiment=='exp2')$WordResp)
+cor.test(subset(xovers,Experiment=='exp1')$Xover, subset(xovers,Experiment=='exp1')$tWordResp)
+cor.test(subset(xovers,Experiment=='exp2')$Xover, subset(xovers,Experiment=='exp2')$tWordResp)
 
 
 ggplot(categ,aes(x=Step,y=ACC)) + geom_smooth(method='glm',family='binomial')+facet_wrap(~Subject)

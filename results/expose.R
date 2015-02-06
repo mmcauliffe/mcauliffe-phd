@@ -5,12 +5,18 @@
 experiment.1.expose.mod <- glmer(ACC ~ itemtype2*Attention*ExposureType + (1+itemtype2|Subject) + (1|Word), family='binomial',data=subset(expose.word,Experiment=='exp2'), control=glmerControl(optCtrl=list(maxfun=200000) ))
 summary(experiment.1.expose.mod)
 
+experiment.1.expose.mod.randslope <- glmer(ACC ~ itemtype2*Attention*ExposureType + (1+itemtype2|Subject) + (1+Attention|Word), family='binomial',data=subset(expose.word,Experiment=='exp2'), control=glmerControl(optCtrl=list(maxfun=200000) ))
+summary(experiment.1.expose.mod.randslope)
+
 
 ### END EXPERIMENT 1
 
 ### EXPERIMENT 2
 
 experiment.2.expose.mod <- glmer(ACC ~ itemtype2*Attention*ExposureType + (1+itemtype2|Subject) + (1|Word), family='binomial',data=subset(expose.word,Experiment=='exp1'), control=glmerControl(optCtrl=list(maxfun=200000) ))
+summary(experiment.2.expose.mod)
+
+experiment.2.expose.mod.randslope <- glmer(ACC ~ itemtype2*Attention*ExposureType + (1+itemtype2|Subject) + (1+Attention|Word), family='binomial',data=subset(expose.word,Experiment=='exp1'), control=glmerControl(optCtrl=list(maxfun=200000) ))
 summary(experiment.2.expose.mod)
 
 ddply(subset(expose,Experiment=='exp1'), ~ Subject*itemtype2,nrow)
