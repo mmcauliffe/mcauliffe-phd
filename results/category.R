@@ -25,6 +25,14 @@ summary(experiment.2.mod)
 
 ### END EXPERIMENT 2
 
+### GROUPED
+
+grouped.mod <- glmer(ACC ~ Step*ExposureType*Attention*Experiment + (1+Step|Subject) + (1+Step+Experiment|Item), family='binomial',data=subset(categ,Experiment%in%c('exp1','exp2')), control=glmerControl(optCtrl=list(maxfun=100000) ))
+summary(grouped.mod)
+
+
+###
+
 ###
 
 cat.mod <- glmer(ACC ~ Step + (1+Step|Subject) + (1+Step|Item), family='binomial',data=categ)
@@ -32,6 +40,8 @@ xovers <- getCrossOver(coef(cat.mod)$Subject)
 
 xovers <- merge(xovers,subj.tolerances)
 summary(aov(Xover ~ WordResp*Attention*itemtype*Experiment,data=xovers))
+summary(aov(Xover ~ WordResp*Attention*itemtype,data=subset(xovers,Experiment=='exp2')))
+summary(aov(Xover ~ WordResp*Attention*itemtype,data=subset(xovers,Experiment=='exp1')))
 cor.test(subset(xovers,Experiment=='exp1')$Xover, subset(xovers,Experiment=='exp1')$WordResp)
 cor.test(subset(xovers,Experiment=='exp2')$Xover, subset(xovers,Experiment=='exp2')$WordResp)
 cor.test(subset(xovers,Experiment=='exp1')$Xover, subset(xovers,Experiment=='exp1')$tWordResp)

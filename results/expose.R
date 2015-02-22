@@ -1,5 +1,8 @@
 
-
+ddply(subj.tolerances,~Experiment,summarise, mean(WordResp), sd(WordResp))
+ddply(subj.tolerances,~Experiment*Attention*itemtype,summarise, mean(WordResp), sd(WordResp))
+summary(aov(WordResp ~ Experiment*Attention*itemtype,subj.tolerances))
+summary(aov(WordResp ~ Attention*itemtype,subset(subj.tolerances,Experiment == 'exp1')))
 ### EXPERIMENT 1
 
 experiment.1.expose.mod <- glmer(ACC ~ itemtype2*Attention*ExposureType + (1+itemtype2|Subject) + (1|Word), family='binomial',data=subset(expose.word,Experiment=='exp2'), control=glmerControl(optCtrl=list(maxfun=200000) ))
