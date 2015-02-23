@@ -7,46 +7,7 @@
 
 \section{Motivation}
 
-\subsection{Lexical bias}
-
-Lexical bias is the primary way through which perceptual learning occurs in the experimental literature.  
-Lexical bias, also known as the Ganong Effect, refers to the tendency for listeners to interpret a speaker's production as a meaningful word rather than a nonsense word.  
-For instance, given a continuum from a nonword like \emph{dask} to word like \emph{task} that differs only in one sound, listeners in general are more likely to interpret any step along the continuum as the word endpoint rather than the nonword endpoint \citep{Ganong1980}. 
-This bias is exploited in perceptual learning studies to allow for noncanonical, ambiguous productions of a sound to be linked to pre-existing sound categories.
-
-Studies looking at lexical bias use a phoneme categorization task, where participants identify a sound at the beginning or end of a word from two possible options that vary in one dimension.  
-For instance, given a continuum from /t/ to /d/, participants are asked to identify the sound at the beginning or end as either /t/ or /d/. 
-Lexical bias effects are calculated based on two continua, where words are formed at opposite ends. 
-For the /t/ to /d/ continua, one would form a word at the /t/ end, such as \emph{task} and one would form a word at the other end, such as \emph{dash}.  
-Lexical bias effects are then calculated from the different categorization behaviour for these two continua.
-
-%Word length
-Lexical bias varies in strength according to several factors.  
-First, the length of the word in syllables has a large effect on lexical bias, with longer words showing stronger lexical bias than shorter words \citep{Pitt2006}.  
-Continua formed using trisyllabic words, such as \emph{establish} and \emph{malpractice}, were found to show consistently large lexical bias effects than monosyllabic words, such as \emph{kiss} and \emph{fish}.  
-\citet{Pitt2006} also found that lexical bias from monosyllabic words show greater response to experimental manipulations than trisyllabic words.
-
-%Position in the word
-\citet{Pitt2012} used a lexical decision task with a continuum of fricatives from /s/ to /\textesh/ embedded in words differing in the position of a sibilant.  
-They found that ambiguous fricatives earlier in the word, such as \emph{serenade} or \emph{chandelier}, lead to greater nonword responses than the same ambiguous fricatives embedded later in a word, such as \emph{establish} or \emph{embarass}.  
-In the experiments and meta-analysis of phoneme identification results presented in \citet{Pitt1993}, they found that, for monosyllabic word frames, token-final targets produce more stable results than token-initial targets.
-
-%Attention
-\citet{Pitt2012} additionally investigated the role of attention in modulating lexical bias.  
-When listeners were told that the speaker's /s/ and /\textesh/ were ambiguous and to listen carefully to ensure correct responses, they were less tolerant of noncanonical productions across all positions in the word.  
-That is, participants attending to the speaker's sibilants were less likely to accept the modified production as a word than participants given no particular instructions about the sibilants.
-
-%Cognitive load
-Lexical bias is affected by processing conditions.  
-In their first experiment, \citet{Mattys2011} found that lexical bias has a larger effect when listeners have more cognitive load than when they have no cognitive load from concurrent tasks.  
-In their second experiment, the same cognitive load and non-cognitive load conditions were present, but listeners had to respond to the phoneme identification task within 1500 ms.  
-In this experiment, the lexical bias across cognitive load conditions was identical and similar to the cognitive load condition of experiment 1.  
-In experiment 3, listeners could only respond \emph{after} 1500 ms, and the effect of cognitive load re-emerged with similar magnitude to experiment 1.  
-In the remainder of their experiments, they examined whether cognitive load increased word activation or decreased sensory information, the two primary possible explanations for the pattern of results found in experiment 1.  
-They found that semantic priming was not significantly different across cognitive loads, but fine-grained discrimination suffered under cognitive load conditions.  
-Thus, the effect of cognitive load observed is a function of impoverished fine detail leading to a greater reliance on lexical information.  
-However, the timecourse for the incorporation of these different sources of information is interesting, with lexical information playing a larger role earlier on in processing and sensory signal information being incoporated later on.  
-Earlier responses are more likely to be lexically biased than later responses.
+This experiment implements a standard lexically-guided perceptual learning experiment with manipulations to lexical bias and attention.
 
 \section{Experiment 1}
 
@@ -55,7 +16,8 @@ In one group, the S-Initial group, the critical words will have an /s/ in the on
 In the other group, the S-Final group, the critical words will have an /s/ in the onset of the final syllable, like in \emph{tassel}, with no /\textesh/ neighbour like \emph{tashel}.  
 In addition, half of each group will be given instructions that the speaker has a ambiguous /s/ and to listen carefully, following \citet{Pitt2012}.
 
-Given the difference in word response rates depending on position in the word, we would predict that listeners exposed to ambiguous sounds earlier in words would be less likely to accept these productions as words as compared to listeners exposed to ambiguous sounds later in words.  In addition, given the reliance of perceptual learning on lexical scaffolding, this lower acceptance rate for the former group would lead to a smaller perceptual learning effect as compared to the latter group.
+Given the difference in word response rates depending on position in the word, we would predict that listeners exposed to ambiguous sounds earlier in words would be less likely to accept these productions as words as compared to listeners exposed to ambiguous sounds later in words.  
+In addition, given the reliance of perceptual learning on lexical scaffolding, this lower acceptance rate for the former group would lead to a smaller perceptual learning effect as compared to the latter group.
 
 \subsection{Methodology}
 
