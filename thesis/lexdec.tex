@@ -2,12 +2,20 @@
 %%!TEX root = diss.tex
 
 \chapter{Lexical decision}
+\label{chap:lexdec}
 
 %This chapter reports on two experiments done using a lexical decision paradigm to induce auditory perceptual learning in participants.  This paradigm has been most used in the previous literature (Reinisch line of work, McQueen line of work, some kraljic? but I think some other kraljic uses shapes - maybe just for unlearning phase).
 
 \section{Motivation}
 
-This experiment implements a standard lexically-guided perceptual learning experiment with manipulations to lexical bias and attention.
+The experiments in this chapter implement a standard lexically-guided perceptual learning experiment with manipulations to lexical bias and attention.  
+In the perceptual learning literature, word endorsement rates during exposure are reported as high, such as no lower than 85\% in some studies \citep{Reinisch2013}. 
+However, word endorsement rate of words containing ambiguous sounds varies critically as a result of the position of that sound, and thus the lexical bias present when a listener encounters it, and whether a listener's attention is directed to that sound \citep{Pitt2012}.  
+Experiment 1 contains manipulations to these two factors across participants.
+
+Additionally, studies have reported greater perceptual learning when ambiguous stimuli are closer to the distribution expected by a listener than when the ambiguous stimuli are farther away from expected distributions \citep{Sumner2011}.  
+Words containing stimuli farther away from the target production are in general less likely to be endorsed as words, but similar effects of attention were found across word position \citep{Pitt2012}.  
+Experiment 2 contains the same manipulations to attention and lexical bias as Experiment 1, but with ambiguous stimuli farther from the target production than those used in Experiment 1.
 
 \section{Experiment 1}
 
@@ -39,7 +47,7 @@ Filler words and nonwords did not contain any sibilants.
 Frequencies and number of syllables across item types are in Table~\ref{tbl:expfreq}
 
 \begin{table}
-\caption{Mean and standard deviations for frequencies and number of syllables of each item type}
+\caption{Mean and standard deviations for frequencies (log frequency per million words in SUBTLEXus) and number of syllables of each item type}
 \label{tbl:expfreq}
 \centering
 \begin{tabular}{ccc}
@@ -59,7 +67,7 @@ Four monosyllabic minimal pairs of voiceless sibilants were selected as test ite
 Two of the pairs had a higher log frequency per million words (LFPM) from SUBTLEXus \citep{Brysbaert2009} for the /s/ word, and two had higher LFPM for the /\textesh/ word, as shown in Table~\ref{tbl:catfreq}.
 
 \begin{table}
-\caption{Frequencies of words used in categorization continua}
+\caption{Frequencies (log frequency per million words in SUBTLEXus) of words used in categorization continua}
 \label{tbl:catfreq}
 \centering
 \begin{tabular}{ccc}
@@ -200,7 +208,7 @@ This experiment followed an identical methodology as experiment 1, except that t
 
 Trials with nonword stimuli and responses faster than 200 ms or slower than 2500 ms were excluded from analysis. 
 Performance on the exposure task was high overall, with accuracy on filler trials averaging 92\%.  
-An ANOVA of critical word endorsement rates revealed a marginal effect of Exposure Type ($F(1,92) = 3.86, p = 0.05$), with participants in the S-Final conditions having lower word endorsement rates (S-Final/Attention: mean = 56\%, sd = 30%; S-Final/No Attention: mean = 52\%, sd = 25\%) than participants in the S-Initial conditions (S-Initial/Attention: mean = 68\%, sd = 25\%; S-Initial/No Attention: mean = 61\%, sd = 23\%).
+An ANOVA of critical word endorsement rates revealed a marginal effect of Exposure Type ($F(1,92) = 3.86, p = 0.05$), with participants in the S-Final conditions having lower word endorsement rates (S-Final/Attention: mean = 56\%, sd = 30\%; S-Final/No Attention: mean = 52\%, sd = 25\%) than participants in the S-Initial conditions (S-Initial/Attention: mean = 68\%, sd = 25\%; S-Initial/No Attention: mean = 61\%, sd = 23\%).
 A logistic mixed effects model with accuracy as the dependent variable was fit with fixed effects for trial type (Filler, S, SH), Attention (No Attention, Attention), Exposure Type (S-Initial, S-Final) and their interactions. 
 The random effect structure was as maximally specified as possible with random effects for Subject and Word, and by-Subject random slopes for trial type and by-Word random slopes for Attention. 
 The only fixed effect that was significant were a main effect of trial type for /s/ trials compared to filler trials ($\beta = -2.51, SE = 0.46, z = -5.35, p < 0.01$).
@@ -212,7 +220,7 @@ Participants were excluded if their initial estimated cross over point for the c
 A logistic mixed effects model was constructed with Subject and Continua as random effects and continua Step as random slopes, with 0 coded as a /\textesh/ response and 1 as a /s/ response.  Fixed effects for the model were Step, Exposure Type, Attention and their interactions.
 
 \begin{figure*}[!ht]
-\caption{Proportion /s/ response along the 6 step continua as a function of Exposure Type and Attention in Experiment 1.    In the S-Final condition, participants in the Attention condition showed a larger perceptual learning effect than those in the No Attention condition.  In the S-Initial condition, there were no differences in perceptual learning between the Attention conditions. Error bars represent 95\% confidence intervals.}
+\caption{Proportion /s/ response along the 6 step continua as a function of Exposure Type and Attention in Experiment 2.  Participants showed no significant differences across conditions. Error bars represent 95\% confidence intervals.}
 \label{fig:exp2categ}
 \begin{center}
 \includegraphics[width=\textwidth]{graphs/exp2_categresults}
@@ -223,7 +231,7 @@ There was a significant effect for the Intercept ($\beta = 1.01, SE = 0.38, z = 
 
 \begin{figure*}[!ht]
 
-\caption{Correlation of crossover point in categorization with the proportion of word responses to critical items containing an ambiguous /s/ token.}\label{fig:exp2xover}
+\caption{Correlation of crossover point in categorization with the proportion of word responses to critical items containing an ambiguous /s/ token in Experiment 2.}\label{fig:exp2xover}
 \begin{center}
 \includegraphics[width=\textwidth]{graphs/exp2_xoverwordresp}
 \end{center}
@@ -236,7 +244,7 @@ As in Experiment 1,  the proportion critical word endorsements was calculated fo
 To see what degree the stimuli used had an effect on perceptual learning, the data from Experiment 1 and Experiment 2 were pooled and analyzed identically as above, but with Experiment and its interactions as fixed effects.  In the logistic mixed effects model, there was significant main effects for Intercept ($\beta = 1.00, SE = 0.36, z = 2.7, p < 0.01$) and Step ($\beta = -2.64, SE = 0.21, z = -12.1, p < 0.01$), and a significant two-way interaction between Experiment and Step ($\beta = 0.51, SE = 0.20, z = 2.5, p = 0.01$), and a marginal four-way interaction between Step, Exposure Type, Attention and Experiment ($\beta = 0.73, SE = 0.42, z = 1.7, p = 0.08$).  These results can be seen in Figure~\ref{fig:exp12categ}.  The four-way interaction can be seen in S-Final/No Attention conditions across the two experiments, where Experiment 1 has a significant difference between the Attention and No Attention condition, but Experiment 1 does not.  The two-way interaction between Experiment and Step and the lack of a main effect for Experiment potentially suggests that while the category boundary was not significantly different across experiments, the slope of the categorization function was.
 
 \begin{figure*}[!ht]
-\caption{Proportion /s/ response along the 6 step continua as a function of Exposure Type and Attention in Experiment 1. Error bars represent 95\% confidence intervals.}
+\caption{Proportion /s/ response along the 6 step continua as a function of Exposure Type and Attention in Experiment 1 and Experiment 2. Error bars represent 95\% confidence intervals.}
 \label{fig:exp12categ}
 \begin{center}
 \includegraphics[width=\textwidth]{graphs/exp12_categresults}

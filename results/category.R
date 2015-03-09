@@ -14,6 +14,10 @@ experiment.1.mod <- glmer(ACC ~ Step*ExposureType*Attention + (1+Step|Subject) +
 summary(experiment.1.mod)
 
 
+#experiment.1.mod.modacc <- glmer(ModACC ~ Step*ExposureType*Attention + (1+Step|Subject) + (1+Step|Item), family='binomial',data=subset(categ,Experiment=='exp2'), control=glmerControl(optCtrl=list(maxfun=100000) ))
+#summary(experiment.1.mod.modacc)
+
+
 ### END EXPERIMENT 1
 
 ### EXPERIMENT 2
@@ -31,9 +35,16 @@ grouped.mod <- glmer(ACC ~ Step*ExposureType*Attention*Experiment + (1+Step|Subj
 summary(grouped.mod)
 
 
-###
+### END GROUPED
 
-###
+### EXPERIMENT 3
+
+ddply(unique(categ3[,c('Subject','ExposureType','Attention')]), ~ ExposureType*Attention, nrow)
+
+experiment.3.mod <- glmer(ACC ~ Step*ExposureType*Attention*Native + (1+Step|Subject) + (1+Step|Item), family='binomial',data=categ3, control=glmerControl(optCtrl=list(maxfun=100000) ))
+summary(experiment.3.mod)
+
+### END EXPERIMENT 3
 
 cat.mod <- glmer(ACC ~ Step + (1+Step|Subject) + (1+Step|Item), family='binomial',data=categ)
 xovers <- getCrossOver(coef(cat.mod)$Subject)

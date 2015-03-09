@@ -17,14 +17,10 @@ expose$Attention <- 'attend'
 expose[str_detect(expose$Subject,'^ns1-2'),]$Attention <- 'noattend'
 expose[str_detect(expose$Subject,'^ns1-3'),]$Attention <- 'noattend'
 
-expose$Attention <- factor(expose$Attention)
-
 expose$ExposureType <- 'initial'
 
 expose[str_detect(expose$Subject,'^ns1-2'),]$ExposureType <- 'final'
 expose[str_detect(expose$Subject,'^ns1-4'),]$ExposureType <- 'final'
-
-expose$ExposureType <- factor(expose$ExposureType)
 
 t <- read.delim('exp2_native_expose.txt')
 t$Experiment <- 'exp2'
@@ -49,6 +45,13 @@ expose$itemtype2 <- 'Filler'
 expose[expose$itemtype%in%c('S-Final','S-Initial'),]$itemtype2 <- 'S'
 expose[expose$itemtype%in%c('SH-Final','SH-Initial'),]$itemtype2 <- 'SH'
 expose$itemtype2 <- factor(expose$itemtype2)
+
+expose$ModACC <- 0.5
+expose[expose$ACC == 0,]$ModACC <- -0.5
+
+expose$Attention <- factor(expose$Attention, levels = c('noattend','attend'))
+
+expose$ExposureType <- factor(expose$ExposureType, levels = c('initial','final'))
 
 expose$Experiment <- factor(expose$Experiment)
 
@@ -112,27 +115,49 @@ t$Attention <- factor(t$Attention)
 
 categ <- rbind(categ,t)
 
-t2 <- read.delim('exp3_native_categ.txt')
-t2 <- na.omit(t2)
-t2$ACC = 0
-t2[t2$RESP == t2$SResp,]$ACC <- 1
-t2$Experiment <- 'exp3'
+categ3 <- read.delim('exp3_native_categ.txt')
+categ3$Native <- 'yes'
 
-t2$ExposureType <- 'initial'
+t <- read.delim('exp3_nonnative_categ.txt')
+t$Native <- 'no'
+#categ3 <- rbind(categ3,t)
+categ3$Native <- factor(categ3$Native)
+categ3 <- na.omit(categ3)
+categ3$ACC = 0
+categ3[categ3$RESP == categ3$SResp,]$ACC <- 1
+categ3$Experiment <- 'exp3'
 
-#t2[str_detect(t2$Subject,'^ns3-2'),]$ExposureType <- 'final'
-#t2[str_detect(t2$Subject,'^ns3-4'),]$ExposureType <- 'final'
+categ3$Step <- categ3$Step - mean(1:6)
 
-t2$ExposureType <- factor(t2$ExposureType)
+categ3$ExposureType <- 'predictive'
 
-t2$Attention <- 'attend'
+categ3[str_detect(categ3$Subject,'^ns3-2'),]$ExposureType <- 'unpredictive'
+categ3[str_detect(categ3$Subject,'^ns3-4'),]$ExposureType <- 'unpredictive'
 
-#t2[str_detect(t2$Subject,'^ns3-2'),]$Attention <- 'noattend'
-#t2[str_detect(t2$Subject,'^ns3-3'),]$Attention <- 'noattend'
+#categ3[str_detect(categ3$Subject,'^nns3-2'),]$ExposureType <- 'unpredictive'
+#categ3[str_detect(categ3$Subject,'^nns3-4'),]$ExposureType <- 'unpredictive'
 
-t2$Attention <- factor(t2$Attention)
+categ3$ExposureType <- factor(categ3$ExposureType, levels =c('unpredictive','predictive'))
 
-categ <- rbind(categ,t2)
+categ3$Attention <- 'attend'
+
+categ3[str_detect(categ3$Subject,'^ns3-2'),]$Attention <- 'noattend'
+#categ3[str_detect(categ3$Subject,'^ns3-3'),]$Attention <- 'noattend'
+
+#categ3[str_detect(categ3$Subject,'^nns3-2'),]$Attention <- 'noattend'
+
+categ3$Attention <- factor(categ3$Attention, levels =c('noattend','attend'))
+
+t <- paste(categ3$Label1,categ3$Label2,sep='-')
+
+t[t=='shack-sack'] = 'sack-shack'
+t[t=='shy-sigh'] = 'sigh-shy'
+t[t=='shin-sin'] = 'sin-shin'
+t[t=='shock-sock'] = 'sock-shock'
+
+categ3$Item <- factor(t)
+
+#categ <- rbind(categ,t2)
 categ$Experiment <- factor(categ$Experiment)
 
 cont <- read.delim('control_native_categ.txt')
@@ -177,7 +202,10 @@ nncont$Background <- 'Non-native'
 cont <- rbind(cont, nncont)
 cont$Background <- factor(cont$Background)
 #categ <- rbind(categ, cont)
-categ$Experiment <- factor(categ$Experiment, levels = c('exp2','exp1'))
+
+categ$ModACC <- 0.5
+categ[categ$ACC == 0,]$ModACC <- -0.5
+categ$Experiment <- factor(categ$Experiment, levels = c('exp2','exp1','exp3'))
 
 categ <- na.omit(categ)
 
@@ -208,8 +236,24 @@ categ$Attention <- factor(categ$Attention, levels = c('noattend','attend'))
 
 
 expose3 <- read.delim('exp3_native_expose.txt')
+expose3$Native <- 'yes'
+t <- read.delim('exp3_nonnative_expose.txt')
+t$Native <- 'no'
+
+#expose3 <- rbind(expose3,t)
+expose3$Native <- factor(expose3$Native)
 expose3 <- na.omit(expose3)
 expose3$LogRT <- log(expose3$RT)
+#expose3$cLogRT <- expose3$LogRT - mean(expose3$LogRT)
+expose3$cLogRT <- scale(expose3$LogRT)
+expose3$cTrial <- scale(expose3$Trial)
+
+expose3$Attention <- 'attend'
+
+expose3[str_detect(expose3$Subject,'^ns3-2'),]$Attention <- 'noattend'
+#expose3[str_detect(expose3$Subject,'^ns3-3'),]$Attention <- 'noattend'
+
+expose3$Attention <- factor(expose3$Attention)
 
 ddply(expose3,~Predictability*Type, summarise, mean(LogRT), sd(LogRT))
 
