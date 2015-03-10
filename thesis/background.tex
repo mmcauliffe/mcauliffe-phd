@@ -1,29 +1,28 @@
 %% The following is a directive for TeXShop to indicate the main file
 %%!TEX root = diss.tex
 
-\chapter{Background}
+\chapter{Introduction}
 
 Listeners of a language are faced with a large degree of phonetic variability when interacting with their fellow language users.  
 Speakers can have different sizes, different genders, and different backgrounds that make speech sound categories, at first blush, overlapping in distribution and hard to separate in acoustic domains.
-In addition to properties of the speaker varying, properties of the listener's mindset can vary as well.  
-Whether the listener has prior knowledge, or knowledge from another modality, about a speaker characteristic can affect their perception of that speaker's speech.
-Despite variability on the part of both the listener and the speaker, listeners can maintain a large degree of perceptual constancy, interpreting disparate and variable productions as belonging to one word type or sound category.
+In addition to properties of the speaker varying, a listener's attention or goals in an interaction can vary, such as listening hard to a non-native speaker or being distracted by planning upcoming utterances or by another task entirely.  
+%Whether the listener has prior knowledge, or knowledge from another modality, about a speaker characteristic can affect their perception of that speaker's speech.
+Despite variability on the part of both the listener and the speaker, listeners can maintain a large degree of perceptual constancy, interpreting disparate and variable productions as belonging to a single word type or sound category.
 Exposure to a speaker affects a listener's perceptual system for that speaker, increasing their ability to understand that speaker.
 Broadly, perceptual learning or perceptual adaptation in the speech perception literature refers to the updating of distributions corresponding to a sound category for a particular speaker.
 
-In this dissertation, perceptual learning will be tested in conditions that manipulate the top-down biases of the listeners and the bottom-up properties of the exposure speaker.
-The hypothesis I test in this dissertation is that the more evidence a listener has toward a specific word, be it acoustic, lexical or semantic/sentential, the stronger the link between an ambiguous sound embedded in that word and a sound category will be.
+This dissertation investigates the interaction between linguistic, attentional and acoustic factors on perceptual learning.
+The key hypothesis being tested is that the more evidence a listener has toward a specific word, be it acoustic, lexical or semantic/sentential, the stronger the link between an ambiguous sound embedded in that word and a sound category will be.
 The more strong evidence that a listener accrues for a given sound category of a speaker, the more perceptual learning will take place.
-This chapter reviews the recent literature on perceptual learning in speech perception (Section~\ref{sec:perceptuallearning}), which has primarily focused on the duration of perceptual learning effects (Section~\ref{sec:retention}), and the ability of listeners to generalize perceptual learning to new speakers  and to new categories and contexts (Section~\ref{sec:generalization}). 
-Additionally, literature on pertinent literature on attention (Section~\ref{sec:attention}), lexical bias (Section~\ref{sec:lexicalbias}) and semantic predictability (Section~\ref{sec:semanticpredictability}) will be reviewed.
-The perceptual learning literature has generally used consistent top-down and bottom-up processing conditions to elicit perceptual learning effects, and the goal of this dissertation is to examine the robustness and degree of perceptual learning across different processing conditions.
+This chapter will review the recent literature on perceptual learning in speech perception (Section~\ref{sec:perceptuallearning}), as well as literature on linguistic  (Section~\ref{sec:linguistic}), attentional (Section~\ref{sec:attention}), and signal (Section~\ref{sec:signal}) factors.
+Chapter~\ref{chap:lexdec} will detail two experiments using a lexically-guided perceptual learning paradigm, each with manipulations to lexical bias and attention.  The two experiments differ in the acoustic properties of the exposure tokens.  Chapter~\ref{chap:sent} details an experiment using a novel perceptual learning paradigm that manipulates an additional linguistic factor, namely semantic predictability, to increase the linguistic expectations during exposure.
+The perceptual learning literature has generally used consistent processing conditions to elicit perceptual learning effects, and the goal of this dissertation is to examine the robustness and degree of perceptual learning across different processing conditions.
 
 \section{Perceptual learning}
 \label{sec:perceptuallearning}
 
-%\citet{Gibson1953}: "Improvement is arbitrarily defined, then, as closer, more precise, more immediate approximation of \emph{O}'s judgment to the appropriate physical standard or measure" (p403).  Also: "Practice, for the present purposes, will be defined as any controlled activity of \emph{O} which involves repeated perception of the test stimuli or ones similar to them.  This definition assumes attention on the part of \emph{O}, but it deliberately omits any requirement of reinforcement, correction or reward."
 
-\citet{Norris2003} began the recent set of investigation into perceptual learning in speech.
+\citet{Norris2003} began the recent set of investigations into lexically-guided perceptual learning in speech.
 \citet{Norris2003} exposed one group of Dutch listeners to a fricative halfway between /s/ and /f/ at the ends of words like \emph{olif} "olive" and \emph{radijs} "radish", and another group to the ambiguous fricative at the ends of nonwords, like \emph{blif} and \emph{blis}.
 Following exposure, both groups of listeners were tested on their categorization on a fricative continuum from 100\% /s/ to 100\% /f/. 
 Listeners exposed to the ambiguous fricative at the end of words shifted their categorization behaviour, while those exposed to them at the end of nonwords did not.  The exposure using words was further differentiated by the bias introduced by the words.  
@@ -37,12 +36,19 @@ Participants first completed a pretest that identified the maximally ambiguous s
  In eight blocks, participants were randomly exposed to the ambiguous auditory token paired with video for /aba/ or with the video for /ada/.  Following each block, they completed a short categorization test.  
 Participants showed perceptual learning effects, such that they were more likely to respond with /aba/ if they had been exposed to video of /aba/ paired with the ambiguous token in the preceding block, and likewise for /ada/.
 
+\citet{vanLinden2007} compared the perceptual recalibration effects from the visual lipread paradigm \citep{Bertelson2003} to the standard lexically-guided perceptual learning paradigm \citep{Norris2003}.  
+Lipread recalibration and perceptual learning effects had comparable size, lasted equally as long, were enhanced when presented with a contrasting sound, and were both unaffected by periods of silence between exposure and categorization.  
+The effects did not last through prolonged testing in this study, unlike in other studies \citep{Kraljic2005,Eisner2006}.
+In those studies, lexically-guided perceptual learning effects persisted through intermediate tasks, as long as the task did not involve any contradictory evidence of the trait learned \citep{Kraljic2005}, and also persisted across 12 hours \citep{Eisner2006}.
+
 Perceptual learning is a well established phenomenon in the psychology and psychophysics literature. 
 Training can improve a participants ability to discriminate in many disparate modalities, such as visual acuity, somatosensory spatial resolution, weight estimation, and discrimination of hue and acoustic pitch \citep[for review]{Gibson1953}. 
- In this literature, perceptual learning is the improvement of a perceiver to judge the physical characteristics of objects in the world through training that assumes attention on the task, but doesn't require reinforcement, correction or reward.
+In this literature, perceptual learning is the improvement of a perceiver to judge the physical characteristics of objects in the world through training that assumes attention on the task, but doesn't require reinforcement, correction or reward.
 This definition of perceptual learning corresponds more to what is termed ``selective adaptation'' in the speech perception literature rather than what is termed ``perceptual learning'', ``perceptual adaptation'' or ``perceptual recalibration.''  
 In speech perception, selective adaptation is the phenomenon where listeners that are exposed repeatedly to a narrow distribution for a sound category, narrow their own perceptual category, resulting in a change in variance of the category, not of the mean of the category (along some acoustic-phonetic dimension) \citep{Eimas1973,Samuel1986,Vroomen2007}.
 Perceptual learning or recalibration in the speech perception literature is a more broad updating of perceptual categories, either in mean or variance \citep{Norris2003, Vroomen2007}.
+
+Perceptual learning in the psychophysics literature has shown a large degree of exposure-specificity, where observers only show learning effects on the same or very similar stimuli as those they were trained on. As such, perceptual learning has been argued to reside or affect the early sensory pathways, where stimuli are represented with the greatest detail \citep{Gilbert2001}.  Perceptual learning in speech perception has shown a large degree of exposure-specificity, where participants do not generalize cues across speech sounds \citep{Reinisch2014} or across speakers unless the sounds are similar across exposure and testing \citep{Eisner2005, Kraljic2005, Kraljic2007, Reinisch2013a}.  On the other hand, lexically-guided perceptual learning in speech has shown a greater degree of generalization than would be expected from a purely psychophysical standpoint.  The testing stimuli are generally quite different from the exposure stimuli, with participants exposed to multisyllabic words ending in an ambiguous sound and tested on monosyllabic words \citep{Reinisch2013} and nonwords \citep{Norris2003, Kraljic2005}, though exposure-specificity is found when exposure and testing use different positional allophones \citep{Mitterer2013}.
 
 %\citet{SamuelKraljic2009}
 
@@ -57,10 +63,6 @@ Perceptual learning or recalibration in the speech perception literature is a mo
 
 %\citet{Trude2012}
 
-\citet{vanLinden2007} compared the perceptual recalibration effects from the visual lipread paradigm \citep{Bertelson2003} to the standard lexically-guided perceptual learning paradigm \citep{Norris2003}.  
-Lipread recalibration and perceptual learning effects had comparable size, lasted equally as long, were enhanced when presented with a contrasting sound, and were both unaffected by periods of silence between exposure and categorization.  
-The effects did not last through prolonged testing in this study, unlike in other studies \citep{Kraljic2005,Eisner2006}.
-
 Perceptual learning can be captured well in terms of Bayesian belief updating \citep{Kleinschmidt2011} or as part of a predictive coding model of the brain \citep{Clark2013}.  
 In Bayesian belief updating, the model categorizes the incoming stimuli based on multimodel cues, and then updates the distribution to reflect that categorization.  
 This updated conditional distribution is then used for future categorizations in an iterative process.  
@@ -70,183 +72,17 @@ This framework uses a hierarchical generative model that aims to minimize predic
 Mismatches between the top-down expectations and the bottom-up signals generate error signals that are used to modify future expectations.  
 Perceptual learning then is the result of modifying expectations to match learned input.
 
-As stated previously, the primary questions in the perceptual learning in speech literature have focused on retention of perceptual learning effects and the generalization of perceptual learning to new speakers, contexts or categories.  
-While not the primary focus of this dissertation, these lines of research are briefly summarized in the following sections.
+\section{Linguistic factors and perceptual learning}
+\label{sec:linguistic}
 
-\subsection{Retention}
-\label{sec:retention}
+The two linguistic factors manipulated in this dissertation are lexical bias and semantic predictability.  
+Lexically-guided perceptual learning paradigms use lexical bias as the means to link an ambiguous sound to a sound category.
+In Chapter~\ref{chap:sent}, a novel, sententially-guided perceptual learning paradigm is used to manipulate the listener's linguistic expectations in a different manner than manipulating lexical bias.
 
-\citet{Kraljic2005} looked at the strength of the perceptual learning effect across time in an experimental session with intervening tasks between exposure and testing. 
-Native English listeners were exposed to ambiguous fricatives in between /s/ and /\textesh/ in words that biased interpretation toward either /s/ or /\textesh/ in a lexical decision task either spoken by a female voice or a male voice.
-Participants that completed an /s/-/\textesh/ categorization task immediately following exposure and also those that performed an unrelated visual task between exposure and categorization showed a large perceptual learning effect.  
-However, participants that performed a task involving auditory input from the same speaker as they were exposed to showed attenuated perceptual learning effects when the speech contained correct versions of the ambiguous fricatives, i.e. typical /s/ tokens when they were exposed to the ambiguous sibilant in all /s/ words in the exposure task.  
-The perceptual learning effect in this condition was almost eliminated. 
-Participants that had an intervening task involving auditory input that did not have any /s/ or /\textesh/ tokens showed perceptual learning effects comparable to those with no intervening task.  
-When the intervening task involved auditory input from a different speaker than exposure, perceptual learning effects were as robust as when there was no intervening task.
-Percpetual learning was a robust and persisted across non-auditory tasks as well as linguistic ones so long as no new exposure to the particular speaker characteristic was present.
-
-\citet{Eisner2006} looked at the stability of perceptual learning. 
-Dutch participants first completed a categorization task for a continuum of /s/ to /f/ and then listened to a story that contained ambiguous fricative between /s/ and /f/, with one version having the ambiguous fricative in /s/ contexts and the other having it in /f/ contexts.
-Immediately following, they completed another /s/ to /f/ categorization task.  
-Finally, 12 hours later, they completed the categorization task once again.
-Half the participants started at 9 am and completed the final categorization task at 9 pm the same day, and the other half started at 9 pm and completed the final categorization at 9 am the following day.
-Perceptual learning effects were found in both categorization tasks following exposure, with no significant differences between the two times. 
- The perceptual learning effects found were robust across time and across intervening language exposure, as the participants tested at 9 am and 9 pm likely had many interactions with other people in between.
-
-Perceptual learning effects are robust across time.  
-Given no contradictory evidence for a speaker characteristic, a listener's behaviour for that speaker's speech will remain constant over at least the course of a day. 
-However, the perceptual system remains plastic.  
-If a listener is exposed to a speaker trait in the first interaction, but the trait disappears in later interactions, the perceptual system will attenuate to the newer evidence.
-
-\subsection{Generalization}
-\label{sec:generalization}
-
-\subsubsection{Generalizing to new speakers}
-\label{sec:speakergeneralization}
-
-\citet{Kraljic2007} looked at different sound contrasts and the ability of participants to generalize across speakers.  
-The first contrast was voicing between /t/ and /d/.  
-When exposed to ambiguous stops between /t/ and /d/ corresponding to /d/ for one speaker, and ambiguous stops correpsonding to /t/ for another, perceptual learning effects corresponded to the most recent exposure, regardless of whether the test voice was the same as that recent exposure voice.  
-The second contrast they used was sibilants of /s/ and /\textesh/. 
-For this contrast, they found the speaker-specificity effect found in the literature, where recency of the exposure did not affect the perceptual learning for a particular voice.
-They argue that the differences between these two contrasts lies in the relative indexical information carried by the sibilants and the lack of much indexical information carried in the stops.
-Voicing contrasts in onset position are delimited clearly along the voice-onset time dimension, with variability between native English speakers producing little ambiguity between /t/ and /d/.
-Sibilant productions can vary dramatically, however.
-For instance, male speakers of English produce /s/ and /\textesh/ with spectral means lower than female speakers of English, with overlapping distributions between male /s/ productions and female /\textesh/ productions, and continua of synthetic sibilants are categorized differently depending on the gender of the speaker who produced the rest of the word \citep{Strand1996}.  
-
-\citet{Eisner2005} looked at what manipulations could cause perceptual learning to generalize to additional talkers.  
-Using a Dutch lexical decision task with ambiguous fricatives in between /s/ and /f/, they tested categorization on a contniuum between /s/ and /f/ from two talkers.  
-When exposed to one talker's ambiguous fricative and tested on another speaker's continuum, no perceptual learning effect was found.  
-There were two conditions where the fricatives in the exposure and categorization came from the same speaker, but the speakers of the carrier speech differed.  
-In one, the ambiguous fricative from the categorization speaker's produtions was spliced into the exposure tokens, and in the other, the exposure talker's /s/ to /f/ continuum were spliced with vowels from the categorization talker.
-In these two conditions, they did find a perceptual learning effect across speakers, despite reports by the participants of hearing different speakers, suggesting a sound-specificity effect in addition (or potentially causing) speaker-specificity effects. 
-
-\citet{Reinisch2013} looked at perceptual learning of speaker characteristics across languages.  
-When exposed to a native Dutch speaker speaking English with ambiguous fricatives between /s/ and /f/, participants show a perceptual learning effect when categorizing Dutch minimal pairs differing only in whether one sound is an /f/ or /s/ spoken by the same speaker.  
-When exposed to the same native Dutch speaker speaking Dutch words and nonwords with the same ambiguous fricative, native Dutch listeners and L2 Dutch listeners (native German speakers) show comparable perceptual learning effects.
-
-\citet{Reinisch2013a} exposed native English listeners to a female Dutch-accented voice speaking words and nonwords, where words ending in /s/ or /f/ instead ended either in a natural token or an ambiguous fricative between /s/ and /f/.  
-Listeners showed a perceptual learning effect for the exposure talker as well as another female Dutch-accented voice, showing cross-speaker generalization.  
-However, when categorizing a continuum from /s/ to /f/ of a male Dutch-accented voice, listeners did not generalize the perceptual learning effect, but there was a slight perceptual learning effect for the first block of categorization tokens for the male voice that disappeared in later blocks.  
-Pretests of the continua revealed that the male voice continuum was heavily biased towards /s/, with steps 1-4 of the continuum consistently heard as /s/. 
-For the exposure female voice, Steps 1-4 were already ambiguous between /s/ and /f/, with the proportion /s/ response less than 60\% for all steps.  
-The new female voice was responded to similar to the exposure female voice, but with less ambiguity for the initial step.  
-When the continua for the exposure female voice and the male voice were more closely matched by removing the first four steps of the male voice and removing 4 steps along the continuum of the female voice, generalization of the perceptual learning effects matched those for the new female voice.  
-These findings suggest that the perceptual system leverages known distributions that may not be speaker specific.  
-When new tokens fall outside that known distribution, as in the male voice categorization, perceptual learning for that voice occurred using the relatively abundant unambiguous examples for that speaker to adjust the perceptual system for that talker.
-
-\citet{Kraljic2005}, in addition to the findings reported in in Section~\ref{sec:retention}, also found an asymmetry in how listeners generalized perceptual learning.  
-Across all of their experiments, categorization of the same voice as exposure produced perceptual learning.  
-When the continuum from /s/ to /\textesh/ from the male voice was categorized following exposure to the female voice, perceptual learning effects were consistently present.
-When the voice of the exposure and categorization was reversed, the consistency of perceptual learning effects disappeared. 
-They performed an acoustic analysis of the spectral means for the categorization items and the exposure items for each talker.  
-The spectral means of the voices for the continuum steps were well separated, but the exposure items were much closer together.  
-The spectral mean of the ambiguous sibilant for the female voice fell in between the ranges of the female continuum steps and the male continuum steps, but the spectral mean exposure ambiguous sibilant for the male voice was squarely in the range of the male continuum steps.  
-The asymmetry of speaker generalization can then be attributed to the female exposure ambiguous items being acoustically (and therefore perceptually) similar enough to generalize the perceptual learning for the female voice to the male voice.
-
-From these studies, the clearest thread through all of them is the degree of acoustic similarity or perceptual similarity between the exposure stimuli that prompts perceptual learning and whatever continuum the listeners are tested on.  
-Stops and fricative do not actually appear to behave categorically different, per se, but their differences in behaviour can be attributed to the fact that stops are acoustically more similar to each other in general than fricatives are.
-
-\subsubsection{Generalizing to other categories and contexts}
-\label{sec:othergeneralization}
-
-\citet{Kraljic2006} looked at two sound contrasts (/d/-/t/ and /b/-/p/) that shared a feature, namely voicing.  
-Participants were exposed to an ambiguous coronal stop in between /d/ and /t/ in English words and then tested on two continua with two different voices.  
-The categorization continuum that was presented first, from /b/ to /p/, showed the stronger perceptual learning effects than the second continuum from /d/ to /t/, even though participants were exposed to ambiguous tokens between /d/ and /t/. 
- Both old voices and new voices for the categorization task produced perceptual learning effects.
-
-\citet{Mitterer2013} exposed participants to either words ending with /r/ or /l/ or to words beginning with /r/ or /l/ in Dutch, and tested each group's perceptual learning behaviour on continua from /r/ to /l/ in both initial and final positions.  
-If listeners were exposed to an ambiguous sound between /r/ and /l/ at the ends of words, they showed a perceptual learning effect for the continuum that ended with an /r/ or /l/, but not for the continuum that began with an /r/ or an /l/.  
-The inverse behaviour was observed for the group that was exposed to an ambiguous sound between /r/ and /l/ at the beginnings of words.  
-They argue that the category being affected is not a context-insensitive phoneme, but rather a context sensitive allophone.  
-\citet{Jesse2011} found that listeners did indeed generalize across positions, but their stimuli were the fricatives /s/ and /f/, and the same physical fricatives were the same across all positions.
-
-%\citet{Clare2014}
-
-\citet{Reinisch2014} utilized a visually-guided recalibration paradigm from \citet{Bertelson2003} to test whether acoustic cues to place of articulation could be recalibrated with unambiguous visual feedback.  
-In Experiment 1, they trained listeners by exposing one group to the maximally ambiguous token between /aba/ and /ada/ with either a video of /ada/ or /aba/ and another group to the maximally ambiguous token between /ibi/ and /idi/ with either a video of /ibi/ or /idi/.  
-In vowel context of /a/, the consonant portion of the token was silenced so that only formant cues to place of articulation would be available.  
-In the vowel context of /i/, the consonant part was not silenced, but since formant transitions in the /i/ context are the same for labials and dentals, the only cues to place of articulation would be in the consonant itself.  
-Afterwards, when they categorized auditory only continua of /aba/ to /ada/ and /ibi/ to /idi/ with the same silencing of the consonant in the /a/ context.  They found a recalibration effect for the continuum participants were exposed to, but no generalization effect to the novel continuum.  
-Experiment 2 followed the same setup as Experiment 1, with the same /aba/ to /ada/ as in Experiment 1, but replaced the /ibi/ to /idi/ continuum with a /ama/ to /ana/ continuum.  
-As in Experiment 1, clear recalibration effects were found for the continuum participants were exposed to, but not for the novel continuum.  
-Experiment 3 followed the same procedure but used a /ubu/ to /udu/ continuum instead of an /ibi/ to /idi/ continuum.  
-The /u/ context provides formant transition cues to place of articulation, so the consonant was silenced for this continuum as well.  
-As before, there were perceptual recalibration effects for the continuum participants were exposed to, but not to the novel continuum.  
-Across all of these, there is a context specifity effect. 
-
-\citet{Kraljic2008a} exposed participants to ambiguous sibilants between /s/ and /\textesh/ in two different contexts.  
-In one, the ambiguous sibilants were intervocalic, and in the other, they occurred as part of a /str/ cluster.  
-Participants exposed to the ambiguous sound intervocalically showed a perceptual learning effect, while those exposed to the sibilants in /str/ environments did not.  
-The sibilant in /str/ often surfaces closer to [\textesh] in many varieties of English, due to coarticulatory effects from the other consonants in the cluster, but the coarticulatory effects for merging /s/ and /\textesh/ are much weaker in intervocalic position.  
-They argue that the interpretation of the ambiguous sound is done in context of the surrounding sounds, and only when the pronunciation variant is unexplainable from context is the variant learned and attributed to the speaker, see also \citet{Kraljic2008}.  
-In addition to a continuum of /asi/ to /a\textesh i/, they also tested a continuum from /astri/ to /a\textesh tri/, and found comparable perceptual learning effects across both continua for those exposed to the intervocalic ambiguous sibilants, but no perceptual learning effects on either continua for the other condition, showing a context insentivity absent in other studies.
-
-Continuing the thread of the previous section, perceptual learning tend to extend only to stimuli that is similar to the exposure items.
-This exposure-specific generalization is widely found in the psychophysics literature as well, where perceptual learning is argued to reside or affect the early sensory pathways, where stimuli are represented with the greatest detail \citep{Gilbert2001}.  
-In a predictive coding model of the brain \citep{Clark2013}, errors in prediction would not propagate very far from the levels where bottom-up sensory information is integrated.  
-Interestingly, lexically-guided perceptual learning produces much more robust perceptual learning, where test stimuli are either nonword continua \citep{Norris2003} or real word minimal pairs \citep{Reinisch2013}.  
-Visually-guided perceptual learning may be more similar to the psychophysics definition of perceptual learning, where participants are better at discriminating the specific stimuli they have been exposed to.
-
-\section{Distance to canonical}
-
-%
-\citet{Sumner2011} investigated whether differences in presentation order in a perceptual learning experiment led to different learning effects of the /b/-/p/ category boundary for a native French speaker of English.  
-The presentation order that showed the greatest perecptual learning effects was the one where tokens started out close to what a listener would expect for the categories (English-like voice onset time for /b/ and /p/) and shifted over the course of the experiment to what the speaker's actual categories were (French-like voice onset time for /b/ and /p/), despite the fact that this presentation order is not anything like what a listener would normally encounter when interacting with a non-native speaker of English.  
-The condition that mirrored the more normal course of non-native speaker pronunciation changes, starting as more French-like and ending as more English-like, did not produce significantly different behaviour than control participants.  
-One explanation for these results are that a small difference between the listener's expectations and the input provides more robust learning, and the future input uses the updated expectations for future input, allowing for greater shifts over time through smaller shifts per trial.  
-In the exemplar model proposed by \citet{Pierrehumbert2002}, only input similar to the learned distribution is used for updating that distribution, and input too far away from learned distribution is discarded. <<Double check the reference>>
-
-\section{Attention}
-\label{sec:attention}
-
-In this dissertation, attention is used as a way to reweight the contribution of bottom-up acoustic information and top-down linguistic information.
-Attention has been found to have a role on perceptual learning in the psychophysics literature.  
-For instance, \citet{Ahissar1993} found that in general, attending to global features for detection (i.e., discriminating different orientations of arrays of lines) does not make participants better at using local features for detection (i.e., detection of a singleton that differs in angle in the same arrays of lines), and vice versa.  However, there was a small degree of local detection learned from global detection, with the singleton popping out from its field as highly salient.
-
-In the auditory domain, similar asymmetries have been found between global and local processing.
-In \citet{Sussman2002}, participants were presented with three types of tones in different orders, with one second stimulus onset asynchrony (SOA).  
-The order of the tones were either random, with tone 1 more frequent than tone 2, which in turn was more than tone 3, or the order of the tones had a general pattern of five tones (1 1 1 1 2).  
-They looked at event-related potentials (ERPs) following tone 2, specifically focusing on the mismatch negativity (MMN) ERP and the N2b ERP, which is evoked when a stimulus is attentively detected as being different from regular stimuli.
-In addition to the two patterns, there were three attentional conditions.  
-In one, participants were instructed to ignore the auditory stimuli and read a book.  
-In the second, participants were instructed to listen to the tone pitch and press a key when they heard the lowest pitch one (tone 3). 
- In the final condition, participants were told of the five tone pattern and instructed to respond when one of the tones was replaced by the lowest tone.
-When participants were ignoring the auditory stimuli, there was a MMN response following tone 2.  
-When attending to the pitch of the tones, regardless of the tone pattern, there was both a MMN response and an N2b response following tone 2.  
-When participants attended to the pattern, there was neither a MMN response nor an N2b response after tone 2.
-These results suggest that auditory representations can be manipulated by attention, resulting in processing differences.
-
-However, attention can only modulate the representation to the degree that the acoustics allow.
-In other similar studies with different stimulus onset asynchronies, patterns were detected more readily.
-At a fast presentation rate (100-ms SOA), no MMN was present, even when participants were told to ignore the auditory stimuli \citep{Sussman1998}.
-The fast presentation rate is more conducive to chunking the incoming stream into a pattern, whereas the slow presentation rate allows for the participants to process each tone in isolation or as part of a bigger pattern.
-Similar results were found for varying SOA in an auditory streaming task \citep{Sussman1998,Sussman1998a}.
-
-Attentional sets are a widely used term in the attention literature.  
-In the visual domain, attentional sets can refer to the strategies that the perceiver uses to perform a task.  
-For instance, in a visual search task, colour, orientation, motion and size are the predominant strategies \citep{Wolfe2004}.  
-Two broad categories of attentional sets are generally used.  
-Focused sets direct attention to components of the sensory input, and diffuse sets direct attention to global properties of the sensory input.  
-In the visual search literature, a focused attentional is the feature search mode, which gives priority to a single feature, such as the colour of the target, and a diffuse attentional set is singleton detection mode, which gives priority to any salient features \citep{Bacon1994}. 
-In the auditory streaming literature, two attentional sets have been identified as ``selective listening'', where the perceiver attempts to hear the components of two streams, and ``comprehensive listening'', where the perceiver tries to hear all components as a single stream  \citep{vanNoorden1975}.
-Finally, in a lexical decision tasks, the diffuse attentional set is where primary attention is on detecting words from nonwords, and the focused attentional set is where instructions direct participants attention to a potentially misleading sound \citep{Pitt2012}.
-Attentional set selection is not necessarily optimal on the part of the perceiver, and it has been shown to be biased based on experience, with the amount of training performed influencing the length of time that perceivers will continue to use non-optimal sets after the task has changed \citep{Leber2006}.  
-
-Attention in perceptual learning in speech perception has not been manipulated in previous work, but some work has been done on how individual differences in attention control can impact perceptual learning.
-\citet{Scharenborg2014} presents a perceptual learning study of older Dutch listeners in the model of \citet{Norris2003}.  
-In addition to the exposure and test phases, these older listeners completed three tests for hearing loss, selective attention and attention-switching control.  
-They found no evidence that perceptual learning was influenced by listeners' hearing loss or selective attention abilities, but they did find a significant relationship between a listener's attention-switching control and their perceptual learning.  
-Listeners with worse attention-switching control showed greater perecptual learning effects, which the authors ascribed to an increased reliance on lexical information.  
-Older listeners had previously been shown to have smaller perceptual learning effects as compared to younger listeners, but the differences were most prominent directly following exposure \citep{Scharenborg2013}.  
-Younger listeners initially had a larger perceptual learning effect in the first block of testing, but the effect lessened over the subsequent blocks.  
-Older listeners showed smaller initial perceptual learning effects, but no such decay.  
-\citet{Scharenborg2013} also found that performance in the lexical decision task significantly affected the perceptual learning in the testing phase.
-
-\section{Lexical bias}
+\subsection{Lexical bias}
 \label{sec:lexicalbias}
 
-Lexical bias is the primary way through which perceptual learning is induced in the experimental literature.
+Lexical bias is the primary way through which perceptual learning is induced in the experimental speech perception literature.
 Lexical bias, also known as the Ganong Effect, refers to the tendency for listeners to interpret a speaker's production as a meaningful word rather than a nonsense word.  
 For instance, given a continuum from a nonword like \emph{dask} to word like \emph{task} that differs only in one sound, listeners in general are more likely to interpret any step along the continuum as the word endpoint rather than the nonword endpoint \citep{Ganong1980}. 
 This bias is exploited in perceptual learning studies to allow for noncanonical, ambiguous productions of a sound to be linked to pre-existing sound categories.
@@ -265,43 +101,27 @@ Lexical bias effects are then calculated from the different categorization behav
 Lexical bias varies in strength according to several factors.  
 First, the length of the word in syllables has a large effect on lexical bias, with longer words showing stronger lexical bias than shorter words \citep{Pitt2006}.  
 Continua formed using trisyllabic words, such as \emph{establish} and \emph{malpractice}, were found to show consistently large lexical bias effects than monosyllabic words, such as \emph{kiss} and \emph{fish}.  
-\citet{Pitt2006} also found that lexical bias from trisyllabic words was robust across experimental conditions, but lexical bias from monosyllabic words was more fragile and condition dependent.  They argue that these affects arise from both the greater bottom-up information present in longer words and the greater lexical competition for shorter words.
+\citet{Pitt2006} also found that lexical bias from trisyllabic words was robust across experimental conditions, but lexical bias from monosyllabic words was more fragile and condition dependent.  
+They argue that these affects arise from both the greater bottom-up information present in longer words and the greater lexical competition for shorter words.
 
 %Position in the word
 \citet{Pitt2012} used a lexical decision task with a continuum of fricatives from /s/ to /\textesh/ embedded in words differing in the position of a sibilant.  
 They found that ambiguous fricatives earlier in the word, such as \emph{serenade} or \emph{chandelier}, lead to greater nonword responses than the same ambiguous fricatives embedded later in a word, such as \emph{establish} or \emph{embarass}.  
 In the experiments and meta-analysis of phoneme identification results presented in \citet{Pitt1993}, they found that, for monosyllabic word frames, token-final targets produce more robust lexical bias effects than token-initial targets.
 
-%Attention
-\citet{Pitt2012} additionally investigated the role of attention in modulating lexical bias.  
-When listeners were told that the speaker's /s/ and /\textesh/ were ambiguous and to listen carefully to ensure correct responses, they were less tolerant of noncanonical productions across all positions in the word.  
-That is, participants attending to the speaker's sibilants were less likely to accept the modified production as a word than participants given no particular instructions about the sibilants.
-Given that the task listeners performed was a lexical decision task, the default attentional set for the task, termed ``diffuse'' by \citet{Pitt2012}, would have attention distributed across both acoustic-phonetic and lexical domains.  Listeners given the instructions about the speaker's /s/ productions had a ``focused'' attentional set, with more weighting on the acoustic-phonetic domain than the ``diffuse'' attentional set.
+In the stimuli used in \citet{Norris2003} and most other lexically-guided perceptual learning experiments, lexical bias is maximized.  Exposure stimuli are multisyllabic words that end in the ambiguous sound.  Perceptual learning has also been found when the ambiguous stimuli is embedded earlier in the word, such as the onset of the final syllable \citep{Kraljic2005, Kraljic2008, Kraljic2008a} or the even the onset of the first syllable \citep{Clare2014}.  In light of the findings in \citet{Pitt2012}, we would expect different lexical biases at the point that those ambiguous sounds were heard, and therefore, I hypothesize, different endorsement rates and different perceptual learning effect sizes.  This prediction will be explicitly tested in Experiment 1 in Chapter~\ref{chap:lexdec}.
 
-%Cognitive load
-Lexical bias is affected by processing conditions.  
-In their first experiment, \citet{Mattys2011} found that lexical bias has a larger effect when listeners have more cognitive load than when they have no cognitive load from concurrent tasks.  
-In their second experiment, the same cognitive load and non-cognitive load conditions were present, but listeners had to respond to the phoneme identification task within 1500 ms.  
-In this experiment, the lexical bias across cognitive load conditions was identical and similar to the cognitive load condition of experiment 1.  
-In experiment 3, listeners could only respond \emph{after} 1500 ms, and the effect of cognitive load re-emerged with similar magnitude to experiment 1.  
-In the remainder of their experiments, they examined whether cognitive load increased word activation or decreased sensory information, the two primary possible explanations for the pattern of results found in experiment 1.  
-They found that semantic priming was not significantly different across cognitive loads, but fine-grained discrimination suffered under cognitive load conditions.  
-Thus, the effect of cognitive load observed is a function of impoverished fine detail leading to a greater reliance on lexical information.  
-However, the timecourse for the incorporation of these different sources of information is interesting, with lexical information playing a larger role earlier on in processing and sensory signal information being incoporated later on.  
-Earlier responses are more likely to be lexically biased than later responses.
-The relative weightings of lexical information and acoustic information are malleable in different processing conditions.
-
-\section{Semantic predictability}
+\subsection{Semantic predictability}
 \label{sec:semanticpredictability}
 
-Semantic predictability has been shown to have effects on speech production in the same direction as lexical predictability, and the two appear to not interact \citep{Scarborough2010}.  No experiments in perceptual learning have used linguistic biases other than lexical ones, but we predict compounding effects for perceptual learning, given the compounding effects in production.  Semantic predictability and lexical bias should combine to form a stronger association between a deviant production and the sound category, leading to greater perceptual learning.
-
-Sentences are highly predictable when they contain words prior to the final word that points almost definitively to the identity of the final word.  
+The second type of linguistic expectation manipulation used in this dissertation is known as semantic predictability \citep{Kalikow1977}.
+Sentences are semantically predictable when they contain words prior to the final word that points almost definitively to the identity of that final word.  
 For instance, the sentence fragment \emph{The cow gave birth to the...} from \citet{Kalikow1977} is almost guaranteed to be completed with the word \emph{calf}.  
-On the other hand, a fragment like \emph{She is glad Jane called about the...} is far from having a guaranteed completion, other than having the category of noun. 
-Semantic predictability has been found to have effects on both production and perception, which will be discussed in the two following sections
+On the other hand, a fragment like \emph{She is glad Jane called about the...} is far from having a guaranteed completion, other than having the category of noun.
 
-In general, semantic predictability results in acoustically reduced word tokens.  
+Semantic predictability has been shown to have effects on speech production and perception in the same direction as lexical predictability, and the two do not interact in production \citep{Scarborough2010}.  No experiments in perceptual learning have used linguistic biases other than lexical ones, but we predict compounding effects for perceptual learning, given the compounding effects in production.  Semantic predictability and lexical bias should combine to form a stronger association between a deviant production and the sound category, leading to greater perceptual learning.
+
+In production, semantic predictability results in acoustically reduced word tokens.  
 In \citet{Scarborough2010}, words produced in highly predictable frames tend to be shorter in duration and have less dispersed vowel realizations.  
 This semantic predictability effect did not interact with neighbourhood density, a lexical factor that proxies for the amount of lexical competition a word has.  
 Words with many neighbours, and therefore less lexical predictability, had longer durations and more dispersed vowel realizations.  
@@ -316,18 +136,75 @@ Sentences that form a semantically coherent whole have higher word identificatio
 However, when words at the ends of predictive sentences are excised from their context, they tend to be less intelligible than words excised from non-predictive contexts \citep{Lieberman1963}.
 
 \citet{Connine1987} and \citet{Borsky1998} present conflicting results of the reaction time profile of semantic predictability on a phoneme categorization task.
-\citet{Connine1987} found evidence that semantic predictability operated similar to monetary payoff in \citet{Connine1987a}.  \citet{Borsky1998} attempted to replicate \citet{Connine1987} while removing potential confounds from the methodological design.  In contrast to \citet{Connine1987}, they used only one voicing continuum (from \emph{goat} to \emph{coat}), embedded the acoustic target in the middle of the sentence rather than at the end, and only presented one instance of each sentence to each participant rather than all continuum steps for each sentence to each participant.  The reaction time profile in their study more closely aligned to the profile of lexical bias in \citet{Connine1987a}.
+\citet{Connine1987} found evidence that semantic predictability operated similar to the ``postperceptual'' processes in \citet{Connine1987a}.  \citet{Borsky1998} attempted to replicate \citet{Connine1987} while removing potential confounds from the methodological design.  In contrast to \citet{Connine1987}, they used only one voicing continuum (from \emph{goat} to \emph{coat}), embedded the acoustic target in the middle of the sentence rather than at the end, and only presented one instance of each sentence to each participant rather than all continuum steps for each sentence to each participant.  The reaction time profile in their study more closely aligned to the profile of lexical bias in \citet{Connine1987a}.
+
+The previous literature on semantic predictability has shown largely similar effects as lexical bias.  In the few instances where both are manipulated, they seem to be orthogonal effects that increase a listener's linguistic expectation.  However, those studies were done in production \citep{Scarborough2010, Clopper2008}, and perception does not necessarily mirror production.  It may be the case that there is a maximum to the linguistic expectation that a listener has for a particular utterance.  Committing too much to a particular expectation could lead to garden path phenomena \citep{Levy2008}.  The effect of semantic predictability on perceptual learning will be explicitly tested in Chapter~\ref{chap:sent}.
+
+\section{Attentional factors and perceptual learning}
+\label{sec:attention}
+
+Attention is a large topic of research in its own right, and this review only reviews literature that is directly relevant to perceptual learning.
+Attention has been found to have a role on perceptual learning in the psychophysics literature.  
+For instance, \citet{Ahissar1993} found that in general, attending to global features for detection (i.e., discriminating different orientations of arrays of lines) does not make participants better at using local features for detection (i.e., detection of a singleton that differs in angle in the same arrays of lines), and vice versa.  However, there was a small degree of local detection learned from global detection, with the singleton popping out from its field as highly salient.
+
+Attentional sets are a widely used term in the attention literature.  
+In the visual domain, attentional sets can refer to the strategies that the perceiver uses to perform a task.  
+For instance, in a visual search task, colour, orientation, motion and size are the predominant strategies \citep{Wolfe2004}.  
+Two broad categories of attentional sets are generally used.  
+Focused sets direct attention to components of the sensory input, and diffuse sets direct attention to global properties of the sensory input.  
+In the visual search literature, a focused attentional is the feature search mode, which gives priority to a single feature, such as the colour of the target, and a diffuse attentional set is singleton detection mode, which gives priority to any salient features \citep{Bacon1994}. 
+In the auditory streaming literature, two attentional sets have been identified as ``selective listening'', where the perceiver attempts to hear the components of two streams, and ``comprehensive listening'', where the perceiver tries to hear all components as a single stream  \citep{vanNoorden1975}.
+Finally, in a lexical decision tasks, the diffuse attentional set is where primary attention is on detecting words from nonwords, and the focused attentional set is where instructions direct participants attention to a potentially misleading sound \citep{Pitt2012}.
+Attentional set selection is not necessarily optimal on the part of the perceiver, and it has been shown to be biased based on experience, with the amount of training performed influencing the length of time that perceivers will continue to use non-optimal sets after the task has changed \citep{Leber2006}.  
+
+Attention has not been manipulated in previous work on perceptual learning in speech perception, but some work has been done on how individual differences in attention control can impact perceptual learning.
+\citet{Scharenborg2014} presents a perceptual learning study of older Dutch listeners in the model of \citet{Norris2003}.  
+In addition to the exposure and test phases, these older listeners completed three tests for hearing loss, selective attention and attention-switching control.  
+They found no evidence that perceptual learning was influenced by listeners' hearing loss or selective attention abilities, but they did find a significant relationship between a listener's attention-switching control and their perceptual learning.  
+Listeners with worse attention-switching control showed greater perecptual learning effects, which the authors ascribed to an increased reliance on lexical information.  
+Older listeners had previously been shown to have smaller perceptual learning effects as compared to younger listeners, but the differences were most prominent directly following exposure \citep{Scharenborg2013}.  
+Younger listeners initially had a larger perceptual learning effect in the first block of testing, but the effect lessened over the subsequent blocks.  
+Older listeners showed smaller initial perceptual learning effects, but no such decay.  
+\citet{Scharenborg2013} also found that performance in the lexical decision task significantly affected the perceptual learning in the testing phase.
+
+%Attention
+Lexical bias is affected by attentional processing conditions.
+\citet{Pitt2012} additionally investigated the role of attention in modulating lexical bias.  
+When listeners were told that the speaker's /s/ and /\textesh/ were ambiguous and to listen carefully to ensure correct responses, they were less tolerant of noncanonical productions across all positions in the word.  
+That is, participants attending to the speaker's sibilants were less likely to accept the modified production as a word than participants given no particular instructions about the sibilants.
+Given that the task listeners performed was a lexical decision task, the default attentional set for the task, termed ``diffuse'' by \citet{Pitt2012}, would have attention distributed across both acoustic-phonetic and lexical domains.  Listeners given the instructions about the speaker's /s/ productions had a ``focused'' attentional set, with more weighting on the acoustic-phonetic domain than the ``diffuse'' attentional set.
+Under higher cognitive load, such as performing a more difficult concurrent task, listeners show an increased lexical bias, as a result of weaker encoding of the auditory details \citep{Mattys2011}.  These results suggest that detailed encoding requires attentional resources.  In \citet{Mattys2011}, the primary task was a phoneme identification task, where a ``focused'' attentional set would likely be the default for participants, but a more ``diffuse'' attentional set, or one that weights lexical information more heavily, seems to be employed in the higher cognitive load conditions.
+
+\section{Signal factors and perceptual learning}
+\label{sec:signal}
+
+A primary finding across the perceptual learning literature is that learning effects are only found on testing items that are similar to the exposure items.  However, a less studied question is what properties of the exposure items cause different degrees of perceptual learning.  
+
+Variability is a fundamental property of the speech signal, so sound categories must have some variance associated with them, and certain contexts can have increased degrees of variability.
+\citet{Kraljic2008a} exposed participants to ambiguous sibilants between /s/ and /\textesh/ in two different contexts.  
+In one, the ambiguous sibilants were intervocalic, and in the other, they occurred as part of a /str/ cluster.  
+Participants exposed to the ambiguous sound intervocalically showed a perceptual learning effect, while those exposed to the sibilants in /str/ environments did not.  
+The sibilant in /str/ often surfaces closer to [\textesh] in many varieties of English, due to coarticulatory effects from the other consonants in the cluster, but the coarticulatory effects for merging /s/ and /\textesh/ are much weaker in intervocalic position.  
+They argue that the interpretation of the ambiguous sound is done in context of the surrounding sounds, and only when the pronunciation variant is unexplainable from context is the variant learned and attributed to the speaker, see also \citet{Kraljic2008}.  
+In addition to a continuum of /asi/ to /a\textesh i/, they also tested a continuum from /astri/ to /a\textesh tri/, and found comparable perceptual learning effects across both continua for those exposed to the intervocalic ambiguous sibilants, but no perceptual learning effects on either continua for the other condition, showing a context insentivity absent in other studies.
+
+%
+\citet{Sumner2011} investigated whether differences in presentation order in a perceptual learning experiment led to different learning effects of the /b/-/p/ category boundary for a native French speaker of English.  
+The presentation order that showed the greatest perecptual learning effects was the one where tokens started out close to what a listener would expect for the categories (English-like voice onset time for /b/ and /p/) and shifted over the course of the experiment to what the speaker's actual categories were (French-like voice onset time for /b/ and /p/), despite the fact that this presentation order is not anything like what a listener would normally encounter when interacting with a non-native speaker of English.  
+The condition that mirrored the more normal course of non-native speaker pronunciation changes, starting as more French-like and ending as more English-like, did not produce significantly different behaviour than control participants.  
+One explanation for these results are that a small difference between the listener's expectations and the input provides more robust learning, and the future input uses the updated expectations for future input, allowing for greater shifts over time through smaller shifts per trial.  
+In the exemplar model proposed by \citet{Pierrehumbert2002}, only input similar to the learned distribution is used for updating that distribution, and input too far away from learned distribution is discarded. <<Double check the reference>>
 
 \section{Current contribution}
 
 Perceptual learning effects require two important aspects to be involved in the exposure phase.  
 There must be some ambiguous acoustic aspect to be learned, and there must be an unambiguous link between the ambiguous acoustics and a sound category. 
-This link can be provided through bottom-up information, such as in the visual domain \citep{Bertelson2003}, or it can be top-down information, such as the lexical status of the tokens \citep{Norris2003}. 
+This link can be provided through sensory information, such as in the visual domain \citep{Bertelson2003}, or it can be through linguistic information, such as the lexical status of the tokens \citep{Norris2003}. 
 Most of the literature within the domain of lexically-guided perceptual learning has been on the presence or absence of perceptual learning in the categorization phases, with manipulations to the categorization phase to test for generalization.  
 The question that I am interested in is in the linking of ambiguous tokens to sound categories.  
 Can manipulations in the exposure phase that reduce the reliability of the linking cause differences in perceptual learning?
 
-In this dissertation,  I will induce manipulations of lexical bias and attention in Experiments 1 and 2, and manipulations of sentence predictability and attention in Experiment 3. 
+In this dissertation,  I will induce manipulations of lexical bias and attention in Experiments 1 and 2 (Chapter~\ref{chap:lexdec}), and manipulations of sentence predictability and attention in Experiment 3 (Chapter~\ref{chap:sent}). 
 Lexical bias has been shown to affect phoneme categorization tasks \citep{Ganong1980}, and can be manipulated by position of the ambiguous sound in the word and attention \citep{Pitt2012}.  
 Sentence predictability, has likewise been found to affect phoneme categorization tasks similar to lexical bias \citep{Borsky1998}, and can be manipulated by the preceding words in the sentence \citep{Kalikow1977}.  
 The interaction of sentence predictability with attention has not been explicitly studied, but the interaction should be similar to lexical bias, given findings that sentence predictability exerts similar effects on phone categorization as lexical bias \citep{Borsky1998}.  In both of these studies, attention will be either diffuse across the word or focused on the speaker's phonetic characteristic to be learned.  Attention to the speaker characteristic should lessen the acceptability of these productions as words as in previous work \citep{Pitt2012}, leading to less perceptual learning when comparing these participants to those with a diffuse attentional set.
