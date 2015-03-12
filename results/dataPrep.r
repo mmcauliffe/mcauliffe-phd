@@ -70,10 +70,14 @@ expose.word$Word <- factor(expose.word$Word)
 
 target <- na.omit(subset(expose,itemtype %in% c('S-Initial','S-Final')))
 
-subj.tolerances <- ddply(target,~Subject*itemtype*Attention*Experiment,summarise,WordResp = mean(ACC))
+wresps <- ddply(target,~Subject,summarise,WordResp = sum(ACC)/20)
+
+subj.tolerances <- ddply(target,~Subject*itemtype*Attention*Experiment,summarise,WordResp = sum(ACC)/20)
 subj.tolerances$tWordResp <- asin(subj.tolerances$WordResp)
 
-summary(aov(tWordResp ~ itemtype*Attention*Experiment,data=subj.tolerances))
+ddply(subj.tolerances, ~Experiment*itemtype*Attention, summarise, mean(WordResp), sd(WordResp))
+
+summary(aov(tWordResp ~ Experiment*itemtype*Attention,data=subj.tolerances))
 
 #CATEGORIZATION
 
@@ -229,6 +233,7 @@ t[t=='shock-sock'] = 'sock-shock'
 categ$Item <- factor(t)
 
 categ <- subset(categ,!Subject %in% c('ns1-215','ns1-402','ns2-214', 'ns2-219'))
+categ <- merge(categ,wresps)
 
 categ$Step <- categ$Step - mean(1:6)
 categ$ExposureType <- factor(categ$ExposureType, levels = c('initial','final'))

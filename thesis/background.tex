@@ -8,7 +8,7 @@ Speakers can have different sizes, different genders, and different backgrounds 
 In addition to properties of the speaker varying, a listener's attention or goals in an interaction can vary, such as listening hard to a non-native speaker or being distracted by planning upcoming utterances or by another task entirely.  
 %Whether the listener has prior knowledge, or knowledge from another modality, about a speaker characteristic can affect their perception of that speaker's speech.
 Despite variability on the part of both the listener and the speaker, listeners can maintain a large degree of perceptual constancy, interpreting disparate and variable productions as belonging to a single word type or sound category.
-Exposure to a speaker affects a listener's perceptual system for that speaker, increasing their ability to understand that speaker.
+Exposure to a speaker affects a listener's perceptual system for that speaker, increasing their ability to understand that speaker or other speakers of similar background \citep{Bradlow2008}.
 Broadly, perceptual learning or perceptual adaptation in the speech perception literature refers to the updating of distributions corresponding to a sound category for a particular speaker.
 
 This dissertation investigates the interaction between linguistic, attentional and acoustic factors on perceptual learning.
@@ -50,19 +50,6 @@ Perceptual learning or recalibration in the speech perception literature is a mo
 
 Perceptual learning in the psychophysics literature has shown a large degree of exposure-specificity, where observers only show learning effects on the same or very similar stimuli as those they were trained on. As such, perceptual learning has been argued to reside or affect the early sensory pathways, where stimuli are represented with the greatest detail \citep{Gilbert2001}.  Perceptual learning in speech perception has shown a large degree of exposure-specificity, where participants do not generalize cues across speech sounds \citep{Reinisch2014} or across speakers unless the sounds are similar across exposure and testing \citep{Eisner2005, Kraljic2005, Kraljic2007, Reinisch2013a}.  On the other hand, lexically-guided perceptual learning in speech has shown a greater degree of generalization than would be expected from a purely psychophysical standpoint.  The testing stimuli are generally quite different from the exposure stimuli, with participants exposed to multisyllabic words ending in an ambiguous sound and tested on monosyllabic words \citep{Reinisch2013} and nonwords \citep{Norris2003, Kraljic2005}, though exposure-specificity is found when exposure and testing use different positional allophones \citep{Mitterer2013}.
 
-%\citet{SamuelKraljic2009}
-
-%\citet{Sumner2011}
-
-
-%\section{Timecourse}
-
-%Mitterer, H., & Reinisch, E. (in press). No delays in application of perceptual learning in speech recognition: Evidence from eye tracking.Journal of Memory and Language.
-
-%\citet{Vroomen2004} \cite{Kleinschmidt2011}
-
-%\citet{Trude2012}
-
 Perceptual learning can be captured well in terms of Bayesian belief updating \citep{Kleinschmidt2011} or as part of a predictive coding model of the brain \citep{Clark2013}.  
 In Bayesian belief updating, the model categorizes the incoming stimuli based on multimodel cues, and then updates the distribution to reflect that categorization.  
 This updated conditional distribution is then used for future categorizations in an iterative process.  
@@ -83,7 +70,7 @@ In Chapter~\ref{chap:sent}, a novel, sententially-guided perceptual learning par
 \label{sec:lexicalbias}
 
 Lexical bias is the primary way through which perceptual learning is induced in the experimental speech perception literature.
-Lexical bias, also known as the Ganong Effect, refers to the tendency for listeners to interpret a speaker's production as a meaningful word rather than a nonsense word.  
+Lexical bias, also known as the Ganong Effect, refers to the tendency for listeners to interpret a speaker's (noncanonical) production as a particular, meaningful word rather than a nonsense word.  
 For instance, given a continuum from a nonword like \emph{dask} to word like \emph{task} that differs only in one sound, listeners in general are more likely to interpret any step along the continuum as the word endpoint rather than the nonword endpoint \citep{Ganong1980}. 
 This bias is exploited in perceptual learning studies to allow for noncanonical, ambiguous productions of a sound to be linked to pre-existing sound categories.
 Given that ambiguous productions must be associated with a word to induce lexically-guided perceptual learning \citep{Norris2003}, differing degrees of lexical bias could lead to differing degrees of perceptual learning, a prediction which will be tested in Chapter~\ref{chap:lexdec}.  
@@ -109,7 +96,7 @@ They argue that these affects arise from both the greater bottom-up information 
 They found that ambiguous fricatives earlier in the word, such as \emph{serenade} or \emph{chandelier}, lead to greater nonword responses than the same ambiguous fricatives embedded later in a word, such as \emph{establish} or \emph{embarass}.  
 In the experiments and meta-analysis of phoneme identification results presented in \citet{Pitt1993}, they found that, for monosyllabic word frames, token-final targets produce more robust lexical bias effects than token-initial targets.
 
-In the stimuli used in \citet{Norris2003} and most other lexically-guided perceptual learning experiments, lexical bias is maximized.  Exposure stimuli are multisyllabic words that end in the ambiguous sound.  Perceptual learning has also been found when the ambiguous stimuli is embedded earlier in the word, such as the onset of the final syllable \citep{Kraljic2005, Kraljic2008, Kraljic2008a} or the even the onset of the first syllable \citep{Clare2014}.  In light of the findings in \citet{Pitt2012}, we would expect different lexical biases at the point that those ambiguous sounds were heard, and therefore, I hypothesize, different endorsement rates and different perceptual learning effect sizes.  This prediction will be explicitly tested in Experiment 1 in Chapter~\ref{chap:lexdec}.
+In the stimuli used in \citet{Norris2003} and most other lexically-guided perceptual learning experiments, lexical bias tends to be maximized.  Exposure stimuli are multisyllabic words that end in the ambiguous sound.  Perceptual learning has also been found when the ambiguous stimuli is embedded earlier in the word, such as the onset of the final syllable \citep{Kraljic2005, Kraljic2008, Kraljic2008a} or the even the onset of the first syllable \citep{Clare2014}.  In light of the findings in \citet{Pitt2012}, we would expect different lexical biases at the point that those ambiguous sounds were heard, and therefore, I hypothesize, different endorsement rates and different perceptual learning effect sizes.  This prediction will be explicitly tested in Experiment 1 in Chapter~\ref{chap:lexdec}.
 
 \subsection{Semantic predictability}
 \label{sec:semanticpredictability}
@@ -119,23 +106,26 @@ Sentences are semantically predictable when they contain words prior to the fina
 For instance, the sentence fragment \emph{The cow gave birth to the...} from \citet{Kalikow1977} is almost guaranteed to be completed with the word \emph{calf}.  
 On the other hand, a fragment like \emph{She is glad Jane called about the...} is far from having a guaranteed completion, other than having the category of noun.
 
-Semantic predictability has been shown to have effects on speech production and perception in the same direction as lexical predictability, and the two do not interact in production \citep{Scarborough2010}.  No experiments in perceptual learning have used linguistic biases other than lexical ones, but we predict compounding effects for perceptual learning, given the compounding effects in production.  Semantic predictability and lexical bias should combine to form a stronger association between a deviant production and the sound category, leading to greater perceptual learning.
+Perceptual learning paradigms for specific native speaker characteristics restrict themselves to lexical biases, but we predict compounding effects for perceptual learning, from studies done in speech production \citep{Clopper2008, Scarborough2010}.  
+Studies looking at perceptual adaptation to nonnative accents have used exposure tasks that incorporate linguistic information beyond the lexical domain.  
+For instance, \citet{Clarke2004} and \citet{Bradlow2008} trained listeners on foreign-accented English using sentence exposure items, and \citet{Trude2013} trained listeners on a merger of /i/ and /\textsci/ in French-accented English using a multi-sentence story.
+In these studies, while the amount of linguistic information available is greater, so too are the number of characteristics that need to be learned, if the listener does not already have training or experience with the specific non-native accent.
 
-In production, semantic predictability results in acoustically reduced word tokens.  
+In speech production, higher semantic predictability has been found to result in acoustically reduced word tokens.  
 In \citet{Scarborough2010}, words produced in highly predictable frames tend to be shorter in duration and have less dispersed vowel realizations.  
 This semantic predictability effect did not interact with neighbourhood density, a lexical factor that proxies for the amount of lexical competition a word has.  
 Words with many neighbours, and therefore less lexical predictability, had longer durations and more dispersed vowel realizations.  
 For both the lexical and the semantic predictability, high predictability led to less distinct word realizations, and low predictability led to more distinct word realizations, independently of each other.
-
 In a study looking at semantic predictability across dialects, \citet{Clopper2008} found that not all dialects realize the effects of semantic predictability the same.  
 For the Southern dialect of American English, the results were much the same as in \citet{Scarborough2010}, showing temporal and spectral reduction in high predictabilty environments.  
 However, speakers in the Midland dialect showed no such effect, and speakers of the Northern dialect showed more extreme Northen Cities shifting in the the high predictability environment.
 
-Despite the temporal and spectral reduction found in high predictability contexts, high predictability sentences are generally more intelligible.  
-Sentences that form a semantically coherent whole have higher word identification rates across varying signal-to-noise ratios \citep{Kalikow1977}.  
+Despite the temporal and spectral reduction found in high predictability contexts, high predictability sentences are generally more intelligible.
+Sentences that form a semantically coherent whole have higher word identification rates across varying signal-to-noise ratios \citep{Kalikow1977}, which has been found across children and adults \citep{Fallon2002}, and across native monolingual and early bilingual listeners, but not late bilingual listeners \citep{Mayo1997}.
 However, when words at the ends of predictive sentences are excised from their context, they tend to be less intelligible than words excised from non-predictive contexts \citep{Lieberman1963}.
+Highly predictable sentences are more intelligible to native listeners in noise, even when signal enhancements are not made, though non-native listeners require both signal enhancements and high predictability together to see any benefit \cite{Bradlow2007}.
 
-\citet{Connine1987} and \citet{Borsky1998} present conflicting results of the reaction time profile of semantic predictability on a phoneme categorization task.
+Two studies looking at how similar lexical and bias and semantic predictability are, found conflicting results for their reaction time profiles on a phoneme categorization task \citep{Connine1987,Borsky1998}.
 \citet{Connine1987} found evidence that semantic predictability operated similar to the ``postperceptual'' processes in \citet{Connine1987a}.  \citet{Borsky1998} attempted to replicate \citet{Connine1987} while removing potential confounds from the methodological design.  In contrast to \citet{Connine1987}, they used only one voicing continuum (from \emph{goat} to \emph{coat}), embedded the acoustic target in the middle of the sentence rather than at the end, and only presented one instance of each sentence to each participant rather than all continuum steps for each sentence to each participant.  The reaction time profile in their study more closely aligned to the profile of lexical bias in \citet{Connine1987a}.
 
 The previous literature on semantic predictability has shown largely similar effects as lexical bias.  In the few instances where both are manipulated, they seem to be orthogonal effects that increase a listener's linguistic expectation.  However, those studies were done in production \citep{Scarborough2010, Clopper2008}, and perception does not necessarily mirror production.  It may be the case that there is a maximum to the linguistic expectation that a listener has for a particular utterance.  Committing too much to a particular expectation could lead to garden path phenomena \citep{Levy2008}.  The effect of semantic predictability on perceptual learning will be explicitly tested in Chapter~\ref{chap:sent}.

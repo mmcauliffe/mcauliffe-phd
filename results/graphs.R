@@ -55,7 +55,7 @@ ggsave('../thesis/graphs/exp1_categresults.pdf',width=170,height=80,units='mm',d
 plotData = subset(xovers,Experiment == 'exp2')
 
 plotData$Xover = plotData$Xover + 3.5
-ggplot(plotData,aes(x=sin(WordResp),y=Xover)) + geom_point(position=position_jitter()) + geom_smooth(method='lm', se=F, colour='black') + ylab('Crossover step across continua') + xlab('Proportion "word" response to /s/ items') + theme_bw()
+ggplot(plotData,aes(x=sin(WordResp),y=Xover, colour = Attention, shape = itemtype)) + geom_point(position=position_jitter()) + geom_smooth(method='lm', se=F) + ylab('Crossover step across continua') + xlab('Proportion "word" response to /s/ items') + theme_bw()
 
 ggsave('../thesis/graphs/exp1_xoverwordresp.pdf',width=170,height=80,units='mm',dpi=600)
 

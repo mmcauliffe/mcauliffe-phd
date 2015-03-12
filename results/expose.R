@@ -23,7 +23,7 @@ experiment.2.expose.mod <- glmer(ACC ~ itemtype2*Attention*ExposureType + (1+ite
 summary(experiment.2.expose.mod)
 
 experiment.2.expose.mod.randslope <- glmer(ACC ~ itemtype2*Attention*ExposureType + (1+itemtype2|Subject) + (1+Attention|Word), family='binomial',data=subset(expose.word,Experiment=='exp1'), control=glmerControl(optCtrl=list(maxfun=200000) ))
-summary(experiment.2.expose.mod)
+summary(experiment.2.expose.mod.randslope)
 
 experiment.2.expose.mod.rt <- lmer(cLogRT ~ itemtype2*Attention*ExposureType + (1+itemtype2|Subject) + (1+Attention|Word),,data=subset(expose.word,Experiment=='exp1'), control=lmerControl(optCtrl=list(maxfun=200000) ))
 summary(experiment.2.expose.mod.rt)
