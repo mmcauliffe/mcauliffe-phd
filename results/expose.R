@@ -67,7 +67,7 @@ icphs.expose.mod <- glmer(ACC ~ Trial+itemtype*Experiment + (1+Trial|Subject) + 
 
 ddply(expose3,~Predictability*Type*Subject,nrow)
 
-ddply(expose3,~Predictability*Type * Native,summarise, mean(ACC), mean(RT), sd(RT))
+ddply(expose3,~Predictability*Type,summarise, MeanAccuracy = mean(ACC), MeanRT = mean(RT), SDRT = sd(RT))
 
 expose3.mod <- lmer(LogRT ~ Predictability*Attention + Type + (1+Predictability+Type|Subject) + (1+ Predictability*Attention|Word),data=expose3)
 summary(expose3.mod)

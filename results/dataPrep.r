@@ -68,16 +68,16 @@ expose.word$LogRT <- log(expose.word$RT)
 expose.word$cLogRT <- expose.word$LogRT - mean(expose.word$LogRT)
 expose.word$Word <- factor(expose.word$Word)
 
-target <- na.omit(subset(expose,itemtype %in% c('S-Initial','S-Final')))
+target <- subset(expose,itemtype %in% c('S-Initial','S-Final'))
 
 wresps <- ddply(target,~Subject,summarise,WordResp = sum(ACC)/20)
 
 subj.tolerances <- ddply(target,~Subject*itemtype*Attention*Experiment,summarise,WordResp = sum(ACC)/20)
-subj.tolerances$tWordResp <- asin(subj.tolerances$WordResp)
+subj.tolerances$aWordResp <- asin(subj.tolerances$WordResp)
 
-ddply(subj.tolerances, ~Experiment*itemtype*Attention, summarise, mean(WordResp), sd(WordResp))
+ddply(subj.tolerances, ~Experiment*itemtype*Attention, summarise, MeanWordResp = mean(WordResp), SDWordResp = sd(WordResp))
 
-summary(aov(tWordResp ~ Experiment*itemtype*Attention,data=subj.tolerances))
+summary(aov(aWordResp ~ Experiment*itemtype*Attention,data=subj.tolerances))
 
 #CATEGORIZATION
 
@@ -146,9 +146,7 @@ categ3$ExposureType <- factor(categ3$ExposureType, levels =c('unpredictive','pre
 categ3$Attention <- 'attend'
 
 categ3[str_detect(categ3$Subject,'^ns3-2'),]$Attention <- 'noattend'
-#categ3[str_detect(categ3$Subject,'^ns3-3'),]$Attention <- 'noattend'
-
-#categ3[str_detect(categ3$Subject,'^nns3-2'),]$Attention <- 'noattend'
+categ3[str_detect(categ3$Subject,'^ns3-3'),]$Attention <- 'noattend'
 
 categ3$Attention <- factor(categ3$Attention, levels =c('noattend','attend'))
 

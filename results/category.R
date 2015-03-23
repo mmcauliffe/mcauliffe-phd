@@ -1,6 +1,6 @@
 ### CONTROL ###
 
-cont.mod <- glmer(ACC ~ Step + (1+Step|Subject) + (1+Step|Item), family='binomial',data=cont)
+cont.mod <- glmer(ACC ~ Step*Background + (1+Step|Subject) + (1+Step|Item), family='binomial',data=cont)
 summary(cont.mod)
 
 
@@ -32,7 +32,8 @@ summary(experiment.2.mod)
 
 
 experiment.2.mod.wresp <- glmer(ACC ~ WordResp*Step*ExposureType*Attention + (1+Step|Subject) + (1+Step|Item), family='binomial',data=subset(categ,Experiment=='exp1'), control=glmerControl(optCtrl=list(maxfun=100000) ))
-summary(experiment.2.mod.wresp)
+summary(experiment.2.mod.wresp,digits=3,corr=F)
+t <- summary(experiment.2.mod.wresp)
 
 
 ### END EXPERIMENT 2
@@ -49,7 +50,7 @@ summary(grouped.mod)
 
 ddply(unique(categ3[,c('Subject','ExposureType','Attention')]), ~ ExposureType*Attention, nrow)
 
-experiment.3.mod <- glmer(ACC ~ Step*ExposureType*Attention*Native + (1+Step|Subject) + (1+Step|Item), family='binomial',data=categ3, control=glmerControl(optCtrl=list(maxfun=100000) ))
+experiment.3.mod <- glmer(ACC ~ Step*ExposureType*Attention + (1+Step|Subject) + (1+Step*ExposureType*Attention|Item), family='binomial',data=categ3, control=glmerControl(optCtrl=list(maxfun=100000) ))
 summary(experiment.3.mod)
 
 ### END EXPERIMENT 3
@@ -63,8 +64,8 @@ summary(aov(Xover ~ WordResp*Attention*itemtype,data=subset(xovers,Experiment=='
 summary(aov(Xover ~ WordResp*Attention*itemtype,data=subset(xovers,Experiment=='exp1')))
 cor.test(subset(xovers,Experiment=='exp1')$Xover, subset(xovers,Experiment=='exp1')$WordResp)
 cor.test(subset(xovers,Experiment=='exp2')$Xover, subset(xovers,Experiment=='exp2')$WordResp)
-cor.test(subset(xovers,Experiment=='exp1')$Xover, subset(xovers,Experiment=='exp1')$tWordResp)
-cor.test(subset(xovers,Experiment=='exp2')$Xover, subset(xovers,Experiment=='exp2')$tWordResp)
+cor.test(subset(xovers,Experiment=='exp1')$Xover, subset(xovers,Experiment=='exp1')$aWordResp)
+cor.test(subset(xovers,Experiment=='exp2')$Xover, subset(xovers,Experiment=='exp2')$aWordResp)
 
 
 ggplot(categ,aes(x=Step,y=ACC)) + geom_smooth(method='glm',family='binomial')+facet_wrap(~Subject)

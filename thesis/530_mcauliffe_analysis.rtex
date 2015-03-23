@@ -1,0 +1,421 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+% \geometry{margin=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage{graphicx} % support the \includegraphics command and options
+
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+\usepackage{tipa}
+\usepackage{natbib}
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{Brief Article}
+\author{The Author}
+%\date{} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+%% begin.rcode setup, include=FALSE
+% library(knitr)
+% library(lme4)
+% library(plyr)
+%% end.rcode
+
+\begin{document}
+\begin{center}
+530 Analysis and Results
+
+Michael McAuliffe
+\end{center}
+
+\section{Analysis}
+
+This section outlines more the analysis details (nitty-gritty R code and summary outputs), and should probably primarily be used as a reference when reading the Results section below, which is a copy-paste from its current form in my dissertation.  The R code is generated using knitr with the lme4 code commented (so that it doesn't actually run in real time when generating the code).
+
+Experimental manipulations are in the columns Attention and ExposureType.  Attention has two levels ('attend' and 'noattend') where 'attend' participants were given additional instructions about the speaker's ambiguous /s/ sound.  ExposureType is different between Experiments 1/2 and Experiment 3.  In Experiments 1 and 2, it has the levels 'initial' and 'final' which refer to which syllable the ambiguous /s/ sound is embedded in.  In Experiment 3, it has the levels 'predictive' and 'unpredictive', referring to whether the sentence preceding the word is predictive of the word the ambiguous /s/ sound is embedded in.  In Experiment 3, all ambiguous /s/ sounds are in 'final' words taken from Experiments 1.
+
+Predictions, I suppose, would be that participants in the 'final' condition should show more perceptual learning than participants in the 'initial' condition, due to the increased lexical bias in the 'final' stimuli.  Participants in the 'noattend' condition should show greater perceptual learning effects than participants in the 'attend' condition, because the instructions are worded in such a way to warn participants to be careful that they make the correct choice between word and nonword in exposure.
+
+In Experiment 3, predictions would be that participants in the 'predictive' condition should show greater perceptual learning than participants and in the 'unpredictive' condition, since semantic predictability has been shown to behave like lexical bias in phoneme categorization tasks.  If the effects of lexical bias and semantic predictability are additive, they should show more perceptual learning than those in Experiment 1 (which uses the same word types for embedding ambiguous tokens in).  The effect of attention should be much the same, since the instructions are identical, and the task is no harder (or shouldn't require any more attention) than the lexical decision task.
+
+Additionally, there's an attentional gradience hypothesis being tested.  If attention/attentional resources has a gradient, modulatory effect on linguistic factors, then we shouldn't see much of an interaction between attention and exposure type.  Increased lexical bias should lead to greater perceptual learning, and attention should result in less perceptual learning, and so a gradient pattern across the four conditions should be present.  On the other hand, if attention is more all-or-nothing, then we might expect to see an interaction between attention and the linguistic factors, with attention overriding any effect of linguistic factors on perceptual learning.  This would lead to a pattern across conditions where all attention conditions (and perhaps attention-drawing conditions, like 'initial' instead of 'final') have the same perceptual learning with some outliers for the non-attention, non-attention-getting conditions ('noattend', 'final').
+
+\subsection{Exposure}
+
+The exposure data analyzed was a subset of the original data, where nonword trials were excluded.  Additional exclusions were that reaction times were greater than 200 ms and less than 2500 ms.  Non responses were also omited.
+
+%% begin.rcode size='footnotesize'
+% expose <- na.omit(expose)
+% expose <- subset(expose,RT > 200 & RT < 2500)
+% expose.word <- subset(expose,Lexicality=='Word')
+%% end.rcode
+
+Reaction time was transformed into cLogRT by taking the logarithm of RT and subtracting the mean:
+
+%% begin.rcode size='footnotesize'
+% expose.word$LogRT <- log(expose.word$RT)
+% expose.word$cLogRT <- expose.word$LogRT - mean(expose.word$LogRT)
+%% end.rcode
+
+The resulting data frame had the following structure.
+
+%% begin.rcode size='footnotesize'
+% summary(expose.word[,c('Subject', 'Word', 'Experiment', 'Attention', 
+% 'ExposureType', 'itemtype2', 'Trial', 'RT', 'cLogRT', 'ACC')])
+%% end.rcode
+
+Two models were fit for this data per experiment ('exp2' actually refers to Experiment 1 in the dissertation), one with ACC as a dependent measure:
+
+%% begin.rcode size='footnotesize'
+% #experiment.1.expose.mod.randslope <- 
+% #glmer(ACC ~ itemtype2*Attention*ExposureType 
+% #+ (1+itemtype2|Subject) + (1+Attention|Word),
+% #family='binomial', 
+% #data = subset(expose.word, Experiment=='exp2'),
+% #control = glmerControl(optCtrl=list(maxfun=200000) ))
+% summary(experiment.1.expose.mod.randslope)
+%% end.rcode
+
+And one with cLogRT:
+
+%% begin.rcode size='footnotesize'
+% #experiment.1.expose.mod.rt <- 
+% #lmer(cLogRT ~ itemtype2*Attention*ExposureType 
+% #+ (1+itemtype2|Subject) + (1+Attention|Word),
+% #data = subset(expose.word, Experiment == 'exp2'), 
+% #control = lmerControl(optCtrl = list(maxfun = 200000) ))
+% summary(experiment.1.expose.mod.rt)
+%% end.rcode
+
+For Experiment 2, the same specifications were used, ACC:
+
+%% begin.rcode size='footnotesize'
+% #experiment.2.expose.mod.randslope <- 
+% #glmer(ACC ~ itemtype2*Attention*ExposureType 
+% #+ (1+itemtype2|Subject) + (1+Attention|Word),
+% #family='binomial',
+% #data = subset(expose.word, Experiment == 'exp1'),
+% #control = glmerControl(optCtrl = list(maxfun = 200000) ))
+%  summary(experiment.2.expose.mod.randslope)
+%% end.rcode
+
+And cLogRT:
+
+%% begin.rcode size='footnotesize'
+% #experiment.2.expose.mod.rt <- 
+% #lmer(cLogRT ~ itemtype2*Attention*ExposureType 
+% #+ (1+itemtype2|Subject) + (1+Attention|Word),
+% #data = subset(expose.word, Experiment == 'exp1'), 
+% #control = lmerControl(optCtrl = list(maxfun = 200000) ))
+% summary(experiment.2.expose.mod.rt)
+%% end.rcode
+
+Experiment 3 has not really been analyzed, but here's the summary of the exposure data frame for it:
+
+%% begin.rcode size='footnotesize'
+% summary(expose3[,c('Subject', 'Word', 'Distractor', 
+% 'Predictability', 'Attention', 'Type', 'RT', 'ACC', 'Sentence')])
+%% end.rcode
+
+Accuracy is pretty much 100\%, so likely no interesting things can be found there statistically.  Reaction time may be more interesting, the following is summary of Accuracy, and Reaction time across various conditions:
+
+%% begin.rcode size='footnotesize'
+% ddply(expose3,~Predictability*Type, summarise,
+% MeanAccuracy = mean(ACC), MeanRT = mean(RT), SDRT = sd(RT))
+%% end.rcode
+
+
+\subsection{Categorization}
+
+The analysis of the categorization data used a logistic mixed effects regression model using lme4.  The main experimental data frame used is summarized:
+
+%% begin.rcode size='footnotesize'
+% summary(categ[,c('Subject', 'Item', 'Step', 'Experiment',
+% 'ExposureType', 'Attention', 'Trial', 'RT', 'ACC')])
+%% end.rcode
+
+Additionally, a control experiment was run with just the categorization and no expsoure.  That data is summarized as:
+
+%% begin.rcode size='footnotesize'
+% summary(cont[,c('Subject', 'Item', 'Step',
+% 'Background', 'Trial', 'RT', 'ACC')])
+%% end.rcode
+
+For these data, three logistic mixed-effects were fit, one for each experiment, with ACC as the dependent measure.  For control:
+
+%% begin.rcode size='footnotesize'
+% #cont.mod <- 
+% #glmer(ACC ~ Step*Background
+% #+ (1+Step|Subject) + (1+Step|Item),
+% #family = 'binomial',
+% #data = cont)
+% summary(cont.mod)
+%% end.rcode
+
+For Experiment 1:
+
+%% begin.rcode size='footnotesize'
+% #experiment.1.mod <- 
+% #glmer(ACC ~ Step*ExposureType*Attention
+% #+ (1+Step|Subject) + (1+Step*ExposureType*Attention|Item),
+% #family='binomial',
+% #data = subset(categ, Experiment == 'exp2'),
+% #control = glmerControl(optCtrl = list(maxfun = 100000) ))
+% summary(experiment.1.mod)
+%% end.rcode
+
+And for Experiment 2:
+
+%% begin.rcode size='footnotesize'
+% #experiment.2.mod <-
+% #glmer(ACC ~ Step*ExposureType*Attention
+% #+ (1 + Step|Subject) + (1+Step*ExposureType*Attention|Item),
+% #family='binomial',
+% #data = subset(categ, Experiment == 'exp1'),
+% #control = glmerControl(optCtrl = list(maxfun = 100000)))
+% summary(experiment.2.mod)
+%% end.rcode
+
+For experiment 3, there's not too much modelling to be done at this point.  The data frame looks as follows:
+
+%% begin.rcode size='footnotesize'
+% summary(categ3[,c('Subject', 'Item', 'Step', 'Experiment',
+% 'ExposureType', 'Attention', 'Trial', 'RT', 'ACC')])
+%% end.rcode
+
+The model for this experiment would look as follows:
+
+%% begin.rcode size='footnotesize'
+% #experiment.3.mod <-
+% #glmer(ACC ~ Step*ExposureType*Attention
+% #+ (1+Step|Subject) + (1+Step*ExposureType*Attention|Item),
+% #family='binomial',
+% #data=categ3,
+% #control = glmerControl(optCtrl = list(maxfun = 100000) ))
+%% end.rcode
+
+Not all participants have been run, and one condition is missing entirely, so this model has not been run.
+
+Also, two correlational analyses were run between participants' cross over points on simple model of the categorization data and the proportion of tokens classified as words (word endorsement rate).  Code to generate this data is as follows:
+
+%% begin.rcode size='footnotesize'
+% target <- subset(expose, itemtype %in% c('S-Initial', 'S-Final'))
+% subj.tolerances <- ddply(target,~Subject*itemtype*Attention*Experiment, summarise,
+% WordResp = sum(ACC)/20)
+% subj.tolerances$aWordResp <- asin(subj.tolerances$WordResp)
+% ddply(subj.tolerances, ~Experiment*itemtype*Attention, summarise, 
+% MeanWordResp = mean(WordResp), SDWordResp = sd(WordResp))
+% #cat.mod <-
+% #glmer(ACC ~ Step 
+% #+ (1+Step|Subject) + (1+Step|Item),
+% #family='binomial',
+% #data=categ)
+% xovers <- getCrossOver(coef(cat.mod)$Subject)
+% xovers <- merge(xovers,subj.tolerances)
+%% end.rcode
+
+These data were submitted to an ANOVA:
+
+%% begin.rcode size='footnotesize'
+% summary(aov(Xover ~ WordResp*Attention*itemtype,
+% data = subset(xovers, Experiment == 'exp2')))
+% summary(aov(Xover ~ WordResp*Attention*itemtype,
+% data = subset(xovers, Experiment == 'exp1')))
+%% end.rcode
+
+With specific correlations calculated between the crossover point and word endorsement rate per experiment as follows:
+
+%% begin.rcode size='footnotesize'
+% cor.test(subset(xovers, Experiment == 'exp1')$Xover,
+%  subset(xovers, Experiment == 'exp1')$WordResp)
+% cor.test(subset(xovers, Experiment == 'exp2')$Xover, 
+% subset(xovers, Experiment == 'exp2')$WordResp)
+%% end.rcode
+
+Transforming the word endorsement rate using the arcsine transform (the aWordResp variable from above), does not change much about the correlations:
+
+%% begin.rcode size='footnotesize'
+% cor.test(subset(xovers, Experiment == 'exp1')$Xover, 
+% subset(xovers, Experiment == 'exp1')$aWordResp)
+% cor.test(subset(xovers, Experiment == 'exp2')$Xover,
+% subset(xovers, Experiment == 'exp2')$aWordResp)
+%% end.rcode
+
+
+\section{Results}
+
+\subsection{Experiment 1}
+
+\subsubsection{Control experiment}
+
+Responses with reaction times less than 200 ms or greater than 2500 ms were excluded from analyses. 
+A logistic mixed effects models was fit with Subject and Continua as random effects and Step as a fixed effect with by-Subject and by-Item random slopes for Step. 
+The intercept was not significant ($\beta = 0.43, SE = 0.29, z = 1.5, p = 0.13$), and Step was significant ($\beta = -2.61, SE = 0.28, z = -9.1, p < 0.01$).
+
+\subsubsection{Exposure}
+
+Trials with nonword stimuli and responses faster than 200 ms or slower than 2500 ms were excluded from analysis. 
+Performance on the exposure task was high overall, with accuracy on filler trials averaging 92\%.  
+Word response rates for each of the four conditions did not differ significantly from each other, though S-Final/No Attention participants had a slightly higher average rate of 81\% (SD= 17\%) than the other conditions (S-Final/Attention: mean = 74\%, SD = 18\%; S-Initial/No Attention: mean = 74\%, SD = 27\%; S-Initial/Attention: mean = 76\%, SD = 23\%). 
+A logistic mixed effects model with accuracy as the dependent variable was fit with fixed effects for trial type (Filler, S, SH), Attention (No Attention, Attention), Exposure Type (S-Initial, S-Final) and their interactions. 
+The random effect structure was as maximally specified as possible with random effects for Subject and Word, and by-Subject random slopes for trial type and by-Word random slopes for Attention. 
+The only fixed effects that were significant were a main effect of trial type for /s/ trials compared to filler trials ($\beta = -1.71, SE = 0.43, z = -3.97, p < 0.01$) and a main effect of Attention ($\beta = 0.76, SE = 0.38, z = 2.02,   p = 0.04$).  
+Trials containing an ambiguous /s/ were less likely to be responded to as a word, and participants instructed to pay attention to /s/ were more likely to correctly respond to words in general.
+
+\subsubsection{Categorization}
+
+Responses with reaction times less than 200 ms or greater than 2500 ms were excluded from analyses. 
+Participants were excluded if their initial estimated cross over point for the continuum lay outside of the 6 steps presented (2 participants).  
+A logistic mixed effects model was constructed with Subject and Continua as random effects and continua Step as random slopes, with 0 coded as a /\textesh/ response and 1 as a /s/ response.  Fixed effects for the model were Step, Exposure Type, Attention and their interactions.
+
+\begin{figure*}[!ht]
+\caption{Proportion /s/ response along the 6 step continua as a function of Exposure Type and Attention in Experiment 1.    In the S-Final condition, participants in the Attention condition showed a larger perceptual learning effect than those in the No Attention condition.  In the S-Initial condition, there were no differences in perceptual learning between the Attention conditions. Error bars represent 95\% confidence intervals.}
+\label{fig:exp1categ}
+\begin{center}
+\includegraphics[width=\textwidth]{graphs/exp1_categresults}
+\end{center}
+\end{figure*}
+
+There was a significant effect for the intercept ($\beta = 0.83, SE = 0.31, z = 2.6, p < 0.01$), indicating that participants categorized more of the continua as /s/ in general.  There was also a significant main effect of Step ($\beta = -2.10, SE = 0.20, z = -10.3, p < 0.01$), and a significant interaction between Exposure Type and Attention ($\beta = -0.93, SE = 0.43, z = -2.14, p = 0.03$).  There was a marginal main effect of Exposure Type ($\beta =0.58, SE = 0.30, z = 1.8, p = 0.06$).  
+
+These results are shown in Figure~\ref{fig:exp1categ}.  
+The solid lines show the control participants' categorization function across the 6 steps of the continua.  
+The error bars show within-subject 95\% confidence intervals at each step.  
+When exposed to ambiguous /s/ tokens in the first syllables of words, participants show a general expansion of the /s/ category, but no differences in behaviour if they are warned about ambiguous /s/ productions.  
+However, when the exposure is to ambiguous /s/ tokens later in the words, we can see differences in behaviour beyond the general /s/ category expansion.  
+Participants not warned of the speaker's ambiguous tokens categorized more of the continua as /s/ than those who were warned of the speaker's ambiguous /s/ productions.
+
+\begin{figure*}[!ht]
+
+\caption{Correlation of crossover point in categorization with the proportion of word responses to critical items containing an ambiguous /s/ token.}\label{fig:exp1xover}
+\begin{center}
+\includegraphics[width=\textwidth]{graphs/exp1_xoverwordresp}
+\end{center}
+\end{figure*}
+
+As an individual predictor of participants' performance we took the proportion critical word endorsements and compared these values to the estimated cross-over points. 
+The crossover point was determined from the Subject random effect in the logistic mixed effects model \citep{Kleber2011}. 
+There was a significant positive correlation between a participant's tolerance for the ambiguous exposure items and their crossover point on the continua ($r = 0.39, t (90) = 4, p < 0.01$), shown in Figure~\ref{fig:exp1xover}.
+
+An ANOVA with cross-over point as the independent variable and word endorsement rate, Exposure Type, Attention and their interactions, found only a main effect of word endorsement rate ($F(1,89) = 17.82, p < 0.01$), suggesting that listeners in different conditions were not affected differently from one another.
+
+
+\subsection{Experiment 2}
+
+\subsubsection{Exposure}
+
+Trials with nonword stimuli and responses faster than 200 ms or slower than 2500 ms were excluded from analysis. 
+Performance on the exposure task was high overall, with accuracy on filler trials averaging 92\%.  
+An ANOVA of critical word endorsement rates revealed a marginal effect of Exposure Type ($F(1,92) = 3.86, p = 0.05$), with participants in the S-Final conditions having lower word endorsement rates (S-Final/Attention: mean = 56\%, sd = 30\%; S-Final/No Attention: mean = 52\%, sd = 25\%) than participants in the S-Initial conditions (S-Initial/Attention: mean = 68\%, sd = 25\%; S-Initial/No Attention: mean = 61\%, sd = 23\%).
+A logistic mixed effects model with accuracy as the dependent variable was fit with fixed effects for trial type (Filler, S, SH), Attention (No Attention, Attention), Exposure Type (S-Initial, S-Final) and their interactions. 
+The random effect structure was as maximally specified as possible with random effects for Subject and Word, and by-Subject random slopes for trial type and by-Word random slopes for Attention. 
+The only fixed effect that was significant were a main effect of trial type for /s/ trials compared to filler trials ($\beta = -2.51, SE = 0.46, z = -5.35, p < 0.01$).
+
+\subsubsection{Categorization}
+
+Responses with reaction times less than 200 ms or greater than 2500 ms were excluded from analyses. 
+Participants were excluded if their initial estimated cross over point for the continuum lay outside of the 6 steps presented (2 participants).  
+A logistic mixed effects model was constructed with Subject and Continua as random effects and continua Step as random slopes, with 0 coded as a /\textesh/ response and 1 as a /s/ response.  Fixed effects for the model were Step, Exposure Type, Attention and their interactions.
+
+\begin{figure*}[!ht]
+\caption{Proportion /s/ response along the 6 step continua as a function of Exposure Type and Attention in Experiment 2.  Participants showed no significant differences across conditions. Error bars represent 95\% confidence intervals.}
+\label{fig:exp2categ}
+\begin{center}
+\includegraphics[width=\textwidth]{graphs/exp2_categresults}
+\end{center}
+\end{figure*}
+
+There was a significant effect for the Intercept ($\beta = 1.01, SE = 0.38, z = 2.6, p < 0.01$), indicating that participants categorized more of the continua as /s/ in general.  There was also a significant main effect of Step ($\beta = -2.67, SE = 0.23, z = -11.2, p < 0.01$).  There were no other significant main effects or interactions, though an interaction between Step and Attention trended toward significant ($\beta = 0.35, SE = 0.21, z = 1.6, p = 0.09$).
+
+\begin{figure*}[!ht]
+
+\caption{Correlation of crossover point in categorization with the proportion of word responses to critical items containing an ambiguous /s/ token in Experiment 2.}\label{fig:exp2xover}
+\begin{center}
+\includegraphics[width=\textwidth]{graphs/exp2_xoverwordresp}
+\end{center}
+\end{figure*}
+
+As in Experiment 1,  the proportion critical word endorsements was calculated for each subject and assessed for correlation with participants' crossover points. There was a significant positive correlation between a participant's tolerance for the ambiguous exposure items and their crossover point on the continua ($r = 0.22, t (92) = 2.25, p = 0.02$), shown in Figure~\ref{fig:exp2xover}.  
+
+\section{Grouped results across experiments}
+
+To see what degree the stimuli used had an effect on perceptual learning, the data from Experiment 1 and Experiment 2 were pooled and analyzed identically as above, but with Experiment and its interactions as fixed effects.  In the logistic mixed effects model, there was significant main effects for Intercept ($\beta = 1.00, SE = 0.36, z = 2.7, p < 0.01$) and Step ($\beta = -2.64, SE = 0.21, z = -12.1, p < 0.01$), and a significant two-way interaction between Experiment and Step ($\beta = 0.51, SE = 0.20, z = 2.5, p = 0.01$), and a marginal four-way interaction between Step, Exposure Type, Attention and Experiment ($\beta = 0.73, SE = 0.42, z = 1.7, p = 0.08$).  These results can be seen in Figure~\ref{fig:exp12categ}.  The four-way interaction can be seen in S-Final/No Attention conditions across the two experiments, where Experiment 1 has a significant difference between the Attention and No Attention condition, but Experiment 1 does not.  The two-way interaction between Experiment and Step and the lack of a main effect for Experiment potentially suggests that while the category boundary was not significantly different across experiments, the slope of the categorization function was.
+
+\begin{figure*}[!ht]
+\caption{Proportion /s/ response along the 6 step continua as a function of Exposure Type and Attention in Experiment 1 and Experiment 2. Error bars represent 95\% confidence intervals.}
+\label{fig:exp12categ}
+\begin{center}
+\includegraphics[width=\textwidth]{graphs/exp12_categresults}
+\end{center}
+\end{figure*}
+
+To see if there was a difference with the Experiment 1 in how word endorsement rates affected crossover points, the data was pooled for the two experiments.  An ANOVA with cross-over point as the independent variable and word endorsement rate, Exposure Type, Attention, Experiment and their interactions, found a main effect of word endorsement rate ($F(1,185) = 21.82, p < 0.01$) and marginal interaction between word endorsement rates and Experiment ($F(1, 185) = 3.11, p = 0.07$).
+
+\subsection{Experiment 3}
+
+There's not much here at the moment...
+
+\subsection{Exposure}
+
+Performance in the task was high, with accuracy at ceiling.
+
+\subsection{Categorization}
+
+
+
+\begin{figure*}[!ht]
+\caption{Proportion /s/ response along the 6 step continua as a function of Exposure Type and Attention in Experiment 3.  Error bars represent 95\% confidence intervals.}
+\label{fig:exp3categ}
+\begin{center}
+\includegraphics[width=\textwidth]{graphs/exp3_categresults}
+\end{center}
+\end{figure*}
+
+\bibliographystyle{apalike}
+\bibliography{biblio}
+
+\end{document}
