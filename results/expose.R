@@ -32,6 +32,15 @@ ddply(subset(expose,Experiment=='exp1'), ~ Subject*itemtype2,nrow)
 
 ### END EXPERIMENT 2
 
+### EXPERIMENT 3
+
+ddply(expose3, ~Type*Attention*Predictability, nrow)
+
+experiment.3.expose.mod.rt <- lmer(cLogRT ~ Type*Attention*Predictability + (1+Type+Predictability|Subject) + (1+Attention*Predictability|Word),data = expose3, control=lmerControl(optCtrl=list(maxfun=200000) ))
+summary(experiment.3.expose.mod.rt)
+
+### END EXPERIMENT 3
+
 
 ggplot(target,aes(x=Trial,y=ACC)) + geom_point() + geom_smooth(method='lm')+facet_wrap(~Subject)
 

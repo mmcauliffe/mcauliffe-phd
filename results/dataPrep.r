@@ -72,10 +72,10 @@ target <- subset(expose,itemtype %in% c('S-Initial','S-Final'))
 
 wresps <- ddply(target,~Subject,summarise,WordResp = sum(ACC)/20)
 
-subj.tolerances <- ddply(target,~Subject*itemtype*Attention*Experiment,summarise,WordResp = sum(ACC)/20)
+subj.tolerances <- ddply(target,~Subject*itemtype*Attention*Experiment,summarise,WordResp = sum(ACC)/20, MeanLogRT = mean(log(RT)))
 subj.tolerances$aWordResp <- asin(subj.tolerances$WordResp)
 
-ddply(subj.tolerances, ~Experiment*itemtype*Attention, summarise, MeanWordResp = mean(WordResp), SDWordResp = sd(WordResp))
+ddply(subj.tolerances, ~Experiment*itemtype*Attention, summarise, MeanWordResp = mean(WordResp), SDWordResp = sd(WordResp), mean(MeanLogRT), sd(MeanLogRT))
 
 summary(aov(aWordResp ~ Experiment*itemtype*Attention,data=subj.tolerances))
 
@@ -158,6 +158,8 @@ t[t=='shin-sin'] = 'sin-shin'
 t[t=='shock-sock'] = 'sock-shock'
 
 categ3$Item <- factor(t)
+
+categ3 <- subset(categ3, RT > 200 & RT < 2500)
 
 #categ <- rbind(categ,t2)
 categ$Experiment <- factor(categ$Experiment)
@@ -254,11 +256,19 @@ expose3$cTrial <- scale(expose3$Trial)
 expose3$Attention <- 'attend'
 
 expose3[str_detect(expose3$Subject,'^ns3-2'),]$Attention <- 'noattend'
-#expose3[str_detect(expose3$Subject,'^ns3-3'),]$Attention <- 'noattend'
+expose3[str_detect(expose3$Subject,'^ns3-3'),]$Attention <- 'noattend'
 
 expose3$Attention <- factor(expose3$Attention)
 
 ddply(expose3,~Predictability*Type, summarise, mean(LogRT), sd(LogRT))
+
+categ23 <- subset(categ,Experiment == 'exp2' & ExposureType == 'final')
+
+categ23$ExposureType <- 'isolation'
+
+categ23 <- rbind(categ23[,c('Subject','Trial','ACC','RT','Step','Experiment','ExposureType','Attention','Item')],categ3[,c('Subject','Trial','ACC','RT','Step','Experiment','ExposureType','Attention','Item')])
+
+categ23$ExposureType <- factor(categ23$ExposureType, levels = c('isolation','unpredictive','predictive'))
 
 getCrossOver <- function(data){
   data$p <- -1*data[,'(Intercept)']/data[,'Step']
