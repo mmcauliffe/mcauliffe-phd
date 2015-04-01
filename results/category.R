@@ -49,6 +49,7 @@ summary(grouped.mod)
 ### EXPERIMENT 3
 
 ddply(unique(categ3[,c('Subject','ExposureType','Attention')]), ~ ExposureType*Attention, nrow)
+ddply(categ3, ~ ExposureType*Attention*Subject, nrow)
 
 experiment.3.mod <- glmer(ACC ~ Step*ExposureType*Attention + (1+Step|Subject) + (1+Step*ExposureType*Attention|Item), family='binomial',data=categ3, control=glmerControl(optCtrl=list(maxfun=100000) ))
 summary(experiment.3.mod)
