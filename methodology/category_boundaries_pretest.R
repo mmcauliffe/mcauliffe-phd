@@ -67,6 +67,8 @@ expout1 <- rbind(expout,data.frame(Type='Initial',Word='seedling',Step=7)) #seed
 expout2 <- findStep(exp.sum,0.6)
 expout2 <- rbind(expout,data.frame(Type='Initial',Word='seedling',Step=6)) #seedling 7 for exp1, 6 for exp2
 
+expout4 <- findStep(exp.sum,0.8) #Seedling step 5
+
 exp <- merge(exp,expout,by.x=c('sword'),by.y=c('Word'))
 
 testout <- findStep(test.sum,0.5)
@@ -96,3 +98,5 @@ ggplot(subset(exp.sum,Type=='Final'), aes(x=as.numeric(as.character(StepNum)), y
 ddply(expout1,~Type,summarise,mean(as.numeric(as.character(StepNum))),mean(MeanResp),sd(as.numeric(as.character(StepNum))),sd(MeanResp))
 
 ddply(expout2,~Type,summarise,mean(as.numeric(as.character(StepNum))),mean(MeanResp),sd(as.numeric(as.character(StepNum))),sd(MeanResp))
+
+ddply(expout4,~Type,summarise,mean(as.numeric(as.character(StepNum))),mean(MeanResp),sd(as.numeric(as.character(StepNum))),sd(MeanResp))
