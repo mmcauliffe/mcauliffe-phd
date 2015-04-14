@@ -60,7 +60,7 @@ expose <- subset(expose,RT > 200 & RT < 2500)
 #expose[expose$RT > 2500,]$ACC <- 0
 expose <- na.omit(expose)
 
-expose <- subset(expose,!Subject %in% c('ns1-215','ns1-402','ns2-214', 'ns2-219'))
+expose <- subset(expose,!Subject %in% c('ns1-215','ns1-402', 'ns2-219'))
 
 expose.word <- subset(expose,Lexicality=='Word')
 expose.word$cTrial <- expose.word$Trial - 100
@@ -230,11 +230,11 @@ categ <- subset(categ, RT > 200 & RT < 2500)
 
 #fix for coding error
 categ <- subset(categ,Trial < 169)
-sub <- subset(categ,Subject %in% c('ns1-113','ns1-114','ns1-115','ns1-118'))
+sub <- subset(categ,Subject %in% c('ns1-113','ns1-114','ns1-115','ns1-116','ns1-118'))
 sub$RealAcc = 0
 sub[sub$ACC == 0,]$RealAcc = 1
 
-categ[categ$Subject %in% c('ns1-113','ns1-114','ns1-115','ns1-118'),]$ACC = sub$RealAcc
+categ[categ$Subject %in% c('ns1-113','ns1-114','ns1-115','ns1-116','ns1-118'),]$ACC = sub$RealAcc
 
 t <- paste(categ$Label1,categ$Label2,sep='-')
 
@@ -245,7 +245,7 @@ t[t=='shock-sock'] = 'sock-shock'
 
 categ$Item <- factor(t)
 
-categ <- subset(categ,!Subject %in% c('ns1-215','ns1-402','ns2-214', 'ns2-219'))
+categ <- subset(categ,!Subject %in% c('ns1-215','ns1-402', 'ns2-219'))
 categ <- merge(categ,wresps)
 
 categ$Step <- categ$Step - mean(1:6)

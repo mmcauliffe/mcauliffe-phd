@@ -30,6 +30,7 @@ summary(experiment.1.mod.wresp)
 ### EXPERIMENT 2
 
 ddply(unique(categ[,c('Subject','Experiment','ExposureType','Attention')]), ~ Experiment*ExposureType*Attention, nrow)
+ddply(categ, ~ ExposureType*Attention*Subject, nrow)
 
 
 experiment.2.mod <- glmer(ACC ~ Step*ExposureType*Attention + (1+Step|Subject) + (1+Step*ExposureType*Attention|Item), family='binomial',data=subset(categ,Experiment=='exp1'), control=glmerControl(optCtrl=list(maxfun=100000) ))
