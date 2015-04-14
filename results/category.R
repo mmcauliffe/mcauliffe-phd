@@ -13,6 +13,9 @@ summary(cont.mod)
 experiment.1.mod <- glmer(ACC ~ Step*ExposureType*Attention + (1+Step|Subject) + (1+Step*ExposureType*Attention|Item), family='binomial',data=subset(categ,Experiment=='exp2'), control=glmerControl(optCtrl=list(maxfun=100000) ))
 summary(experiment.1.mod)
 
+experiment.1.mod.trimmed <- glmer(ACC ~ Step*ExposureType*Attention + (1+Step|Subject) + (1+Step*ExposureType*Attention|Item), family='binomial',data=subset(categ,Experiment=='exp2'), control=glmerControl(optCtrl=list(maxfun=100000) ), subset = abs(scale(resid(experiment.1.mod))) < 2.5)
+summary(experiment.1.mod.trimmed)
+
 
 experiment.1.mod.wresp <- glmer(ACC ~ WordResp*Step*ExposureType*Attention + (1+Step|Subject) + (1+Step|Item), family='binomial',data=subset(categ,Experiment=='exp2'), control=glmerControl(optCtrl=list(maxfun=100000) ))
 summary(experiment.1.mod.wresp)
@@ -26,9 +29,14 @@ summary(experiment.1.mod.wresp)
 
 ### EXPERIMENT 2
 
+ddply(unique(categ[,c('Subject','Experiment','ExposureType','Attention')]), ~ Experiment*ExposureType*Attention, nrow)
+
 
 experiment.2.mod <- glmer(ACC ~ Step*ExposureType*Attention + (1+Step|Subject) + (1+Step*ExposureType*Attention|Item), family='binomial',data=subset(categ,Experiment=='exp1'), control=glmerControl(optCtrl=list(maxfun=100000) ))
 summary(experiment.2.mod)
+
+experiment.2.mod.trimmed <- glmer(ACC ~ Step*ExposureType*Attention + (1+Step|Subject) + (1+Step*ExposureType*Attention|Item), family='binomial',data=subset(categ,Experiment=='exp1'), control=glmerControl(optCtrl=list(maxfun=100000) ), subset = abs(scale(resid(experiment.2.mod))) < 2.5)
+summary(experiment.2.mod.trimmed)
 
 
 experiment.2.mod.wresp <- glmer(ACC ~ WordResp*Step*ExposureType*Attention + (1+Step|Subject) + (1+Step|Item), family='binomial',data=subset(categ,Experiment=='exp1'), control=glmerControl(optCtrl=list(maxfun=100000) ))
@@ -51,11 +59,23 @@ summary(grouped.mod)
 ddply(unique(categ3[,c('Subject','ExposureType','Attention')]), ~ ExposureType*Attention, nrow)
 ddply(categ3, ~ ExposureType*Attention*Subject, nrow)
 
+#categ3$ExposureType <- factor(categ3$ExposureType, levels = c('predictive','unpredictive'))
+
+#categ3$Attention <- factor(categ3$Attention, levels = c('attend','noattend'))
+
 experiment.3.mod <- glmer(ACC ~ Step*ExposureType*Attention + (1+Step|Subject) + (1+Step*ExposureType*Attention|Item), family='binomial',data=categ3, control=glmerControl(optCtrl=list(maxfun=100000) ))
 summary(experiment.3.mod)
 
+experiment.3.mod.trimmed <- glmer(ACC ~ Step*ExposureType*Attention + (1+Step|Subject) + (1+Step*ExposureType*Attention|Item), family='binomial',data=categ3, control=glmerControl(optCtrl=list(maxfun=100000) ), subset = abs(scale(resid(experiment.3.mod))) < 2.5)
+summary(experiment.3.mod.trimmed)
+
+categ23$ExposureType <- factor(categ23$ExposureType, levels = c('predictive','isolation','unpredictive'))
+
 experiment.23.mod <- glmer(ACC ~ Step*ExposureType*Attention + (1+Step|Subject) + (1+Step*ExposureType*Attention|Item), family='binomial',data=categ23, control=glmerControl(optCtrl=list(maxfun=100000) ))
 summary(experiment.23.mod)
+
+experiment.23.mod.trimmed <- glmer(ACC ~ Step*ExposureType*Attention + (1+Step|Subject) + (1+Step*ExposureType*Attention|Item), family='binomial',data=categ23, control=glmerControl(optCtrl=list(maxfun=100000) ), subset = abs(scale(resid(experiment.23.mod))) < 2.5)
+summary(experiment.23.mod.trimmed)
 
 ### END EXPERIMENT 3
 
@@ -64,8 +84,16 @@ xovers <- getCrossOver(coef(cat.mod)$Subject)
 
 cat.mod3 <- glmer(ACC ~ Step + (1+Step|Subject) + (1+Step|Item), family='binomial',data=categ3)
 xovers3 <- getCrossOver(coef(cat.mod3)$Subject)
+xovers3 <- merge(xovers3, subj.tolerances3)
+ddply(xovers3, ~Attention*Predictability, summarise, mean(Xover), sd(Xover))
+ddply(xovers3, ~Attention*Predictability, summarise, mean(MeanLogRt), sd(MeanLogRt))
+cor.test(xovers3$Xover, xovers3$MeanLogRt)
+summary(aov(Xover ~ MeanLogRt*Attention*Predictability,data=xovers3))
+summary(aov(MeanLogRt~Attention*Predictability,data=xovers3))
+
 
 xovers <- merge(xovers,subj.tolerances)
+ddply(xovers, ~Experiment*Attention*itemtype, summarise, mean(Xover), sd(Xover))
 summary(aov(Xover ~ WordResp*MeanLogRT*Attention*itemtype*Experiment,data=xovers))
 summary(aov(Xover ~ WordResp*Attention*itemtype,data=subset(xovers,Experiment=='exp2')))
 summary(aov(Xover ~ WordResp*Attention*itemtype,data=subset(xovers,Experiment=='exp1')))

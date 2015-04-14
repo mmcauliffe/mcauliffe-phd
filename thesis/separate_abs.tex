@@ -1,0 +1,94 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+\geometry{margin=0.9in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage{graphicx} % support the \includegraphics command and options
+
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+\usepackage{tipa}
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{Brief Article}
+\author{The Author}
+%\date{} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\thispagestyle{empty}
+\begin{center}
+\textbf{Attention and salience in lexically-guided perceptual learning}
+
+Michael McAuliffe
+\end{center}
+This dissertation presents three experiments investigating perceptual learning in speech perception under different attention and salience conditions.
+Listeners across all three experiments were exposed to a speaker's /s/ category that had been modified to sound more like /\textesh/.
+All listeners showed a perceptual learning effect on a categorization task following exposure, categorizing more of continua from /s/ to /\textesh/ as /s/ than a control group that completed only the categorization task, replicating previous lexically-guided perceptual learning results (e.g., Norris et al., 2003; Reinisch et al., 2013).
+However, the magnitude of perceptual learning effects differed depending on the linguistic context of the modified /s/ category and the listener's attentional set.
+The linguistic context of modified categories has previously been shown to affect a wide range of psycholinguistic tasks, such as phoneme identification (Pitt \& Samuel, 2006; Borsky et al, 1998) and phoneme restoration (Samuel, 1981).
+The attentional set of the listener has also been shown to affect how tolerant they are to modified categories (Pitt \& Szostak, 2012).
+This dissertation replicates these studies in the context of lexically-guided perceptual learning, showing that these factors that influence the online processing of speech also influence the longer term adaptation to speakers.
+In Experiment 1, listeners exposed to the modified category in the middle of words showed larger perceptual learning effects than those exposed to the category at the beginnings of words.
+However, this difference in magnitude was only observed when listeners were not told that the speaker's /s/ sounds would be ambiguous.  
+When listeners were given these instructions, the difference between word-initial and word-medial exposure was not present.
+In Experiment 2, the exposure conditions were the same as Experiment 1, but the modified /s/ category was more atypical, sounding more like /\textesh/ than /s/ rather than halfway in between.
+In this experiment, exposure conditions had no effect, and all participants showed the same size of perceptual learning effect.
+In Experiment 3, listeners were exposed to the same modified /s/ category as Experiment 1 in word-medial position only, but the words were embedded at the end of sentences.
+These sentences differed in how strongly they conditioned the final word, with one group of listeners hearing the modified category only in sentences that were predictive of the target word, and the other group only hearing the category in sentences that were not predictive of the target word.
+The same pattern as Experiment 2 is present for Experiment 3, with no significant differences in exposure conditions.
+These results are framed in a predictive coding framework (Clark, 2013), which is a hierarchical Bayesian model of the brain. 
+Predictions from higher levels are sent to lower ones, and mismatches between these predictions and the lower level's input cause an error signal to propagate back to the higher levels.
+The expectations for future stimuli are then tuned based on this error signal.
+The model captures perceptual learning results well as a whole, but the mechanism for attention in the framework is a simple gain based one, where attention gives increased weight to the error signals.
+Such a mechanism would predict that attention would result in increased perceptual learning, but that prediction is not supported by results of this dissertation's experiments.
+Instead, increased attention to low-level perception reduces the amount of perceptual learning observed.
+Increased attention to perception can be induced in different ways either through explicit instructions, linguistic prominence, or the salience of the atypicality of the category.
+I propose a mechanism of attention in the predictive coding framework that inhibits propagation of error signals beyond the level to which attention is oriented.
+Attention focused on perception will inhibit the propagation of error signals to higher levels, limiting the updating of expectations at higher levels and leading to reduced perceptual learning.
+Perception-oriented tasks, such as psychophysical visual perceptual learning or visually-guided perceptual learning in speech perception, show a lack of generalization, with effects limited to exposure items (Gilbert et al., 2001; Reinisch et al., 2014), but comprehension-oriented tasks, such as lexically-guided perceptual learning, are more likely to show generalization to new items (Norris et al., 2003; Reinisch et al., 2013).
+The propagation-inhibiting mechanism for attention can account for the degrees of generalization reported across the literature.
+\end{document}

@@ -119,6 +119,13 @@ t$Attention <- factor(t$Attention)
 
 categ <- rbind(categ,t)
 
+contrasts(categ$Attention) <- contr.sum
+contrasts(categ$Attention) <- contrasts(categ$Attention) / 2
+
+contrasts(categ$ExposureType) <- contr.sum
+contrasts(categ$ExposureType) <- contrasts(categ$ExposureType) / 2
+
+
 categ3 <- read.delim('exp3_native_categ.txt')
 categ3$Native <- 'yes'
 
@@ -160,6 +167,12 @@ t[t=='shock-sock'] = 'sock-shock'
 categ3$Item <- factor(t)
 
 categ3 <- subset(categ3, RT > 200 & RT < 2500)
+
+contrasts(categ3$Attention) <- contr.sum
+contrasts(categ3$Attention) <- contrasts(categ3$Attention) / 2
+
+contrasts(categ3$ExposureType) <- contr.sum
+contrasts(categ3$ExposureType) <- contrasts(categ3$ExposureType) / 2
 
 #categ <- rbind(categ,t2)
 categ$Experiment <- factor(categ$Experiment)
@@ -260,7 +273,7 @@ expose3[str_detect(expose3$Subject,'^ns3-3'),]$Attention <- 'noattend'
 
 expose3$Attention <- factor(expose3$Attention)
 
-ddply(expose3,~Predictability*Type, summarise, mean(LogRT), sd(LogRT))
+subj.tolerances3 <- ddply(subset(expose3,Type == 'S-final'),~Predictability*Attention*Subject, summarise, MeanLogRt = mean(LogRT))
 
 categ23 <- subset(categ,Experiment == 'exp2' & ExposureType == 'final')
 
