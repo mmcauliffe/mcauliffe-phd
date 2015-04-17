@@ -88,7 +88,7 @@ plotData = subset(xovers,T)
 plotData$Experiment <- factor(plotData$Experiment, levels = c('exp2','exp1'))
 
 plotData$Xover = plotData$Xover + 3.5
-ggplot(plotData,aes(x=WordResp,y=Xover, colour=Experiment)) + geom_point(position=position_jitter()) + geom_smooth(method='lm', se=F) + ylab('Crossover step across continua') + xlab('Proportion "word" response to exposure /s/ items') + theme_bw() + scale_colour_discrete(labels=c('Experiment 1','Experiment 2'))
+ggplot(plotData,aes(x=WordResp,y=Xover, colour=Experiment)) + geom_point(position=position_jitter()) + geom_smooth(method='lm', se=F) +facet_grid(Attention~itemtype) + ylab('Crossover step across continua') + xlab('Proportion "word" response to exposure /s/ items') + theme_bw() + scale_colour_discrete(labels=c('Experiment 1','Experiment 2'))
 
 ggsave('../thesis/graphs/exp12_xoverwordresp_present.pdf',width=170,height=110,units='mm',dpi=600)
 

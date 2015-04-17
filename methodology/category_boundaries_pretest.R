@@ -82,6 +82,8 @@ ggplot(exp, aes(x=StepNum, y=ACC)) +geom_point() +geom_smooth(method="glm", fami
 
 ggplot(subset(exp,Type=='Initial'), aes(x=StepNum, y=ACC)) +geom_smooth(method="glm", family="binomial", size=1)  + labs(title='S-Initial exposure words', y='Proportion <S> responses',x='Step number')+facet_wrap(~sword)+ geom_vline(data=subset(expout2, Type=='Initial'),aes(xintercept = as.numeric(as.character(StepNum)))) + geom_hline(yintercept=0.5) + geom_hline(yintercept=0.3,linetype=2) +geom_vline(data=subset(expout1, Type=='Initial'),aes(xintercept = as.numeric(as.character(StepNum))),linetype=2)
 
+cat.mod <- glmer(ACC~ StepNum + (1|Subject) + (1|sword), data = test, family='binomial')
+xovers <- getCrossOver(coef(cat.mod)$sword)
 
 ggplot(subset(exp,Type=='Final'), aes(x=StepNum, y=ACC)) +geom_smooth(method="glm", family="binomial", size=1)  + labs(title='S-Final exposure words', y='Proportion <S> responses',x='Step number')+facet_wrap(~sword)+ geom_vline(aes(xintercept = 6)) + geom_hline(yintercept=0.5)
 

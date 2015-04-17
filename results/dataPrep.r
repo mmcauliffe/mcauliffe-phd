@@ -60,7 +60,7 @@ expose <- subset(expose,RT > 200 & RT < 2500)
 #expose[expose$RT > 2500,]$ACC <- 0
 expose <- na.omit(expose)
 
-expose <- subset(expose,!Subject %in% c('ns1-215','ns1-402', 'ns2-219'))
+#expose <- subset(expose,!Subject %in% c('ns1-215','ns1-402', 'ns2-307', 'ns2-219'))
 
 expose.word <- subset(expose,Lexicality=='Word')
 expose.word$cTrial <- expose.word$Trial - 100
@@ -69,6 +69,7 @@ expose.word$cLogRT <- expose.word$LogRT - mean(expose.word$LogRT)
 expose.word$Word <- factor(expose.word$Word)
 
 target <- subset(expose,itemtype %in% c('S-Initial','S-Final'))
+filler <- subset(expose, itemtype == 'Filler')
 
 wresps <- ddply(target,~Subject,summarise,WordResp = sum(ACC)/20)
 
@@ -138,8 +139,6 @@ categ3$ACC = 0
 categ3[categ3$RESP == categ3$SResp,]$ACC <- 1
 categ3$Experiment <- 'exp3'
 
-categ3$Step <- categ3$Step - mean(1:6)
-
 categ3$ExposureType <- 'predictive'
 
 categ3[str_detect(categ3$Subject,'^ns3-2'),]$ExposureType <- 'unpredictive'
@@ -167,6 +166,17 @@ t[t=='shock-sock'] = 'sock-shock'
 categ3$Item <- factor(t)
 
 categ3 <- subset(categ3, RT > 200 & RT < 2500)
+categ3$cStep <- 0
+#sack-shack 3.642820
+categ3[categ3$Item == 'sack-shack',]$cStep <- categ3[categ3$Item == 'sack-shack',]$Step - 3.642820
+#sigh-shy 3.979852
+categ3[categ3$Item == 'sigh-shy',]$cStep <- categ3[categ3$Item == 'sigh-shy',]$Step - 3.979852
+#sin-shin 3.233012
+categ3[categ3$Item == 'sin-shin',]$cStep <- categ3[categ3$Item == 'sin-shin',]$Step - 3.233012
+#sock-shock 3.481329
+categ3[categ3$Item == 'sock-shock',]$cStep <- categ3[categ3$Item == 'sock-shock',]$Step - 3.481329
+
+categ3$Step <- categ3$Step - mean(1:6)
 
 contrasts(categ3$Attention) <- contr.sum
 contrasts(categ3$Attention) <- contrasts(categ3$Attention) / 2
@@ -245,10 +255,23 @@ t[t=='shock-sock'] = 'sock-shock'
 
 categ$Item <- factor(t)
 
-categ <- subset(categ,!Subject %in% c('ns1-215','ns1-402', 'ns2-219'))
+categ <- subset(categ,!Subject %in% c('ns1-215','ns1-402', 'ns2-219')) # Crazy crossovers
+categ <- subset(categ,!Subject %in% c('ns2-209', 'ns2-214')) #Weird data
+#categ <- subset(categ,!Subject %in% c('ns2-307')) # 0.03 accuracy in exposure
+#categ <- subset(categ,!Subject %in% c('ns1-105', 'ns1-117', 'ns1-319', 'ns1-323', 'ns1-401', 'ns2-124', 'ns2-206', 'ns2-215')) # Fitted probs near 1 or 0
 categ <- merge(categ,wresps)
 
+categ$cStep <- 0
+#sack-shack 3.642820
+categ[categ$Item == 'sack-shack',]$cStep <- categ[categ$Item == 'sack-shack',]$Step - 3.642820
+#sigh-shy 3.979852
+categ[categ$Item == 'sigh-shy',]$cStep <- categ[categ$Item == 'sigh-shy',]$Step - 3.979852
+#sin-shin 3.233012
+categ[categ$Item == 'sin-shin',]$cStep <- categ[categ$Item == 'sin-shin',]$Step - 3.233012
+#sock-shock 3.481329
+categ[categ$Item == 'sock-shock',]$cStep <- categ[categ$Item == 'sock-shock',]$Step - 3.481329
 categ$Step <- categ$Step - mean(1:6)
+
 categ$ExposureType <- factor(categ$ExposureType, levels = c('initial','final'))
 categ$Attention <- factor(categ$Attention, levels = c('noattend','attend'))
 
@@ -284,7 +307,7 @@ categ23 <- rbind(categ23[,c('Subject','Trial','ACC','RT','Step','Experiment','Ex
 categ23$ExposureType <- factor(categ23$ExposureType, levels = c('isolation','unpredictive','predictive'))
 
 getCrossOver <- function(data){
-  data$p <- -1*data[,'(Intercept)']/data[,'Step']
+  data$p <- -1*data[,'(Intercept)']/data[,'cStep']
   data$pRound <- round(data$p)
   
   data <- data.frame(Subject = row.names(data),Xover = data$p)

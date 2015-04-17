@@ -3,6 +3,7 @@ ddply(subj.tolerances,~Experiment,summarise, mean(WordResp), sd(WordResp))
 ddply(subj.tolerances,~Experiment*Attention*itemtype,summarise, mean(WordResp), sd(WordResp))
 summary(aov(WordResp ~ Experiment*Attention*itemtype,subj.tolerances))
 summary(aov(WordResp ~ Attention*itemtype,subset(subj.tolerances,Experiment == 'exp1')))
+summary(aov(WordResp ~ Attention*itemtype,subset(subj.tolerances,Experiment == 'exp2')))
 ### EXPERIMENT 1
 
 experiment.1.expose.mod <- glmer(ACC ~ itemtype2*Attention*ExposureType + (1+itemtype2|Subject) + (1|Word), family='binomial',data=subset(expose.word,Experiment=='exp2'), control=glmerControl(optCtrl=list(maxfun=200000) ))
@@ -56,8 +57,8 @@ ggplot(plotData,aes(y=RT, x = itemtype, fill=Attention)) + geom_bar(stat='identi
 
 filler = na.omit(subset(expose,!itemtype %in% c('S-Initial','S-Final')))
 
-summary(ddply(filler,~Subject,summarise,WordResp = mean(ACC)))
-ddply(filler,~Subject,summarise,WordResp = mean(ACC))
+fillerresp <- ddply(filler,~Subject,summarise,FillerWordResp = mean(ACC))
+ddply(filler,~Subject*Lexicality,summarise,WordResp = mean(ACC))
 
 ddply(expose.word,~Subject*itemtype,nrow)
 

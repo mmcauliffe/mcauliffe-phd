@@ -9,8 +9,9 @@ summary(cont.mod)
 
 ### EXPERIMENT 1
 
+categ <- merge(categ, fillerresp)
 
-experiment.1.mod <- glmer(ACC ~ Step*ExposureType*Attention + (1+Step|Subject) + (1+Step*ExposureType*Attention|Item), family='binomial',data=subset(categ,Experiment=='exp2'), control=glmerControl(optCtrl=list(maxfun=100000) ))
+experiment.1.mod <- glmer(ACC ~ cStep*ExposureType*Attention + (1+cStep|Subject) + (1+cStep|Item), family='binomial',data=subset(categ,Experiment=='exp2'), control=glmerControl(optCtrl=list(maxfun=100000) ))
 summary(experiment.1.mod)
 
 experiment.1.mod.trimmed <- glmer(ACC ~ Step*ExposureType*Attention + (1+Step|Subject) + (1+Step*ExposureType*Attention|Item), family='binomial',data=subset(categ,Experiment=='exp2'), control=glmerControl(optCtrl=list(maxfun=100000) ), subset = abs(scale(resid(experiment.1.mod))) < 2.5)
@@ -64,7 +65,7 @@ ddply(categ3, ~ ExposureType*Attention*Subject, nrow)
 
 #categ3$Attention <- factor(categ3$Attention, levels = c('attend','noattend'))
 
-experiment.3.mod <- glmer(ACC ~ Step*ExposureType*Attention + (1+Step|Subject) + (1+Step*ExposureType*Attention|Item), family='binomial',data=categ3, control=glmerControl(optCtrl=list(maxfun=100000) ))
+experiment.3.mod <- glmer(ACC ~ cStep*ExposureType*Attention + (1+cStep|Subject) + (1+cStep|Item), family='binomial',data=categ3, control=glmerControl(optCtrl=list(maxfun=100000) ))
 summary(experiment.3.mod)
 
 experiment.3.mod.trimmed <- glmer(ACC ~ Step*ExposureType*Attention + (1+Step|Subject) + (1+Step*ExposureType*Attention|Item), family='binomial',data=categ3, control=glmerControl(optCtrl=list(maxfun=100000) ), subset = abs(scale(resid(experiment.3.mod))) < 2.5)
@@ -80,23 +81,25 @@ summary(experiment.23.mod.trimmed)
 
 ### END EXPERIMENT 3
 
-cat.mod <- glmer(ACC ~ Step + (1+Step|Subject) + (1+Step|Item), family='binomial',data=categ)
+cat.mod <- glmer(ACC ~ cStep + (1+cStep|Subject) + (1+cStep|Item), family='binomial',data=categ)
 xovers <- getCrossOver(coef(cat.mod)$Subject)
+xovers$Slope <- coef(cat.mod)$Subject$Step
 
-cat.mod3 <- glmer(ACC ~ Step + (1+Step|Subject) + (1+Step|Item), family='binomial',data=categ3)
+cat.mod3 <- glmer(ACC ~ cStep + (1+cStep|Subject) + (1+cStep|Item), family='binomial',data=categ3)
 xovers3 <- getCrossOver(coef(cat.mod3)$Subject)
 xovers3 <- merge(xovers3, subj.tolerances3)
-ddply(xovers3, ~Attention*Predictability, summarise, mean(Xover), sd(Xover))
-ddply(xovers3, ~Attention*Predictability, summarise, mean(MeanLogRt), sd(MeanLogRt))
+ddply(xovers3, ~Attention*Predictability, summarise, mean(Xover), sd(Xover), mean(MeanLogRt), sd(MeanLogRt))
 cor.test(xovers3$Xover, xovers3$MeanLogRt)
 summary(aov(Xover ~ MeanLogRt*Attention*Predictability,data=xovers3))
 summary(aov(MeanLogRt~Attention*Predictability,data=xovers3))
 
 
 xovers <- merge(xovers,subj.tolerances)
-ddply(xovers, ~Experiment*Attention*itemtype, summarise, mean(Xover), sd(Xover))
+ddply(xovers, ~Experiment*Attention*itemtype, summarise, MeanXover = mean(Xover), SDXover = sd(Xover), MeanWordResp = mean(WordResp), SDWordResp = sd(WordResp), MeanMeanLogRT = mean(MeanLogRT), SDMeanLogRT = sd(MeanLogRT))
+ddply(xovers, ~Experiment*Attention*itemtype, summarise, mean(Slope), sd(Slope))
 summary(aov(Xover ~ WordResp*MeanLogRT*Attention*itemtype*Experiment,data=xovers))
 summary(aov(Xover ~ WordResp*Attention*itemtype,data=subset(xovers,Experiment=='exp2')))
+summary(aov(Slope ~ WordResp*Attention*itemtype,data=subset(xovers,Experiment=='exp2')))
 summary(aov(Xover ~ WordResp*Attention*itemtype,data=subset(xovers,Experiment=='exp1')))
 cor.test(subset(xovers,Experiment=='exp1')$Xover, subset(xovers,Experiment=='exp1')$WordResp)
 cor.test(subset(xovers,Experiment=='exp2')$Xover, subset(xovers,Experiment=='exp2')$WordResp)
@@ -105,6 +108,15 @@ cor.test(subset(xovers,Experiment=='exp2')$Xover, subset(xovers,Experiment=='exp
 
 cor.test(subset(xovers,Experiment=='exp1')$Xover, subset(xovers,Experiment=='exp1')$MeanLogRT)
 cor.test(subset(xovers,Experiment=='exp2')$Xover, subset(xovers,Experiment=='exp2')$MeanLogRT)
+
+##
+
+ddply(xovers3,~Attention*Predictability, summarise,tau.est=cor.test(Xover,MeanLogRt)$estimate, p.val = cor.test(Xover,MeanLogRt)$p.value)
+
+ddply(xovers,~Experiment*Attention*itemtype, summarise,tau.est=cor.test(Xover,aWordResp)$estimate, p.val = cor.test(Xover,aWordResp)$p.value)
+cor.test(subset(xovers,Experiment=='exp2')$Xover, subset(xovers,Experiment=='exp2')$aWordResp)
+
+##
 
 ggplot(categ,aes(x=Step,y=ACC)) + geom_smooth(method='glm',family='binomial')+facet_wrap(~Subject)
 
