@@ -255,8 +255,9 @@ t[t=='shock-sock'] = 'sock-shock'
 
 categ$Item <- factor(t)
 
-categ <- subset(categ,!Subject %in% c('ns1-215','ns1-402', 'ns2-219')) # Crazy crossovers
-categ <- subset(categ,!Subject %in% c('ns2-209', 'ns2-214')) #Weird data
+categ <- subset(categ,!Subject %in% c('ns1-215','ns1-402', 'ns2-214', 'ns2-219')) # Crazy crossovers
+categ <- subset(categ,!Subject %in% c('ns2-209', 'ns2-214-3')) #Weird data
+#categ <- subset(categ,!Subject %in% c('ns2-214-3')) #Weird data
 #categ <- subset(categ,!Subject %in% c('ns2-307')) # 0.03 accuracy in exposure
 #categ <- subset(categ,!Subject %in% c('ns1-105', 'ns1-117', 'ns1-319', 'ns1-323', 'ns1-401', 'ns2-124', 'ns2-206', 'ns2-215')) # Fitted probs near 1 or 0
 categ <- merge(categ,wresps)
