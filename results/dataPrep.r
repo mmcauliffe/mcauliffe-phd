@@ -303,7 +303,7 @@ categ23 <- subset(categ,Experiment == 'exp2' & ExposureType == 'final')
 
 categ23$ExposureType <- 'isolation'
 
-categ23 <- rbind(categ23[,c('Subject','Trial','ACC','RT','Step','Experiment','ExposureType','Attention','Item')],categ3[,c('Subject','Trial','ACC','RT','Step','Experiment','ExposureType','Attention','Item')])
+categ23 <- rbind(categ23[,c('Subject','Trial','ACC','RT','Step','Experiment','ExposureType','Attention','Item', 'cStep')],categ3[,c('Subject','Trial','ACC','RT','Step','Experiment','ExposureType','Attention','Item', 'cStep')])
 
 categ23$ExposureType <- factor(categ23$ExposureType, levels = c('isolation','unpredictive','predictive'))
 
