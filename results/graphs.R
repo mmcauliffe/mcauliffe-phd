@@ -92,7 +92,7 @@ ggplot(plotData,aes(x=WordResp,y=Xover, colour=Experiment)) + geom_point(positio
 
 ggsave('../thesis/graphs/exp12_xoverwordresp_present.pdf',width=170,height=110,units='mm',dpi=600)
 
-ggsave('../thesis/graphs/exp2_xoverwordresp.pdf',width=170,height=80,units='mm',dpi=600)
+ggsave('../thesis/graphs/exp12_xoverwordresp.pdf',width=170,height=80,units='mm',dpi=600)
 
 ### END EXPERIMENT 2
 
