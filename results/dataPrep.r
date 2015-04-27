@@ -120,12 +120,6 @@ t$Attention <- factor(t$Attention)
 
 categ <- rbind(categ,t)
 
-contrasts(categ$Attention) <- contr.sum
-contrasts(categ$Attention) <- contrasts(categ$Attention) / 2
-
-contrasts(categ$ExposureType) <- contr.sum
-contrasts(categ$ExposureType) <- contrasts(categ$ExposureType) / 2
-
 
 categ3 <- read.delim('exp3_native_categ.txt')
 categ3$Native <- 'yes'
@@ -177,12 +171,6 @@ categ3[categ3$Item == 'sin-shin',]$cStep <- categ3[categ3$Item == 'sin-shin',]$S
 categ3[categ3$Item == 'sock-shock',]$cStep <- categ3[categ3$Item == 'sock-shock',]$Step - 3.481329
 
 categ3$Step <- categ3$Step - mean(1:6)
-
-contrasts(categ3$Attention) <- contr.sum
-contrasts(categ3$Attention) <- contrasts(categ3$Attention) / 2
-
-contrasts(categ3$ExposureType) <- contr.sum
-contrasts(categ3$ExposureType) <- contrasts(categ3$ExposureType) / 2
 
 #categ <- rbind(categ,t2)
 categ$Experiment <- factor(categ$Experiment)
@@ -257,7 +245,7 @@ categ$Item <- factor(t)
 
 categ <- subset(categ,!Subject %in% c('ns1-215','ns1-402', 'ns2-214', 'ns2-219')) # Crazy crossovers
 #categ <- subset(categ,!Subject %in% c('ns2-209', 'ns2-214-3')) #Weird data
-#categ <- subset(categ,!Subject %in% c('ns2-214-3')) #Weird data
+categ <- subset(categ,!Subject %in% c('ns2-214-3')) #Non-native
 #categ <- subset(categ,!Subject %in% c('ns2-307')) # 0.03 accuracy in exposure
 #categ <- subset(categ,!Subject %in% c('ns1-105', 'ns1-117', 'ns1-319', 'ns1-323', 'ns1-401', 'ns2-124', 'ns2-206', 'ns2-215')) # Fitted probs near 1 or 0
 categ <- merge(categ,wresps)
@@ -295,7 +283,9 @@ expose3$Attention <- 'attend'
 expose3[str_detect(expose3$Subject,'^ns3-2'),]$Attention <- 'noattend'
 expose3[str_detect(expose3$Subject,'^ns3-3'),]$Attention <- 'noattend'
 
-expose3$Attention <- factor(expose3$Attention)
+expose3$Attention <- factor(expose3$Attention, levels = c('noattend', 'attend'))
+
+expose3$Predictability <- factor(expose3$Predictability, levels = c('Unpredictive', 'Predictive'))
 
 subj.tolerances3 <- ddply(subset(expose3,Type == 'S-final'),~Predictability*Attention*Subject, summarise, MeanLogRt = mean(LogRT))
 
@@ -306,6 +296,25 @@ categ23$ExposureType <- 'isolation'
 categ23 <- rbind(categ23[,c('Subject','Trial','ACC','RT','Step','Experiment','ExposureType','Attention','Item', 'cStep')],categ3[,c('Subject','Trial','ACC','RT','Step','Experiment','ExposureType','Attention','Item', 'cStep')])
 
 categ23$ExposureType <- factor(categ23$ExposureType, levels = c('isolation','unpredictive','predictive'))
+
+
+#contrasts(categ$Attention) <- contr.sum
+#contrasts(categ$Attention) <- contrasts(categ$Attention) / 2
+
+#contrasts(categ$ExposureType) <- contr.sum
+#contrasts(categ$ExposureType) <- contrasts(categ$ExposureType) / 2
+
+#contrasts(categ3$Attention) <- contr.sum
+#contrasts(categ3$Attention) <- contrasts(categ3$Attention) / 2
+
+#contrasts(categ3$ExposureType) <- contr.sum
+#contrasts(categ3$ExposureType) <- contrasts(categ3$ExposureType) / 2
+
+#contrasts(categ23$Attention) <- contr.sum
+#contrasts(categ23$Attention) <- contrasts(categ23$Attention) / 2
+
+#contrasts(categ23$ExposureType) <- contr.sum
+#contrasts(categ23$ExposureType) <- contrasts(categ23$ExposureType) / 2
 
 getCrossOver <- function(data){
   data$p <- -1*data[,'(Intercept)']/data[,'cStep']

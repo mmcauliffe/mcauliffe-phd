@@ -2,8 +2,11 @@
 if_labeller <- function(var, value){
   value <- as.character(value)
   if (var=="ExposureType") { 
-    value[value=="initial"] <- "S-Initial"
-    value[value=="final"]   <- "S-Final"
+    value[value=="initial"] <- "Word-initial"
+    value[value=="final"]   <- "Word-medial"
+    value[value=="isolation"] <- "Isolation"
+    value[value=="unpredictive"]   <- "Unpredictive"
+    value[value=="predictive"]   <- "Predictive"
   }
   if (var=="Attention") { 
     value[value=="attend"] <- "Attention"
