@@ -175,6 +175,26 @@ ggsave('../thesis/graphs/exp13_xoverdist.pdf',width=170,height=80,units='mm',dpi
 
 ### END EXPERIMENT 3
 
+plotData <- merge(all.xovers,all.subj.info)
+
+contPlotData <- cont.xover
+contPlotData$Experiment <- 'Control'
+contPlotData$ExposureType = 'Control'
+contPlotData$Attention <- 'Control'
+
+plotData <- rbind(plotData,contPlotData)
+plotData$ExposureType <- as.character(plotData$ExposureType)
+plotData[plotData$ExposureType == 'initial',]$ExposureType <- 'Word-initial'
+plotData[plotData$ExposureType == 'final',]$ExposureType <- 'Word-medial'
+plotData[plotData$ExposureType == 'unpredictive',]$ExposureType <- 'Unpredictive'
+plotData[plotData$ExposureType == 'predictive',]$ExposureType <- 'Predictive'
+plotData$Xover = plotData$Xover + 3.5
+
+ggplot(plotData,aes(x=ExposureType,y=Xover,colour=Attention)) + facet_grid(~Experiment, scales='free_x', labeller=if_labeller) + geom_boxplot()+ ylab('Crossover step across continua') +xlab('Exposure Type')+scale_colour_manual(values = c("#0072B2", "#D55E00","#000000"),labels = c('No attention','Attention','Control')) +theme_bw()+ theme(text=element_text(size=10),legend.title=element_text(size=6),legend.text=element_text(size=6),legend.position='bottom') + geom_hline(y=3.5, linetype=2)
+
+ggsave('../thesis/graphs/exp123_xoverdist.pdf',width=170,height=110,units='mm',dpi=600)
+
+
 plotData <- summarySEwithin(data = subset(categ,Experiment %in% c('exp1','exp2')),measurevar = 'ACC',betweenvars = c('Experiment','Attention','ExposureType'),withinvars=c('Step'),idvar='Subject')
 contPlotData <- summarySEwithin(data=cont, measurevar = 'ACC',withinvars=c('Step'),idvar='Subject')
 contPlotData <- rbind(contPlotData,contPlotData)

@@ -32,7 +32,7 @@ categ.learning <- subset(categ, Subject %in% unique(subset(all.xovers,Xover > 0)
 experiment.1.mod <- glmer(ACC ~ cStep*ExposureType*Attention + (1+cStep|Subject) + (1+cStep*Attention*ExposureType|Item), family='binomial',data=subset(categ,Experiment=='exp2'), control=glmerControl(optCtrl=list(maxfun=100000) ))
 summary(experiment.1.mod)
 
-experiment.1.mod.trimmed <- glmer(ACC ~ cStep*ExposureType*Attention + (1+cStep|Subject) + (1+cStep|Item), family='binomial',data=subset(categ,Experiment=='exp2'), control=glmerControl(optCtrl=list(maxfun=100000) ), subset = abs(scale(resid(experiment.1.mod))) < 2.5)
+experiment.1.mod.trimmed <- glmer(ACC ~ cStep*ExposureType*Attention + (1+cStep|Subject) + (1+cStep*Attention*ExposureType|Item), family='binomial',data=subset(categ,Experiment=='exp2'), control=glmerControl(optCtrl=list(maxfun=100000) ), subset = abs(scale(resid(experiment.1.mod))) < 2.5)
 summary(experiment.1.mod.trimmed)
 
 
@@ -52,10 +52,10 @@ ddply(unique(categ[,c('Subject','Experiment','ExposureType','Attention')]), ~ Ex
 ddply(categ, ~ ExposureType*Attention*Subject, nrow)
 
 
-experiment.2.mod <- glmer(ACC ~ cStep*ExposureType*Attention + (1+cStep|Subject) + (1+cStep|Item), family='binomial',data=subset(categ,Experiment=='exp1'), control=glmerControl(optCtrl=list(maxfun=100000) ))
+experiment.2.mod <- glmer(ACC ~ cStep*ExposureType*Attention + (1+cStep|Subject) + (1+cStep*ExposureType*Attention|Item), family='binomial',data=subset(categ,Experiment=='exp1'), control=glmerControl(optCtrl=list(maxfun=100000) ))
 summary(experiment.2.mod)
 
-experiment.2.mod.trimmed <- glmer(ACC ~ cStep*ExposureType*Attention + (1+cStep|Subject) + (1+cStep|Item), family='binomial',data=subset(categ,Experiment=='exp1'), control=glmerControl(optCtrl=list(maxfun=100000) ), subset = abs(scale(resid(experiment.2.mod))) < 2.5)
+experiment.2.mod.trimmed <- glmer(ACC ~ cStep*ExposureType*Attention + (1+cStep|Subject) + (1+cStep*ExposureType*Attention|Item), family='binomial',data=subset(categ,Experiment=='exp1'), control=glmerControl(optCtrl=list(maxfun=100000) ), subset = abs(scale(resid(experiment.2.mod))) < 2.5)
 summary(experiment.2.mod.trimmed)
 
 
@@ -67,10 +67,10 @@ summary(experiment.2.mod.wresp)
 
 ### GROUPED
 
-grouped.mod <- glmer(ACC ~ cStep*ExposureType*Attention*Experiment + (1+cStep|Subject) + (1+cStep*Experiment|Item), family='binomial',data=subset(categ,Experiment%in%c('exp1','exp2')), control=glmerControl(optCtrl=list(maxfun=100000) ))
+grouped.mod <- glmer(ACC ~ cStep*ExposureType*Attention*Experiment + (1+cStep|Subject) + (1+cStep*ExposureType*Attention*Experiment|Item), family='binomial',data=subset(categ,Experiment%in%c('exp1','exp2')), control=glmerControl(optCtrl=list(maxfun=100000) ))
 summary(grouped.mod)
 
-grouped.mod.trimmed <- glmer(ACC ~ cStep*ExposureType*Attention*Experiment + (1+cStep|Subject) + (1+cStep*Experiment|Item), family='binomial',data=subset(categ,Experiment%in%c('exp1','exp2')), control=glmerControl(optCtrl=list(maxfun=100000) ), subset = abs(scale(resid(grouped.mod))) < 2.5)
+grouped.mod.trimmed <- glmer(ACC ~ cStep*ExposureType*Attention*Experiment + (1+cStep|Subject) + (1+cStep*ExposureType*Attention*Experiment|Item), family='binomial',data=subset(categ,Experiment%in%c('exp1','exp2')), control=glmerControl(optCtrl=list(maxfun=100000) ), subset = abs(scale(resid(grouped.mod))) < 2.5)
 summary(grouped.mod.trimmed)
 
 
@@ -87,20 +87,20 @@ ddply(categ3, ~ ExposureType*Attention*Subject, nrow)
 
 categ3.learning <- subset(categ3,Subject %in% unique(subset(all.xovers,Xover > 0)$Subject))
 
-experiment.3.mod <- glmer(ACC ~ cStep*ExposureType*Attention + (1+cStep|Subject) + (1+cStep*Attention|Item), family='binomial',data=categ3, control=glmerControl(optCtrl=list(maxfun=100000) ))
+experiment.3.mod <- glmer(ACC ~ cStep*ExposureType*Attention + (1+cStep|Subject) + (1+cStep*ExposureType*Attention|Item), family='binomial',data=categ3, control=glmerControl(optCtrl=list(maxfun=100000) ))
 summary(experiment.3.mod)
 
-experiment.3.mod.trimmed <- glmer(ACC ~ Step*ExposureType*Attention + (1+cStep|Subject) + (1+cStep|Item), family='binomial',data=categ3, control=glmerControl(optCtrl=list(maxfun=100000) ), subset = abs(scale(resid(experiment.3.mod))) < 2.5)
+experiment.3.mod.trimmed <- glmer(ACC ~ cStep*ExposureType*Attention + (1+cStep|Subject) + (1+cStep*ExposureType*Attention|Item), family='binomial',data=categ3, control=glmerControl(optCtrl=list(maxfun=100000) ), subset = abs(scale(resid(experiment.3.mod))) < 2.5)
 summary(experiment.3.mod.trimmed)
 
 categ23.learning <- subset(categ23, Subject %in% unique(subset(all.xovers,Xover > 0)$Subject))
 
 categ23$ExposureType <- factor(categ23$ExposureType, levels = c('predictive','isolation','unpredictive'))
 
-experiment.23.mod <- glmer(ACC ~ cStep*ExposureType*Attention + (1+cStep|Subject) + (1+cStep|Item), family='binomial',data=categ23, control=glmerControl(optCtrl=list(maxfun=100000) ))
+experiment.23.mod <- glmer(ACC ~ cStep*ExposureType*Attention + (1+cStep|Subject) + (1+cStep*ExposureType*Attention|Item), family='binomial',data=categ23, control=glmerControl(optCtrl=list(maxfun=100000) ))
 summary(experiment.23.mod)
 
-experiment.23.mod.trimmed <- glmer(ACC ~ cStep*ExposureType*Attention + (1+cStep|Subject) + (1+cStep|Item), family='binomial',data=categ23, control=glmerControl(optCtrl=list(maxfun=100000) ), subset = abs(scale(resid(experiment.23.mod))) < 2.5)
+experiment.23.mod.trimmed <- glmer(ACC ~ cStep*ExposureType*Attention + (1+cStep|Subject) + (1+cStep*ExposureType*Attention|Item), family='binomial',data=categ23, control=glmerControl(optCtrl=list(maxfun=100000) ), subset = abs(scale(resid(experiment.23.mod))) < 2.5)
 summary(experiment.23.mod.trimmed)
 
 ### END EXPERIMENT 3

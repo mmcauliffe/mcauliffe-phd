@@ -299,6 +299,9 @@ categ23$ExposureType <- factor(categ23$ExposureType, levels = c('isolation','unp
 
 subj.info23 <- unique(categ23[,c('Subject','ExposureType','Attention')])
 
+all.subj.info <- unique(categ[,c('Subject','Experiment','ExposureType','Attention')])
+all.subj.info <- rbind(all.subj.info, unique(categ3[,c('Subject','Experiment','ExposureType','Attention')]))
+
 #contrasts(categ$Attention) <- contr.sum
 #contrasts(categ$Attention) <- contrasts(categ$Attention) / 2
 
