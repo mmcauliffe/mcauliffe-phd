@@ -39,6 +39,14 @@ ddply(expose3, ~Type*Attention*Predictability, nrow)
 
 ddply(expose3, ~Type*Attention*Predictability, summarise, mean(cLogRT), sd(cLogRT))
 
+ddply(expose3, ~Type*Attention*Predictability, summarise, mean(LogRT), sd(LogRT))
+
+mean(ddply(expose3, ~Subject, summarise, mean(ACC))$"..1")
+sd(ddply(expose3, ~Subject, summarise, mean(ACC))$"..1")
+mean(ddply(subset(expose3,Type=='S-final'), ~Subject, summarise, mean(ACC))$"..1")
+sd(ddply(subset(expose3,Type=='S-final'), ~Subject, summarise, mean(ACC))$"..1")
+
+
 experiment.3.expose.mod.rt <- lmer(cLogRT ~ cTrial*Type*Attention*Predictability + (1+cTrial*(Type+Predictability)|Subject) + (1+Attention*Predictability|Word),data = expose3, control=lmerControl(optCtrl=list(maxfun=200000) ))
 summary(experiment.3.expose.mod.rt)
 

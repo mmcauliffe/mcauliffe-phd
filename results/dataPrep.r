@@ -297,6 +297,7 @@ categ23 <- rbind(categ23[,c('Subject','Trial','ACC','RT','Step','Experiment','Ex
 
 categ23$ExposureType <- factor(categ23$ExposureType, levels = c('isolation','unpredictive','predictive'))
 
+subj.info23 <- unique(categ23[,c('Subject','ExposureType','Attention')])
 
 #contrasts(categ$Attention) <- contr.sum
 #contrasts(categ$Attention) <- contrasts(categ$Attention) / 2
@@ -317,7 +318,7 @@ categ23$ExposureType <- factor(categ23$ExposureType, levels = c('isolation','unp
 #contrasts(categ23$ExposureType) <- contrasts(categ23$ExposureType) / 2
 
 getCrossOver <- function(data){
-  data$p <- -1*data[,'(Intercept)']/data[,'cStep']
+  data$p <- -1*data[,'(Intercept)']/data[,'Step']
   data$pRound <- round(data$p)
   
   data <- data.frame(Subject = row.names(data),Xover = data$p)

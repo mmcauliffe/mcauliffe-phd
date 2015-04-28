@@ -101,6 +101,20 @@ ggsave('../thesis/graphs/exp12_xoverwordresp.pdf',width=170,height=80,units='mm'
 
 ### EXPERIMENT 3
 
+## Exposure
+
+ggplot(subset(expose.word,Experiment == 'exp2'),aes(y=LogRT, x=Trial, colour=itemtype)) + geom_smooth(method='lm')
+
+ggplot(subset(expose.word,Experiment == 'exp1'),aes(y=LogRT, x=Trial, colour=itemtype)) + geom_smooth(method='lm')
+
+ggplot(subset(expose.word,Experiment == 'exp2'),aes(y=ACC, x=Trial, colour=itemtype)) + geom_smooth(method='glm')
+
+ggplot(subset(expose.word,Experiment == 'exp1'),aes(y=ACC, x=Trial, colour=itemtype)) + geom_smooth(method='glm')
+
+ggplot(expose3,aes(y=LogRT, x=Trial, colour=Type)) + geom_smooth(method='lm')
+
+## End Exposure
+
 plotData <- summarySEwithin(data = categ3,measurevar = 'ACC',betweenvars = c('Attention','ExposureType'),withinvars=c('Step'),idvar='Subject')
 contPlotData <- summarySEwithin(data=cont, measurevar = 'ACC',withinvars=c('Step'),idvar='Subject')
 contPlotData <- rbind(contPlotData,contPlotData)
@@ -143,8 +157,23 @@ ggplot(plotData,aes(x=MeanLogRt,y=Xover)) + geom_point(position=position_jitter(
 
 ggsave('../thesis/graphs/exp3_xoverwordresp.pdf',width=170,height=80,units='mm',dpi=600)
 
-### END EXPERIMENT 3
+plotData <- merge(all.xovers, subj.info23)
+plotData$Xover = plotData$Xover + 3.5
 
+contPlotData <- cont.xover
+contPlotData$ExposureType = 'Control'
+contPlotData$Attention <- 'Control'
+contPlotData$Xover = contPlotData$Xover + 3.5
+
+plotData <- rbind(plotData,contPlotData)
+
+plotData$ExposureType <- factor(plotData$ExposureType, levels = c('Control','isolation','unpredictive','predictive'), ordered=T)
+
+ggplot(plotData,aes(x=ExposureType,y=Xover,colour=Attention)) + geom_boxplot()+ ylab('Crossover step across continua') +xlab('Exposure Type')+scale_colour_manual(values = c("#0072B2", "#D55E00","#000000"),labels = c('No attention','Attention','Control')) + scale_x_discrete(labels=c('Control','Isolation','Unpredictive','Predictive')) +theme_bw()
+
+ggsave('../thesis/graphs/exp13_xoverdist.pdf',width=170,height=80,units='mm',dpi=600)
+
+### END EXPERIMENT 3
 
 plotData <- summarySEwithin(data = subset(categ,Experiment %in% c('exp1','exp2')),measurevar = 'ACC',betweenvars = c('Experiment','Attention','ExposureType'),withinvars=c('Step'),idvar='Subject')
 contPlotData <- summarySEwithin(data=cont, measurevar = 'ACC',withinvars=c('Step'),idvar='Subject')
