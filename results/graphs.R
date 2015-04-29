@@ -57,6 +57,10 @@ ggsave('../thesis/graphs/exp1_categresults_present.pdf',width=170,height=110,uni
 
 ggsave('../thesis/graphs/exp1_categresults.pdf',width=170,height=80,units='mm',dpi=600)
 
+ggplot(plotData,aes(x=Step,y=ACC, colour=Attention,shape=Attention,group=Attention)) + geom_point(size=1.7)+facet_grid(~ExposureType, labeller=if_labeller) +geom_line() + geom_errorbar(aes(ymin=ACC-ci,ymax=ACC+ci),linetype='solid',size=0.1)+ ylab('Proportion /s/ response') +xlab('Continua step') + scale_x_continuous(breaks = 1:6)  + theme_bw() + theme(text=element_text(size=6),legend.title=element_text(size=6),legend.text=element_text(size=6),legend.justification=c(0,0), legend.position='bottom')+scale_shape_manual(values = c(21, 22,23),labels = c('No attention','Attention','Control'))+scale_colour_manual(values = c("#0072B2", "#D55E00","#000000"),labels = c('No attention','Attention','Control'))
+
+ggsave('../thesis/graphs/exp1_categresults_present2.pdf',width=50,height=90,units='mm',dpi=600)
+
 plotData = subset(xovers,Experiment == 'exp2')
 
 plotData$Xover = plotData$Xover + 3.5
@@ -190,7 +194,11 @@ plotData[plotData$ExposureType == 'unpredictive',]$ExposureType <- 'Unpredictive
 plotData[plotData$ExposureType == 'predictive',]$ExposureType <- 'Predictive'
 plotData$Xover = plotData$Xover + 3.5
 
+ggplot(plotData,aes(x=ExposureType,y=Xover,colour=Attention)) + facet_grid(~Experiment, scales='free_x', labeller=if_labeller) + geom_violin()+ ylab('Crossover step across continua') +xlab('Exposure Type')+scale_colour_manual(values = c("#0072B2", "#D55E00","#000000"),labels = c('No attention','Attention','Control')) +theme_bw()+ theme(text=element_text(size=10),legend.title=element_text(size=6),legend.text=element_text(size=6),legend.position='bottom') + geom_hline(y=3.5, linetype=2)
+
 ggplot(plotData,aes(x=ExposureType,y=Xover,colour=Attention)) + facet_grid(~Experiment, scales='free_x', labeller=if_labeller) + geom_boxplot()+ ylab('Crossover step across continua') +xlab('Exposure Type')+scale_colour_manual(values = c("#0072B2", "#D55E00","#000000"),labels = c('No attention','Attention','Control')) +theme_bw()+ theme(text=element_text(size=10),legend.title=element_text(size=6),legend.text=element_text(size=6),legend.position='bottom') + geom_hline(y=3.5, linetype=2)
+
+ggplot(plotData,aes(x=ExposureType,y=Xover,colour=Attention)) + facet_grid(~Experiment, scales='free_x', labeller=if_labeller) + geom_point(size=6,position=position_dodge(.9))+ ylab('Crossover step across continua') +xlab('Exposure Type')+scale_colour_manual(values = c("#0072B2", "#D55E00","#000000"),labels = c('No attention','Attention','Control')) +theme_bw()+ theme(text=element_text(size=10),legend.title=element_text(size=6),legend.text=element_text(size=6),legend.position='bottom') + geom_hline(y=3.5, linetype=2)
 
 ggsave('../thesis/graphs/exp123_xoverdist.pdf',width=170,height=110,units='mm',dpi=600)
 
