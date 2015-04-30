@@ -119,6 +119,58 @@ ggsave('../thesis/graphs/exp12_xoverwordresp.pdf',width=170,height=80,units='mm'
 
 ## Exposure
 
+for.plot <- expose.word
+
+for.plot$TrialCat <- "1-50"
+for.plot[for.plot$Trial < 101 & for.plot$Trial > 50,]$TrialCat <- "51-100"
+for.plot[for.plot$Trial < 151 & for.plot$Trial > 100,]$TrialCat <- "101-150"
+for.plot[for.plot$Trial > 150,]$TrialCat <- "151-200"
+
+for.plot$TrialCat <- factor(for.plot$TrialCat, levels = c("1-50", "51-100", "101-150", "151-200"), ordered = T)
+
+plotData <- summarySEwithin(data = for.plot,measurevar = 'ACC',betweenvars = c('Attention', 'itemtype2', 'Experiment'),withinvars=c('TrialCat'),idvar='Subject')
+
+ggplot(plotData,aes(x=TrialCat,y=ACC, colour=Attention,shape=Attention,group=Attention)) + geom_point(size=1.7)+facet_grid(Experiment~itemtype2) +geom_line() + geom_errorbar(aes(ymin=ACC-ci,ymax=ACC+ci),linetype='solid',size=0.1)+ ylab('Proportion /s/ response') +xlab('Continua step')  + theme_bw() + theme(text=element_text(size=10),legend.title=element_text(size=8),legend.text=element_text(size=8),legend.justification=c(0,0), legend.position=c(0,0))+scale_shape_manual(values = c(21, 22),labels = c('No attention','Attention'))+scale_colour_manual(values = c("#0072B2", "#D55E00"),labels = c('No attention','Attention'))
+
+plotData <- summarySEwithin(data = for.plot,measurevar = 'RT',betweenvars = c('Attention', 'itemtype2', 'Experiment'),withinvars=c('TrialCat'),idvar='Subject')
+
+ggplot(plotData,aes(x=TrialCat,y=RT, colour=Attention,shape=Attention,group=Attention)) + geom_point(size=1.7)+facet_grid(Experiment~itemtype2) +geom_line() + geom_errorbar(aes(ymin=RT-ci,ymax=RT+ci),linetype='solid',size=0.1)+ ylab('Proportion /s/ response') +xlab('Continua step')  + theme_bw() + theme(text=element_text(size=10),legend.title=element_text(size=8),legend.text=element_text(size=8),legend.justification=c(0,0), legend.position=c(0,0))+scale_shape_manual(values = c(21, 22),labels = c('No attention','Attention'))+scale_colour_manual(values = c("#0072B2", "#D55E00"),labels = c('No attention','Attention'))
+
+plotData <- summarySEwithin(data = for.plot,measurevar = 'RT',betweenvars = c('Attention', 'itemtype2'),withinvars=c('TrialCat'),idvar='Subject')
+
+ggplot(plotData,aes(x=TrialCat,y=RT, colour=Attention,shape=Attention,group=Attention)) + geom_point(size=1.7)+facet_grid(~itemtype2, labeller=if_labeller) +geom_line() + geom_errorbar(aes(ymin=RT-ci,ymax=RT+ci),linetype='solid',size=0.1)+ ylab('Proportion /s/ response') +xlab('Continua step')  + theme_bw() + theme(text=element_text(size=10),legend.title=element_text(size=8),legend.text=element_text(size=8),legend.justification=c(0,0), legend.position=c(0,0))+scale_shape_manual(values = c(21, 22),labels = c('No attention','Attention'))+scale_colour_manual(values = c("#0072B2", "#D55E00"),labels = c('No attention','Attention'))
+
+for.plot <- subset(expose.word,Experiment == 'exp2')
+
+for.plot$TrialCat <- "1-50"
+for.plot[for.plot$Trial < 101 & for.plot$Trial > 50,]$TrialCat <- "51-100"
+for.plot[for.plot$Trial < 151 & for.plot$Trial > 100,]$TrialCat <- "101-150"
+for.plot[for.plot$Trial > 150,]$TrialCat <- "151-200"
+
+for.plot$TrialCat <- factor(for.plot$TrialCat, levels = c("1-50", "51-100", "101-150", "151-200"), ordered = T)
+
+plotData <- summarySEwithin(data = for.plot,measurevar = 'ACC',betweenvars = c('Attention', 'itemtype2'),withinvars=c('TrialCat'),idvar='Subject')
+
+ggplot(plotData,aes(x=TrialCat,y=ACC, colour=Attention,shape=Attention,group=Attention)) + geom_point(size=1.7)+facet_grid(~itemtype2, labeller=if_labeller) +geom_line() + geom_errorbar(aes(ymin=ACC-ci,ymax=ACC+ci),linetype='solid',size=0.1)+ ylab('Proportion /s/ response') +xlab('Continua step')  + theme_bw() + theme(text=element_text(size=10),legend.title=element_text(size=8),legend.text=element_text(size=8),legend.justification=c(0,0), legend.position=c(0,0))+scale_shape_manual(values = c(21, 22),labels = c('No attention','Attention'))+scale_colour_manual(values = c("#0072B2", "#D55E00"),labels = c('No attention','Attention'))
+
+plotData <- summarySEwithin(data = for.plot,measurevar = 'RT',betweenvars = c('Attention', 'itemtype2'),withinvars=c('TrialCat'),idvar='Subject')
+
+ggplot(plotData,aes(x=TrialCat,y=RT, colour=Attention,shape=Attention,group=Attention)) + geom_point(size=1.7)+facet_grid(~itemtype2, labeller=if_labeller) +geom_line() + geom_errorbar(aes(ymin=RT-ci,ymax=RT+ci),linetype='solid',size=0.1)+ ylab('Proportion /s/ response') +xlab('Continua step')  + theme_bw() + theme(text=element_text(size=10),legend.title=element_text(size=8),legend.text=element_text(size=8),legend.justification=c(0,0), legend.position=c(0,0))+scale_shape_manual(values = c(21, 22),labels = c('No attention','Attention'))+scale_colour_manual(values = c("#0072B2", "#D55E00"),labels = c('No attention','Attention'))
+
+for.plot <- subset(expose.word,Experiment == 'exp1')
+
+for.plot$TrialCat <- "1-50"
+for.plot[for.plot$Trial < 101 & for.plot$Trial > 50,]$TrialCat <- "51-100"
+for.plot[for.plot$Trial < 151 & for.plot$Trial > 100,]$TrialCat <- "101-150"
+for.plot[for.plot$Trial > 150,]$TrialCat <- "151-200"
+
+for.plot$TrialCat <- factor(for.plot$TrialCat)
+
+plotData <- summarySEwithin(data = for.plot,measurevar = 'ACC',betweenvars = c('Attention', 'itemtype2'),withinvars=c('TrialCat'),idvar='Subject')
+
+ggplot(plotData,aes(x=TrialCat,y=ACC, colour=Attention,shape=Attention,group=Attention)) + geom_point(size=1.7)+facet_grid(~itemtype2, labeller=if_labeller) +geom_line() + geom_errorbar(aes(ymin=ACC-ci,ymax=ACC+ci),linetype='solid',size=0.1)+ ylab('Proportion /s/ response') +xlab('Continua step')  + theme_bw() + theme(text=element_text(size=10),legend.title=element_text(size=8),legend.text=element_text(size=8),legend.justification=c(0,0), legend.position=c(0,0))+scale_shape_manual(values = c(21, 22),labels = c('No attention','Attention'))+scale_colour_manual(values = c("#0072B2", "#D55E00"),labels = c('No attention','Attention'))
+
+
 ggplot(subset(expose.word,Experiment == 'exp2'),aes(y=LogRT, x=Trial, colour=itemtype2)) + geom_smooth(method='lm')+facet_grid(Attention~ExposureType)
 
 ggplot(subset(expose.word,Experiment == 'exp1'),aes(y=LogRT, x=Trial, colour=itemtype2)) + geom_smooth(method='lm')+facet_grid(Attention~ExposureType)

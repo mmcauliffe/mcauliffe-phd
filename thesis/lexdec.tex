@@ -220,11 +220,10 @@ The intercept was not significant ($\beta = 0.43, SE = 0.29, z = 1.5, p = 0.13$)
 
 Trials with nonword stimuli and responses faster than 200 ms or slower than 2500 ms were excluded from analysis. 
 Performance on the exposure task was high overall, with accuracy on filler trials averaging 92\%.  
-Word response rates for each of the four conditions did not differ significantly from each other, though S-Final/No Attention participants had a slightly higher average rate of 81\% (SD= 17\%) than the other conditions (S-Final/Attention: mean = 74\%, SD = 18\%; S-Initial/No Attention: mean = 74\%, SD = 27\%; S-Initial/Attention: mean = 76\%, SD = 23\%). 
-A logistic mixed effects model with accuracy as the dependent variable was fit with fixed effects for trial type (Filler, S, SH), Attention (No Attention, Attention), Exposure Type (S-Initial, S-Final) and their interactions. 
-The random effect structure was as maximally specified as possible with random effects for Subject and Word, and by-Subject random slopes for trial type and by-Word random slopes for Attention. 
-The only fixed effects that were significant were a main effect of trial type for /s/ trials compared to filler trials ($\beta = -1.71, SE = 0.43, z = -3.97, p < 0.01$) and a main effect of Attention ($\beta = 0.76, SE = 0.38, z = 2.02,   p = 0.04$).  
-Trials containing an ambiguous /s/ were less likely to be responded to as a word, and participants instructed to pay attention to /s/ were more likely to correctly respond to words in general.
+A logistic mixed effects model with accuracy as the dependent variable was fit with fixed effects for Trial, Trial Type (Filler, /s/, /\textesh/), Attention (No Attention, Attention), Exposure Type (Word-Initial, Word-Medial) and their interactions.   Trial Type was coded using treatment (dummy) coding, with Filler as the reference level.  Deviance contrast coding was used for Exposure Type (Word-initial = 0.5, Word-medial = -0.5) and Attention (No attention = 0.5, Attention = -0.5).
+The random effect structure was as maximally specified as possible with random effects for Subject and Word, and by-Subject random slopes for Trial, Trial Type and their interactions and by-Word random slopes for Attention and Exposure Type and their interactions. 
+
+Significant fixed effects were found for Trial Type of /s/ versus Filler ($\beta = -2.13, SE = 0.31, z = -6.8, p < 0.01$), Attention ($\beta = -0.57, SE = 0.28, z = -2.0, p = 0.04$), and an interaction between Trial and Trial Type of /s/ versus Filler ($\beta = -0.45, SE = 0.14, z = 3.1, p = 0.01$).  A marginal interaction between Attention and Trial Type of /s/ versus Filler was also present ($\beta = 0.72, SE = 0.39, z = 1.8, p = 0.06$).
 
 \subsubsection{Categorization}
 
