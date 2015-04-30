@@ -195,7 +195,6 @@ t[t=='shin-sin'] = 'sin-shin'
 t[t=='shock-sock'] = 'sock-shock'
 
 cont$Item <- factor(t)
-cont$Step <- cont$Step - mean(1:6)
 cont$Background <- 'Native'
 
 nncont <- read.delim('control_nonnative_categ.txt')
@@ -215,10 +214,23 @@ t[t=='shin-sin'] = 'sin-shin'
 t[t=='shock-sock'] = 'sock-shock'
 
 nncont$Item <- factor(t)
-nncont$Step <- nncont$Step - mean(1:6)
 nncont$Background <- 'Non-native'
 cont <- rbind(cont, nncont)
+
+cont$cStep <- 0
+#sack-shack 3.642820
+cont[cont$Item == 'sack-shack',]$cStep <- cont[cont$Item == 'sack-shack',]$Step - 3.642820
+#sigh-shy 3.979852
+cont[cont$Item == 'sigh-shy',]$cStep <- cont[cont$Item == 'sigh-shy',]$Step - 3.979852
+#sin-shin 3.233012
+cont[cont$Item == 'sin-shin',]$cStep <- cont[cont$Item == 'sin-shin',]$Step - 3.233012
+#sock-shock 3.481329
+cont[cont$Item == 'sock-shock',]$cStep <- cont[cont$Item == 'sock-shock',]$Step - 3.481329
+
+cont$Step <- cont$Step - mean(1:6)
 cont$Background <- factor(cont$Background)
+contrasts(cont$Background) <- contr.sum
+contrasts(cont$Background) <- contrasts(cont$Background) / 2
 #categ <- rbind(categ, cont)
 
 categ$ModACC <- 0.5
@@ -288,6 +300,16 @@ expose3[str_detect(expose3$Subject,'^ns3-3'),]$Attention <- 'noattend'
 
 expose3$Attention <- factor(expose3$Attention, levels = c('noattend', 'attend'))
 
+expose3$ExposureType <- 'predictive'
+
+expose3[str_detect(expose3$Subject,'^ns3-2'),]$ExposureType <- 'unpredictive'
+expose3[str_detect(expose3$Subject,'^ns3-4'),]$ExposureType <- 'unpredictive'
+
+#expose3[str_detect(expose3$Subject,'^nns3-2'),]$ExposureType <- 'unpredictive'
+#expose3[str_detect(expose3$Subject,'^nns3-4'),]$ExposureType <- 'unpredictive'
+
+expose3$ExposureType <- factor(expose3$ExposureType, levels = c('unpredictive','predictive'))
+
 expose3$Predictability <- factor(expose3$Predictability, levels = c('Unpredictive', 'Predictive'))
 
 subj.tolerances3 <- ddply(subset(expose3,Type == 'S-final'),~Predictability*Attention*Subject, summarise, MeanLogRt = mean(LogRT))
@@ -305,20 +327,36 @@ subj.info23 <- unique(categ23[,c('Subject','ExposureType','Attention')])
 all.subj.info <- unique(categ[,c('Subject','Experiment','ExposureType','Attention')])
 all.subj.info <- rbind(all.subj.info, unique(categ3[,c('Subject','Experiment','ExposureType','Attention')]))
 
-#contrasts(categ$Attention) <- contr.sum
-#contrasts(categ$Attention) <- contrasts(categ$Attention) / 2
+contrasts(expose.word$Attention) <- contr.sum
+contrasts(expose.word$Attention) <- contrasts(expose.word$Attention) / 2
 
-#contrasts(categ$ExposureType) <- contr.sum
-#contrasts(categ$ExposureType) <- contrasts(categ$ExposureType) / 2
+contrasts(expose.word$ExposureType) <- contr.sum
+contrasts(expose.word$ExposureType) <- contrasts(expose.word$ExposureType) / 2
 
-#contrasts(categ3$Attention) <- contr.sum
-#contrasts(categ3$Attention) <- contrasts(categ3$Attention) / 2
+contrasts(expose3$Attention) <- contr.sum
+contrasts(expose3$Attention) <- contrasts(expose3$Attention) / 2
 
-#contrasts(categ3$ExposureType) <- contr.sum
-#contrasts(categ3$ExposureType) <- contrasts(categ3$ExposureType) / 2
+contrasts(expose3$Predictability) <- contr.sum
+contrasts(expose3$Predictability) <- contrasts(expose3$Predictability) / 2
 
-#contrasts(categ23$Attention) <- contr.sum
-#contrasts(categ23$Attention) <- contrasts(categ23$Attention) / 2
+
+contrasts(categ$Attention) <- contr.sum
+contrasts(categ$Attention) <- contrasts(categ$Attention) / 2
+
+contrasts(categ$ExposureType) <- contr.sum
+contrasts(categ$ExposureType) <- contrasts(categ$ExposureType) / 2
+
+contrasts(categ$Experiment) <- contr.sum
+contrasts(categ$Experiment) <- contrasts(categ$Experiment) / 2
+
+contrasts(categ3$Attention) <- contr.sum
+contrasts(categ3$Attention) <- contrasts(categ3$Attention) / 2
+
+contrasts(categ3$ExposureType) <- contr.sum
+contrasts(categ3$ExposureType) <- contrasts(categ3$ExposureType) / 2
+
+contrasts(categ23$Attention) <- contr.sum
+contrasts(categ23$Attention) <- contrasts(categ23$Attention) / 2
 
 #contrasts(categ23$ExposureType) <- contr.sum
 #contrasts(categ23$ExposureType) <- contrasts(categ23$ExposureType) / 2

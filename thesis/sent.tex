@@ -32,6 +32,9 @@ Additionally, if the explicit attention does exert a categorical effect on perce
 Previous research has found an increased sensitivity to signal properties in semantically predictable sentences \citep{Samuel1981}, which could lead to one of two outcomes.
 Given that bias to restore the phoneme was greater in these conditions as well, we might see greater perceptual learning effects, as the link between the word and the production would be enhanced, but the signal would be encoded more accurately from the lower cognitive load.
 On the other hand, the lower cognitive load could lead to more attention available to notice the deviant production, and thus adopt a perception-oriented attentional set.
+Also relevant are the findings of \citet{Kraljic2008a}, where no perceptual learning was observed when the modified sound was in a /str/ context.
+In that context, the modified sound was not salient, and no learning was observed.
+If participants do not pay attention to the final word in a predictable sentence, perceptual learning might also be reduced or absent.
 
 \section{Methodology}
 
@@ -108,7 +111,7 @@ Performance in the task was high, with accuracy near perfect across all subjects
 \subsection{Categorization}
 
 Responses with reaction times less than 200 ms or greater than 2500 ms were excluded from analyses. 
-A logistic mixed effects model was constructed with Subject and Continua as random effects and continua Step as random slopes, with 0 coded as a /\textesh/ response and 1 as a /s/ response.  Fixed effects for the model were Step, Exposure Type, Attention and their interactions.
+A logistic mixed effects model was constructed with Subject and Continua as random effects and continua Step as random slopes, with 0 coded as a /\textesh/ response and 1 as a /s/ response.  Fixed effects for the model were Step, Exposure Type, Attention and their interactions, with deviance coding used for contrasts for Exposure Type (Unpredictive = 0.5, Predictive = -0.5) and Attention (No attention = 0.5, Attention = -0.5).
 
 
 \begin{figure*}[!ht]
@@ -119,8 +122,8 @@ A logistic mixed effects model was constructed with Subject and Continua as rand
 \end{center}
 \end{figure*}
 
-As in the previous experiments, there was a significant effect of the intercept ($\beta = 0.83, SE = 0.31, z = 2.6, p < 0.01$) and of Step ($\beta = -2.56, SE = 0.22, z = -11.3, p < 0.01$).
-Exposure Type ($\beta = -0.42, SE = 0.31, z = -1.4, p = 0.16$), Attention ($\beta = -0.51, SE = 0.30, z = -1.7, p = 0.08$), and their interaction ($\beta = 0.41, SE = 0.43, z = 1.0, p = 0.33$) are all not significant, despite the visible differences in Figure~\ref{fig:exp23categ}.  Refitting the model with outliers whose residuals are more than 2.5 standard deviations results in a marginal interaction between Step, Exposure Type and Attention ($\beta = -0.79, SE = 0.46, z = -1.7, p = 0.08$), capturing the visual difference in Figure~\ref{fig:exp23categ} that participants in the Unpredictive/No Attention condition are more likely to categorize more of the continua as /s/ than participants instructed to attend to the speakers' /s/, but no such effect of attention is seen in the Predictive exposure condition. 
+As in the previous experiments, there was a significant effect of the intercept ($\beta = 0.52, SE = 0.20, z = 2.6, p < 0.01$) and of Step ($\beta = -2.49, SE = 0.19, z = -12.7, p < 0.01$).
+Exposure Type ($\beta = 0.23, SE = 0.23, z = 0.97, p = 0.33$), Attention ($\beta = 0.30, SE = 0.21, z = 1.4, p = 0.15$), and their interaction ($\beta = 0.38, SE = 0.44, z = 0.9, p = 0.39$) are all not significant, despite the visible differences in Figure~\ref{fig:exp23categ}.
 
 
 \begin{figure*}[!ht]
@@ -132,9 +135,15 @@ Exposure Type ($\beta = -0.42, SE = 0.31, z = -1.4, p = 0.16$), Attention ($\bet
 \end{figure*}
 
 
-As an additional comparison, the data from this experiment was combined with the subset of participants in Experiment 1 who were exposed to the same set of words (the word-medial condition).  Exposure Type was recoded as a three-level factor, with the Experiment 1 exposure (Isolation) as the reference level.  An identically specified logisitic mixed effects model was fit to this set data as to the initial data.  In this model, there was a significant effect of Attention ($\beta = -0.75, SE = 0.31, z = -2.4, p = 0.01$), such that participants in Attention conditions were less likely to categorize the continua steps as /s/.  Additionally, participants exposed to the modified sound category in the Predictive condition were significantly less likely to categorize the continua steps as /s/ than those exposed in Isolation ($\beta = -0.77, SE = 0.32, z = -2.4, p = 0.01$).  Participants in the Unpredictive condition did not behave significantly different from those in the Isolation condition ($\beta = -0.35, SE = 0.31, z = -1.1, p = 0.25$).  Attention and Exposure Type did not significantly interact.
+As an additional comparison, the data from this experiment was combined with the subset of participants in Experiment 1 who were exposed to the same set of words (the word-medial condition).  
+Exposure Type was recoded as a three-level factor, using treatment (dummy) contrast cpdomg, with the Experiment 1 exposure (Isolation) as the reference level. 
+An identically specified logisitic mixed effects model was fit to this set data as to the initial data.  
+In this model, there was a significant effect of Attention ($\beta = 0.74, SE = 0.32, z = 2.2, p = 0.02$), such that participants in Attention conditions were less likely to categorize the continua steps as /s/.  
+Additionally, Exposure Type had a marginal effect of Predictive compared to Isolation ($\beta = -0.43, SE = 0.23, z = -1.9, p = 0.05$) and two significant interactions, one between Step and Unpredictive ($\beta = -0.42, SE = 0.17, z = -2.4, p = 0.01$) and one between Step and Predictive ($\beta = -0.32, SE = 0.14, z = -2.2, p = 0.02$).  
+These marginal effect of Predictive indicates that participants in that condition were less likely categorize the continua as /s/ overall, and the interactions between the sentential conditions and Step indicate that the slope of categorization functions, as seen in Figure~\ref{fig:exp23categ}, were significantly steeper than in the Isolation condition.
+Attention and Exposure Type did not significantly interact.
 
-A final model was run with the reference level of Exposure Type changed to Predictive.  In this model, the intercept is no longer significant ($\beta = 0.44, SE = 0.28, z = 1.5, p = 0.12$), indicating percpetual learning was not robustly present in participants in the Predictive condition.  The difference between the Predictive condition and the Isolation condition remains ($\beta = 0.77, SE = 0.32, z = 2.4, p = 0.01$), and, as above, the difference between Predictive and Unpredictive is not significant ($\beta = 0.42, SE = 0.31, z = 1.3, p = 0.17$).
+Two additional models were run with the reference level for Exposure Type as Predictive and Unpredictive.  In the model with Predictive as reference, the intercept is no longer significant ($\beta = 0.44, SE = 0.28, z = 1.5, p = 0.12$), indicating percpetual learning was not robustly present in participants in the Predictive condition.  The difference between the Predictive condition and the Isolation condition remains ($\beta = 0.77, SE = 0.32, z = 2.4, p = 0.01$), and, as above, the difference between Predictive and Unpredictive is not significant ($\beta = 0.42, SE = 0.31, z = 1.3, p = 0.17$). ##Doublecheck these numbers, degenerate hessian for one
 
 
 \section{Discussion}
@@ -151,3 +160,8 @@ Figure~\ref{fig:exp13xoverdist} shows the distributions of cross over points acr
 \end{center}
 \end{figure*}
 
+There are several potential explanations for the lack of perceptual learning observed in the participants who heard the modified sound category only in predictable sentences.
+The first is that when the sentence is predictive of the final word, participants simply did not use the actual production of the final word for their resposne.  
+That is, because the task was to identify the correct picture as fast as possible, the available information earlier in the sentence provided sufficient information to render a decision, so processing the final word was not necessary.  An experiment that would shed light on whether this explanation is valid would be one that looked at differences in form encoding.  For instance, if the form encoding is impoverished, long-term form priming would be affected, but long-term semantic priming would not be.  For unpredictive sentences, both long-term form priming and semantic priming should be to be as robust as such priming for words in isolation.
+
+Another potential explanation for the lack of perceptual learning effects observed is that predictive sentences are lower cognitive load than unpredictive sentences, as put forth by \citet{Samuel1981}, where it wa found that listeners are more sensitive to signal properties of words in predictive contexts.  In line with that reasoning, the reduced cognitive load in predictive sentences would allow listeners to attend to the signal more easily, reducing the perceptual learning, as in the previous two experiments.  However, perceptual learning effects were still observed in those experiments, whereas it appears to be absent entirely for the participants exposed to the sound category in predictive sentences.

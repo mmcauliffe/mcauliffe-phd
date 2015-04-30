@@ -111,9 +111,44 @@ As half of the critical items had a sibilant in the middle of the word (onset of
 \caption{Proportion of word-responses for /s/-initial exposure words. Solid lines represent Experiment 1 selection criteria (50\% word-response rate) and dashed lines represent Experiment 2 selection criteria (30\% word-response rate).  Dots are averaged word-response across subjects, and the blue line is a binomial model constructed from the responses.}
 \end{figure}
 
+\begin{table}
+\caption{Step chosen for each Word-initial stimulus in Experiment 1 and the proporation /s/ response in the pretest}
+\label{tbl:exp1srespinitial}
+\centering
+\begin{tabular}{ccc}
+\toprule
+Word & Step chosen & Proportion /s/ response \\
+\midrule
+ ceiling & 7 & 0.40 \\
+celery & 7 & 0.30 \\
+cement & 7 & 0.26 \\
+ceremony & 7 & 0.44 \\
+saddle & 8 & 0.25 \\
+safari & 6 & 0.45 \\
+sailboat & 7 & 0.35 \\
+satellite & 7 & 0.45 \\
+sector & 6 & 0.39 \\
+ seminar & 7 & 0.33 \\
+ settlement & 7 & 0.42 \\
+ sidewalk & 7 & 0.30 \\
+ silver & 7 & 0.21 \\
+ socket & 7 & 0.30 \\
+ sofa & 7 & 0.26 \\
+ submarine & 7 & 0.45 \\
+ sunroof & 6 & 0.39 \\
+ surfboard & 7 & 0.59 \\
+ syrup & 6 & 0.37 \\
+\midrule
+ Average &  6.8 & 0.36 \\
+
+\bottomrule
+\end{tabular}
+\end{table}
+
 The proportion of s-responses (or word responses for exposure items) at each step of each continuum was calculated and the most ambiguous step chosen. 
 The threshold for the ambiguous step for this experiment was when the percentage of s-response dropped near 50\%. 
-A full list of steps chosen for each stimulus item is in the appendix.  For the minimal pairs, six steps surrounding the 50\% cross over point were selected for use in the phonetic categorization task.  
+The list of steps chosen for Word-initial target stimuli is in Table~\ref{tbl:exp1srespinitial} and in Table~\ref{tbl:exp1srespfinal} for Word-final target stimuli.
+For the minimal pairs, six steps surrounding the 50\% cross over point were selected for use in the phonetic categorization task.  
 Due to experimenter error, the continuum for \emph{seedling} was not included in the stimuli, so the chosen step was the average chosen step for the /s/-initial words.  
 The average step chosen for /s/-initial words was 6.8 ($SD = 0.5$), and for /s/-final words the average step was 7.7 ($SD = 0.8$).
 
@@ -121,6 +156,42 @@ The average step chosen for /s/-initial words was 6.8 ($SD = 0.5$), and for /s/-
 \includegraphics[width=\textwidth]{sfinalpretest.pdf}
 \caption{Proportion of word-responses for /s/-final exposure words. Solid lines represent Experiment 1 selection criteria (50\% word-response rate) and dashed lines represent Experiment 2 selection criteria (30\% word-response rate).  Dots are averaged word-response across subjects, and the blue line is a binomial model constructed from the responses}
 \end{figure}
+
+
+\begin{table}
+\caption{Step chosen for each Word-medial stimulus in Experiment 1 and the proporation /s/ response in the pretest}
+\label{tbl:exp1srespfinal}
+\centering
+\begin{tabular}{cccc}
+\toprule
+ Word & Step chosen & Proportion /s/ response \\
+\midrule
+carousel & 7 & 0.45 \\
+castle & 7 & 0.50 \\
+concert & 7 & 0.53 \\
+croissant & 7 & 0.42 \\
+currency & 7 & 0.58 \\
+cursor & 8 & 0.53 \\
+ curtsy & 8 & 0.40 \\
+ dancer & 7 & 0.45 \\
+ dinosaur & 7 & 0.50 \\
+ faucet & 7 & 0.45 \\
+ fossil & 8 & 0.30 \\
+ galaxy & 9 & 0.47 \\
+ medicine & 8 & 0.55 \\
+ missile & 10 & 0.30 \\
+ monsoon & 8 & 0.42 \\
+ pencil & 7 & 0.45 \\
+pharmacy & 8 & 0.42 \\
+tassel & 8 & 0.35 \\
+ taxi & 8 & 0.50 \\
+ whistle & 7 & 0.58 \\
+\midrule
+ Average   & 7.7 & 0.45 \\
+
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsubsection{Procedure}
 
@@ -159,7 +230,7 @@ Trials containing an ambiguous /s/ were less likely to be responded to as a word
 
 Responses with reaction times less than 200 ms or greater than 2500 ms were excluded from analyses. 
 Participants were excluded if their initial estimated cross over point for the continuum lay outside of the 6 steps presented (2 participants).  
-A logistic mixed effects model was constructed with Subject and Continua as random effects and continua Step as random slopes, with 0 coded as a /\textesh/ response and 1 as a /s/ response.  Fixed effects for the model were Step, Exposure Type, Attention and their interactions.
+A logistic mixed effects model was constructed with Subject and Continua as random effects and continua Step as random slopes, with 0 coded as a /\textesh/ response and 1 as a /s/ response.  Fixed effects for the model were Step, Exposure Type, Attention and their interactions.  Deviance contrast coding was used for Exposure Type (Word-initial = 0.5, Word-medial = -0.5) and Attention (No attention = 0.5, Attention = -0.5).
 
 \begin{figure*}[!ht]
 \caption{Proportion /s/ response along the 6 step continua as a function of Exposure Type and Attention in Experiment 1.    In the S-Final condition, participants in the Attention condition showed a larger perceptual learning effect than those in the No Attention condition.  In the S-Initial condition, there were no differences in perceptual learning between the Attention conditions. Error bars represent 95\% confidence intervals.}
@@ -169,7 +240,7 @@ A logistic mixed effects model was constructed with Subject and Continua as rand
 \end{center}
 \end{figure*}
 
-There was a significant effect for the intercept ($\beta = 0.83, SE = 0.31, z = 2.6, p < 0.01$), indicating that participants categorized more of the continua as /s/ in general.  There was also a significant main effect of Step ($\beta = -2.10, SE = 0.20, z = -10.3, p < 0.01$), and a significant interaction between Exposure Type and Attention ($\beta = -0.93, SE = 0.43, z = -2.14, p = 0.03$).  There was a marginal main effect of Exposure Type ($\beta =0.58, SE = 0.30, z = 1.8, p = 0.06$).  
+There was a significant effect for the intercept ($\beta = 0.76, SE = 0.22, z = 3.3, p < 0.01$), indicating that participants categorized more of the continua as /s/ in general.  There was also a significant main effect of Step ($\beta = -2.14, SE = 0.15, z = -14.2, p < 0.01$), and a significant interaction between Exposure Type and Attention ($\beta = -0.93, SE = 0.45, z = -2.04, p = 0.04$).
 
 These results are shown in Figure~\ref{fig:exp1categ}.  
 The solid lines show the control participants' categorization function across the 6 steps of the continua.  
@@ -223,7 +294,77 @@ A total of 127 participants from the UBC population completed the experiment and
 
 \subsubsection{Materials}
 
-Experiment 2 used the same items as Experiment 1, except that the step along the /s/-/\textesh/ continua chosen as the ambiguous sound had a different threshold.  For this experiment, 30\% identification as the /s/ word was used the threshold. The average step chosen for /s/-initial words was 7.3 ($SD = 0.8$), and for /s/-final words the average step was 8.9 ($SD = 0.9$).
+Experiment 2 used the same items as Experiment 1, except that the step along the /s/-/\textesh/ continua chosen as the ambiguous sound had a different threshold.  For this experiment, 30\% identification as the /s/ word was used the threshold. The average step chosen for /s/-initial words was 7.3 ($SD = 0.8$), and for /s/-final words the average step was 8.9 ($SD = 0.9$).  The list of steps chosen for Word-initial and Word-medial target stimuli are in Tables~\ref{tbl:exp2srespinitial} and~\ref{tbl:exp2srespfinal}, respectively.
+
+\begin{table}
+\caption{Step chosen for each Word-initial stimulus in Experiment 2 and the proporation /s/ response in the pretest}
+\label{tbl:exp2srespinitial}
+\centering
+\begin{tabular}{ccc}
+\toprule
+ Word & Step chosen & Proportion /s/ response \\
+\midrule
+ ceiling & 8 & 0.20 \\
+ celery & 7 & 0.30 \\
+ cement & 7 & 0.26 \\
+ ceremony & 8 & 0.39 \\
+ saddle & 8 & 0.25 \\
+ safari & 7 & 0.21 \\
+ sailboat & 7 & 0.35 \\
+satellite & 8 & 0.30 \\
+ sector & 6 & 0.39 \\
+ seminar & 7 & 0.33 \\
+ settlement & 8 & 0.35 \\
+ sidewalk & 7 & 0.30 \\
+ silver & 7 & 0.21 \\
+ socket & 7 & 0.30 \\
+ sofa & 7 & 0.26 \\
+ submarine & 9 & 0.32 \\
+ sunroof & 6 & 0.39 \\
+ surfboard & 8 & 0.25 \\
+ syrup & 6 & 0.37 \\
+\midrule
+Average  & 7.3 & 0.30 \\
+
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\begin{table}
+\caption{Step chosen for each Word-medial stimulus in Experiment 2 and the proporation /s/ response in the pretest}
+\label{tbl:exp2srespfinal}
+\centering
+\begin{tabular}{ccc}
+\toprule
+ Word & Step chosen & Proportion /s/ response \\
+\midrule
+ carousel & 8 & 0.25 \\
+ castle & 9 & 0.25 \\
+ concert & 10 & 0.30 \\
+ croissant & 8 & 0.20 \\
+ currency & 9 & 0.30 \\
+ cursor & 11 & 0.30 \\
+ curtsy & 9 & 0.26 \\
+ dancer & 8 & 0.26 \\
+ dinosaur & 9 & 0.39 \\
+ faucet & 8 & 0.25 \\
+ fossil & 8 & 0.30 \\
+ galaxy & 10 & 0.26 \\
+ medicine & 9 & 0.30 \\
+missile & 10 & 0.30 \\
+monsoon & 9 & 0.15 \\
+ pencil & 8 & 0.37 \\
+ pharmacy & 9 & 0.39 \\
+ tassel & 8 & 0.35 \\
+ taxi & 10 & 0.35 \\
+ whistle & 9 & 0.35 \\
+\midrule
+ Average  & 8.9 & 0.29 \\
+
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsubsection{Procedure}
 
@@ -254,7 +395,7 @@ A logistic mixed effects model was constructed with Subject and Continua as rand
 \end{center}
 \end{figure*}
 
-There was a significant effect for the Intercept ($\beta = 1.01, SE = 0.38, z = 2.6, p < 0.01$), indicating that participants categorized more of the continua as /s/ in general.  There was also a significant main effect of Step ($\beta = -2.67, SE = 0.23, z = -11.2, p < 0.01$).  There were no other significant main effects or interactions, though an interaction between Step and Attention trended toward significant ($\beta = 0.35, SE = 0.21, z = 1.6, p = 0.09$).
+There was a significant effect for the Intercept ($\beta = 0.60, SE = 0.26, z = 2.3, p = 0.02$), indicating that participants categorized more of the continua as /s/ in general.  There was also a significant main effect of Step ($\beta = -2.51, SE = 0.19, z = -13.1, p < 0.01$).  %There were no other significant main effects or interactions, though an interaction between Step and Attention trended toward significant ($\beta = 0.35, SE = 0.21, z = 1.6, p = 0.09$).
 
 \begin{figure*}[!ht]
 

@@ -57,9 +57,13 @@ ggsave('../thesis/graphs/exp1_categresults_present.pdf',width=170,height=110,uni
 
 ggsave('../thesis/graphs/exp1_categresults.pdf',width=170,height=80,units='mm',dpi=600)
 
-ggplot(plotData,aes(x=Step,y=ACC, colour=Attention,shape=Attention,group=Attention)) + geom_point(size=1.7)+facet_grid(~ExposureType, labeller=if_labeller) +geom_line() + geom_errorbar(aes(ymin=ACC-ci,ymax=ACC+ci),linetype='solid',size=0.1)+ ylab('Proportion /s/ response') +xlab('Continua step') + scale_x_continuous(breaks = 1:6)  + theme_bw() + theme(text=element_text(size=6),legend.title=element_text(size=6),legend.text=element_text(size=6),legend.justification=c(0,0), legend.position='bottom')+scale_shape_manual(values = c(21, 22,23),labels = c('No attention','Attention','Control'))+scale_colour_manual(values = c("#0072B2", "#D55E00","#000000"),labels = c('No attention','Attention','Control'))
+ggplot(subset(plotData, ExposureType =='initial'),aes(x=Step,y=ACC, colour=Attention,shape=Attention,group=Attention)) + geom_point(size=1.7)+facet_grid(~ExposureType, labeller=if_labeller) +geom_line() + geom_errorbar(aes(ymin=ACC-ci,ymax=ACC+ci),linetype='solid',size=0.1)+ ylab('Proportion /s/ response') +xlab('Continua step') + scale_x_continuous(breaks = 1:6)  + theme_bw() + theme(text=element_text(size=6),legend.title=element_text(size=4),legend.text=element_text(size=4),legend.justification=c(0,0), legend.position=c(-0.05,-0.05), legend.background = element_blank())+scale_shape_manual(values = c(21, 22,23),labels = c('No attention','Attention','Control'))+scale_colour_manual(values = c("#0072B2", "#D55E00","#000000"),labels = c('No attention','Attention','Control'))
 
-ggsave('../thesis/graphs/exp1_categresults_present2.pdf',width=50,height=90,units='mm',dpi=600)
+ggsave('../thesis/graphs/exp1_categresults_present2-initial.pdf',width=50,height=85,units='mm',dpi=600)
+
+ggplot(subset(plotData, ExposureType =='final'),aes(x=Step,y=ACC, colour=Attention,shape=Attention,group=Attention)) + geom_point(size=1.7)+facet_grid(~ExposureType, labeller=if_labeller) +geom_line() + geom_errorbar(aes(ymin=ACC-ci,ymax=ACC+ci),linetype='solid',size=0.1)+ ylab('Proportion /s/ response') +xlab('Continua step') + scale_x_continuous(breaks = 1:6)  + theme_bw() + theme(text=element_text(size=6),legend.title=element_text(size=4),legend.text=element_text(size=4),legend.justification=c(0,0), legend.position=c(-0.05,-0.05), legend.background = element_blank())+scale_shape_manual(values = c(21, 22,23),labels = c('No attention','Attention','Control'))+scale_colour_manual(values = c("#0072B2", "#D55E00","#000000"),labels = c('No attention','Attention','Control'))
+
+ggsave('../thesis/graphs/exp1_categresults_present2-final.pdf',width=50,height=85,units='mm',dpi=600)
 
 plotData = subset(xovers,Experiment == 'exp2')
 
@@ -91,6 +95,14 @@ ggsave('../thesis/graphs/exp2_categresults_present.pdf',width=170,height=110,uni
 
 ggsave('../thesis/graphs/exp2_categresults.pdf',width=170,height=80,units='mm',dpi=600)
 
+ggplot(subset(plotData, ExposureType =='initial'),aes(x=Step,y=ACC, colour=Attention,shape=Attention,group=Attention)) + geom_point(size=1.7)+facet_grid(~ExposureType, labeller=if_labeller) +geom_line() + geom_errorbar(aes(ymin=ACC-ci,ymax=ACC+ci),linetype='solid',size=0.1)+ ylab('Proportion /s/ response') +xlab('Continua step') + scale_x_continuous(breaks = 1:6)  + theme_bw() + theme(text=element_text(size=6),legend.title=element_text(size=4),legend.text=element_text(size=4),legend.justification=c(0,0), legend.position=c(-0.05,-0.05), legend.background = element_blank())+scale_shape_manual(values = c(21, 22,23),labels = c('No attention','Attention','Control'))+scale_colour_manual(values = c("#0072B2", "#D55E00","#000000"),labels = c('No attention','Attention','Control'))
+
+ggsave('../thesis/graphs/exp2_categresults_present2-initial.pdf',width=50,height=85,units='mm',dpi=600)
+
+ggplot(subset(plotData, ExposureType =='final'),aes(x=Step,y=ACC, colour=Attention,shape=Attention,group=Attention)) + geom_point(size=1.7)+facet_grid(~ExposureType, labeller=if_labeller) +geom_line() + geom_errorbar(aes(ymin=ACC-ci,ymax=ACC+ci),linetype='solid',size=0.1)+ ylab('Proportion /s/ response') +xlab('Continua step') + scale_x_continuous(breaks = 1:6)  + theme_bw() + theme(text=element_text(size=6),legend.title=element_text(size=4),legend.text=element_text(size=4),legend.justification=c(0,0), legend.position=c(-0.05,-0.05), legend.background = element_blank())+scale_shape_manual(values = c(21, 22,23),labels = c('No attention','Attention','Control'))+scale_colour_manual(values = c("#0072B2", "#D55E00","#000000"),labels = c('No attention','Attention','Control'))
+
+ggsave('../thesis/graphs/exp2_categresults_present2-final.pdf',width=50,height=85,units='mm',dpi=600)
+
 plotData = subset(xovers,T)
 plotData$Experiment <- factor(plotData$Experiment, levels = c('exp2','exp1'))
 
@@ -107,15 +119,17 @@ ggsave('../thesis/graphs/exp12_xoverwordresp.pdf',width=170,height=80,units='mm'
 
 ## Exposure
 
-ggplot(subset(expose.word,Experiment == 'exp2'),aes(y=LogRT, x=Trial, colour=itemtype)) + geom_smooth(method='lm')
+ggplot(subset(expose.word,Experiment == 'exp2'),aes(y=LogRT, x=Trial, colour=itemtype2)) + geom_smooth(method='lm')+facet_grid(Attention~ExposureType)
 
-ggplot(subset(expose.word,Experiment == 'exp1'),aes(y=LogRT, x=Trial, colour=itemtype)) + geom_smooth(method='lm')
+ggplot(subset(expose.word,Experiment == 'exp1'),aes(y=LogRT, x=Trial, colour=itemtype2)) + geom_smooth(method='lm')+facet_grid(Attention~ExposureType)
 
-ggplot(subset(expose.word,Experiment == 'exp2'),aes(y=ACC, x=Trial, colour=itemtype)) + geom_smooth(method='glm')
+ggplot(subset(expose.word,Experiment == 'exp2'),aes(y=ACC, x=Trial, colour=itemtype2)) + geom_smooth(method='glm')+facet_grid(Attention~ExposureType)
 
-ggplot(subset(expose.word,Experiment == 'exp1'),aes(y=ACC, x=Trial, colour=itemtype)) + geom_smooth(method='glm')
+ggplot(subset(expose.word,Experiment == 'exp1'),aes(y=ACC, x=Trial, colour=itemtype2)) + geom_smooth(method='glm')+facet_grid(Attention~ExposureType)
 
-ggplot(expose3,aes(y=LogRT, x=Trial, colour=Type)) + geom_smooth(method='lm')
+ggplot(subset(expose3,ExposureType=='predictive'),aes(y=LogRT, x=Trial, colour=Type)) + geom_smooth(method='lm')+facet_grid(Attention~Predictability)
+
+ggplot(subset(expose3,ExposureType=='unpredictive'),aes(y=LogRT, x=Trial, colour=Type)) + geom_smooth(method='lm')+facet_grid(Attention~Predictability)
 
 ## End Exposure
 
