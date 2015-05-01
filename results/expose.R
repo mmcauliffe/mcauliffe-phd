@@ -6,7 +6,7 @@ summary(aov(WordResp ~ Attention*itemtype,subset(subj.tolerances,Experiment == '
 summary(aov(WordResp ~ Attention*itemtype,subset(subj.tolerances,Experiment == 'exp2')))
 ### EXPERIMENT 1
 
-experiment.1.expose.mod <- glmer(ACC ~ cTrial*itemtype2*Attention*ExposureType + (1+cTrial*itemtype2|Subject) + (1+Attention*ExposureType|Word), family='binomial',data=subset(expose.word,Experiment=='exp2'), control=glmerControl(optCtrl=list(maxfun=2000000) ))
+experiment.1.expose.mod <- glmer(ACC ~ cTrial*itemtype2*Attention*ExposureType + (1+cTrial*itemtype2|Subject) + (1+Attention|Word), family='binomial',data=subset(expose.word,Experiment=='exp2'), control=glmerControl(optCtrl=list(maxfun=2000000) ))
 summary(experiment.1.expose.mod)
 
 experiment.1.expose.mod.trimmed <- glmer(ACC ~ cTrial*itemtype2*Attention*ExposureType +(1|Subject) + (0+cTrial*itemtype2|Subject) + (1+Attention|Word), family='binomial',data=subset(expose.word,Experiment=='exp2'), control=glmerControl(optCtrl=list(maxfun=2000000) ), subset = abs(scale(resid(experiment.1.expose.mod))) < 2.5)
@@ -23,7 +23,7 @@ summary(experiment.1.expose.mod.rt.trimmed)
 
 ### EXPERIMENT 2
 
-experiment.2.expose.mod <- glmer(ACC ~ cTrial*itemtype2*Attention*ExposureType + (1+cTrial*itemtype2|Subject) + (1+Attention*ExposureType|Word), family='binomial',data=subset(expose.word,Experiment=='exp1'), control=glmerControl(optCtrl=list(maxfun=200000) ))
+experiment.2.expose.mod <- glmer(ACC ~ cTrial*itemtype2*Attention*ExposureType +(1|Subject) + (0+cTrial+itemtype2|Subject) + (1+Attention*ExposureType|Word), family='binomial',data=subset(expose.word,Experiment=='exp1'), control=glmerControl(optCtrl=list(maxfun=200000) ))
 summary(experiment.2.expose.mod)
 
 experiment.2.expose.mod.trimmed <- glmer(ACC ~ cTrial*itemtype2*Attention*ExposureType + (1+cTrial*itemtype2|Subject) + (1+Attention|Word), family='binomial',data=subset(expose.word,Experiment=='exp1'), control=glmerControl(optCtrl=list(maxfun=200000) ), subset = abs(scale(resid(experiment.2.expose.mod))) < 2.5)
