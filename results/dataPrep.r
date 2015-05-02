@@ -2,6 +2,7 @@ library(lme4)
 library(ggplot2)
 library(plyr)
 library(stringr)
+library(Cairo)
 
 #s100 initial, attend
 #s200 final, noattend
@@ -336,6 +337,9 @@ contrasts(expose.word$ExposureType) <- contrasts(expose.word$ExposureType) / 2
 contrasts(expose3$Attention) <- contr.sum
 contrasts(expose3$Attention) <- contrasts(expose3$Attention) / 2
 
+contrasts(expose3$ExposureType) <- contr.sum
+contrasts(expose3$ExposureType) <- contrasts(expose3$ExposureType) / 2
+
 contrasts(expose3$Predictability) <- contr.sum
 contrasts(expose3$Predictability) <- contrasts(expose3$Predictability) / 2
 
@@ -345,6 +349,8 @@ contrasts(categ$Attention) <- contrasts(categ$Attention) / 2
 
 contrasts(categ$ExposureType) <- contr.sum
 contrasts(categ$ExposureType) <- contrasts(categ$ExposureType) / 2
+
+categ$Experiment <- factor(categ$Experiment)
 
 contrasts(categ$Experiment) <- contr.sum
 contrasts(categ$Experiment) <- contrasts(categ$Experiment) / 2
@@ -362,7 +368,7 @@ contrasts(categ23$Attention) <- contrasts(categ23$Attention) / 2
 #contrasts(categ23$ExposureType) <- contrasts(categ23$ExposureType) / 2
 
 getCrossOver <- function(data){
-  data$p <- -1*data[,'(Intercept)']/data[,'Step']
+  data$p <- -1*data[,'(Intercept)']/data[,'cStep']
   data$pRound <- round(data$p)
   
   data <- data.frame(Subject = row.names(data),Xover = data$p)

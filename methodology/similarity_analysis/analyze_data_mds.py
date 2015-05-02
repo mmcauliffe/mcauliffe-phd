@@ -38,7 +38,7 @@ def sibilant_distance(rep_one, rep_two):
     return dtw_distance(rep_one[one_begin, one_end], rep_two[two_begin, two_end])
 
 def save_output(cn):
-    with open('output.txt', 'w') as f:
+    with open('output_word.txt', 'w') as f:
         writer = csv.writer(f, delimiter = '\t')
         writer.writerow(['X', 'Y', 'Experiment', 'Type', 'Word'])
 
@@ -56,7 +56,7 @@ def save_output(cn):
 
 def main():
     kwargs = {'rep':'mfcc',
-                'match_function':sibilant_distance,
+                'match_function':word_distance,
                 'use_multi':True,
                 'num_cores':4,
                 'return_rep': True,
@@ -86,6 +86,32 @@ def debug():
             directories.append(path)
     print(directories)
 
+def find_durations():
+    kwargs = {'rep':'mfcc',
+                'match_function':word_distance,
+                'use_multi':True,
+                'num_cores':4,
+                'return_rep': True,
+                }
+    scores, reps = analyze_directory(data_dir, **kwargs)
+    out = list()
+    with open('output_dur.txt', 'w') as f:
+        writer = csv.writer(f, delimiter = '\t')
+        writer.writerow(['Label','Duration'])
+        for v in reps.values():
+            if 'Exp3' not in v._true_label:
+                continue
+            base, _ = os.path.splitext(v._filepath)
+            one_textgrid = base + '.TextGrid'
+            one_begin,one_end = get_vowel_points(one_textgrid,
+                        tier_name = 'sibilant', vowel_label = 'sibilant')
+            dur = one_end - one_begin
+            writer.writerow([v._true_label,str(dur)])
+
+
+
+
+
 if __name__ == '__main__':
-    main()
+    find_durations()
     #debug()

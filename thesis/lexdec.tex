@@ -8,12 +8,18 @@
 
 \section{Motivation}
 
-The experiments in this chapter implement a standard lexically-guided perceptual learning experiment with manipulations to lexical bias and selective attention.  
-In the perceptual learning literature, word endorsement rates during exposure are reported as high, such as no lower than 85\% in some studies \citep{Reinisch2013}. 
-However, word endorsement rate of words containing ambiguous sounds varies critically as a result of the position of that sound, and thus the lexical bias present when a listener encounters it, and whether a listener's attention is directed to that sound \citep{Pitt2012}.  
-Experiment 1 contains manipulations to these two factors across participants.
 
-Additionally, studies have reported greater perceptual learning when ambiguous stimuli are closer to the distribution expected by a listener than when the ambiguous stimuli are farther away from expected distributions \citep{Sumner2011}.  
+The experiments in this chapter implement a standard lexically-guided perceptual learning experiment with exposure to a modified /s/ category during a lexical decision task.
+Because the exposure task is one of word recognition, participants will default to a comprehension-oriented attentional set.
+The manipulations in the two experiments presented here will encourage the participants to adopt a more perception-oriented attentional set.
+The first manipulation will be through the position of the modified /s/ category in the exposure tokens.
+Lexical bias effects increase as the length of the word increases and as the word unfolds \citep{Pitt2006, Pitt2012}.
+The second manipulation will be through explicit instructions about the modified /s/category.
+Such instructions have been shown to reduce lexical bias effects in lexical decision tasks \citep{Pitt2012}.
+Both of these manipulations will be present in Experiments 1 and 2.
+
+The experiments differ in how typical the modified /s/ category.
+Studies have reported greater perceptual learning when ambiguous stimuli are closer to the distribution expected by a listener than when the ambiguous stimuli are farther away from expected distributions \citep{Sumner2011}.  
 Words containing stimuli farther away from the target production are in general less likely to be endorsed as words, but similar effects of attention were found across word position \citep{Pitt2012}.  
 Experiment 2 contains the same manipulations to attention and lexical bias as Experiment 1, but with ambiguous stimuli farther from the target production than those used in Experiment 1.
 
@@ -26,12 +32,12 @@ Regardless of the cause, adopting a perception-oriented attentional set is predi
 
 \section{Experiment 1}
 
-In these two experiments, listeners will be exposed to ambiguous productions of words containing a single instance of /s/, where the /s/ has been modified to sound more like /\textesh/ in a lexical decision task. 
-In one group, the S-Initial group, the critical words will have an /s/ in the onset of the first syllable, like in \emph{cement}, with no /\textesh/ neighbour, like \emph{shement}.  
-In the other group, the S-Final group, the critical words will have an /s/ in the onset of the final syllable, like in \emph{tassel}, with no /\textesh/ neighbour like \emph{tashel}.  
+In this experiments, listeners will be exposed to ambiguous productions of words containing a single instance of /s/, where the /s/ has been modified to sound more like /\textesh/ in a lexical decision task. 
+In one group, the critical words will have an /s/ in word-initial position, like in \emph{cement}, with no /\textesh/ neighbour, like \emph{shement}.  
+In the other group, the critical words will have an /s/ in word-medial position, like in \emph{tassel}, with no /\textesh/ neighbour like \emph{tashel}.  
 In addition, half of each group will be given instructions that the speaker has an ambiguous /s/ and to listen carefully, following \citet{Pitt2012}.
 
-Given the difference in word response rates depending on position in the word, we would predict that listeners exposed to ambiguous sounds earlier in words would be less likely to accept these productions as words as compared to listeners exposed to ambiguous sounds later in words.  
+Given the difference in word response rates depending on position in the word in \citet{Pitt2012}, we would predict that listeners exposed to ambiguous sounds earlier in words would be less likely to accept these productions as words as compared to listeners exposed to ambiguous sounds later in words.  
 In addition, given the reliance of perceptual learning on lexical scaffolding, this lower acceptance rate for the former group should lead to a smaller perceptual learning effect as compared to the latter group.
 
 \subsection{Methodology}
@@ -47,7 +53,7 @@ Twenty five other native speakers of English participated for course credit in a
 
 One hundred and twenty English words and 100 nonwords that were phonologically legal in English were used as exposure materials.  
 The set of words consisted of 40 critical items, 20 control items and 60 filler words.  
-Half of the critical items had an /s/ in the onset of the first syllable and half had an /s/ in the onset of the final syllable.  
+Half of the critical items had an /s/ in the onset of the first syllable (Word-initial) and half had an /s/ in the onset of the final syllable (Word-medial).  
 All critical tokens formed nonwords if their /s/ was replaced with /\textesh/. Half the control items had an /\textesh/ in the onset of the first syllable and half had an /\textesh/ in the onset of the final syllable.  
 Each critical item and control item contained just the one sibilant, with no other /s z \textesh\ \textyogh\ \textteshlig\  \textdyoghlig/.  
 Filler words and nonwords did not contain any sibilants.  
@@ -62,10 +68,10 @@ Frequencies and number of syllables across item types are in Table~\ref{tbl:expf
 Item type & Frequency & Number of syllables \\
 \midrule
 Filler words & 1.81 (1.05) & 2.4 (0.55) \\
-/s/-initial & 1.69 (0.85)  & 2.4 (0.59)\\
-/s/-final & 1.75 (1.11)  & 2.3 (0.47) \\
-/\textesh/-initial & 2.01 (1.17) & 2.3 (0.48) \\
-/\textesh/-final & 1.60 (1.12) & 2.4 (0.69) \\
+/s/ Word-initial & 1.69 (0.85)  & 2.4 (0.59)\\
+/s/ Word-medial & 1.75 (1.11)  & 2.3 (0.47) \\
+/\textesh/ Word-initial & 2.01 (1.17) & 2.3 (0.48) \\
+/\textesh/ Word-medial & 1.60 (1.12) & 2.4 (0.69) \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -96,23 +102,23 @@ Critical words for the exposure phase were recorded in pairs, once normally and 
 The speaker was instructed to produce both forms with comparable speech rate, speech style and prosody.
 
 For each critical item, the word and nonword versions were morphed together in an 11-step continuum (0\%-100\% of the nonword /\textesh/ recording, in steps of 10\%) using STRAIGHT \citep{Kawahara2008} in Matlab.  
-Prior to morphing, the word and nonword versions were time aligned based on acoustic landmarks, like stop bursts, onset of F2, nasalization or frication, etc.  
+Prior to morphing, the word and nonword versions were time aligned based on acoustic landmarks, such as stop bursts, onset of F2, nasalization or frication, etc.  
 All control items and filler words were processed and resynthesized by STRAIGHT to ensure a consistent quality across stimulus items.
 
 \subsubsection{Pretest}
 
 To determine which step of each continua would be used in exposure, a phonetic categorization experiment was conducted.  
 Participants were presented with each step of each exposure word-nonword continuum and each categorization minimal pair continuum, resulting in 495 trials (40 exposure words plus five minimal pairs by 11 steps).  
-The experiment was implemented in E-prime (cite).  
+The experiment was implemented in E-prime \citep{PsychologySoftwareTools2012}.  
 As half of the critical items had a sibilant in the middle of the word (onset of the final syllable), participants were asked to respond with word or non word rather than asking for the identity of the ambiguous sound, as in previous research \citep{Reinisch2013}.  
 
 \begin{figure}
-\includegraphics[width=\textwidth]{sinitialpretest.pdf}
+\includegraphics[width=\textwidth]{graphs/sinitialpretest.pdf}
 \caption{Proportion of word-responses for /s/-initial exposure words. Solid lines represent Experiment 1 selection criteria (50\% word-response rate) and dashed lines represent Experiment 2 selection criteria (30\% word-response rate).  Dots are averaged word-response across subjects, and the blue line is a binomial model constructed from the responses.}
 \end{figure}
 
 \begin{table}
-\caption{Step chosen for each Word-initial stimulus in Experiment 1 and the proporation /s/ response in the pretest}
+\caption{Step chosen for each Word-initial stimulus in Experiment 1 and the proportion /s/ response in the pretest}
 \label{tbl:exp1srespinitial}
 \centering
 \begin{tabular}{ccc}
@@ -145,15 +151,15 @@ sector & 6 & 0.39 \\
 \end{tabular}
 \end{table}
 
-The proportion of s-responses (or word responses for exposure items) at each step of each continuum was calculated and the most ambiguous step chosen. 
-The threshold for the ambiguous step for this experiment was when the percentage of s-response dropped near 50\%. 
-The list of steps chosen for Word-initial target stimuli is in Table~\ref{tbl:exp1srespinitial} and in Table~\ref{tbl:exp1srespfinal} for Word-final target stimuli.
+The proportion of /s/-responses (or word responses for exposure items) at each step of each continuum was calculated and the most ambiguous step chosen. 
+The threshold for the ambiguous step for this experiment was when the percentage of /s/-response dropped near 50\%. 
+The list of steps chosen for Word-initial target stimuli is in Table~\ref{tbl:exp1srespinitial} and in Table~\ref{tbl:exp1srespfinal} for Word-medial target stimuli.
 For the minimal pairs, six steps surrounding the 50\% cross over point were selected for use in the phonetic categorization task.  
 Due to experimenter error, the continuum for \emph{seedling} was not included in the stimuli, so the chosen step was the average chosen step for the /s/-initial words.  
-The average step chosen for /s/-initial words was 6.8 ($SD = 0.5$), and for /s/-final words the average step was 7.7 ($SD = 0.8$).
+The average step chosen for Word-initial /s/ words was 6.8 ($SD = 0.5$), and for Word-medial /s/ words the average step was 7.7 ($SD = 0.8$).
 
 \begin{figure}
-\includegraphics[width=\textwidth]{sfinalpretest.pdf}
+\includegraphics[width=\textwidth]{graphs/sfinalpretest.pdf}
 \caption{Proportion of word-responses for /s/-final exposure words. Solid lines represent Experiment 1 selection criteria (50\% word-response rate) and dashed lines represent Experiment 2 selection criteria (30\% word-response rate).  Dots are averaged word-response across subjects, and the blue line is a binomial model constructed from the responses}
 \end{figure}
 
@@ -193,97 +199,133 @@ tassel & 8 & 0.35 \\
 \end{tabular}
 \end{table}
 
+To visualize the effect of morphing on the acoustics of the sibilants, a multidimensional scaled plot of acoustic distance was constructed.  
+Using the \texttt{python-acoustic-similarity} package \citep{McAuliffe2015}, sibilants were transformed into arrays of mel-frequency cepstrum coefficients (MFCC), and then pairwise distances were computed via dynamic time warping to create a distance matrix of the sibilant productions.  
+This distance matrix was then multidimensionally scaled to produce Figure~\ref{fig:exp1mds}.  
+As seen there, the original, unsynthesized productions (in blue) form four quadrants based on the two principle components of the distance matrix. 
+ The first principle component is associated with the centroid frequency of the sibilant, separating /s/ tokens from /\textesh/.  
+The second principle component separates out the word-medial sibilants (in smaller font) from the word-initial sibilants (in larger font), largely from the different coarticulatory effects between the two positions.  
+The categorization tokens (all word-initial) predictably occupy the space between the word-initial /s/ tokens and the word-initial /\textesh/ tokens. 
+ The exposure tokens pattern as expected.  Exposure /\textesh/ tokens are overlapping with the original distributions for /\textesh/ tokens.  
+Exposure /s/ tokens are in between /s/ and /\textesh/, though word-medial /s/ tokens are closer to the original /\textesh/ distribution, reflecting the difference in average stimuli step chosen in Tables~\ref{tbl:exp1srespinitial} and~\ref{tbl:exp1srespfinal}.
+
+\begin{figure*}[ht]
+\caption{Multidimensional scaling of the acoustic distances between the sibilants of original productions, categorization tokens and the exposure tokens in Experiment 1.}
+\label{fig:exp1mds}
+\begin{center}
+\includegraphics[width=\textwidth]{graphs/exp1_mds}
+\end{center}
+\end{figure*}
+
 \subsubsection{Procedure}
 
-Participants in the experimental conditions completed two tasks, an exposure task and a categorization task.  
+Participants in the experimental conditions completed an exposure task and a categorization task.  
 The exposure task was a lexical decision task, where participants heard auditory stimuli and were instructed to respond with either "word" if they thought what they heard was a word or "nonword" if they didn't think it was a word.  
 The buttons corresponding to "word" and "nonword" were counterbalanced across participants. Trial order was pseudorandom, with no critical or control items appearing in the first six trials, and no critical or control trials in a row, but random otherwise, following \citet{Reinisch2013}.
 
-In the categorization task, participants heard an auditory stimulus and had to categorize it as one of two words, differing only in the onset sibilant (s vs sh).  
+In the categorization task, participants heard an auditory stimulus and had to categorize it as one of two words, differing only in the onset sibilant, i.e. \emph{sin} or \emph{shin}.  
 The buttons corresponding to the words were counterbalanced across participants.  
 The six most ambiguous steps of the minimal pair continua were used with seven repetitions each, giving a total of 168 trials.
 Participants were instructed that there would two tasks in the experiment, and both tasks were explained at the beginning to remove experimenter interaction between exposure and categorization.  
 
-Participants were assigned to one of four conditions. 
-Two of the conditions exposed participants to only critical items that began with /s/, and the other two exposed them to only critical items that had an /s/ in the onset of the final syllable, giving a consistent 200 trials in all exposure phases with control and filler items shared across all participants. 
-Additionally participants in half the conditions received additional instructions that the speaker's "s" sounds were sometimes ambiguous, and to listen carefully to ensure correct responses in the lexical decision.
+Participants were assigned to one of four conditions, plus the control experiment. 
+Two of the conditions exposed participants to only critical items that began with /s/ (Word-initial condition), and the other two exposed them to only critical items that had an /s/ in the onset of the final syllable (Word-medial condition), giving a consistent 200 trials in all exposure phases with control and filler items shared across all participants. 
+Participants in half the conditions received additional instructions that the speaker's "s" sounds were sometimes ambiguous, and to listen carefully to ensure correct responses in the lexical decision.
+Participants assigned to the control experiment completed only the categorization task.
 
 \subsection{Results}
 
 \subsubsection{Control experiment}
 
 Responses with reaction times less than 200 ms or greater than 2500 ms were excluded from analyses. 
-A logistic mixed effects models was fit with Subject and Continua as random effects and Step as a fixed effect with by-Subject and by-Item random slopes for Step. 
+A logistic mixed effects models was fit with Subject and Continuum as random effects and Step as a fixed effect with by-Subject and by-Continuum random slopes for Step. 
 The intercept was not significant ($\beta = 0.43, SE = 0.29, z = 1.5, p = 0.13$), and Step was significant ($\beta = -2.61, SE = 0.28, z = -9.1, p < 0.01$).
 
 \subsubsection{Exposure}
 
 Trials with nonword stimuli and responses faster than 200 ms or slower than 2500 ms were excluded from analysis. 
 Performance on the exposure task was high overall, with accuracy on filler trials averaging 92\%.  
-A logistic mixed effects model with accuracy as the dependent variable was fit with fixed effects for Trial, Trial Type (Filler, /s/, /\textesh/), Attention (No Attention, Attention), Exposure Type (Word-Initial, Word-Medial) and their interactions.   Trial Type was coded using treatment (dummy) coding, with Filler as the reference level.  Deviance contrast coding was used for Exposure Type (Word-initial = 0.5, Word-medial = -0.5) and Attention (No attention = 0.5, Attention = -0.5).
-The random effect structure was as maximally specified as possible with random effects for Subject and Word, and by-Subject random slopes for Trial, Trial Type and their interactions and by-Word random slopes for Attention and Exposure Type and their interactions. 
+A logistic mixed-effects model with accuracy as the dependent variable was fit with fixed effects for Trial (0-200), Trial Type (Filler, /s/, and /\textesh/), Attention (No Attention and Attention), Exposure Type (Word-Initial and Word-Medial) and their interactions.   Trial Type was coded using treatment (dummy) coding, with Filler as the reference level.  Deviance contrast coding was used for Exposure Type (Word-initial = 0.5, Word-medial = -0.5) and Attention (No attention = 0.5, Attention = -0.5).
+The random effect structure was as maximally specified as possible with random intercepts for Subject and Word, and by-Subject random slopes for Trial, Trial Type and their interactions and by-Word random slopes for Attention and Exposure Type and their interactions. 
 
-Significant fixed effects were found for Trial Type of /s/ versus Filler ($\beta = -2.13, SE = 0.31, z = -6.8, p < 0.01$), Attention ($\beta = -0.57, SE = 0.28, z = -2.0, p = 0.04$), and an interaction between Trial and Trial Type of /s/ versus Filler ($\beta = -0.45, SE = 0.14, z = 3.1, p = 0.01$).  A marginal interaction between Attention and Trial Type of /s/ versus Filler was also present ($\beta = 0.72, SE = 0.39, z = 1.8, p = 0.06$).
+A significant fixed effect was found for Trial Type of /s/ versus Filler ($\beta = -2.13, SE = 0.31, z = -6.8, p < 0.01$), as participants were less likely to recognize words containing the modified /s/ category as compared to filler words.
+However, there was a significant interaction between Trial and Trial Type of /s/ versus Filler ($\beta = -0.45, SE = 0.14, z = 3.1, p = 0.01$), so the differences in accuracy between words with /s/ and filler words diminished over time.
+There was also a significant main effect of Attention ($\beta = -0.57, SE = 0.28, z = -2.0, p = 0.04$), indicating that participants were more accurate at identifying words in the Attention condition as compared to the No Attention condition.
+However, there was a marginal interaction between Attention and Trial Type of /s/ versus Filler ($\beta = 0.72, SE = 0.39, z = 1.8, p = 0.06$), suggesting that attention only increased accuracy for words not containing the modified /s/ category.
+Figure~\ref{fig:exp2exposeacc} shows within-subject mean accuracy across exposure, with Trial in four blocks.
+
+\begin{figure*}[!ht]
+\caption{Within-subject mean accuracy in the exposure phase of Experiment 1, separated out by Trial Type (Filler, /s/, and /\textesh/). Error bars represent 95\% confidence intervals.}
+\label{fig:exp2exposeacc}
+\begin{center}
+\includegraphics[width=\textwidth]{graphs/exp1_expacc}
+\end{center}
+\end{figure*}
+
+A linear mixed-effects with logarithmically-transformed reaction time as the dependent variable was fit with identical fixed effect and random effect structure as the logistic model for accuracy.
+Significant effects were found for Trial Type of /s/ versus Filler ($\beta = 0.71, SE = 0.07, t = 10.8$) and the interaction between Trial and Trial Type of /s/ versus Filler ($\beta = -0.08, SE = 0.02, t = -3.1$).  These effects follow the pattern found in the accuracy model, where participants begin with slower reaction times to words with /s/ than filler words, but over time, this difference lessens.  Figure~\ref{fig:exp2exposert} shows within-subject mean reaction time across exposure, with Trial in four blocks.
+
+\begin{figure*}[!ht]
+\caption{Within-subject mean reaction time in the exposure phase of Experiment 1, separated out by Trial Type (Filler, /s/, and /\textesh/). Error bars represent 95\% confidence intervals.}
+\label{fig:exp2exposert}
+\begin{center}
+\includegraphics[width=\textwidth]{graphs/exp1_exprt}
+\end{center}
+\end{figure*}
 
 \subsubsection{Categorization}
 
 Responses with reaction times less than 200 ms or greater than 2500 ms were excluded from analyses. 
-Participants were excluded if their initial estimated cross over point for the continuum lay outside of the 6 steps presented (2 participants).  
-A logistic mixed effects model was constructed with Subject and Continua as random effects and continua Step as random slopes, with 0 coded as a /\textesh/ response and 1 as a /s/ response.  Fixed effects for the model were Step, Exposure Type, Attention and their interactions.  Deviance contrast coding was used for Exposure Type (Word-initial = 0.5, Word-medial = -0.5) and Attention (No attention = 0.5, Attention = -0.5).
+Two participants were excluded because their initial estimated crossover point for the continuum lay outside of the 6 steps presented.  
+A logistic mixed effects model was constructed with Subject and Continuum as random effects and a by-Subject random slope for Step and by-Continuum random slopes for Step, Attention and Exposure Type and their interactions. 
+Fixed effects for the model were Step, Exposure Type, Attention and their interactions.  
+Deviance contrast coding was used for Exposure Type (Word-initial = 0.5, Word-medial = -0.5) and Attention (No attention = 0.5, Attention = -0.5).
+An /s/ response was coded as 1 and an /\textesh/ response as 0.
 
 \begin{figure*}[!ht]
-\caption{Proportion /s/ response along the 6 step continua as a function of Exposure Type and Attention in Experiment 1.    In the S-Final condition, participants in the Attention condition showed a larger perceptual learning effect than those in the No Attention condition.  In the S-Initial condition, there were no differences in perceptual learning between the Attention conditions. Error bars represent 95\% confidence intervals.}
+\caption{Proportion /s/ response along the 6 step continua as a function of Exposure Type and Attention in Experiment 1.    Error bars represent 95\% confidence intervals.}
 \label{fig:exp1categ}
 \begin{center}
 \includegraphics[width=\textwidth]{graphs/exp1_categresults}
 \end{center}
 \end{figure*}
 
-There was a significant effect for the intercept ($\beta = 0.76, SE = 0.22, z = 3.3, p < 0.01$), indicating that participants categorized more of the continua as /s/ in general.  There was also a significant main effect of Step ($\beta = -2.14, SE = 0.15, z = -14.2, p < 0.01$), and a significant interaction between Exposure Type and Attention ($\beta = -0.93, SE = 0.45, z = -2.04, p = 0.04$).
-
-These results are shown in Figure~\ref{fig:exp1categ}.  
-The solid lines show the control participants' categorization function across the 6 steps of the continua.  
-The error bars show within-subject 95\% confidence intervals at each step.  
+There was a significant effect for the intercept ($\beta = 0.76, SE = 0.22, z = 3.3, p < 0.01$), indicating that participants categorized more of the continua as /s/ in general.  There was also a significant main effect of Step ($\beta = -2.14, SE = 0.15, z = -14.2, p < 0.01$), and a significant interaction between Exposure Type and Attention ($\beta = -0.93, SE = 0.45, z = -2.04, p = 0.04$).  The results are visualized Figure~\ref{fig:exp1categ}.
 When exposed to ambiguous /s/ tokens in the first syllables of words, participants show a general expansion of the /s/ category, but no differences in behaviour if they are warned about ambiguous /s/ productions.  
 However, when the exposure is to ambiguous /s/ tokens later in the words, we can see differences in behaviour beyond the general /s/ category expansion.  
 Participants not warned of the speaker's ambiguous tokens categorized more of the continua as /s/ than those who were warned of the speaker's ambiguous /s/ productions.
 
-\begin{figure*}[!ht]
-
-\caption{Correlation of crossover point in categorization with the proportion of word responses to critical items containing an ambiguous /s/ token.}\label{fig:exp1xover}
-\begin{center}
-\includegraphics[width=\textwidth]{graphs/exp1_xoverwordresp}
-\end{center}
-\end{figure*}
-
-As an individual predictor of participants' performance we took the proportion critical word endorsements and compared these values to the estimated cross-over points. 
-The crossover point was determined from the Subject random effect in the logistic mixed effects model \citep{Kleber2012}. 
-There was a significant positive correlation between a participant's tolerance for the ambiguous exposure items and their crossover point on the continua ($r = 0.39, t (90) = 4, p < 0.01$), shown in Figure~\ref{fig:exp1xover}.
-
-An ANOVA with cross-over point as the independent variable and word endorsement rate, Exposure Type, Attention and their interactions, found only a main effect of word endorsement rate ($F(1,89) = 17.82, p < 0.01$), suggesting that listeners in different conditions were not affected differently from one another.
-
 \subsection{Discussion}
 
-Perceptual learning effects in this experiment were robust across continua and experimental conditions, indicating the general automaticity of perceptual adaptation, but the degree of adaptation differed across conditions. 
-Differences in attention only had an effect in the S-Final conditions, which replicates earlier findings that the effect of attention increased as the position of the ambiguous sound moved toward the end of the word \cite{Pitt2012}.  
-The initial sound of a word is already a prominent position and listeners focus on the initial sounds to narrow the set of possible words they might be hearing. 
-Later in a word, expectations for particular words given the preceding phonetic content would be greater, so directed attention on the phonetic detail shows a clear effect.  
-That attention affected perceptual learning at all suggests that the adaptation is not wholly automatic and there is some degree of listener control.
+The condition that showed the largest perceptual learning effect was the one most biased toward a comprehension-oriented attentional set.
+Participants exposed to the modified /s/ category in the middle of words and with no explicit instructions about it had larger perceptual learning effects than any of the other conditions.
+The other conditions showed roughly equivalent sizes of perceptual learning, suggesting that there was not a compounding effect of explicit attention and word position.
+That is, the comprehension-oriented nature of the primary task still exerts an effect on attentional set selection.
 
-The findings of this experiment do not support the attention mechanism of \citet{Clark2013}.
+The findings of this experiment do not support the predictions of a purely gain-based mechanism for attention, such as the one posited by \citet{Clark2013}.
 If attention functioned as a gain mechanism, increasing the weight of error signals generated by mismatches between expectations and incoming signals, we should expect to see greater perceptual learning when listeners were instructed to attend to the speaker's /s/ sounds.
 Instead, the opposite occurred.
 Participants told to attend to the speaker's /s/ sounds showed smaller perceptual learning effects.
 This outcome may be determined by the nature of the instructions, which suggested that the ambiguity could harm accuracy, but different valences of attention are not predicted to behave any differently from one another in a gain mechanism.
 
-The threshold for stimuli selection differed from that in previous studies. The closest study to this one used 70\% of word responses in the pretest as the threshold for selection, creating a more typical, though still modified, category \citep{Reinisch2013}.  
-In that study, the lowest critical word endorsement rates in the exposure phase were 17 out of 20 (85\%).  
+In addition to the perceptual learning effects of the categorization phase, the exposure phase also demonstrates learning.  
+In the initial trials, words with /s/ in them are responded to slower and less accurately, but over the course of exposure, both reaction times and accuracy approaches the other kinds of words.
+Interestingly, only the attention manipulation had an effect on exposure performance, with participants attending to the /s/ category responding more accurately overall.
+Exposure Type did not significantly influence accuracy or reaction time in the exposure.
+
+One possible consideration is that the perceptual learning in this study might be showing exposure-specificity effects.  However, as shown in Figure~\ref{fig:exp1mds}, Word-medial exposure tokens are acoustically farther from the categorization tokens than the Word-initial exposure tokens.  
+The modified /s/ category used in this study aimed to be perfectly ambiguous between /s/ and /\textesh/.  
+Many types of methods have been used for synthesizing the exposure items for perceptual learning experiments, such as selecting the maximally ambiguous mixture of extracted /s/ and /\textesh/ as judged by experimenters \citep{Kraljic2005} or splicing the maximally ambiguous sound from a nonword continuum into the exposure items \citep{Norris2003}.  
+Perhaps the perceptual learning from the Word-initial exposure tokens could be enhanced if their /s/ category was directly taken from the categorization stimuli.
+
+\citet{Reinisch2013} used a similar method for exposure stimuli selection, but generated a more typical category by using 70\% word response rate as the cutoff.  Perhaps as a result, they report word endorsement rates that consistently exceeded 85\%.
 In contrast, this experiment used 50\% as the threshold and had correspondingly lower word endorsement rates (mean = 76\%, sd = 22\%).  
 Interestingly, despite the lower word endorsement rates and the less canonical stimuli used, perceptual learning effects remained robust, which raises the question, can perceptual learning occur from a modified category even more atypical than the one used in this experiment?
+More atypical categories should be more salient and induce more a perception-oriented attentional set, and therefore result in smaller perceptual learning effects.
 
 \section{Experiment 2}
 
-Experiment 2 follows up on Experiment 1 by using stimuli that are farther from the canonical productions of the /s/ critical words.  If the correlation from Experiment 1 holds, we expect to see lower word endorsement rates and lower (or perhaps non-existent) perceptual learning effects.
+Experiment 2 follows up on Experiment 1 by using stimuli that are farther from the canonical productions of the critical exposure tokens containing /s/.
 
 \subsection{Methodology}
 
@@ -293,7 +335,7 @@ A total of 127 participants from the UBC population completed the experiment and
 
 \subsubsection{Materials}
 
-Experiment 2 used the same items as Experiment 1, except that the step along the /s/-/\textesh/ continua chosen as the ambiguous sound had a different threshold.  For this experiment, 30\% identification as the /s/ word was used the threshold. The average step chosen for /s/-initial words was 7.3 ($SD = 0.8$), and for /s/-final words the average step was 8.9 ($SD = 0.9$).  The list of steps chosen for Word-initial and Word-medial target stimuli are in Tables~\ref{tbl:exp2srespinitial} and~\ref{tbl:exp2srespfinal}, respectively.
+Experiment 2 used the same items as Experiment 1, except that the step along the /s/-/\textesh/ continua chosen as the ambiguous sound had a different threshold.  For this experiment, 30\% identification as the /s/ word was used the threshold. The average step chosen for /s/-initial words was 7.3 ($SD = 0.8$), and for /s/-medial words the average step was 8.9 ($SD = 0.9$).  The list of steps chosen for Word-initial and Word-medial target stimuli are in Tables~\ref{tbl:exp2srespinitial} and~\ref{tbl:exp2srespfinal}, respectively.
 
 \begin{table}
 \caption{Step chosen for each Word-initial stimulus in Experiment 2 and the proporation /s/ response in the pretest}
@@ -365,6 +407,19 @@ monsoon & 9 & 0.15 \\
 \end{tabular}
 \end{table}
 
+Looking at the multidimensional scaling plot of the sibilant tokens involved Experiment 2 reveals similar patterns to that of Experiment 1.  
+The axes remain the same as before, with the first principle component corresponding to differences between sibilants, and the second principle component corresponding to differences in word position.
+The original productions, categorization tokens and /\textesh/ tokens in Figure~\ref{fig:exp2mds} are identical to those shown in Figure~\ref{fig:exp1mds}, but the exposure token distribution is shifted towards the /\textesh/ distribution, as expected.  In the Word-medial position, the distributions of /s/ and /\textesh/ are close to overlapping, and in the Word-initial position, they are still separated, but closer than in Experiment 1.
+
+
+\begin{figure*}[ht]
+\caption{Multidimensional scaling of the acoustic distances between the sibilants of original productions, categorization tokens and the exposure tokens in Experiment 2.}
+\label{fig:exp2mds}
+\begin{center}
+\includegraphics[width=\textwidth]{graphs/exp2_mds}
+\end{center}
+\end{figure*}
+
 \subsubsection{Procedure}
 
 The procedure and instructions were identical between Experiment 1 and Experiment 2.
@@ -374,37 +429,55 @@ The procedure and instructions were identical between Experiment 1 and Experimen
 \subsubsection{Exposure}
 
 Trials with nonword stimuli and responses faster than 200 ms or slower than 2500 ms were excluded from analysis. 
-Performance on the exposure task was high overall, with accuracy on filler trials averaging 92\%.  
-An ANOVA of critical word endorsement rates revealed a marginal effect of Exposure Type ($F(1,92) = 3.86, p = 0.05$), with participants in the S-Final conditions having lower word endorsement rates (S-Final/Attention: mean = 56\%, sd = 30\%; S-Final/No Attention: mean = 52\%, sd = 25\%) than participants in the S-Initial conditions (S-Initial/Attention: mean = 68\%, sd = 25\%; S-Initial/No Attention: mean = 61\%, sd = 23\%).
-A logistic mixed effects model with accuracy as the dependent variable was fit with fixed effects for trial type (Filler, S, SH), Attention (No Attention, Attention), Exposure Type (S-Initial, S-Final) and their interactions. 
-The random effect structure was as maximally specified as possible with random effects for Subject and Word, and by-Subject random slopes for trial type and by-Word random slopes for Attention. 
-The only fixed effect that was significant were a main effect of trial type for /s/ trials compared to filler trials ($\beta = -2.51, SE = 0.46, z = -5.35, p < 0.01$).
+Performance on the exposure task was as high for Experiment 1, with accuracy on filler trials averaging 92\%.  
+A logistic mixed-effects model with accuracy as the dependent variable and a linear mixed-effects model with logarithmically-transformed reaction time as the dependent variable were fit with identical specifications as Experiment 1.
+
+In the logistic mixed-effects model of accuracy, a significant fixed effect was found for Trial Type of /s/ versus Filler ($\beta = -3.56, SE = 0.31, z = -11.4, p < 0.01$), with participants less likely to respond that an item was a word if it contained the modified /s/ category.
+There was a significant interaction between Trial and Trial Type of /s/ versus Filler ($\beta = -0.29, SE = 0.11, z = 2.5, p < 0.01$) and between Trial and Trial Type of /\textesh/ versus Filler ($\beta = -0.33, SE = 0.16, z = -2.0, p = 0.04$).  These interactions indicate that participants became more likely to endorse words with modified /s/ productions over time, but also became less accurate on words containing /\textesh/.  Figure~\ref{fig:exp2exposeacc} shows within-subject mean accuracy across exposure, with Trial in four blocks.
+
+%Trial Type of /s/ versus Filler and Exposure Type ($\beta = 0.97, SE = 0.53, z = 1.8, p = 0.07$) 
+
+\begin{figure*}[!ht]
+\caption{Within-subject mean accuracy in the exposure phase of Experiment 2, separated out by Trial Type (Filler, /s/, and /\textesh/). Error bars represent 95\% confidence intervals.}
+\label{fig:exp2exposeacc}
+\begin{center}
+\includegraphics[width=\textwidth]{graphs/exp2_expacc}
+\end{center}
+\end{figure*}
+
+In the linear mixed-effects model of reaction time, significant effects were found for Trial Type of /s/ versus Filler ($\beta = 0.94, SE = 0.07, t = 14.4$), indicating, as in Experiment 1, that reaction times were slower for words containing the modified /s/ category.
+Also significant was the interaction between Trial and Trial Type of /\textesh/ versus Filler ($\beta = 0.07, SE = 0.02, t = 3.4$), but not the interaction between Trial and Trial Type of /s/ versus Filler ($\beta = -0.02, SE = 0.02, t = -0.8$), indicating that reaction time remained stable for words containing the modified /s/ category, but lengthened for words containing the /\textesh/ control.  
+There was a marginal effect for Trial Type of /\textesh/ versus Filler ($\beta = 0.14, SE = 0.07, t = 1.9$), indicating that words with /\textesh/ tended to be responded to more slowly than filler times, and a marginal effect of Exposure Type ($\beta = 0.17, SE = 0.09, t = 1.9$), indicating that words in the Word-medial condition tended to be responded to faster.
+Figure~\ref{fig:exp2exposert} shows within-subject mean reaction time across exposure, with Trial in four blocks.
+
+%itemtypeSH ($\beta = 0.14, SE = 0.07, t = 1.9$)
+%exposure type ($\beta = 0.17, SE = 0.09, t = 1.9$)
+
+\begin{figure*}[!ht]
+\caption{Within-subject mean reaction time in the exposure phase of Experiment 2, separated out by Trial Type (Filler, /s/, and /\textesh/). Error bars represent 95\% confidence intervals.}
+\label{fig:exp2exposert}
+\begin{center}
+\includegraphics[width=\textwidth]{graphs/exp2_exprt}
+\end{center}
+\end{figure*}
 
 \subsubsection{Categorization}
 
 Responses with reaction times less than 200 ms or greater than 2500 ms were excluded from analyses. 
-Participants were excluded if their initial estimated cross over point for the continuum lay outside of the 6 steps presented (2 participants).  
-A logistic mixed effects model was constructed with Subject and Continua as random effects and continua Step as random slopes, with 0 coded as a /\textesh/ response and 1 as a /s/ response.  Fixed effects for the model were Step, Exposure Type, Attention and their interactions.
+Two participants were excluded because their initial estimated cross over point for the continuum lay outside of the 6 steps presented.  
+A logistic mixed effects model was constructed with identical specification as Experiment 1.
 
 \begin{figure*}[!ht]
-\caption{Proportion /s/ response along the 6 step continua as a function of Exposure Type and Attention in Experiment 2.  Participants showed no significant differences across conditions. Error bars represent 95\% confidence intervals.}
+\caption{Proportion /s/ response along the 6 step continua as a function of Exposure Type and Attention in Experiment 2. Error bars represent 95\% confidence intervals.}
 \label{fig:exp2categ}
 \begin{center}
 \includegraphics[width=\textwidth]{graphs/exp2_categresults}
 \end{center}
 \end{figure*}
 
-There was a significant effect for the Intercept ($\beta = 0.60, SE = 0.26, z = 2.3, p = 0.02$), indicating that participants categorized more of the continua as /s/ in general.  There was also a significant main effect of Step ($\beta = -2.51, SE = 0.19, z = -13.1, p < 0.01$).  %There were no other significant main effects or interactions, though an interaction between Step and Attention trended toward significant ($\beta = 0.35, SE = 0.21, z = 1.6, p = 0.09$).
-
-\begin{figure*}[!ht]
-
-\caption{Correlation of crossover point in categorization with the proportion of word responses to critical items containing an ambiguous /s/ token in Experiment 2.}\label{fig:exp2xover}
-\begin{center}
-\includegraphics[width=\textwidth]{graphs/exp2_xoverwordresp}
-\end{center}
-\end{figure*}
-
-As in Experiment 1,  the proportion critical word endorsements was calculated for each subject and assessed for correlation with participants' crossover points. There was a significant positive correlation between a participant's tolerance for the ambiguous exposure items and their crossover point on the continua ($r = 0.22, t (92) = 2.25, p = 0.02$), shown in Figure~\ref{fig:exp2xover}.  
+There was a significant effect for the Intercept ($\beta = 0.60, SE = 0.26, z = 2.3, p = 0.02$), indicating that participants categorized more of the continua as /s/ in general. 
+ There was also a significant main effect of Step ($\beta = -2.51, SE = 0.19, z = -13.1, p < 0.01$).  
+Unlike in Experiment 1, there were no other significant effects, suggesting that participants across group had similar perceptual learning effects.
 
 \section{Grouped results across experiments}
 
@@ -422,13 +495,38 @@ The two-way interaction between Experiment and Step and the lack of a main effec
 \end{center}
 \end{figure*}
 
-To see if there was a difference with the Experiment 1 in how word endorsement rates affected crossover points, the data was pooled for the two experiments.  
-An ANOVA with cross-over point as the independent variable and word endorsement rate, Exposure Type, Attention, Experiment and their interactions, found a main effect of word endorsement rate ($F(1,185) = 21.82, p < 0.01$) and marginal interaction between word endorsement rates and Experiment ($F(1, 185) = 3.11, p = 0.07$).
+
+As an individual predictor of participants' performance the proportion critical word endorsements were compared to estimated points of the categorization continua where participants' perception switch from predominantly /s/ to predominantly /\textesh/.
+The crossover point was determined from the Subject random intercept and the by-Subject random slope of Step in a simple model containing only those random effects, similar by-Continuum random effects, and a fixed effect for Step \citep{Kleber2012}. 
+An ANOVA with crossover point as the independent variable and word endorsement rate, Exposure Type, Attention, Experiment and their interactions, found only a main effect of word endorsement rate ($F(1, 174) = 23.3, p < 0.01$), and a marginal interaction between word endorsement rate and Experiment ($F(1, 174) = 3.5, p = 0.06$).
+A scatter plot of word endorsement rate and crossover point is shown in Figure~\ref{fig:exp12xover}.
+In general there is a positive correlation between word endorsement rate in the exposure phase and the crossover point from /s/ to /\textesh/ in the categorization phase.
+Participants in the Experiment 1, who were exposed to more typical /s/ stimuli showed a stronger correlation across conditions than participants in Experiment 2, who were exposed to a more atypical /s/ category.
+
+\begin{figure*}[!ht]
+\caption{Correlation of crossover point in categorization with the proportion of word responses to critical items containing an ambiguous /s/ token in Experiments 1 and 2.}\label{fig:exp12xover}
+\begin{center}
+\includegraphics[width=\textwidth]{graphs/exp12_xoverwordresp}
+\end{center}
+\end{figure*} 
+
+In Experiment 1, the strongest correlations between word endorsement rate and crossover point are seen in the Word-initial conditions (Attention: $r = 0.46, t(22) = 2.4, p = 0.02$; No Attention: $r = 0.45, t(22) = 2.4, p = 0.02$), with the next strongest, and more marginal, correlation in Word-final/Attention condition ($r = 0.39, t(23) = 2.0, p = 0.06$).  The condition for which the most perceptual was observed actually has the weakest correlation ($r = 0.32, t(21) = 1.5, p = 0.13$).
+
+In Experiment 2, the strongest correlation is in the Word-initial/Attention condition ($r = 0.40, t(23) = 2.1, p = 0.05$), with two trending correlations for the Word-medial conditions (Attention: $r = 0.33, t(20) = 1.6, p = 0.12$; No Attention: $r = 0.27, t(22) = 1.3, p = 0.20$).  Finally, the correlation for the Word-initial/Attention condition is not significant ($r = -0.05, t(20) = -0.2, p = 0.82$).
 
 \section{General discussion}
 
-Perceptual learning was found across all experimental conditions. Attention only had effect on perceptual learning in the S-Final condition of Experiment 1.  
-%The differences in between experiments appears to not be in the location of the new boundary, but rather in the slope of the categorization function.  In Experiment 1, where the ambiguous tokens are halfway between /s/ and /\textesh/, the slope 
+Perceptual learning was found across all experimental conditions, as in other perceptual learning tasks that employed a lexical decision task as the exposure. 
+However, the condition with the most bias toward a comprehension-oriented attentional set showed larger perceptual learning effects than all other conditions.
+Those conditions contained different kinds of manipulations all aimed at inducing a more perception-oriented attentional set.
+These manipulations did not have additive effects on perceptual learning, but rather, the presence of one or more was enough to shift participants into a more perception-oriented attentional set.
+
+The perceptual learning effects found in Experiment 1 and 2 appear to fall into two categories, aligning with either comprehension-oriented or perception-oriented attentional sets.  
+For most of exposure conditions, participants showed a small perceptual learning effect of similar magnitude.
+These conditions perception-oriented attentional sets were likely to be recruited, such as when attention was explicitly drawn to the ambiguous sounds, or the ambiguous sounds were at the beginnings of words, or when the ambiguous sounds were the least typical of /s/.
+The participants exposed to the ambiguous sounds with the most lexical bias and with no attention drawn to them, however, showed a significantly stronger perceptual learning effect.
+This condition is the one where comprehension-oriented attentional sets were predicted to dominate.
+The perception-oriented attentional sets exhibit less generalization, like what is seen in psychophysics literature and  in visually-guided perceptual learning in speech perception \citep{Reinisch2014}.
 
 Compared to Experiment 1, Experiment 2 had a weaker, yet still significant, correlation between critical word endorsement rates and crossover boundary points, suggesting that although the stimuli used in Experiment 2 were farther from the canonical production, they did not shift the category boundary as much as the stimuli in Experiment 1.  
 While neither attention or position of the ambiguous sound in the word had an effect on the correlation, the distance from the canonical production did.  
@@ -438,22 +536,19 @@ Or perhaps more likely, the distance is inversely related to its goodness or pla
 The correlation between word response rate in the exposure phase and the category boundary in categorization phase across both experiments raises two possible explanations. 
 In a causal interpretation between exposure and categorization, as each ambiguous sound is processed and errors propagate, the distribution for that category (for that particular speaker) is updated.
 Participants who processed more of the ambiguous sound as an /s/ updated their perceptual category for /s/ more. 
-This explanation fits within a larger neo-generative model of spoken language processing \citep{Pierrehumbert2002}.  
+This explanation fits within a Bayesian model of the brain \citep{Clark2013} or a neo-generative model of spoken language processing \citep{Pierrehumbert2002}.  
 A non-causal story is also plausible:  the correlation may reveal individual differences on the part of the participants, where some participants are more adaptable or tolerant of variability than others, leading to greater degrees of perceptual adaptation. 
 Individual differences in attention-switching control have previously been found to affect perceptual learning \citep{Scharenborg2014}, which supports a non-causal interpretation as well.
-%The lack of learning with nonwords \citep{Norris2003} makes the latter interpretation particularly appealing.
 
-The perceptual learning effects found in Experiment 1 and 2 appear to fall into two categories, aligning with either comprehension-oriented or perception-oriented attentional sets.  
-For most of exposure conditions, participants showed a small perceptual learning effect of similar magnitude.
-These conditions perception-oriented attentional sets were likely to be recruited, such as when attention was explicitly drawn to the ambiguous sounds, or the ambiguous sounds were at the beginnings of words, or when the ambiguous sounds were the least typical of /s/.
-The participants exposed to the ambiguous sounds with the most lexical bias and with no attention drawn to them, however, showed a significantly stronger perceptual learning effect.
-This condition is the one where comprehension-oriented attentional sets were predicted to dominate.
-The perception-oriented attentional sets exhibit less generalization, like what is seen in psychophysics literature and  in visually-guided perceptual learning in speech perception \citep{Reinisch2014}.
+However, an important note is that the condition that saw the largest perceptual learning did not have the largest correlation between word response rate and crossover point.
+Both the causal and non-causal explanations above would require a strong correlation for that condition.
+As that is precisely the condition where comprehension-oriented attentional sets are most promoted, it may be the case that only a few tokens have to be endorsed in such an attentional set to cause expectations for future tokens to be updated.
+In contrast, perception-oriented attentional sets only allow for low level sensory expectations to be updated, which would then be reinforced over time and perhaps propagated more slowly to higher sensory levels.
 
 As mentioned in the discussion for Experiment 1, the findings do not support a simple gain mechanism for attention as proposed in \citet{Clark2013}.  
 In \citet{Yeshurun1998}, attention to areas with finer spatial resolution caused observers to miss larger patterns.  
-If attention simply boosted the error signal, attention should always be beneficial to perceptual learning.
-The findings of these two experiments supports a larger role for attention in a predictive coding framework, as advanced in \citet{Block2013}.
+If attention simply boosted the error signal, attention of all kinds should always be beneficial to perceptual learning.
+The findings of these two experiments supports a larger role for attention in a predictive coding framework, as noted in \citet{Block2013}.
 The propagation-limiting mechanism attention proposed earlier explains both the findings in the visual domain and the current findings.
 Attention to a level of representation causes errors between expectations and observed signals to be resolved and updated at that level.
 If attention is more oriented towards comprehension, either of language or other patterns in the world, errors can be propagated higher before updating expectations.

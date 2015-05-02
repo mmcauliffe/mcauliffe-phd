@@ -13,13 +13,13 @@ ddply(subset(xovers,Xover <= 0), ~Experiment*Attention*itemtype,nrow)
 
 cat.mod3 <- glmer(ACC ~ cStep + (1+cStep|Subject) + (1+cStep|Item), family='binomial',data=categ3)
 xovers3 <- getCrossOver(coef(cat.mod3)$Subject)
-xovers3 <- merge(xovers3, subj.tolerances3)
 
-allcateg <- rbind(categ[,c('Subject','ACC','Step','Item')],categ3[,c('Subject','ACC','Step','Item')])
+allcateg <- rbind(categ[,c('Subject','ACC','cStep','Item')],categ3[,c('Subject','ACC','cStep','Item')])
 
 all.cat.mod <- glmer(ACC ~ cStep + (1+cStep|Subject) + (1+cStep|Item), family='binomial',data=allcateg)
 all.xovers <- getCrossOver(coef(all.cat.mod)$Subject)
 xovers <- merge(all.xovers, subj.tolerances)
+xovers3 <- merge(all.xovers, subj.tolerances3)
 ddply(subset(xovers,Xover > 0), ~Experiment*Attention*itemtype,nrow)
 ddply(subset(xovers,Xover <= 0), ~Experiment*Attention*itemtype,nrow)
 
@@ -69,7 +69,7 @@ summary(experiment.2.mod.wresp)
 
 ### GROUPED
 
-grouped.mod <- glmer(ACC ~ cStep*ExposureType*Attention*Experiment + (1+cStep|Subject) + (1+cStep*ExposureType*Attention*Experiment|Item), family='binomial',data=subset(categ,Experiment%in%c('exp1','exp2')), control=glmerControl(optCtrl=list(maxfun=1000000) ))
+grouped.mod <- glmer(ACC ~ cStep*ExposureType*Attention*Experiment + (1+cStep|Subject) + (1+cStep|Item), family='binomial',data=subset(categ,Experiment%in%c('exp1','exp2')), control=glmerControl(optCtrl=list(maxfun=1000000) ))
 summary(grouped.mod)
 
 grouped.mod.trimmed <- glmer(ACC ~ cStep*ExposureType*Attention*Experiment + (1+cStep|Subject) + (1+cStep*ExposureType*Attention*Experiment|Item), family='binomial',data=subset(categ,Experiment%in%c('exp1','exp2')), control=glmerControl(optCtrl=list(maxfun=1000000) ), subset = abs(scale(resid(grouped.mod))) < 2.5)
@@ -149,7 +149,7 @@ cor.test(subset(xovers,Experiment=='exp2')$Xover, subset(xovers,Experiment=='exp
 
 ddply(xovers3,~Attention*Predictability, summarise,tau.est=cor.test(Xover,MeanLogRt)$estimate, p.val = cor.test(Xover,MeanLogRt)$p.value)
 
-ddply(xovers,~Experiment*Attention*itemtype, summarise,tau.est=cor.test(Xover,aWordResp)$estimate, p.val = cor.test(Xover,aWordResp)$p.value)
+ddply(xovers,~Experiment*Attention*itemtype, summarise,tau.est=cor.test(Xover,aWordResp)$estimate, t.val = cor.test(Xover,aWordResp)$statistic, df =cor.test(Xover,aWordResp)$parameter, p.val = cor.test(Xover,aWordResp)$p.value)
 cor.test(subset(xovers,Experiment=='exp2')$Xover, subset(xovers,Experiment=='exp2')$aWordResp)
 
 ##
