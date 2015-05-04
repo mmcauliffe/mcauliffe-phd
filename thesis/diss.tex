@@ -30,11 +30,11 @@
 %%
 
 % For submission to GPS
-%\documentclass[gpscopy,onehalfspacing,11pt]{ubcdiss}
+\documentclass[gpscopy,doublespacing,11pt]{ubcdiss}
 
 % For your own copies (looks nicer)
- \documentclass[balanced,oneside,11pt]{ubcdiss}
-\usepackage[cm]{fullpage}
+ %\documentclass[balanced,oneside,11pt]{ubcdiss}
+%\usepackage[cm]{fullpage}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -149,7 +149,7 @@
 %% \citet{} to produce an author-and-reference citation,
 %% \citep{} to produce a parenthetical citation.
 %% We use \citeeg{} to provide examples
-\usepackage[numbers,sort&compress]{natbib}
+\usepackage{natbib}
 \newcommand{\citeeg}[1]{\citep[e.g.,][]{#1}}
 
 %% The titlesec package provides commands to vary how chapter and
@@ -245,8 +245,9 @@
 
 %% The following disables the colourful boxes around hyperlinks.
 %\usepackage[bookmarks,bookmarksnumbered,pdfborder={0 0 0}]{hyperref}
-
+\usepackage{apalike}
 \usepackage{tipa}
+\bibliographystyle{apalike}
 
 %% The following disables all hyperlinking, but still enabled use of
 %% \autoref{}
@@ -393,7 +394,7 @@
 %    5. Bibliography
 \begin{singlespace}
 \raggedright
-\bibliographystyle{abbrvnat}
+\bibliographystyle{apalike}
 \bibliography{biblio}
 \end{singlespace}
 
