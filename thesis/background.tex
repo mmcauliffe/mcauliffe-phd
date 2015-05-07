@@ -2,7 +2,6 @@
 %%!TEX root = diss.tex
 
 \chapter{Introduction}
-In addition to properties of the speaker varying, a listener's attention or goals in an interaction can vary, such as paying attention to a non-native speaker or being distracted by planning upcoming utterances or by another task entirely.  
 
 Listeners are faced with a large degree of phonetic variability when interacting with their fellow language users.  
 Speakers differ in size, gender, and sociolect which makes speech sound categories overlap in acoustic dimensions.
@@ -119,7 +118,7 @@ The perceptual learning effects for both lexically- and visually-guided paradigm
 However, in \citet{Kraljic2005} and \citet{Eisner2006}, lexically-guided perceptual learning effects persisted through intermediate tasks, as long as the task did not involve any contradictory evidence of the trait learned.
 
 Visually-guided perceptual learning in speech perception has been modeled using a Bayesian belief updating framework \citep{Kleinschmidt2011}.  
-A more general Bayesian framework for perception and action in the brain is the predictive coding model \citep{Clark2013}.
+A more general Bayesian framework for perception and action in the brain is the predictive coding model \citep{Clark2013}, schematized in Figure~\ref{fig:predictivecoding}.
 In Bayesian belief updating, the model categorizes the incoming stimuli based on multimodal cues, and then updates the distribution to reflect that categorization.  
 This updated conditional distribution is then used for future categorizations in an iterative process.  
 \citet{Kleinschmidt2011} effectively model the results of the behavioural study in \citet{Vroomen2007} in a Bayesian framework, with models fit to each participant capturing the perceptual recalibration and selective adaptation shown over the course of the experiment.  
@@ -127,6 +126,14 @@ A similar, but more broad, framework is that of predictive coding \citep{Clark20
 This framework uses a hierarchical generative model that aims to minimize prediction error between bottom-up sensory inputs and top-down expectations.  
 Mismatches between the top-down expectations and the bottom-up signals generate error signals that are used to modify future expectations.  
 Perceptual learning then is the result of modifying expectations to match learned input.
+
+\begin{figure*}[!ht]
+\caption{Schema of the predictive coding framework \citep{Clark2013}.  Nodes are sensory representations that become more abstract the higher they are in the hierarchy. Blue arrow represent expectations, red arrows are error signals, and yellow is the actual sensory input.}
+\label{fig:predictivecoding}
+\begin{center}
+\includegraphics[width=0.5\textwidth]{pictures/predictive_coding}
+\end{center}
+\end{figure*}
 
 Perceptual learning in the psychophysics literature has shown a large degree of exposure-specificity, where observers only show learning effects on the same or very similar stimuli as those they were trained on. 
 As such, perceptual learning has been argued to reside or affect the early sensory pathways, where stimuli are represented with the greatest detail \citep{Gilbert2001}.  
@@ -275,6 +282,14 @@ The lexical decision task is oriented toward comprehension, so the primary atten
 Participants with worse attention-switching control would have adopted this attentional set for more of the exposure than those with better attention-switching control, and it is precisely those with worse attention-switching control that showed the larger perceptual learning effects.
 The ability to switch attention to a more perception-oriented set could have allowed those listeners to prevent over-generalization, leading to a smaller perceptual learning effect for participants with better attention-switching control.
 
+\begin{figure*}[!ht]
+\caption{A schema for predictive coding under a perception-oriented attentional set.  Attention is represented by the pink box, where gain is enhanced for detection, but error signal propagation is limited to lower levels of sensory representation where the expectations must be updated.  This is represented by the lack of pink nodes outside the attention box.  As before, blue errors represent expectations, red arrows represent error signals, and yellow represents the sensory input.}
+\label{fig:predictivecodingperception}
+\begin{center}
+\includegraphics[width=0.5\textwidth]{pictures/perception_predictive_coding}
+\end{center}
+\end{figure*}
+
 As stated above, Bayesian models account well for perceptual learning experiments.
 Attentional sets are crucial to the hypothesis tested in this dissertation, but they do not play a role in the conceptual and computational models of perceptual learning.
 The predictive coding framework \citep{Clark2013} provides a gain-based attentional mechanism. 
@@ -286,7 +301,19 @@ The attentional mechanism proposed in this dissertation limits error propagation
 Attending to perception rather than comprehension should only update expectations about perception of that individual instance.
 The lower sensory levels is where stimuli are represented with the greatest degree of detail \citep{Gilbert2001}.
 Perceptual learning at these lower levels should be more exposure specific and less generalized than any learning that propagates to higher representational levels.
+Schema for predictive coding expectation updating under a perception-oriented attentional set and under a comprehension-oriented attentional set are shown in Figures~\ref{fig:predictivecodingperception} and~\ref{fig:predictivecodingcomprehension}, respectively.
 In contrast, according to the mechanism proposed in \citet{Clark2013}, any increases in attention, perception-oriented or otherwise, is predicted to lead to greater perceptual learning.
+
+
+\begin{figure*}[!ht]
+\caption{A schema for predictive coding under a comprehension-oriented attentional set. Attention is represented by the green box, where it is oriented to higher, more abstract levels of sensory representation.  Error signals are able to propagate farther and update more than just the fine grained low level sensory representations. As before, blue errors represent expectations, red arrows represent error signals, and yellow represents the sensory input.}
+\label{fig:predictivecodingcomprehension}
+\begin{center}
+\includegraphics[width=0.5\textwidth]{pictures/comprehension_predictive_coding}
+\end{center}
+\end{figure*}
+
+
 
 \section{Category typicality and perceptual learning}
 \label{sec:signal}

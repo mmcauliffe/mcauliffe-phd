@@ -93,13 +93,13 @@ ggplot(test, aes(x=StepNum, y=ACC,group=1)) +geom_point() +geom_smooth(method="g
 ggplot(subset(exp,sword=='silver'), aes(x=StepNum, y=ACC)) +geom_smooth(method="glm", family="binomial", size=1)  + labs(title='Silver to Shilver', y='Proportion <s> responses',x='Step number')+ geom_vline(aes(xintercept = 6)) + geom_hline(yintercept=0.5) + scale_x_continuous(breaks=1:11)
 
 #For dissertation
-ggplot(subset(exp.sum,Type=='Initial'), aes(x=as.numeric(as.character(StepNum)), y=MeanResp)) +geom_point() +geom_smooth(data =subset(exp,Type=='Initial'), aes(x=StepNum,y=ACC), method="glm", family="binomial", size=1)  + labs(y='Proportion /s/ response',x='Step number')+facet_wrap(~sword)+ geom_vline(data=subset(expout2, Type=='Initial'),aes(xintercept = as.numeric(as.character(StepNum)))) + geom_hline(yintercept=0.5) + geom_hline(yintercept=0.3,linetype=2) +geom_vline(data=subset(expout1, Type=='Initial'),aes(xintercept = as.numeric(as.character(StepNum))),linetype=2) +theme_bw()
+ggplot(subset(exp.sum,Type=='Initial'), aes(x=as.numeric(as.character(StepNum)), y=MeanResp)) +geom_point() +geom_smooth(data =subset(exp,Type=='Initial'), aes(x=StepNum,y=ACC), method="glm", family="binomial", size=1)  + labs(y='Proportion /s/ response',x='Step number')+facet_wrap(~sword)+ geom_vline(data=subset(expout2, Type=='Initial'),aes(xintercept = as.numeric(as.character(StepNum)))) + geom_hline(yintercept=0.5) + geom_hline(yintercept=0.3,linetype=2) +geom_vline(data=subset(expout1, Type=='Initial'),aes(xintercept = as.numeric(as.character(StepNum))),linetype=2) +theme_bw() + theme(text=element_text(size=10),legend.title=element_text(size=8),legend.text=element_text(size=8),legend.justification=c(0,0), legend.position=c(0,0))
 
-ggsave('../thesis/graphs/sinitialpretest.pdf',width=170,height=110,units='mm',dpi=600)
+ggsave('../thesis/graphs/sinitialpretest.pdf',width=170,height=100,units='mm',dpi=600)
 
-ggplot(subset(exp.sum,Type=='Final'), aes(x=as.numeric(as.character(StepNum)), y=MeanResp)) +geom_point() +geom_smooth(data =subset(exp,Type=='Final'), aes(x=StepNum,y=ACC), method="glm", family="binomial", size=1)  + labs(y='Proportion /s/ response',x='Step number')+facet_wrap(~sword)+ geom_vline(data=subset(expout2, Type=='Final'),aes(xintercept = as.numeric(as.character(StepNum)))) + geom_hline(yintercept=0.5) + geom_hline(yintercept=0.3,linetype=2) +geom_vline(data=subset(expout1, Type=='Final'),aes(xintercept = as.numeric(as.character(StepNum))),linetype=2) +theme_bw()
+ggplot(subset(exp.sum,Type=='Final'), aes(x=as.numeric(as.character(StepNum)), y=MeanResp)) +geom_point() +geom_smooth(data =subset(exp,Type=='Final'), aes(x=StepNum,y=ACC), method="glm", family="binomial", size=1)  + labs(y='Proportion /s/ response',x='Step number')+facet_wrap(~sword)+ geom_vline(data=subset(expout2, Type=='Final'),aes(xintercept = as.numeric(as.character(StepNum)))) + geom_hline(yintercept=0.5) + geom_hline(yintercept=0.3,linetype=2) +geom_vline(data=subset(expout1, Type=='Final'),aes(xintercept = as.numeric(as.character(StepNum))),linetype=2) +theme_bw() + theme(text=element_text(size=10),legend.title=element_text(size=8),legend.text=element_text(size=8),legend.justification=c(0,0), legend.position=c(0,0))
 
-ggsave('../thesis/graphs/sfinalpretest.pdf',width=170,height=110,units='mm',dpi=600)
+ggsave('../thesis/graphs/sfinalpretest.pdf',width=170,height=100,units='mm',dpi=600)
 
 ddply(expout1,~Type,summarise,mean(as.numeric(as.character(StepNum))),mean(MeanResp),sd(as.numeric(as.character(StepNum))),sd(MeanResp))
 
