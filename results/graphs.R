@@ -113,7 +113,7 @@ plotData[plotData$itemtype == 'S-Final',]$ExposureType <- 'final'
 plotData$Experiment <- factor(plotData$Experiment, levels = c('exp2','exp1'))
 
 plotData$Xover = plotData$Xover + 3.5
-ggplot(plotData,aes(x=WordResp,y=Xover, colour=Experiment)) + geom_point(position=position_jitter()) + geom_smooth(method='lm', se=F) +facet_grid(Attention~ExposureType, labeller=if_labeller) + ylab('Crossover step across continua') + xlab('Proportion "word" response to exposure /s/ items') + theme_bw() + scale_colour_discrete(labels=c('Experiment 1','Experiment 2')) + theme(text=element_text(size=10),legend.title=element_text(size=8),legend.text=element_text(size=8),legend.justification=c(0,1), legend.position=c(0,1), legend.background = element_blank())
+ggplot(plotData,aes(x=WordResp,y=Xover, colour=Experiment)) + geom_point(position=position_jitter()) + geom_smooth(method='lm', se=F) +facet_grid(Attention~ExposureType, labeller=if_labeller) + ylab('Crossover step across continua') + xlab('Proportion "word" response to exposure /s/ items') + theme_bw() + scale_colour_discrete(labels=c('Experiment 1','Experiment 2')) + theme(text=element_text(size=10),legend.title=element_text(size=8),legend.text=element_text(size=8),legend.justification=c(0,1), legend.position=c(0,1), legend.background = element_blank()) +geom_hline(y=3.5,linetype='dashed')
 
 ggsave('../thesis/graphs/exp12_xoverwordresp.pdf',width=170,height=110,units='mm',dpi=600)
 
