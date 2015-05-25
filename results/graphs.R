@@ -248,7 +248,7 @@ plotData <- rbind(plotData,contPlotData)
 
 plotData$ExposureType <- factor(plotData$ExposureType, levels = c('Control','isolation','unpredictive','predictive'), ordered=T)
 
-ggplot(plotData,aes(x=ExposureType,y=Xover,colour=Attention)) + geom_boxplot()+ ylab('Crossover step across continua') +xlab('Exposure Type')+scale_colour_manual(values = c("#0072B2", "#D55E00","#000000"),labels = c('No attention','Attention','Control')) + scale_x_discrete(labels=c('Control','Isolation','Unpredictive','Predictive')) +theme_bw()
+ggplot(plotData,aes(x=ExposureType,y=Xover,colour=Attention)) + geom_violin()+ ylab('Crossover step across continua') +xlab('Exposure Condition')+scale_colour_manual(values = c("#0072B2", "#D55E00","#000000"),labels = c('No attention','Attention','Control')) + scale_x_discrete(labels=c('Control','Isolation','Unpredictive','Predictive')) +theme_bw() + theme(legend.justification=c(0,1), legend.position=c(0,1)) + geom_hline(y=3.5,linetype=2)
 
 ggsave('../thesis/graphs/exp13_xoverdist.pdf',width=170,height=80,units='mm',dpi=600)
 
