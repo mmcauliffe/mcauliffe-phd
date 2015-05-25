@@ -73,7 +73,9 @@ points[1:20,]$x <- rnorm(20,5,1)
 points[21:40,]$x <- rnorm(20,8,1)
 points[21:40,]$Experiment <- 'Experiment 2'
 
+means <- data.frame(X = c(5, 8), Experiment = c('Experiment 1','Experiment 2' ))
+
 CairoPDF('../thesis/graphs/distPred.pdf',width=6.69,height=3.15)
-ggplot(dists,aes(x=VOT,y=Dens, colour=Category)) + geom_line(lwd=1.5) + xlab("Continuum step") + ylab("Density") +theme_bw() + theme(text=element_text(size=12),axis.title.y = element_blank(),axis.text.y = element_blank(),axis.title.x = element_blank(),axis.text.x = element_blank()) + scale_y_continuous(breaks=c())+geom_point(data=points,aes(x=x,y=y, shape = Experiment), colour='black',position=position_jitter(width=0.005,height=0.002)) + facet_grid(~Type) + geom_vline(x=5) + geom_vline(x=8,linetype=2) + scale_x_continuous(limits=c(-3,15), breaks =c()) + geom_hline(y=0) + scale_colour_discrete(labels = c('/s/', '/ʃ/')) + scale_shape_discrete(name='Modified /s/\ncategory')
+ggplot(dists,aes(x=VOT,y=Dens, colour=Category)) + geom_line(aes(linetype =NULL),lwd=1.5) + xlab("Continuum step") + ylab("Density") +theme_bw() + theme(text=element_text(size=12),axis.title.y = element_blank(),axis.text.y = element_blank(),axis.title.x = element_blank(),axis.text.x = element_blank()) + scale_y_continuous(breaks=c())+geom_point(data=points,aes(x=x,y=y, shape = Experiment, linetype=NULL), colour='black',position=position_jitter(width=0.005,height=0.002), show_guide=F) + facet_grid(~Type) + geom_vline(data=means,aes(xintercept=X,linetype=Experiment)) + scale_x_continuous(limits=c(-3,15), breaks =c()) + geom_hline(y=0) + scale_colour_manual(labels = c('/s/', '/ʃ/'),values = c("#0072B2", "#D55E00")) + scale_shape_discrete(name='Modified /s/\ncategory') + scale_linetype_discrete(name='Modified /s/\ncategory')
 dev.off()
 ggsave('../thesis/graphs/distAttention.pdf',width=160,height=50,units='mm',dpi=600)

@@ -50,7 +50,7 @@ ddply(expose3, ~Type*Attention*Predictability, summarise, mean(cLogRT), sd(cLogR
 
 ddply(expose3, ~Predictability*Type*Attention, summarise, mean(LogRT), sd(LogRT))
 
-ddply(expose3, ~Subject*Predictability, summarise, mean(LogRT), sd(LogRT))
+ddply(expose3, ~Predictability, summarise, mean(RT), sd(RT))
 
 mean(ddply(expose3, ~Subject, summarise, mean(ACC))$"..1")
 sd(ddply(expose3, ~Subject, summarise, mean(ACC))$"..1")

@@ -17,6 +17,10 @@ if_labeller <- function(var, value){
     value[value=="exp2"]   <- "Experiment 1"
     value[value=="exp3"]   <- "Experiment 3"
   }
+  if (var == 'itemtype2'){ 
+    value[value=="S"] <- "/s/"
+    value[value=="SH"]   <- "/ʃ/"
+  }
   return(value)
 }
 
@@ -152,11 +156,15 @@ for.plot$TrialCat <- factor(for.plot$TrialCat, levels = c("1-50", "51-100", "101
 
 plotData <- summarySEwithin(data = for.plot,measurevar = 'ACC',betweenvars = c('Attention', 'itemtype2'),withinvars=c('TrialCat'),idvar='Subject')
 
-ggplot(plotData,aes(x=TrialCat,y=ACC, colour=Attention,shape=Attention,group=Attention)) + geom_point(size=1.7)+facet_grid(~itemtype2, labeller=if_labeller) +geom_line() + geom_errorbar(aes(ymin=ACC-ci,ymax=ACC+ci),linetype='solid',size=0.1)+ ylab('Proportion /s/ response') +xlab('Continua step')  + theme_bw() + theme(text=element_text(size=10),legend.title=element_text(size=8),legend.text=element_text(size=8),legend.justification=c(0,0), legend.position=c(0,0))+scale_shape_manual(values = c(21, 22),labels = c('No attention','Attention'))+scale_colour_manual(values = c("#0072B2", "#D55E00"),labels = c('No attention','Attention'))
+cairo_pdf('../thesis/graphs/exp1_expacc.pdf',width=6.69,height=3.15)
+ggplot(plotData,aes(x=TrialCat,y=ACC, colour=Attention,shape=Attention,group=Attention)) + geom_point(size=1.7)+facet_grid(~itemtype2, labeller=if_labeller) +geom_line() + geom_errorbar(aes(ymin=ACC-ci,ymax=ACC+ci),linetype='solid',size=0.1)+ ylab('Word recognition accuracy') +xlab('Exposure trial block')  + theme_bw() + theme(text=element_text(size=10),legend.title=element_text(size=8),legend.text=element_text(size=8),legend.justification=c(0,0), legend.position=c(0,0))+scale_shape_manual(values = c(21, 22),labels = c('No attention','Attention'))+scale_colour_manual(values = c("#0072B2", "#D55E00"),labels = c('No attention','Attention'))
+dev.off()
 
-plotData <- summarySEwithin(data = for.plot,measurevar = 'RT',betweenvars = c('Attention', 'itemtype2'),withinvars=c('TrialCat'),idvar='Subject')
+plotData <- summarySEwithin(data = for.plot,measurevar = 'RT',betweenvars = c('itemtype2'),withinvars=c('TrialCat'),idvar='Subject')
 
-ggplot(plotData,aes(x=TrialCat,y=RT, colour=Attention,shape=Attention,group=Attention)) + geom_point(size=1.7)+facet_grid(~itemtype2, labeller=if_labeller) +geom_line() + geom_errorbar(aes(ymin=RT-ci,ymax=RT+ci),linetype='solid',size=0.1)+ ylab('Proportion /s/ response') +xlab('Continua step')  + theme_bw() + theme(text=element_text(size=10),legend.title=element_text(size=8),legend.text=element_text(size=8),legend.justification=c(0,0), legend.position=c(0,0))+scale_shape_manual(values = c(21, 22),labels = c('No attention','Attention'))+scale_colour_manual(values = c("#0072B2", "#D55E00"),labels = c('No attention','Attention'))
+cairo_pdf('../thesis/graphs/exp1_exprt.pdf',width=6.69,height=3.15)
+ggplot(plotData,aes(x=TrialCat,y=RT, colour=itemtype2,shape=itemtype2, group = itemtype2)) + geom_point(size=1.7) +geom_line() + geom_errorbar(aes(ymin=RT-ci,ymax=RT+ci),linetype='solid',size=0.1)+ ylab('Reaction time (ms)') +xlab('Exposure trial block')  + theme_bw() + theme(text=element_text(size=10),legend.title=element_text(size=8),legend.text=element_text(size=8))+scale_shape_manual(name='Trial Type',values = c(21, 22,23), labels = c('Filler', '/s/', '/ʃ/')) + scale_colour_manual(name='Trial Type',values = c('#000000',"#0072B2", "#D55E00"),labels = c('Filler','/s/','/ʃ/'))
+dev.off()
 
 for.plot <- subset(expose.word,Experiment == 'exp1')
 
@@ -169,13 +177,13 @@ for.plot$TrialCat <- factor(for.plot$TrialCat)
 
 plotData <- summarySEwithin(data = for.plot,measurevar = 'ACC',withinvars=c('TrialCat', 'itemtype2'),idvar='Subject')
 
-CairoPDF('../thesis/graphs/exp2_expacc.pdf',width=6.69,height=3.15)
+cairo_pdf('../thesis/graphs/exp2_expacc.pdf',width=6.69,height=3.15)
 ggplot(plotData,aes(x=TrialCat,y=ACC, colour=itemtype2,shape=itemtype2,group=itemtype2)) + geom_point(size=1.7) +geom_line() + geom_errorbar(aes(ymin=ACC-ci,ymax=ACC+ci),linetype='solid',size=0.1)+ ylab('Word recognition accuracy') +xlab('Exposure trial block')  + theme_bw() + theme(text=element_text(size=10),legend.title=element_text(size=8),legend.text=element_text(size=8)) + scale_y_continuous(limits=c(0.25,1),breaks = c(0.4,0.5,0.6,0.7,0.8,0.9,1.0))+scale_shape_manual(name='Trial Type',values = c(21, 22,23), labels = c('Filler', '/s/', '/ʃ/')) + scale_colour_manual(name='Trial Type',values = c('#000000',"#0072B2", "#D55E00"),labels = c('Filler','/s/','/ʃ/'))
 dev.off()
 
 plotData <- summarySEwithin(data = for.plot,measurevar = 'RT',betweenvars = c('ExposureType'),withinvars=c('TrialCat', 'itemtype2'),idvar='Subject')
 
-CairoPDF('../thesis/graphs/exp2_exprt.pdf',width=6.69,height=3.15)
+cairo_pdf('../thesis/graphs/exp2_exprt.pdf',width=6.69,height=3.15)
 ggplot(plotData,aes(x=TrialCat,y=RT, colour=ExposureType,shape=ExposureType,group=ExposureType)) + geom_point(size=1.7)+facet_grid(~itemtype2, labeller=if_labeller) +geom_line() + geom_errorbar(aes(ymin=RT-ci,ymax=RT+ci),linetype='solid',size=0.1)+ ylab('Reaction time (ms)') +xlab('Exposure trial block')  + theme_bw() + theme(text=element_text(size=10),legend.title=element_text(size=8),legend.text=element_text(size=8),legend.justification=c(0,1), legend.position=c(0,1)) + scale_y_continuous(limits=c(900,1300))+scale_shape_manual(name = 'Exposure Type',values = c(21, 22),labels = c('Word-initial','Word-final'))+scale_colour_manual(name = 'Exposure Type',values = c("#0072B2", "#D55E00"),labels = c('Word-initial','Word-final'))
 dev.off()
 
