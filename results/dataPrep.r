@@ -2,12 +2,15 @@ library(lme4)
 library(ggplot2)
 library(plyr)
 library(stringr)
-library(Cairo)
+library(Cairo) # for unicode in saved plots
 
-#s100 initial, attend
-#s200 final, noattend
-#s300 initial, noattend
-#s400 final, attend
+# s100 initial, attend
+# s200 final, noattend
+# s300 initial, noattend
+# s400 final, attend
+
+# exp2 refers to Experiment 1 in thesis
+# exp1 refers to Experiment 2 in thesis
 
 #EXPOSURE
 expose <- read.delim('exp1_native_expose.txt')
@@ -86,7 +89,6 @@ summary(aov(aWordResp ~ Experiment*itemtype*Attention,data=subj.tolerances))
 
 #CATEGORIZATION
 
-
 categ <- read.delim('exp1_native_categ.txt')
 categ$Experiment <- 'exp1'
 
@@ -95,15 +97,11 @@ categ$ExposureType <- 'initial'
 categ[str_detect(categ$Subject,'^ns1-2'),]$ExposureType <- 'final'
 categ[str_detect(categ$Subject,'^ns1-4'),]$ExposureType <- 'final'
 
-categ$ExposureType <- factor(categ$ExposureType)
 
 categ$Attention <- 'attend'
 
 categ[str_detect(categ$Subject,'^ns1-2'),]$Attention <- 'noattend'
 categ[str_detect(categ$Subject,'^ns1-3'),]$Attention <- 'noattend'
-
-categ$Attention <- factor(categ$Attention)
-
 
 t <- read.delim('exp2_native_categ.txt')
 t$Experiment <- 'exp2'
@@ -113,71 +111,63 @@ t$ExposureType <- 'initial'
 t[str_detect(t$Subject,'^ns2-2'),]$ExposureType <- 'final'
 t[str_detect(t$Subject,'^ns2-4'),]$ExposureType <- 'final'
 
-t$ExposureType <- factor(t$ExposureType)
-
 t$Attention <- 'attend'
 
 t[str_detect(t$Subject,'^ns2-2'),]$Attention <- 'noattend'
 t[str_detect(t$Subject,'^ns2-3'),]$Attention <- 'noattend'
 
-t$Attention <- factor(t$Attention)
 
 categ <- rbind(categ,t)
 
+categ$ExposureType <- factor(categ$ExposureType)
+categ$Attention <- factor(categ$Attention)
 
-categ3 <- read.delim('exp3_native_categ.txt')
-categ3$Native <- 'yes'
+categ$Experiment <- factor(categ$Experiment, levels = c('exp2','exp1'))
 
-t <- read.delim('exp3_nonnative_categ.txt')
-t$Native <- 'no'
-#categ3 <- rbind(categ3,t)
-categ3$Native <- factor(categ3$Native)
-categ3 <- na.omit(categ3)
-categ3$ACC = 0
-categ3[categ3$RESP == categ3$SResp,]$ACC <- 1
-categ3$Experiment <- 'exp3'
+categ <- na.omit(categ)
 
-categ3$ExposureType <- 'predictive'
+categ <- subset(categ, RT > 200 & RT < 2500)
 
-categ3[str_detect(categ3$Subject,'^ns3-2'),]$ExposureType <- 'unpredictive'
-categ3[str_detect(categ3$Subject,'^ns3-4'),]$ExposureType <- 'unpredictive'
+#fix for coding error
+categ <- subset(categ,Trial < 169)
+sub <- subset(categ,Subject %in% c('ns1-113','ns1-114','ns1-115','ns1-116','ns1-118'))
+sub$RealAcc = 0
+sub[sub$ACC == 0,]$RealAcc = 1
 
-#categ3[str_detect(categ3$Subject,'^nns3-2'),]$ExposureType <- 'unpredictive'
-#categ3[str_detect(categ3$Subject,'^nns3-4'),]$ExposureType <- 'unpredictive'
+categ[categ$Subject %in% c('ns1-113','ns1-114','ns1-115','ns1-116','ns1-118'),]$ACC = sub$RealAcc
 
-categ3$ExposureType <- factor(categ3$ExposureType, levels = c('unpredictive','predictive'))
-
-categ3$Attention <- 'attend'
-
-categ3[str_detect(categ3$Subject,'^ns3-2'),]$Attention <- 'noattend'
-categ3[str_detect(categ3$Subject,'^ns3-3'),]$Attention <- 'noattend'
-
-categ3$Attention <- factor(categ3$Attention, levels = c('noattend','attend'))
-
-t <- paste(categ3$Label1,categ3$Label2,sep='-')
+# Create consistent Item categories
+t <- paste(categ$Label1,categ$Label2,sep='-')
 
 t[t=='shack-sack'] = 'sack-shack'
 t[t=='shy-sigh'] = 'sigh-shy'
 t[t=='shin-sin'] = 'sin-shin'
 t[t=='shock-sock'] = 'sock-shock'
 
-categ3$Item <- factor(t)
+categ$Item <- factor(t)
 
-categ3 <- subset(categ3, RT > 200 & RT < 2500)
-categ3$cStep <- 0
+categ <- subset(categ,!Subject %in% c('ns1-215','ns1-402', 'ns2-214', 'ns2-219')) # Crazy crossovers
+#categ <- subset(categ,!Subject %in% c('ns2-209', 'ns2-214-3')) #Weird data
+categ <- subset(categ,!Subject %in% c('ns2-214-3')) #Non-native
+#categ <- subset(categ,!Subject %in% c('ns1-105', 'ns1-117', 'ns1-319', 'ns1-323', 'ns1-401', 'ns2-124', 'ns2-206', 'ns2-215')) # Fitted probs near 1 or 0
+categ <- merge(categ,wresps)
+
+# By Item centering
+categ$cStep <- 0
 #sack-shack 3.642820
-categ3[categ3$Item == 'sack-shack',]$cStep <- categ3[categ3$Item == 'sack-shack',]$Step - 3.642820
+categ[categ$Item == 'sack-shack',]$cStep <- categ[categ$Item == 'sack-shack',]$Step - 3.642820
 #sigh-shy 3.979852
-categ3[categ3$Item == 'sigh-shy',]$cStep <- categ3[categ3$Item == 'sigh-shy',]$Step - 3.979852
+categ[categ$Item == 'sigh-shy',]$cStep <- categ[categ$Item == 'sigh-shy',]$Step - 3.979852
 #sin-shin 3.233012
-categ3[categ3$Item == 'sin-shin',]$cStep <- categ3[categ3$Item == 'sin-shin',]$Step - 3.233012
+categ[categ$Item == 'sin-shin',]$cStep <- categ[categ$Item == 'sin-shin',]$Step - 3.233012
 #sock-shock 3.481329
-categ3[categ3$Item == 'sock-shock',]$cStep <- categ3[categ3$Item == 'sock-shock',]$Step - 3.481329
+categ[categ$Item == 'sock-shock',]$cStep <- categ[categ$Item == 'sock-shock',]$Step - 3.481329
+categ$Step <- categ$Step - mean(1:6)
 
-categ3$Step <- categ3$Step - mean(1:6)
+categ$ExposureType <- factor(categ$ExposureType, levels = c('initial','final'))
+categ$Attention <- factor(categ$Attention, levels = c('noattend','attend'))
 
-#categ <- rbind(categ,t2)
-categ$Experiment <- factor(categ$Experiment)
+# CONTROL
 
 cont <- read.delim('control_native_categ.txt')
 
@@ -234,52 +224,7 @@ contrasts(cont$Background) <- contr.sum
 contrasts(cont$Background) <- contrasts(cont$Background) / 2
 #categ <- rbind(categ, cont)
 
-categ$ModACC <- 0.5
-categ[categ$ACC == 0,]$ModACC <- -0.5
-categ$Experiment <- factor(categ$Experiment, levels = c('exp2','exp1','exp3'))
-
-categ <- na.omit(categ)
-
-categ <- subset(categ, RT > 200 & RT < 2500)
-
-#fix for coding error
-categ <- subset(categ,Trial < 169)
-sub <- subset(categ,Subject %in% c('ns1-113','ns1-114','ns1-115','ns1-116','ns1-118'))
-sub$RealAcc = 0
-sub[sub$ACC == 0,]$RealAcc = 1
-
-categ[categ$Subject %in% c('ns1-113','ns1-114','ns1-115','ns1-116','ns1-118'),]$ACC = sub$RealAcc
-
-t <- paste(categ$Label1,categ$Label2,sep='-')
-
-t[t=='shack-sack'] = 'sack-shack'
-t[t=='shy-sigh'] = 'sigh-shy'
-t[t=='shin-sin'] = 'sin-shin'
-t[t=='shock-sock'] = 'sock-shock'
-
-categ$Item <- factor(t)
-
-categ <- subset(categ,!Subject %in% c('ns1-215','ns1-402', 'ns2-214', 'ns2-219')) # Crazy crossovers
-#categ <- subset(categ,!Subject %in% c('ns2-209', 'ns2-214-3')) #Weird data
-categ <- subset(categ,!Subject %in% c('ns2-214-3')) #Non-native
-#categ <- subset(categ,!Subject %in% c('ns2-307')) # 0.03 accuracy in exposure
-#categ <- subset(categ,!Subject %in% c('ns1-105', 'ns1-117', 'ns1-319', 'ns1-323', 'ns1-401', 'ns2-124', 'ns2-206', 'ns2-215')) # Fitted probs near 1 or 0
-categ <- merge(categ,wresps)
-
-categ$cStep <- 0
-#sack-shack 3.642820
-categ[categ$Item == 'sack-shack',]$cStep <- categ[categ$Item == 'sack-shack',]$Step - 3.642820
-#sigh-shy 3.979852
-categ[categ$Item == 'sigh-shy',]$cStep <- categ[categ$Item == 'sigh-shy',]$Step - 3.979852
-#sin-shin 3.233012
-categ[categ$Item == 'sin-shin',]$cStep <- categ[categ$Item == 'sin-shin',]$Step - 3.233012
-#sock-shock 3.481329
-categ[categ$Item == 'sock-shock',]$cStep <- categ[categ$Item == 'sock-shock',]$Step - 3.481329
-categ$Step <- categ$Step - mean(1:6)
-
-categ$ExposureType <- factor(categ$ExposureType, levels = c('initial','final'))
-categ$Attention <- factor(categ$Attention, levels = c('noattend','attend'))
-
+# EXP 3 EXPOSURE
 
 expose3 <- read.delim('exp3_native_expose.txt')
 expose3$Native <- 'yes'
@@ -314,6 +259,61 @@ expose3$ExposureType <- factor(expose3$ExposureType, levels = c('unpredictive','
 expose3$Predictability <- factor(expose3$Predictability, levels = c('Unpredictive', 'Predictive'))
 
 subj.tolerances3 <- ddply(subset(expose3,Type == 'S-final'),~Predictability*Attention*Subject, summarise, MeanLogRt = mean(LogRT))
+
+# EXP 3 Categorization
+
+categ3 <- read.delim('exp3_native_categ.txt')
+categ3$Native <- 'yes'
+
+t <- read.delim('exp3_nonnative_categ.txt')
+t$Native <- 'no'
+#categ3 <- rbind(categ3,t)
+categ3$Native <- factor(categ3$Native)
+categ3 <- na.omit(categ3)
+categ3$ACC = 0
+categ3[categ3$RESP == categ3$SResp,]$ACC <- 1
+categ3$Experiment <- 'exp3'
+
+categ3$ExposureType <- 'predictive'
+
+categ3[str_detect(categ3$Subject,'^ns3-2'),]$ExposureType <- 'unpredictive'
+categ3[str_detect(categ3$Subject,'^ns3-4'),]$ExposureType <- 'unpredictive'
+
+#categ3[str_detect(categ3$Subject,'^nns3-2'),]$ExposureType <- 'unpredictive'
+#categ3[str_detect(categ3$Subject,'^nns3-4'),]$ExposureType <- 'unpredictive'
+
+categ3$ExposureType <- factor(categ3$ExposureType, levels = c('unpredictive','predictive'))
+
+categ3$Attention <- 'attend'
+
+categ3[str_detect(categ3$Subject,'^ns3-2'),]$Attention <- 'noattend'
+categ3[str_detect(categ3$Subject,'^ns3-3'),]$Attention <- 'noattend'
+
+categ3$Attention <- factor(categ3$Attention, levels = c('noattend','attend'))
+
+t <- paste(categ3$Label1,categ3$Label2,sep='-')
+
+t[t=='shack-sack'] = 'sack-shack'
+t[t=='shy-sigh'] = 'sigh-shy'
+t[t=='shin-sin'] = 'sin-shin'
+t[t=='shock-sock'] = 'sock-shock'
+
+categ3$Item <- factor(t)
+
+categ3 <- subset(categ3, RT > 200 & RT < 2500)
+categ3$cStep <- 0
+#sack-shack 3.642820
+categ3[categ3$Item == 'sack-shack',]$cStep <- categ3[categ3$Item == 'sack-shack',]$Step - 3.642820
+#sigh-shy 3.979852
+categ3[categ3$Item == 'sigh-shy',]$cStep <- categ3[categ3$Item == 'sigh-shy',]$Step - 3.979852
+#sin-shin 3.233012
+categ3[categ3$Item == 'sin-shin',]$cStep <- categ3[categ3$Item == 'sin-shin',]$Step - 3.233012
+#sock-shock 3.481329
+categ3[categ3$Item == 'sock-shock',]$cStep <- categ3[categ3$Item == 'sock-shock',]$Step - 3.481329
+
+categ3$Step <- categ3$Step - mean(1:6)
+
+# Experiment 1 and 3
 
 categ23 <- subset(categ,Experiment == 'exp2' & ExposureType == 'final')
 
