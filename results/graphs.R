@@ -5,8 +5,8 @@ if_labeller <- function(var, value){
     value[value == "initial"] <- "Word-initial"
     value[value == "final"]   <- "Word-medial"
     value[value == "isolation"] <- "Isolation"
-    value[value == "unpredictive"]   <- "Unpredictive"
-    value[value == "predictive"]   <- "Predictive"
+    value[value == "unpredictive"]   <- "Unpredictable"
+    value[value == "predictive"]   <- "Predictable"
   }
   if (var == "Attention") { 
     value[value == "attend"] <- "Attention"
@@ -436,6 +436,48 @@ ggsave('../thesis/graphs/exp3_categresults_present.pdf', width = 170, height = 1
 
 ggsave('../thesis/graphs/exp3_categresults.pdf',width=170,height=80,units='mm',dpi=600)
 
+
+exp3.results.unpredictable <- ggplot(subset(plotData, ExposureType == 'unpredictive'), aes(x = Step, y = ACC, colour = Attention, shape = Attention, group = Attention)) 
+exp3.results.unpredictable <- exp3.results.unpredictable + geom_point(size = 1.7) + geom_line() + geom_errorbar(aes(ymin = ACC - ci, ymax = ACC + ci), linetype = 'solid', size = 0.1)
+exp3.results.unpredictable <- exp3.results.unpredictable + facet_grid(~ExposureType, labeller = if_labeller) 
+exp3.results.unpredictable <- exp3.results.unpredictable + ylab('Proportion /s/ response') + xlab('Continua step')
+exp3.results.unpredictable <- exp3.results.unpredictable + theme_bw() 
+exp3.results.unpredictable <- exp3.results.unpredictable + theme(text = element_text(size = 6), 
+                                                     legend.title = element_text(size = 4), 
+                                                     legend.text = element_text(size = 4), 
+                                                     legend.justification = c(0, 0), 
+                                                     legend.position = c(-0.05, -0.05), 
+                                                     legend.background = element_blank())
+exp3.results.unpredictable <- exp3.results.unpredictable + scale_x_continuous(breaks = 1:6)  
+exp3.results.unpredictable <- exp3.results.unpredictable +scale_shape_manual(values = c(21, 22, 23), 
+                                                                 labels = c('No attention', 'Attention', 'Control'))
+exp3.results.unpredictable <- exp3.results.unpredictable +scale_colour_manual(values = c("#0072B2", "#D55E00", "#000000"),
+                                                                  labels = c('No attention', 'Attention', 'Control'))
+
+exp3.results.unpredictable
+ggsave('../thesis/graphs/exp3_categresults_present2-unpredictable.pdf', width = 50, height = 85, units = 'mm', dpi = 600)
+
+exp3.results.predictable <- ggplot(subset(plotData, ExposureType =='predictive'), aes(x = Step, y = ACC, colour = Attention, shape = Attention, group = Attention)) 
+exp3.results.predictable <- exp3.results.predictable + geom_point(size = 1.7) + geom_line() + geom_errorbar(aes(ymin = ACC - ci, ymax = ACC + ci), linetype = 'solid', size = 0.1)
+exp3.results.predictable <- exp3.results.predictable + facet_grid(~ExposureType, labeller = if_labeller)
+exp3.results.predictable <- exp3.results.predictable + ylab('Proportion /s/ response') + xlab('Continua step')
+exp3.results.predictable <- exp3.results.predictable + theme_bw() 
+exp3.results.predictable <- exp3.results.predictable + theme(text=element_text(size = 6),
+                                                 legend.title=element_text(size = 4),
+                                                 legend.text=element_text(size = 4),
+                                                 legend.justification=c(0, 0), 
+                                                 legend.position = c(-0.05, -0.05), 
+                                                 legend.background = element_blank())
+exp3.results.predictable <- exp3.results.predictable + scale_x_continuous(breaks = 1:6)  
+exp3.results.predictable <- exp3.results.predictable + scale_shape_manual(values = c(21, 22, 23),
+                                                              labels = c('No attention', 'Attention', 'Control'))
+exp3.results.predictable <- exp3.results.predictable + scale_colour_manual(values = c("#0072B2", "#D55E00", "#000000"),
+                                                               labels = c('No attention', 'Attention', 'Control'))
+
+exp3.results.predictable
+
+ggsave('../thesis/graphs/exp3_categresults_present2-predictable.pdf', width = 50, height = 85, units = 'mm', dpi = 600)
+
 ## ISOLATION VS SENTENCES
 
 plotData <- summarySEwithin(data = categ23, measurevar = 'ACC', betweenvars = c('Attention', 'ExposureType'), withinvars = c('Step'), idvar = 'Subject')
@@ -467,6 +509,23 @@ exp13.results <- exp13.results + scale_colour_manual(values = c("#0072B2", "#D55
 
 exp13.results
 ggsave('../thesis/graphs/exp23_categresults.pdf', width = 170, height = 80, units = 'mm', dpi = 600)
+
+exp13.results <- ggplot(plotData,aes(x = Step, y = ACC, colour = Attention, shape = Attention, group = Attention)) 
+exp13.results <- exp13.results + geom_point(size = 1.7) + geom_line() + geom_errorbar(aes(ymin = ACC - ci, ymax = ACC + ci), linetype = 'solid', size = 0.1) 
+exp13.results <- exp13.results + facet_grid(~ExposureType, labeller = if_labeller) 
+exp13.results <- exp13.results + ylab('Proportion /s/ response') + xlab('Continua step') 
+exp13.results <- exp13.results + theme_bw() 
+exp13.results <- exp13.results + theme(text=element_text(size = 6),
+                                       legend.title=element_text(size = 4),
+                                       legend.text=element_text(size = 4))
+exp13.results <- exp13.results + scale_x_continuous(breaks = 1:6)  
+exp13.results <- exp13.results + scale_shape_manual(values = c(21, 22, 23),
+                                                    labels = c('No attention', 'Attention', 'Control'))
+exp13.results <- exp13.results + scale_colour_manual(values = c("#0072B2", "#D55E00", "#000000"), 
+                                                     labels = c('No attention', 'Attention', 'Control'))
+
+exp13.results
+ggsave('../thesis/graphs/exp23_categresults_present.pdf', width = 120, height = 70, units = 'mm', dpi = 600)
 
 
 ### END EXPERIMENT 3

@@ -95,7 +95,7 @@ def find_durations():
                 }
     scores, reps = analyze_directory(data_dir, **kwargs)
     out = list()
-    with open('output_dur.txt', 'w') as f:
+    with open('output_dur_word.txt', 'w') as f:
         writer = csv.writer(f, delimiter = '\t')
         writer.writerow(['Label','Duration'])
         for v in reps.values():
@@ -104,7 +104,7 @@ def find_durations():
             base, _ = os.path.splitext(v._filepath)
             one_textgrid = base + '.TextGrid'
             one_begin,one_end = get_vowel_points(one_textgrid,
-                        tier_name = 'sibilant', vowel_label = 'sibilant')
+                        tier_name = 'word', vowel_label = 'word')
             dur = one_end - one_begin
             writer.writerow([v._true_label,str(dur)])
 

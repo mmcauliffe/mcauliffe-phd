@@ -1,0 +1,704 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This file is a template using the "beamer" package to create slides for a talk or presentation
+% - Giving a talk on some subject.
+% - The talk is between 15min and 45min long.
+% - Style is ornate.
+
+% MODIFIED by Jonathan Kew, 2008-07-06
+% The header comments and encoding in this file were modified for inclusion with TeXworks.
+% The content is otherwise unchanged from the original distributed with the beamer package.
+
+\documentclass{beamer}
+
+
+% Copyright 2004 by Till Tantau <tantau@users.sourceforge.net>.
+%
+% In principle, this file can be redistributed and/or modified under
+% the terms of the GNU Public License, version 2.
+%
+% However, this file is supposed to be a template to be modified
+% for your own needs. For this reason, if you use this file as a
+% template and not specifically distribute it as part of a another
+% package/program, I grant the extra permission to freely copy and
+% modify this file as you see fit and even to delete this copyright
+% notice. 
+
+\usepackage{multimedia}
+\usepackage{tipa}
+\usepackage{natbib}
+    \renewcommand{\bibsection}{\subsubsection*{\bibname } }
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes}
+
+\newcommand{\tikzmark}[1]{\tikz[remember picture] \node[coordinate] (#1) {#1};}
+\newcommand\mytextbullet{\leavevmode%
+\usebeamertemplate{itemize item}}
+\newcommand{\btVFill}{\vskip0pt plus 1filll}
+
+\mode<presentation>
+{
+  \usetheme{Warsaw}
+  % or ...
+
+  \setbeamercovered{transparent}
+  % or whatever (possibly just delete it)
+}
+
+
+\usepackage[english]{babel}
+% or whatever
+
+\usepackage[utf8]{inputenc}
+% or whatever
+
+\usepackage{times}
+\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+
+
+\title
+{Attention and salience in lexically-guided perceptual learning}
+
+\author
+{Michael McAuliffe}
+% - Use the \inst{?} command only if the authors have different
+%   affiliation.
+
+\institute
+{}
+% - Use the \inst command only if there are several affiliations.
+% - Keep it simple, no one is interested in your street address.
+
+\date
+{PhD Defense}
+
+\subject{Talks}
+% This is only inserted into the PDF information catalog. Can be left
+% out. 
+
+
+
+% If you have a file called "university-logo-filename.xxx", where xxx
+% is a graphic format that can be processed by latex or pdflatex,
+% resp., then you can add a logo as follows:
+
+% \pgfdeclareimage[height=0.5cm]{university-logo}{university-logo-filename}
+% \logo{\pgfuseimage{university-logo}}
+
+
+
+
+
+% If you wish to uncover everything in a step-wise fashion, uncomment
+% the following command: 
+
+%\beamerdefaultoverlayspecification{<+->}
+
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+\tableofcontents
+\end{frame}
+
+\section{Background}
+
+\subsection{Sources of variation}
+
+\begin{frame}{Sources of variation}
+
+Example: /s/
+\vfill
+\begin{minipage}[t]{0.45\textwidth}
+Speaker
+
+\begin{itemize}
+\item Indexical
+\begin{itemize}
+\item Accent
+\item Gender
+\end{itemize}
+\item Contextual
+\begin{itemize}
+\item Style
+\item Speaking rate
+\item Coarticulation (/st\textturnr/)
+\item Position in word
+\item Predictability
+\end{itemize}
+
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+Listener
+
+\begin{itemize}
+\item Indexical
+\begin{itemize}
+\item Accent
+\item Perceived accent
+\item Perceived gender
+\end{itemize}
+\item Contextual
+\begin{itemize}
+\item Speaking rate
+\item Coarticulation (/st\textturnr/)
+\end{itemize}
+\item Attention
+\end{itemize}
+\end{minipage}
+\btVFill
+\begin{flushright}
+\scriptsize
+\citet{Strand1996, Kraljic2005,Clopper2008, Pitt2012}
+\end{flushright}
+\end{frame}
+
+\begin{frame}{Perceptual constancy}
+\vfill
+\begin{center}
+Despite variation, listeners can interpret variable productions as a single word type
+\vfill
+\movie{\includegraphics[width=0.1\textwidth]{pictures/sock}}{audio/variation.wav}
+
+\end{center}
+\btVFill
+
+\begin{flushright}
+\scriptsize
+\citet{Shankweiler1977, Kuhl1979,Sumner2013}
+\end{flushright}
+\end{frame}
+
+\begin{frame}{Perceptual learning}
+\movie{\includegraphics[width=0.45\textwidth]{pictures/exposure}}{audio/exposure.wav}
+\hfill
+\movie{\includegraphics[width=0.45\textwidth]{pictures/categorization}}{audio/categorization.wav}
+
+\vfill
+\textbf{Research question:}
+
+How do changes to a listener's attentional set in exposure affect perceptual learning in future categorization?
+\vfill
+
+\end{frame}
+
+\begin{frame}{Sources of variation}
+
+Example: /s/
+\vfill
+\begin{minipage}[t]{0.45\textwidth}
+Speaker
+
+\begin{itemize}
+\item Indexical
+\begin{itemize}
+\item Accent
+\item Gender
+\end{itemize}
+\item Contextual
+\begin{itemize}
+\item Style
+\item Speaking rate
+\item Coarticulation (/st\textturnr/)
+\item \textbf{Position in word} \tikzmark{n1} 
+\item \textbf{Predictability} \tikzmark{n2} 
+\end{itemize}
+
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+Listener
+
+\begin{itemize}
+\item Indexical
+\begin{itemize}
+\item Accent
+\item Perceived accent
+\item Perceived gender
+\end{itemize}
+\item Contextual
+\begin{itemize}
+\item Speaking rate
+\item Coarticulation (/st\textturnr/)
+\end{itemize}
+\item[\tikzmark{t1} \mytextbullet] \textbf{Attention}
+\end{itemize}
+
+\end{minipage}
+
+\begin{tikzpicture}[remember picture,overlay]
+        %\path[draw=magenta,thick,->]<3-> ([yshift=3mm]n1) to ++(0,3mm) to [out=0, in=0,distance=2.5in] (t1);
+   \path[draw=magenta,thick,->] ([yshift=1.5mm]n1) -- ([yshift=1.5mm]t1);
+\end{tikzpicture}
+\begin{tikzpicture}[remember picture,overlay]
+        %\path[draw=magenta,thick,->]<3-> ([yshift=3mm]n1) to ++(0,3mm) to [out=0, in=0,distance=2.5in] (t1);
+   \path[draw=magenta,thick,->] ([yshift=1.5mm]n2) -- ([yshift=1.5mm]t1);
+\end{tikzpicture}
+\btVFill
+\begin{flushright}
+\scriptsize
+\citet{Strand1996, Kraljic2005,Clopper2008, Pitt2012}
+\end{flushright}
+\end{frame}
+
+\subsection{Attentional sets}
+
+\begin{frame}{Attentional sets}
+
+\textbf{Perception-oriented}
+\begin{itemize}
+\item Focus on perceiving a specific pronunciation
+\item Tasks
+\begin{itemize}
+\item Phoneme-monitoring
+\item Discrimination of non-speech stimuli
+\end{itemize}
+\item Perceptual learning in psychophysics
+\begin{itemize}
+\item Perceptual learning effects don't generalize to new stimuli
+\end{itemize}
+\item Visually-guided perceptual learning
+\begin{itemize}
+\item Mixed results in generalizing to new stimuli
+\end{itemize}
+\item Promoted by experimental design
+\begin{itemize}
+\item Repetitive stimuli
+\item More nonwords than words
+\end{itemize}
+\end{itemize}
+
+\btVFill
+\begin{flushright}
+\scriptsize
+\citet{Cutler1987, Ahissar1993, Pitt2012, Reinisch2014}
+\end{flushright}
+
+
+\end{frame}
+
+\begin{frame}{Attentional sets}
+
+\textbf{Comprehension-oriented}
+\begin{itemize}
+\item Focus on comprehending meaning
+\item Tasks
+\begin{itemize}
+\item Word recognition
+\item Word identification
+\end{itemize}
+\item Perceptual learning in speech perception
+\begin{itemize}
+\item Generalization to new items (and sometimes new speakers)
+\end{itemize}
+\item Hypothesized to be similar to normal language use
+\end{itemize}
+
+\btVFill
+\textbf{Hypothesis:}
+
+Comprehension-oriented attentional sets allow for greater generalization than perception-oriented attentional sets.
+\btVFill
+\begin{flushright}
+\scriptsize
+\citet{Norris2003, Kraljic2005, Pitt2012, Reinisch2013}
+\end{flushright}
+
+\end{frame}
+
+\begin{frame}{Attentional set manipulation}
+\btVFill
+Explicit instructions
+\begin{itemize}
+\item ``This speaker's `s' sounds are ambiguous''
+\item Promote perception-oriented attentional set
+\end{itemize}
+
+\btVFill
+\begin{flushright}
+\scriptsize
+\citet{Pitt2012}
+\end{flushright}
+\end{frame}
+
+\begin{frame}{Attentional set manipulation}
+
+Perceptual salience of modified /s/
+\begin{itemize}
+\item The less predictable an element, the higher its salience
+\item Increase the likelihood of listener noticing modification
+\item Promote perception-oriented attentional set
+\item Assumption: similar to increasing the number of /s/ trials relative to filler trials
+\end{itemize}
+
+Position in word
+\begin{itemize}
+\item Listeners are more tolerant of variation later in the word
+\item Word-initial modified /s/ should be more salient 
+\end{itemize}
+
+Category typicality
+\begin{itemize}
+\item Productions that are unexpected for a category are more likely to be noticed (salient)
+\end{itemize}
+
+\btVFill
+\begin{flushright}
+\scriptsize
+\citet{Pitt2012}
+\end{flushright}
+\end{frame}
+
+\section{Experiments 1 and 2}
+
+\subsection{Set up}
+
+\begin{frame}{Experiments 1 and 2}
+
+Experiment 1
+\begin{itemize}
+\item Lexical decision exposure task
+\item Across subject factors
+\begin{itemize}
+\item Instructions
+\item Position of modified /s/ in words (\movie{Word-initial}{audio/submarine_exp1.wav} vs \movie{word-medial}{audio/whistle_exp1.wav})
+\end{itemize}
+\item 50\% word response rate in a pre-test
+\end{itemize}
+Experiment 2
+\begin{itemize}
+\item Same design and materials as Experiment 1
+\item 30\% word reponse rate in the pre-test (more atypical /s/; \movie{Word-initial}{audio/submarine_exp2.wav} vs \movie{word-medial}{audio/whistle_exp2.wav})
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Experiment 1 and 2 predictions}
+
+\begin{itemize}
+\item Hypothesis 1:
+\begin{itemize}
+\item Perceptual learning is affected by attentional sets
+\item Perceptual learning should be less where perception-oriented attentional sets are promoted
+\end{itemize}
+\item Hypothesis 2:
+\begin{itemize}
+\item Perceptual learning is wholly automatic and consistent
+\item Equal perceptual learning effects across all conditions
+\end{itemize}
+\item Hypothesis 3:
+\begin{itemize}
+\item Perceptual learning effects are dependent on similarity
+\item Word-initial exposure > Word-medial exposure
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\subsection{Results}
+
+\begin{frame}{Experiment 1}
+
+\begin{minipage}{0.45\textwidth}
+\textbf{Exposed to ambiguous /s/}
+\begin{itemize}
+\item 50\% between /s/ and /\textesh/
+\end{itemize}
+
+\textbf{Attention}
+\begin{itemize}
+\item No /s/-oriented instructions
+\item Told /s/ would be ambiguous
+\end{itemize}
+
+\textbf{Position of /s/}
+\begin{itemize}
+\item \emph{Word initial}
+\item Word medial
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}{0.4\textwidth}
+\includegraphics[width=1.0\textwidth]{graphs/exp1_categresults_present2-initial}
+\end{minipage}
+
+\end{frame}
+
+\begin{frame}{Experiment 1}
+
+\begin{minipage}{0.45\textwidth}
+\textbf{Exposed to ambiguous /s/}
+\begin{itemize}
+\item 50\% between /s/ and /\textesh/
+\end{itemize}
+
+\textbf{Attention}
+\begin{itemize}
+\item No /s/-oriented instructions
+\item Told /s/ would be ambiguous
+\end{itemize}
+
+\textbf{Position of /s/}
+\begin{itemize}
+\item Word initial
+\item \emph{Word medial}
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}{0.4\textwidth}
+\includegraphics[width=1.0\textwidth]{graphs/exp1_categresults_present2-final}
+\end{minipage}
+
+\end{frame}
+
+\begin{frame}{Experiment 2}
+
+\begin{minipage}{0.45\textwidth}
+\textbf{Exposed to ambiguous /s/}
+\begin{itemize}
+\item More like /\textesh/ than /s/
+\end{itemize}
+
+\textbf{Attention}
+\begin{itemize}
+\item No /s/-oriented instructions
+\item Told /s/ would be ambiguous
+\end{itemize}
+
+\textbf{Position of /s/}
+\begin{itemize}
+\item \emph{Word initial}
+\item Word medial
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}{0.4\textwidth}
+\includegraphics[width=1.0\textwidth]{graphs/exp2_categresults_present2-initial}
+\end{minipage}
+
+\end{frame}
+
+\begin{frame}{Experiment 2}
+
+\begin{minipage}{0.45\textwidth}
+\textbf{Exposed to ambiguous /s/}
+\begin{itemize}
+\item More like /\textesh/ than /s/
+\end{itemize}
+
+\textbf{Attention}
+\begin{itemize}
+\item No /s/-oriented instructions
+\item Told /s/ would be ambiguous
+\end{itemize}
+
+\textbf{Position of /s/}
+\begin{itemize}
+\item Word initial
+\item \emph{Word medial}
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}{0.4\textwidth}
+\includegraphics[width=1.0\textwidth]{graphs/exp2_categresults_present2-final}
+\end{minipage}
+
+\end{frame}
+
+\subsection{Summary}
+
+\begin{frame}{Summary}
+
+\begin{itemize}
+\item Results align with attentional sets
+\item Fine-grained similarity did not appear to play a role
+\begin{itemize}
+\item Word-intial exposure <= word-medial exposure
+\end{itemize}
+\item Conditions promoting a perception-oriented attentional set
+\begin{itemize}
+\item Still showed perceptual learning
+\item Had smaller perceptual learning effects
+\item Did not differ from one another
+\end{itemize}
+\item Task was comprehension-oriented (identifying word)
+\item Experiment 3 attempts to further promote comprehension-oriented attentional sets
+\end{itemize}
+
+\end{frame}
+
+\section{Experiment 3}
+
+\subsection{Set up}
+
+\begin{frame}{Experiment 3}
+
+\begin{itemize}
+\item Novel cross-modal paradigm
+\begin{itemize}
+\item Auditory sentences
+\item Identification of picture corresponding to final word in sentence
+\item Same word-medial modified /s/ stimuli
+\item Final targets were predictable or unpredictable
+\end{itemize}
+\item Across subjects
+\begin{itemize}
+\item Instructions (identical to Experiments 1 and 2)
+\item Modified /s/ only in \movie{predictable}{audio/P_whistle.wav} or \movie{unpredictable}{audio/U_whistle.wav} words
+\end{itemize}
+\item Predictable words are predicted to have lower salience than unpredictable words
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Experiment 3 predictions}
+
+\begin{itemize}
+\item Hypothesis 1:
+\begin{itemize}
+\item Words in isolation == words at the end of sentences
+\item Perceptual learning effects == Experiment 1's Word-medial conditions
+\end{itemize}
+\item Hypothesis 2:
+\begin{itemize}
+\item Words in isolation =/= words at the end of sentences
+\item Perceptual learning effect < Experiment 1's Word-medial conditions
+\end{itemize}
+\item Hypothesis 3:
+\begin{itemize}
+\item High predictability is associated with less distinct acoustics
+\item Perceptual learning is not found in coarticulation contexts (/st\textturnr/)
+\item No perceptual learning effect in predictable condition
+\end{itemize}
+\end{itemize}
+\btVFill
+\begin{flushright}
+\scriptsize
+\citet{Clopper2008, Scarborough2010,Kraljic2008a}
+\end{flushright}
+\end{frame}
+
+\subsection{Results}
+
+\begin{frame}{Experiment 3}
+
+\begin{minipage}{0.45\textwidth}
+\begin{itemize}
+\item \textbf{Exposed to ambiguous /s/}
+\begin{itemize}
+\item Halfway between /s/ and /\textesh/
+\item In sentences
+\end{itemize}
+
+\item \textbf{Attention}
+\begin{itemize}
+\item No /s/-oriented instructions
+\item Told /s/ would be ambiguous
+\end{itemize}
+
+\item \textbf{Predictability of final /s/ words}
+\begin{itemize}
+\item \emph{Unpredictable}
+\item Predictable
+\end{itemize}
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}{0.4\textwidth}
+\includegraphics[width=1.0\textwidth]{graphs/exp3_categresults_present2-unpredictable}
+\end{minipage}
+
+\end{frame}
+
+\begin{frame}{Experiment 3}
+
+\begin{minipage}{0.45\textwidth}
+\begin{itemize}
+\item \textbf{Exposed to ambiguous /s/}
+\begin{itemize}
+\item Halfway between /s/ and /\textesh/
+\item In sentences
+\end{itemize}
+
+\item \textbf{Attention}
+\begin{itemize}
+\item No /s/-oriented instructions
+\item Told /s/ would be ambiguous
+\end{itemize}
+
+\item \textbf{Predictability of final /s/ words}
+\begin{itemize}
+\item Unpredictable
+\item \emph{Predictable}
+\end{itemize}
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}{0.4\textwidth}
+\includegraphics[width=1.0\textwidth]{graphs/exp3_categresults_present2-predictable}
+\end{minipage}
+
+\end{frame}
+
+\begin{frame}{Isolation vs Sentences}
+
+\includegraphics{graphs/exp23_categresults_present}
+\end{frame}
+
+\subsection{Summary}
+
+\begin{frame}{Summary}
+
+\begin{itemize}
+\item Unpredictable exposure showed a similar pattern to words in isolation
+\item Predictable exposure showed no perceptual learning effect
+\begin{itemize}
+\item Similar to studies using a coarticulation context (/st\textturnr/)
+\item Despite consistent durations for words and sibilants across the two sentence types
+\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\section{Discussion}
+
+\begin{frame}{Discussion}
+
+\begin{itemize}
+\item Attentional sets affected perceptual learning
+\begin{itemize}
+\item Conditions that did not promote perception-oriented attentional sets showed larger effects
+\end{itemize}
+\item Predictability was likely not an attentional set manipulation
+\begin{itemize}
+\item Instead, allowed for attribution of the modified category to predictability
+\end{itemize}
+\item Implications for theoretical models
+\begin{itemize}
+\item Supports hierarchical representations
+\item Attention to episodic representations or specific pronunciations inhibits learning in abstract categories
+\end{itemize}
+\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}[allowframebreaks]{References}%in case more than 1 slide needed
+    \footnotesize
+\bibliographystyle{apalike}
+\bibliography{biblio}
+    
+\end{frame}
+
+\end{document}
+
+
