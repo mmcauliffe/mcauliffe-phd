@@ -46,7 +46,7 @@
   % or whatever (possibly just delete it)
 }
 
-
+\setbeamertemplate{footline}[frame number]
 \usepackage[english]{babel}
 % or whatever
 
@@ -115,7 +115,7 @@
 \begin{frame}{Sources of variation}
 
 Example: /s/
-\vfill
+\btVFill
 \begin{minipage}[t]{0.45\textwidth}
 Speaker
 
@@ -125,6 +125,37 @@ Speaker
 \item Accent
 \item Gender
 \end{itemize}
+
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+Listener
+
+\begin{itemize}
+\item Indexical
+\begin{itemize}
+\item Accent
+\item Perceived accent
+\item Perceived gender
+\end{itemize}
+\end{itemize}
+\end{minipage}
+\btVFill
+\begin{flushright}
+\scriptsize
+\citet{Strand1996, Li2011, Kraljic2005}
+\end{flushright}
+\end{frame}
+
+\begin{frame}{Sources of variation}
+
+Example: /s/
+\btVFill
+\begin{minipage}[t]{0.45\textwidth}
+Speaker
+
+\begin{itemize}
 \item Contextual
 \begin{itemize}
 \item Style
@@ -141,24 +172,53 @@ Speaker
 Listener
 
 \begin{itemize}
-\item Indexical
-\begin{itemize}
-\item Accent
-\item Perceived accent
-\item Perceived gender
-\end{itemize}
 \item Contextual
 \begin{itemize}
 \item Speaking rate
 \item Coarticulation (/st\textturnr/)
+\item Position in word
+\item Predictability
 \end{itemize}
-\item Attention
 \end{itemize}
 \end{minipage}
 \btVFill
 \begin{flushright}
 \scriptsize
-\citet{Strand1996, Kraljic2005,Clopper2008, Pitt2012}
+\citet{Lieberman1963,Kraljic2008a,Clopper2008, Pitt2012}
+\end{flushright}
+\end{frame}
+
+\begin{frame}{Sources of variation}
+
+Example: /s/
+\btVFill
+\begin{minipage}[t]{0.45\textwidth}
+Speaker
+
+\begin{itemize}
+\item Attention
+\begin{itemize}
+\item Tongue twisters
+\end{itemize}
+
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+Listener
+
+\begin{itemize}
+\item Attention
+\begin{itemize}
+\item Comprehension
+\item Perception
+\end{itemize}
+\end{itemize}
+\end{minipage}
+\btVFill
+\begin{flushright}
+\scriptsize
+\citet{Nozari2012, Pitt2012}
 \end{flushright}
 \end{frame}
 
@@ -178,15 +238,27 @@ Despite variation, listeners can interpret variable productions as a single word
 \end{flushright}
 \end{frame}
 
+\subsection{Perceptual learning}
+
 \begin{frame}{Perceptual learning}
 \movie{\includegraphics[width=0.45\textwidth]{pictures/exposure}}{audio/exposure.wav}
 \hfill
 \movie{\includegraphics[width=0.45\textwidth]{pictures/categorization}}{audio/categorization.wav}
 
-\vfill
-\textbf{Research question:}
+\end{frame}
 
-How do changes to a listener's attentional set in exposure affect perceptual learning in future categorization?
+\begin{frame}{Categorization}
+
+\includegraphics[width=1.0\textwidth]{graphs/dist}
+\vfill
+\includegraphics[width=1.0\textwidth]{graphs/class}
+
+\end{frame}
+
+\begin{frame}{Research question}
+
+\vfill
+How do changes to a listener's attention in exposure affect perceptual learning in future categorization?
 \vfill
 
 \end{frame}
@@ -194,16 +266,11 @@ How do changes to a listener's attentional set in exposure affect perceptual lea
 \begin{frame}{Sources of variation}
 
 Example: /s/
-\vfill
+\btVFill
 \begin{minipage}[t]{0.45\textwidth}
 Speaker
 
 \begin{itemize}
-\item Indexical
-\begin{itemize}
-\item Accent
-\item Gender
-\end{itemize}
 \item Contextual
 \begin{itemize}
 \item Style
@@ -220,18 +287,18 @@ Speaker
 Listener
 
 \begin{itemize}
-\item Indexical
-\begin{itemize}
-\item Accent
-\item Perceived accent
-\item Perceived gender
-\end{itemize}
 \item Contextual
 \begin{itemize}
 \item Speaking rate
 \item Coarticulation (/st\textturnr/)
+\item Position in word
+\item Predictability
 \end{itemize}
 \item[\tikzmark{t1} \mytextbullet] \textbf{Attention}
+\begin{itemize}
+\item Comprehension
+\item Perception
+\end{itemize}
 \end{itemize}
 
 \end{minipage}
@@ -245,45 +312,15 @@ Listener
    \path[draw=magenta,thick,->] ([yshift=1.5mm]n2) -- ([yshift=1.5mm]t1);
 \end{tikzpicture}
 \btVFill
-\begin{flushright}
-\scriptsize
-\citet{Strand1996, Kraljic2005,Clopper2008, Pitt2012}
-\end{flushright}
 \end{frame}
 
 \subsection{Attentional sets}
 
 \begin{frame}{Attentional sets}
 
-\textbf{Perception-oriented}
-\begin{itemize}
-\item Focus on perceiving a specific pronunciation
-\item Tasks
-\begin{itemize}
-\item Phoneme-monitoring
-\item Discrimination of non-speech stimuli
-\end{itemize}
-\item Perceptual learning in psychophysics
-\begin{itemize}
-\item Perceptual learning effects don't generalize to new stimuli
-\end{itemize}
-\item Visually-guided perceptual learning
-\begin{itemize}
-\item Mixed results in generalizing to new stimuli
-\end{itemize}
-\item Promoted by experimental design
-\begin{itemize}
-\item Repetitive stimuli
-\item More nonwords than words
-\end{itemize}
-\end{itemize}
+Strategies to parse our perceptual experience
 
-\btVFill
-\begin{flushright}
-\scriptsize
-\citet{Cutler1987, Ahissar1993, Pitt2012, Reinisch2014}
-\end{flushright}
-
+\includegraphics[width=0.9\textwidth]{pictures/waldo}
 
 \end{frame}
 
@@ -292,28 +329,88 @@ Listener
 \textbf{Comprehension-oriented}
 \begin{itemize}
 \item Focus on comprehending meaning
-\item Tasks
+\item Real world example:
+
 \begin{itemize}
-\item Word recognition
-\item Word identification
-\end{itemize}
-\item Perceptual learning in speech perception
-\begin{itemize}
-\item Generalization to new items (and sometimes new speakers)
-\end{itemize}
-\item Hypothesized to be similar to normal language use
+\item Students in lecture
+\item Primary focus is comprehending the professor (we hope)
 \end{itemize}
 
-\btVFill
-\textbf{Hypothesis:}
-
-Comprehension-oriented attentional sets allow for greater generalization than perception-oriented attentional sets.
+\end{itemize}
 \btVFill
 \begin{flushright}
 \scriptsize
-\citet{Norris2003, Kraljic2005, Pitt2012, Reinisch2013}
+\citet{Pitt2012}
 \end{flushright}
 
+\end{frame}
+
+\begin{frame}{Attentional sets}
+
+\textbf{Perception-oriented}
+\begin{itemize}
+\item Focus on perceiving a specific pronunciation
+\item Real world example:
+\begin{itemize}
+\item Students in lecture
+\item Professor with an accent or affectation
+\item Primary focus might shift from comprehension
+\end{itemize}
+\end{itemize}
+\btVFill
+\begin{flushright}
+\scriptsize
+\citet{Pitt2012}
+\end{flushright}
+\end{frame}
+
+\begin{frame}{Attentional sets in perceptual learning}
+
+\begin{itemize}
+\item Comprehension-oriented tasks
+\begin{itemize}
+\item Lexical decision
+\item Sentence transcription
+\end{itemize}
+\item Perception-oriented tasks
+\begin{itemize}
+\item Audio-visual lipreading (nonwords)
+\item Psychophysics perceptual learning
+\end{itemize}
+\end{itemize}
+
+\btVFill
+\begin{flushright}
+\scriptsize
+\citet{Ahissar1993,Norris2003,Vroomen2007, Bradlow2008,Reinisch2014}
+\end{flushright}
+
+\end{frame}
+
+\begin{frame}{Generalization in attentional sets}
+
+ Comprehension-oriented tasks generalize
+\begin{itemize}
+\item New words or nonwords
+\item (Sometimes) new voices
+\end{itemize}
+Perception-oriented tasks do not generalize as readily
+\begin{itemize}
+\item Exposure specificity
+\end{itemize}
+\btVFill
+\begin{flushright}
+\scriptsize
+\citet{Ahissar1993, Norris2003, Kraljic2005, Bradlow2008, Pitt2012, Reinisch2013}
+\end{flushright}
+
+\end{frame}
+
+
+\begin{frame}{Hypothesis}
+\vfill
+Comprehension-oriented attentional sets allow for greater generalization than perception-oriented attentional sets.
+\vfill
 \end{frame}
 
 \begin{frame}{Attentional set manipulation}
@@ -383,6 +480,19 @@ Experiment 2
 
 \end{frame}
 
+\begin{frame}{Sample trials}
+Exposure
+\begin{itemize}
+\item Hear: whistle (\movie{Experiment 1 audio}{audio/whistle_exp1.wav}) (\movie{Experiment 2 audio}{audio/whistle_exp2.wav})
+\item Word or nonword?
+\end{itemize}
+Categorization
+\begin{itemize}
+\item Hear: sock-shock (), sin-shin (), sack-shack (),sigh-shy ()
+\item Sock or shock? Sin or shin? etc.
+\end{itemize}
+\end{frame}
+
 \begin{frame}{Experiment 1 and 2 predictions}
 
 \begin{itemize}
@@ -406,7 +516,7 @@ Experiment 2
 
 \subsection{Results}
 
-\begin{frame}{Experiment 1}
+\begin{frame}{Experiment 1 - Word-initial exposure}
 
 \begin{minipage}{0.45\textwidth}
 \textbf{Exposed to ambiguous /s/}
@@ -433,7 +543,7 @@ Experiment 2
 
 \end{frame}
 
-\begin{frame}{Experiment 1}
+\begin{frame}{Experiment 1 - Word-medial exposure}
 
 \begin{minipage}{0.45\textwidth}
 \textbf{Exposed to ambiguous /s/}
@@ -460,7 +570,7 @@ Experiment 2
 
 \end{frame}
 
-\begin{frame}{Experiment 2}
+\begin{frame}{Experiment 2 - Word-initial exposure}
 
 \begin{minipage}{0.45\textwidth}
 \textbf{Exposed to ambiguous /s/}
@@ -487,7 +597,7 @@ Experiment 2
 
 \end{frame}
 
-\begin{frame}{Experiment 2}
+\begin{frame}{Experiment 2 - Word-medial exposure}
 
 \begin{minipage}{0.45\textwidth}
 \textbf{Exposed to ambiguous /s/}
@@ -560,6 +670,24 @@ Experiment 2
 
 \end{frame}
 
+\begin{frame}{Sample trials}
+Exposure
+\begin{itemize}
+\item Hear: 
+\begin{itemize}
+\item Predictable: The traffic cop alerted the driver by blowing her whistle (\movie{Audio}{audio/P_whistle.wav}) 
+\item Unpredictable: The boy ran away when he heard the whistle(\movie{Audio}{audio/U_whistle.wav})
+\item Picture 1 vs picture 2 FIXME
+\end{itemize}
+\end{itemize}
+Categorization
+\begin{itemize}
+\item Hear: sock-shock (), sin-shin (), sack-shack (),sigh-shy ()
+\item Sock or shock? Sin or shin? etc.
+\end{itemize}
+
+\end{frame}
+
 \begin{frame}{Experiment 3 predictions}
 
 \begin{itemize}
@@ -589,7 +717,7 @@ Experiment 2
 
 \subsection{Results}
 
-\begin{frame}{Experiment 3}
+\begin{frame}{Experiment 3 - Unpredictable exposure}
 
 \begin{minipage}{0.45\textwidth}
 \begin{itemize}
@@ -619,7 +747,7 @@ Experiment 2
 
 \end{frame}
 
-\begin{frame}{Experiment 3}
+\begin{frame}{Experiment 3 - Predictable exposure}
 
 \begin{minipage}{0.45\textwidth}
 \begin{itemize}
