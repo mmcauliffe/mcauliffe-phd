@@ -14,15 +14,18 @@ classify$Resp[classify$Exposure=="Mod"] <- 100/ (1+exp(((classify$VOT[classify$E
 ggplot(classify,aes(x=VOT,y=Resp,linetype=Exposure))+geom_line(lwd=1.2) + ylab("Percent /s/ response") + xlab("Continuum step")+ scale_y_continuous(limits=c(0,100)) + scale_x_continuous(limits =c(-1,13),breaks=1:11) + scale_linetype_discrete(labels=c("Normal /s/","Modified /s/")) + theme(text=element_text(size=12))
 ggsave('../thesis/graphs/class.pdf',width=160,height=50,units='mm',dpi=600)
 
-dists <- expand.grid(VOT=votSeq,Category=c("/s/","/sh/"))
+dists <- expand.grid(VOT=votSeq,Category=c("/s/","/ʃ/"))
 distMod <- expand.grid(VOT=votSeq,Category=c("/s/"))
 distMod$Dens <-dnorm(distMod$VOT,mean=bmean+2,sd=SD)
 
 dists$Dens <- 0
 dists$Dens[dists$Category=="/s/"] <-dnorm(dists$VOT[dists$Category=="/s/"],mean=bmean,sd=SD)
-dists$Dens[dists$Category=="/sh/"] <-dnorm(dists$VOT[dists$Category=="/sh/"],mean=pmean,sd=SD)
+dists$Dens[dists$Category=="/ʃ/"] <-dnorm(dists$VOT[dists$Category=="/ʃ/"],mean=pmean,sd=SD)
 
-ggplot(dists,aes(x=VOT,y=Dens,colour=Category)) + geom_line(lwd=1.5)+geom_line(data=distMod,linetype=2,lwd=1.5) + xlab("Continuum step") + ylab("Density") + theme(text=element_text(size=12),axis.title.x = element_blank(),axis.title.y = element_blank(),axis.text.y = element_blank())+ scale_colour_hue(l=45)+ scale_x_continuous(limits =c(-5,16),breaks=1:11) + scale_y_continuous(breaks=c())
+plot <- ggplot(dists,aes(x=VOT,y=Dens,colour=Category)) + geom_line(lwd=1.5)+geom_line(data=distMod,linetype=2,lwd=1.5) + xlab("Continuum step") + ylab("Density") + theme(text=element_text(size=12),axis.title.x = element_blank(),axis.title.y = element_blank(),axis.text.y = element_blank())+ scale_colour_hue(labels = c('/s/','/ʃ/'))+ scale_x_continuous(limits =c(-5,16),breaks=1:11) + scale_y_continuous(breaks=c())
+cairo_pdf('../thesis/graphs/dist.pdf', width = 6.69, height = 2.05)
+plot
+dev.off()
 ggsave('../thesis/graphs/dist.pdf',width=160,height=50,units='mm',dpi=600)
 
 dists <- expand.grid(VOT=votSeq,Category=c("/s/","/sh/"))

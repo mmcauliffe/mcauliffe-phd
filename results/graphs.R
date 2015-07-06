@@ -165,7 +165,7 @@ exp1.results.initial <- exp1.results.initial +scale_colour_manual(values = c("#0
                                                                   labels = c('No attention', 'Attention', 'Control'))
 
 exp1.results.initial
-ggsave('../thesis/graphs/exp1_categresults_present2-initial.pdf', width = 50, height = 85, units = 'mm', dpi = 600)
+ggsave('../thesis/graphs/exp1_categresults_present2-initial.pdf', width = 60, height = 70, units = 'mm', dpi = 600)
 
 exp1.results.final <- ggplot(subset(plotData, ExposureType =='final'), aes(x = Step, y = ACC, colour = Attention, shape = Attention, group = Attention)) 
 exp1.results.final <- exp1.results.final + geom_point(size = 1.7) + geom_line() + geom_errorbar(aes(ymin = ACC - ci, ymax = ACC + ci), linetype = 'solid', size = 0.1)
@@ -186,7 +186,7 @@ exp1.results.final <- exp1.results.final + scale_colour_manual(values = c("#0072
 
 exp1.results.final
 
-ggsave('../thesis/graphs/exp1_categresults_present2-final.pdf', width = 50, height = 85, units = 'mm', dpi = 600)
+ggsave('../thesis/graphs/exp1_categresults_present2-final.pdf', width = 60, height = 70, units = 'mm', dpi = 600)
 
 ### END EXPERIMENT 1
 
@@ -309,7 +309,7 @@ exp2.results.initial <- exp2.results.initial +scale_colour_manual(values = c("#0
                                                                   labels = c('No attention', 'Attention', 'Control'))
 
 exp2.results.initial
-ggsave('../thesis/graphs/exp2_categresults_present2-initial.pdf', width = 50, height = 85, units = 'mm', dpi = 600)
+ggsave('../thesis/graphs/exp2_categresults_present2-initial.pdf', width = 60, height = 70, units = 'mm', dpi = 600)
 
 exp2.results.final <- ggplot(subset(plotData, ExposureType =='final'), aes(x = Step, y = ACC, colour = Attention, shape = Attention, group = Attention)) 
 exp2.results.final <- exp2.results.final + geom_point(size = 1.7) + geom_line() + geom_errorbar(aes(ymin = ACC - ci, ymax = ACC + ci), linetype = 'solid', size = 0.1)
@@ -329,7 +329,7 @@ exp2.results.final <- exp2.results.final +scale_colour_manual(values = c("#0072B
                                                               labels = c('No attention', 'Attention', 'Control'))
 
 exp2.results.final
-ggsave('../thesis/graphs/exp2_categresults_present2-final.pdf', width = 50, height = 85, units = 'mm', dpi = 600)
+ggsave('../thesis/graphs/exp2_categresults_present2-final.pdf', width = 60, height = 70, units = 'mm', dpi = 600)
 
 ### END EXPERIMENT 2
 
@@ -455,7 +455,7 @@ exp3.results.unpredictable <- exp3.results.unpredictable +scale_colour_manual(va
                                                                   labels = c('No attention', 'Attention', 'Control'))
 
 exp3.results.unpredictable
-ggsave('../thesis/graphs/exp3_categresults_present2-unpredictable.pdf', width = 50, height = 85, units = 'mm', dpi = 600)
+ggsave('../thesis/graphs/exp3_categresults_present2-unpredictable.pdf', width = 60, height = 70, units = 'mm', dpi = 600)
 
 exp3.results.predictable <- ggplot(subset(plotData, ExposureType =='predictive'), aes(x = Step, y = ACC, colour = Attention, shape = Attention, group = Attention)) 
 exp3.results.predictable <- exp3.results.predictable + geom_point(size = 1.7) + geom_line() + geom_errorbar(aes(ymin = ACC - ci, ymax = ACC + ci), linetype = 'solid', size = 0.1)
@@ -476,7 +476,7 @@ exp3.results.predictable <- exp3.results.predictable + scale_colour_manual(value
 
 exp3.results.predictable
 
-ggsave('../thesis/graphs/exp3_categresults_present2-predictable.pdf', width = 50, height = 85, units = 'mm', dpi = 600)
+ggsave('../thesis/graphs/exp3_categresults_present2-predictable.pdf', width = 60, height = 70, units = 'mm', dpi = 600)
 
 ## ISOLATION VS SENTENCES
 

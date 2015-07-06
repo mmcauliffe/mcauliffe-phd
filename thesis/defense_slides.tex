@@ -133,7 +133,7 @@ Despite variation, listeners can interpret variable productions as a single word
 
 \begin{frame}{Categorization}
 
-\includegraphics[width=1.0\textwidth]{graphs/dist}
+\includegraphics[width=0.905\textwidth]{graphs/dist}
 \vfill
 \includegraphics[width=1.0\textwidth]{graphs/class}
 
@@ -190,7 +190,7 @@ Example: /s/
 \begin{itemize}
 \item Speaking rate
 \item Coarticulation (/st\textturnr/)
-\item Position in word
+\item Word position
 \item Predictability
 \end{itemize}
 
@@ -205,7 +205,7 @@ Example: /s/
 \begin{itemize}
 \item Speaking rate
 \item Coarticulation (/st\textturnr/)
-\item Position in word
+\item Word position
 \item Predictability
 \end{itemize}
 \end{itemize}
@@ -248,12 +248,15 @@ Example: /s/
 \end{flushright}
 \end{frame}
 
-\begin{frame}{Examples}
+\begin{frame}{Real world example}
 
 \begin{itemize}
 \item Students taught by a professor with non-native accent
 \begin{itemize}
-\item How can they maximize their comprehension?
+\item Some students will try to comprehend the lecture
+\item Some students will get distracted by pronunciation
+\item Some students will daydream
+\item Do they all perceptually learn?
 \end{itemize}
 \end{itemize}
 
@@ -279,7 +282,7 @@ Speaker
 \begin{itemize}
 \item Speaking rate
 \item Coarticulation (/st\textturnr/)
-\item \textbf{Position in word} \tikzmark{n1} 
+\item \textbf{Word position} \tikzmark{n1} 
 \item \textbf{Predictability} \tikzmark{n2} 
 \end{itemize}
 \item Attention
@@ -294,7 +297,7 @@ Listener
 \begin{itemize}
 \item Speaking rate
 \item Coarticulation (/st\textturnr/)
-\item Position in word
+\item Word position
 \item Predictability
 \end{itemize}
 \item[\tikzmark{t1} \mytextbullet] \textbf{Attention}
@@ -308,7 +311,7 @@ Listener
 
 \begin{tikzpicture}[remember picture,overlay]
         %\path[draw=magenta,thick,->]<3-> ([yshift=3mm]n1) to ++(0,3mm) to [out=0, in=0,distance=2.5in] (t1);
-   \path[draw=magenta,thick,->] ([yshift=1.5mm]n1) -- ([yshift=1.5mm]t1);
+   \path[draw=magenta,thick,->] ([yshift=1.5mm]n1) --node[above,yshift=1.5mm] {$\scriptstyle Salience$} ([yshift=1.5mm]t1);
 \end{tikzpicture}
 \begin{tikzpicture}[remember picture,overlay]
         %\path[draw=magenta,thick,->]<3-> ([yshift=3mm]n1) to ++(0,3mm) to [out=0, in=0,distance=2.5in] (t1);
@@ -361,7 +364,7 @@ Strategies to parse our perceptual experience
 \item Real world example:
 \begin{itemize}
 \item Students in lecture
-\item Professor with an accent or affectation
+\item Professor with a non-native accent
 \item Primary focus might shift from comprehension
 \end{itemize}
 \end{itemize}
@@ -382,8 +385,8 @@ Strategies to parse our perceptual experience
 \end{itemize}
 \item Perception-oriented tasks
 \begin{itemize}
+\item Psychophysical perceptual learning
 \item Audio-visual lipreading (nonwords)
-\item Psychophysics perceptual learning
 \end{itemize}
 \end{itemize}
 
@@ -435,7 +438,7 @@ Manipulations to promote perception-oriented attentional sets
 \item Salience
 \begin{itemize}
 \item Unpredictability or low expectations
-\item Increase the likelihood of listener noticing modification
+\item Increase the likelihood of listeners noticing modification
 \item Assumption: similar to increasing the number of /s/ trials relative to filler trials
 
 \end{itemize}
@@ -448,6 +451,7 @@ Manipulations to promote perception-oriented attentional sets
 \btVFill
 \begin{itemize}
 \item ``This speaker's `s' sounds are ambiguous''
+\item ``Please listen carefully to ensure you make the correct choice''
 \item Promote perception-oriented attentional set
 \end{itemize}
 
@@ -482,7 +486,7 @@ Manipulations to promote perception-oriented attentional sets
 \item Productions farther from the mean of a category are more salient
 \end{itemize}
 
-DOFIGUREOFDISTPREDBUTDIFFERENTLABELS
+\includegraphics[width=1.0\textwidth]{graphs/salience}
 \end{frame}
 
 \section{Experiments 1 and 2}
@@ -494,18 +498,18 @@ DOFIGUREOFDISTPREDBUTDIFFERENTLABELS
 Experiment 1
 \begin{itemize}
 \item Lexical decision exposure task
-\item 94 native English participants (77 non-native participants)
+\item 94 native English participants
 \item Across subject factors
 \begin{itemize}
 \item Instructions
-\item Position of modified /s/ in words (Word-initial vs word-media)
+\item Position of modified /s/ in words (Word-initial vs word-medial)
 \end{itemize}
 \item 50\% word response rate in a pre-test (n = 20)
 \end{itemize}
 Experiment 2
 \begin{itemize}
 \item Same design and materials as Experiment 1
-\item 96 native English participants (31 non-native participants)
+\item 96 native English participants
 \item 30\% word reponse rate in the pre-test (more atypical /s/)
 \end{itemize}
 \end{frame}
@@ -513,26 +517,27 @@ Experiment 2
 \begin{frame}{Sample trials}
 Exposure
 \begin{itemize}
-\item Hear: whistle (\movie{Experiment 1 audio}{audio/whistle_exp1.wav}) (\movie{Experiment 2 audio}{audio/whistle_exp2.wav})
-\item Hear: submarine (\movie{Experiment 1 audio}{audio/submarine_exp1.wav}) (\movie{Experiment 2 audio}{audio/submarine_exp2.wav})
+\item Hear: whistle (\movie{Experiment 1}{audio/whistle_exp1.wav}) (\movie{Experiment 2}{audio/whistle_exp2.wav})
+\item Hear: submarine (\movie{Experiment 1}{audio/submarine_exp1.wav}) (\movie{Experiment 2}{audio/submarine_exp2.wav})
 \item Word or nonword?
 \end{itemize}
-Categorization
+\textbf{Categorization}
 \begin{itemize}
-\item Hear: sock-shock (), sin-shin (), sack-shack (),sigh-shy ()
+\item Hear: sock-shock (\movie{continuum}{audio/categorization.wav}), sin-shin, sack-shack, sigh-shy
 \item Sock or shock? Sin or shin? etc.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Experiment 1 and 2 predictions}
 
-Only categorization data presented here
-
-Possible outcomes:
+Possible categorization outcomes:
 \begin{itemize}
-\item Perceptual learning should be less where perception-oriented attentional sets are promoted
 \item Equal perceptual learning effects across all conditions
-\item Perceptual learning effects stronger in Word-initial exposure
+\item Less perceptual learning when perception-oriented attentional sets are promoted
+\begin{itemize}
+\item Primary hypothesis
+\end{itemize}
+\item Perceptual learning effects stronger in Word-initial exposure condition
 \begin{itemize}
 \item More similar to categorization items
 \end{itemize}
@@ -543,8 +548,8 @@ Possible outcomes:
 
 \begin{frame}{Experiment 1 - Word-initial exposure}
 
-\begin{minipage}{0.45\textwidth}
-\textbf{Exposed to ambiguous /s/}
+\begin{minipage}{0.4\textwidth}
+\textbf{Ambiguous /s/}
 \begin{itemize}
 \item 50\% between /s/ and /\textesh/
 \end{itemize}
@@ -562,7 +567,7 @@ Possible outcomes:
 \end{itemize}
 \end{minipage}
 \hfill
-\begin{minipage}{0.4\textwidth}
+\begin{minipage}{0.53\textwidth}
 \includegraphics[width=1.0\textwidth]{graphs/exp1_categresults_present2-initial}
 \end{minipage}
 
@@ -570,8 +575,8 @@ Possible outcomes:
 
 \begin{frame}{Experiment 1 - Word-medial exposure}
 
-\begin{minipage}{0.45\textwidth}
-\textbf{Exposed to ambiguous /s/}
+\begin{minipage}{0.4\textwidth}
+\textbf{Ambiguous /s/}
 \begin{itemize}
 \item 50\% between /s/ and /\textesh/
 \end{itemize}
@@ -589,7 +594,7 @@ Possible outcomes:
 \end{itemize}
 \end{minipage}
 \hfill
-\begin{minipage}{0.4\textwidth}
+\begin{minipage}{0.53\textwidth}
 \includegraphics[width=1.0\textwidth]{graphs/exp1_categresults_present2-final}
 \end{minipage}
 
@@ -597,8 +602,8 @@ Possible outcomes:
 
 \begin{frame}{Experiment 2 - Word-initial exposure}
 
-\begin{minipage}{0.45\textwidth}
-\textbf{Exposed to ambiguous /s/}
+\begin{minipage}{0.4\textwidth}
+\textbf{Ambiguous /s/}
 \begin{itemize}
 \item More like /\textesh/ than /s/
 \end{itemize}
@@ -616,7 +621,7 @@ Possible outcomes:
 \end{itemize}
 \end{minipage}
 \hfill
-\begin{minipage}{0.4\textwidth}
+\begin{minipage}{0.53\textwidth}
 \includegraphics[width=1.0\textwidth]{graphs/exp2_categresults_present2-initial}
 \end{minipage}
 
@@ -624,8 +629,8 @@ Possible outcomes:
 
 \begin{frame}{Experiment 2 - Word-medial exposure}
 
-\begin{minipage}{0.45\textwidth}
-\textbf{Exposed to ambiguous /s/}
+\begin{minipage}{0.4\textwidth}
+\textbf{Ambiguous /s/}
 \begin{itemize}
 \item More like /\textesh/ than /s/
 \end{itemize}
@@ -643,7 +648,7 @@ Possible outcomes:
 \end{itemize}
 \end{minipage}
 \hfill
-\begin{minipage}{0.4\textwidth}
+\begin{minipage}{0.53\textwidth}
 \includegraphics[width=1.0\textwidth]{graphs/exp2_categresults_present2-final}
 \end{minipage}
 
@@ -690,6 +695,20 @@ Possible outcomes:
 
 \subsection{Set up}
 
+\begin{frame}{Exposure task}
+\begin{itemize}
+\item Predictable: The traffic cop alerted the driver by blowing her whistle (\movie{Audio}{audio/P_whistle.wav}) 
+\item Unpredictable: The boy ran away when he heard the whistle(\movie{Audio}{audio/U_whistle.wav})
+\end{itemize}
+\begin{minipage}[t]{0.45\textwidth}
+\includegraphics[width=1.0\textwidth]{pictures/whistle}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+\includegraphics[width=1.0\textwidth]{pictures/ravioli}
+\end{minipage}
+\end{frame}
+
 \begin{frame}{Salience - Semantic predictability}
 
 \begin{itemize}
@@ -708,83 +727,66 @@ Possible outcomes:
 \end{flushright}
 \end{frame}
 
-\begin{frame}{Exposure task}
-\begin{itemize}
-\item Predictable: The traffic cop alerted the driver by blowing her whistle (\movie{Audio}{audio/P_whistle.wav}) 
-\item Unpredictable: The boy ran away when he heard the whistle(\movie{Audio}{audio/U_whistle.wav})
-\end{itemize}
-\begin{minipage}[t]{0.45\textwidth}
-\includegraphics[width=1.0\textwidth]{pictures/whistle}
-\end{minipage}
-\hfill
-\begin{minipage}[t]{0.45\textwidth}
-\includegraphics[width=1.0\textwidth]{pictures/ravioli}
-\end{minipage}
-\end{frame}
-
 \begin{frame}{Experiment 3}
 
 \begin{itemize}
 \item 98 native English participants
+\item Cross-modal word identification
 \begin{itemize}
 \item Auditory sentences
 \item Identification of picture corresponding to final word in sentence
-\item Same word-medial modified /s/ stimuli
-\item Final targets were predictable or unpredictable
+\item Same word-medial modified /s/ stimuli (Experiment 1)
+\item Final targets were predictable or unpredictable (pre-test)
 \end{itemize}
 \item Across subjects
 \begin{itemize}
 \item Instructions (identical to Experiments 1 and 2)
 \item Modified /s/ only in predictable or unpredictable words
 \end{itemize}
-\item Same categorization as Experiment 1 and 2
+\item \textbf{Same categorization as Experiment 1 and 2}
 \end{itemize}
 
 \end{frame}
 
-\begin{frame}{Experiment 3 predictions}
+\begin{frame}{Experiment 3 categorization predictions}
 
-Categorization results only again
-\btVFill
-
-Possible outcomes:
+Within sentences:
 \begin{itemize}
-\item Perceptual learning effects equal to Experiment 1's Word-medial conditions
+\item Equal perceptual learning 
+\item Bigger perceptual learning effect in predictable exposure
+\begin{itemize}
+\item Less salient modification
 \end{itemize}
-\btVFill
+\item Smaller perceptual learning effect in predictable exposure
+\begin{itemize}
+\item Attribution of variation to predictability
+\end{itemize}
+\end{itemize}
 \end{frame}
 
-\begin{frame}{Experiment 3 predictions}
+\begin{frame}{Experiment 3 categorization predictions}
 
-Categorization results only again
-\btVFill
-
-Possible outcomes:
+Words in isolation vs in sentences
 \begin{itemize}
-\item Perceptual learning effect smaller than Experiment 1's Word-medial conditions
-\end{itemize}
-\btVFill
-\end{frame}
-
-\begin{frame}{Experiment 3 predictions}
-
-Categorization results only again
-\btVFill
-
-Possible outcomes:
+\item Equal perceptual learning
+\item Bigger perceptual learning effect in sentences
 \begin{itemize}
-\item No perceptual learning effect in predictable condition
+\item Comprehension of sentences rather than words
 \end{itemize}
-\btVFill
+\item Smaller perceptual learning effect in sentences
+\begin{itemize}
+\item Less speaker attention in read sentences
+\end{itemize}
+\end{itemize}
 \end{frame}
 
 \subsection{Results}
 
 \begin{frame}{Experiment 3 - Unpredictable exposure}
 
-\begin{minipage}{0.45\textwidth}
+\begin{minipage}{0.4\textwidth}
 \begin{itemize}
-\item \textbf{Exposed to ambiguous /s/}
+\item \textbf{Ambiguous /s/}
 \begin{itemize}
 \item Halfway between /s/ and /\textesh/
 \item In sentences
@@ -804,7 +806,7 @@ Possible outcomes:
 \end{itemize}
 \end{minipage}
 \hfill
-\begin{minipage}{0.4\textwidth}
+\begin{minipage}{0.53\textwidth}
 \includegraphics[width=1.0\textwidth]{graphs/exp3_categresults_present2-unpredictable}
 \end{minipage}
 
@@ -812,9 +814,9 @@ Possible outcomes:
 
 \begin{frame}{Experiment 3 - Predictable exposure}
 
-\begin{minipage}{0.45\textwidth}
+\begin{minipage}{0.4\textwidth}
 \begin{itemize}
-\item \textbf{Exposed to ambiguous /s/}
+\item \textbf{Ambiguous /s/}
 \begin{itemize}
 \item Halfway between /s/ and /\textesh/
 \item In sentences
@@ -834,7 +836,7 @@ Possible outcomes:
 \end{itemize}
 \end{minipage}
 \hfill
-\begin{minipage}{0.4\textwidth}
+\begin{minipage}{0.53\textwidth}
 \includegraphics[width=1.0\textwidth]{graphs/exp3_categresults_present2-predictable}
 \end{minipage}
 
@@ -912,7 +914,15 @@ Possible outcomes:
 
 \begin{frame}{Implications - Non-native accents}
 \begin{itemize}
-\item Non-native accent perceptual learning may be inhibited when attention is directed to pronunciation
+\item Non-native listener / native speaker
+\begin{itemize}
+\item Perception-oriented attentional set may be the default
+\end{itemize}
+
+\item Native listener / non-native speaker
+\begin{itemize}
+\item Perceptual learning inhibited when attending to pronunciation
+\end{itemize}
 \end{itemize}
 Real world example:
 \begin{itemize}
@@ -932,7 +942,7 @@ Thank you to all those involved drafting and creating these experiments, particu
 \vfill
 Feedback from various 530 helped tremendously in shaping the ideas and experiments in this thesis.
 \vfill
-Thank you for your attention!
+Thank you all for your attention!
 \vfill
 \end{frame}
 
@@ -940,9 +950,51 @@ Thank you for your attention!
     \footnotesize
 \bibliographystyle{apalike}
 \bibliography{biblio}
-    
 \end{frame}
 
+
+\begin{frame}{Experiment 1 - Acoustic analysis}
+\includegraphics[width=1.0\textwidth]{graphs/exp1_mds}
+\end{frame}
+
+\begin{frame}{Experiment 1 - Exposure ACC}
+\includegraphics[width=1.0\textwidth]{graphs/exp1_expacc}
+\end{frame}
+
+\begin{frame}{Experiment 1 - Exposure RT}
+\includegraphics[width=1.0\textwidth]{graphs/exp1_exprt}
+\end{frame}
+
+\begin{frame}{Experiment 2 - Acoustic analysis}
+\includegraphics[width=1.0\textwidth]{graphs/exp2_mds}
+\end{frame}
+
+
+\begin{frame}{Experiment 2 - Exposure ACC}
+\includegraphics[width=1.0\textwidth]{graphs/exp2_expacc}
+\end{frame}
+
+\begin{frame}{Experiment 2 - Exposure RT}
+\includegraphics[width=1.0\textwidth]{graphs/exp2_exprt}
+\end{frame}
+
+
+
+\begin{frame}{Experiments 1 and 2 - Cross-over and word responses}
+\includegraphics[width=1.0\textwidth]{graphs/exp12_xoverwordresp}
+\end{frame}
+
+\begin{frame}{Experiment 3 - Acoustic analysis}
+\includegraphics[width=1.0\textwidth]{graphs/exp3_mds}
+\end{frame}
+
+\begin{frame}{Experiment 3 - Exposure RT}
+\includegraphics[width=1.0\textwidth]{graphs/exp3_exprt}
+\end{frame}
+
+\begin{frame}{Experiment 1 and 3 - Cross-over distribution}
+\includegraphics[width=1.0\textwidth]{graphs/exp13_xoverdist}
+\end{frame}
 \end{document}
 
 

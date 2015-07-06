@@ -21,6 +21,16 @@ distdata$ExposureType <- factor(distdata$ExposureType)
 
 summary(distdata)
 
+
+plotData <- subset(distdata,Experiment %in% c('original','exp1','exp2') & ExposureType == 'Isolation' & ((Sound == 's' & !Word %in% c('shack', 'shin','shock', 'shy') ) | (Sound == 'ʃ' & Experiment == 'original')))
+
+plotData$Experiment = factor(plotData$Experiment, levels = c('original','exp2','exp1'))
+
+text = data.frame(x=c(-35, -5, 7, 30),y=c(0.055,0.067,0.04,0.065),text = c('/s/','Exp 1', 'Exp 2', '/ʃ/'), Experiment = c('original', 'exp2','exp1','original'), Sound = c('/s/', '/s/', '/s/','/ʃ/' ))
+
+cairo_pdf('../thesis/graphs/salience.pdf', width = 6.69, height = 3.15)
+ggplot(plotData,aes(x=X, colour=Experiment, group = interaction(Experiment,Sound))) + geom_density(size = 2, show_guide=F)  + theme_bw()+ theme(text=element_text(size=8),legend.title=element_text(size=7),legend.text=element_text(size=6),axis.title.x = element_blank(),axis.title.y = element_blank())  + geom_text(data = text, aes(x=x,y=y, label = text), size =6, show_guide = F) + scale_y_continuous(breaks=c()) + scale_x_continuous(breaks=c()) 
+dev.off()
 plotData <- subset(distdata,Experiment %in% c('categ','original','exp1') & ExposureType == 'Isolation')
 
 CairoPDF('../thesis/graphs/exp2_mds.pdf',width=6.69,height=4.33)
