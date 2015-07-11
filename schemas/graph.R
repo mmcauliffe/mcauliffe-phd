@@ -11,8 +11,8 @@ classify$Resp <- 0
 classify$Resp[classify$Exposure=="Norm"] <- 100/ (1+exp(((classify$VOT[classify$Exposure=="Norm"]-bmean)^2-(classify$VOT[classify$Exposure=="Norm"]-pmean)^2)/(2*SD^2)))
 classify$Resp[classify$Exposure=="Mod"] <- 100/ (1+exp(((classify$VOT[classify$Exposure=="Mod"]-(bmean+2))^2-(classify$VOT[classify$Exposure=="Mod"]-pmean)^2)/(2*(SD)^2)))
 
-ggplot(classify,aes(x=VOT,y=Resp,linetype=Exposure))+geom_line(lwd=1.2) + ylab("Percent /s/ response") + xlab("Continuum step")+ scale_y_continuous(limits=c(0,100)) + scale_x_continuous(limits =c(-1,13),breaks=1:11) + scale_linetype_discrete(labels=c("Normal /s/","Modified /s/")) + theme(text=element_text(size=12))
-ggsave('../thesis/graphs/class.pdf',width=160,height=50,units='mm',dpi=600)
+ggplot(classify,aes(x=VOT,y=Resp,linetype=Exposure))+geom_line(lwd=1.2) + ylab("Percent /s/ response") + xlab("Continuum step")+ scale_y_continuous(limits=c(0,100)) + scale_x_continuous(limits =c(-5,16),breaks=1:11) + scale_linetype_discrete(labels=c("Normal /s/","Modified /s/")) + theme(text=element_text(size=12)) + theme_bw()
+ggsave('../thesis/graphs/class.pdf',width = 6.49, height = 2.05,units='in',dpi=600)
 
 dists <- expand.grid(VOT=votSeq,Category=c("/s/","/ʃ/"))
 distMod <- expand.grid(VOT=votSeq,Category=c("/s/"))
@@ -22,8 +22,8 @@ dists$Dens <- 0
 dists$Dens[dists$Category=="/s/"] <-dnorm(dists$VOT[dists$Category=="/s/"],mean=bmean,sd=SD)
 dists$Dens[dists$Category=="/ʃ/"] <-dnorm(dists$VOT[dists$Category=="/ʃ/"],mean=pmean,sd=SD)
 
-plot <- ggplot(dists,aes(x=VOT,y=Dens,colour=Category)) + geom_line(lwd=1.5)+geom_line(data=distMod,linetype=2,lwd=1.5) + xlab("Continuum step") + ylab("Density") + theme(text=element_text(size=12),axis.title.x = element_blank(),axis.title.y = element_blank(),axis.text.y = element_blank())+ scale_colour_hue(labels = c('/s/','/ʃ/'))+ scale_x_continuous(limits =c(-5,16),breaks=1:11) + scale_y_continuous(breaks=c())
-cairo_pdf('../thesis/graphs/dist.pdf', width = 6.69, height = 2.05)
+plot <- ggplot(dists,aes(x=VOT,y=Dens,colour=Category)) + geom_line(lwd=1.5)+geom_line(data=distMod,linetype=2,lwd=1.5) + xlab("Continuum step") + ylab("") + xlab("") + theme_bw() + theme(text=element_text(size=12))+ scale_colour_hue(labels = c('/s/','/ʃ/'))+ scale_x_continuous(limits =c(-5,16),breaks=1:11) + scale_y_continuous(breaks=c())
+cairo_pdf('../thesis/graphs/dist.pdf', width = 6.49, height = 2.05)
 plot
 dev.off()
 ggsave('../thesis/graphs/dist.pdf',width=160,height=50,units='mm',dpi=600)
