@@ -500,7 +500,8 @@ exp13.results <- exp13.results + theme(text=element_text(size = 10),
                                        legend.title=element_text(size = 8),
                                        legend.text=element_text(size = 8),
                                        legend.justification = c(0, 0), 
-                                       legend.position = c(0, 0))
+                                       legend.position = c(-0.02, -0.02), 
+                                       legend.background = element_blank())
 exp13.results <- exp13.results + scale_x_continuous(breaks = 1:6)  
 exp13.results <- exp13.results + scale_shape_manual(values = c(21, 22, 23),
                                                     labels = c('No attention', 'Attention', 'Control'))

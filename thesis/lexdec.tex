@@ -44,7 +44,7 @@ In addition, given the reliance of perceptual learning on lexical scaffolding, t
 
 \subsubsection{Participants}
 
-A total of 173 participants from the UBC population completed the experiment and were compensated with either \$10 CAD or course credit.  
+A total of 173 participants from the UBC population completed the experiment and were compensated with either \$10 CAD or course credit\footnote{The student population of the University of British Columbia has a diverse language background.  In order to control for the language background of participants and to make the results of the current experiments more comparable to previous research, participants were only analyzed if they were self-reported native speakers of English.  Participants were still compensated for their participation, but the data is currently unanalyzed.}.  
 The data from 77 nonnative speakers of English and two native speakers of English with reported speech or hearing disorders were excluded from the analyses.
 This left data from 94 participants for analysis.
 Twenty additional native English speakers participated in a pretest to determine the most ambiguous sounds.  
@@ -174,7 +174,9 @@ All control items and filler words were processed and resynthesized by STRAIGHT 
 \subsubsection{Pretest}
 
 To determine which step of each continua would be used in exposure, a phonetic categorization experiment was conducted.  
-Participants were presented with each step of each exposure word-nonword continuum and each categorization minimal pair continuum, resulting in 495 trials (40 exposure words plus five minimal pairs by 11 steps).  
+Participants were presented with each step of each exposure word-nonword continuum and each categorization minimal pair continuum, resulting in 495 trials (40 exposure words plus five minimal pairs by 11 steps), blocked into exposure and categorization.
+Participants completed a lexical decision task for the exposure continua, responding with either ``word'' or ``nonword'' to each step of the continua.
+For the categorization continua, participants identified the first sound as either ``s'' or ``sh''.
 The experiment was implemented in E-prime \citep{PsychologySoftwareTools2012}.  
 
 \begin{figure*}[ht]
@@ -271,9 +273,12 @@ tassel & 8 & 0.35 \\
 \end{tabular}
 \end{table}
 
-To visualize the effect of morphing on the acoustics of the sibilants and to confirm the desired effects, a multidimensional scaled plot of acoustic distance was constructed.  
-Using the \texttt{python-acoustic-similarity} package \citep{McAuliffe2015}, sibilants were transformed into arrays of mel-frequency cepstrum coefficients (MFCC), and then pairwise distances were computed via dynamic time warping to create a distance matrix of the sibilant productions.  
-This distance matrix was then multidimensionally scaled to produce Figure~\ref{fig:exp1mds}.  
+To visualize the effect of morphing on the acoustics of the sibilants and to confirm the desired effects, a multidimensional scaled plot of acoustic distance was constructed, similar to \citet{Mielke2012}.  
+Using the \texttt{python-acoustic-similarity} package \citep{McAuliffe2015}, sibilants were transformed into arrays of mel-frequency cepstrum coefficients (MFCC), which are an auditory representation of acoustic waveforms.
+Pairwise distances between each sibilant production were computed via dynamic time warping to create a distance matrix of the sibilant productions.
+The dynamic time warping algorithm aligns time frames that are similar while allowing for time to be compressed or expanded for one of the productions.
+The distance returned is independent of differences in timing, but differences in order of frames are maintained.
+This distance matrix from the parwise calculations was then multidimensionally scaled to produce Figure~\ref{fig:exp1mds}.  
 As seen there, the original, unsynthesized productions (in blue) form four quadrants based on the two principal components of the distance matrix. 
  The first dimension is associated with the centroid frequency of the sibilant, separating /s/ tokens from /\textesh/.  
 The second dimension separates out the word-medial sibilants (in smaller font) from the word-initial sibilants (in larger font), likely due to the different coarticulatory effects based on word position.  
@@ -362,6 +367,7 @@ The random effect structure was as maximally specified as possible with random i
 
 A significant fixed effect was found for Trial Type of /s/ versus Filler ($\beta = -2.13, SE = 0.31, z = -6.8, p < 0.01$), as participants were less likely to endorse words containing the modified /s/ category as compared to filler words.
 However, there was a significant interaction between Trial and Trial Type of /s/ versus Filler ($\beta = -0.45, SE = 0.14, z = 3.1, p = 0.01$), so the differences in accuracy between words with /s/ and filler words diminished over time.
+Participants adapted to the speaker's /s/ over the course of the experiment.
 There was also a significant main effect of Attention ($\beta = -0.57, SE = 0.28, z = -2.0, p = 0.04$), indicating that participants were more accurate at identifying words in the Attention condition compared to the No Attention condition.
 However, there was a marginal interaction between Attention and Trial Type of /s/ versus Filler ($\beta = 0.72, SE = 0.39, z = 1.8, p = 0.06$), suggesting that attention only increased accuracy for words not containing the modified /s/ category.
 Figure~\ref{fig:exp1exposeacc} shows within-subject mean accuracy across exposure, with Trial in four blocks.
@@ -625,7 +631,7 @@ These results are shown in Figure~\ref{fig:exp2categ}
 
 \section{Grouped results across experiments}
 
-To see what degree the stimuli used had an effect on perceptual learning, the data from Experiment 1 and Experiment 2 were pooled and analyzed identically as above, but with Experiment and its interactions as additional fixed effects.  
+The data from Experiment 1 and Experiment 2 were pooled and analyzed identically as above, but with Experiment and its interactions as additional fixed effects to directly assess the effect of category atypicality.
 In the logistic mixed effects model, there were significant main effects for Intercept ($\beta = 1.00, SE = 0.36, z = 2.7, p < 0.01$) and Step ($\beta = -2.64, SE = 0.21, z = -12.1, p < 0.01$), a significant two-way interaction between Experiment and Step ($\beta = 0.51, SE = 0.20, z = 2.5, p = 0.01$), and a marginal four-way interaction between Step, Exposure Type, Attention and Experiment ($\beta = 0.73, SE = 0.42, z = 1.7, p = 0.08$).  
 These results can be seen in Figure~\ref{fig:exp12categ}.  
 The four-way interaction can be seen in Word-medial/No Attention conditions across the two experiments, where Experiment 1 has a difference between the Attention and No Attention condition, but Experiment 2 does not.  
@@ -670,7 +676,6 @@ In Experiment 2, the strongest correlation is in the Word-initial/No Attention c
 
 \section{General discussion}
 
-
 The perceptual learning effects found in Experiment 1 and 2 align with either comprehension-oriented or perception-oriented attentional sets.  
 The perception-oriented attentional sets are predicted to exhibit less generalization, similar to what is seen in the psychophysics literature and  in visually-guided perceptual learning in speech perception \citep{Reinisch2014}.
 In support of this, participants in Experiment 1 conditions which guided the use of a perception-oriented attentional set (i.e., Attention conditions and Word-initial conditions), showed uniform and modest amounts of perceptual learning.
@@ -681,7 +686,7 @@ These participants showed a substantially larger perceptual effect than those bi
 Compared to Experiment 1, Experiment 2 had a weaker correlation between critical word endorsement rates and cross-over boundary points.
 This suggests that although the stimuli used in Experiment 2 were farther from the canonical production, they did not shift the category boundary as much as the stimuli in Experiment 1.  
 While neither attention nor position of the ambiguous sound had an effect on the correlation, the distance from the canonical production did.  
-This potentially suggests that the degree to which a category is shifted is inverse of the token's distance to the mean.
+This potentially suggests that the degree to which a category is shifted is inversely related to the token's distance to the mean.
 
 In Experiment 1, the decreased correlation between word response rate and cross-over point in the condition that saw the largest perceptual learning effects falls out from the proposed attention mechanism.
 Comprehension-oriented attentional sets are proposed to update higher, more abstract linguistic representations.
