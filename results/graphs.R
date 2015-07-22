@@ -4,9 +4,11 @@ if_labeller <- function(var, value){
   if (var == "ExposureType") { 
     value[value == "initial"] <- "Word-initial"
     value[value == "final"]   <- "Word-medial"
+    value[value == "S-Initial"] <- "Word-initial"
+    value[value == "S-Final"]   <- "Word-medial"
     value[value == "isolation"] <- "Isolation"
-    value[value == "unpredictive"]   <- "Unpredictable"
-    value[value == "predictive"]   <- "Predictable"
+    value[value == "unpredictive"]   <- "Unpredictive"
+    value[value == "predictive"]   <- "Predictive"
   }
   if (var == "Attention") { 
     value[value == "attend"] <- "Attention"
@@ -132,7 +134,7 @@ exp1.results <- exp1.results + geom_point(size = 1.7) + geom_line() + geom_error
 exp1.results <- exp1.results + facet_grid(~ExposureType, labeller = if_labeller) 
 exp1.results <- exp1.results + ylab('Proportion /s/ response') + xlab('Continua step') 
 exp1.results <- exp1.results + theme_bw() 
-exp1.results <- exp1.results + + theme(text = element_text(size = 10),
+exp1.results <- exp1.results + theme(text = element_text(size = 10),
                                        legend.title = element_text(size = 8),
                                        legend.text = element_text(size = 8),
                                        legend.justification = c(0, 0), 
@@ -337,7 +339,7 @@ ggsave('../thesis/graphs/exp2_categresults_present2-final.pdf', width = 60, heig
 
 plotData = subset(xovers, T)
 plotData$Experiment <- factor(plotData$Experiment, levels = c('exp2', 'exp1'))
-
+plotData$ExposureType <- factor(plotData$itemtype)
 plotData$Xover = plotData$Xover + 3.5
 
 xover.corr <- ggplot(plotData, aes(x = WordResp, y = Xover, colour = Experiment)) 
@@ -349,8 +351,8 @@ xover.corr <- xover.corr + theme_bw()
 xover.corr <- xover.corr + theme(text = element_text(size = 10),
                                  legend.title = element_text(size = 8),
                                  legend.text = element_text(size = 8),
-                                 legend.justification = c(0, 1), 
-                                 legend.position = c(0, 1), 
+                                 #legend.justification = c(0, 1), 
+                                 #legend.position = c(0, 1), 
                                  legend.background = element_blank()) 
 xover.corr <- xover.corr + scale_colour_discrete(labels=c('Experiment 1', 'Experiment 2')) 
 
