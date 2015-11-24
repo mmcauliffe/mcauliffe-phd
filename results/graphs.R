@@ -7,8 +7,8 @@ if_labeller <- function(var, value){
     value[value == "S-Initial"] <- "Word-initial"
     value[value == "S-Final"]   <- "Word-medial"
     value[value == "isolation"] <- "Isolation"
-    value[value == "unpredictive"]   <- "Unpredictive"
-    value[value == "predictive"]   <- "Predictive"
+    value[value == "unpredictive"]   <- "Unpredictable"
+    value[value == "predictive"]   <- "Predictable"
   }
   if (var == "Attention") { 
     value[value == "attend"] <- "Attention"
@@ -92,27 +92,6 @@ cairo_pdf('../thesis/graphs/exp1_expacc.pdf', width = 6.69, height = 3.15)
 exp1.expose.acc
 dev.off()
 
-# RT
-
-plotData <- summarySEwithin(data = for.plot, measurevar = 'RT', betweenvars = c('itemtype2'), withinvars = c('TrialCat'), idvar = 'Subject')
-
-exp1.expose.rt <- ggplot(plotData, aes(x = TrialCat,y = RT, colour = itemtype2, shape = itemtype2, group = itemtype2)) 
-exp1.expose.rt <- exp1.expose.rt + geom_point(size = 1.7) + geom_line() + geom_errorbar(aes(ymin = RT - ci, ymax = RT + ci), linetype = 'solid', size = 0.1)
-exp1.expose.rt <- exp1.expose.rt + ylab('Reaction time (ms)') + xlab('Exposure trial block')
-exp1.expose.rt <- exp1.expose.rt + theme_bw() 
-exp1.expose.rt <- exp1.expose.rt + theme(text = element_text(size = 10),
-                                         legend.title = element_text(size = 8),
-                                         legend.text = element_text(size = 8))
-exp1.expose.rt <- exp1.expose.rt +scale_shape_manual(name='Trial Type',
-                                                     values = c(21, 22, 23), 
-                                                     labels = c('Filler', '/s/', '/ʃ/')) 
-exp1.expose.rt <- exp1.expose.rt + scale_colour_manual(name='Trial Type',
-                                                       values = c('#000000', "#0072B2", "#D55E00"),
-                                                       labels = c('Filler', '/s/', '/ʃ/'))
-
-cairo_pdf('../thesis/graphs/exp1_exprt.pdf', width = 6.69, height = 3.15)
-exp1.expose.rt
-dev.off()
 
 ### CATEGORIZATION
 
@@ -230,32 +209,6 @@ cairo_pdf('../thesis/graphs/exp2_expacc.pdf', width = 6.69, height = 3.15)
 exp2.expose.acc
 dev.off()
 
-# RT
-
-plotData <- summarySEwithin(data = for.plot, measurevar = 'RT', betweenvars = c('ExposureType'), withinvars = c('TrialCat', 'itemtype2'), idvar = 'Subject')
-
-exp2.expose.rt <- ggplot(plotData,aes(x = TrialCat, y = RT, colour = ExposureType, shape = ExposureType, group = ExposureType)) 
-exp2.expose.rt <- exp2.expose.rt + geom_point(size = 1.7) + geom_line() + geom_errorbar(aes(ymin = RT - ci, ymax = RT + ci), linetype = 'solid', size = 0.1)
-exp2.expose.rt <- exp2.expose.rt + facet_grid(~itemtype2, labeller = if_labeller) 
-exp2.expose.rt <- exp2.expose.rt + ylab('Reaction time (ms)') + xlab('Exposure trial block')  
-exp2.expose.rt <- exp2.expose.rt + theme_bw() 
-exp2.expose.rt <- exp2.expose.rt + theme(text = element_text(size = 10),
-                                         legend.title = element_text(size = 8),
-                                         legend.text = element_text(size = 8),
-                                         legend.justification = c(0, 1), 
-                                         legend.position = c(0, 1)) 
-exp2.expose.rt <- exp2.expose.rt + scale_y_continuous(limits = c(900,1300))
-exp2.expose.rt <- exp2.expose.rt + scale_shape_manual(name = 'Exposure Type',
-                                                     values = c(21, 22),
-                                                     labels = c('Word-initial', 'Word-final'))
-exp2.expose.rt <- exp2.expose.rt +scale_colour_manual(name = 'Exposure Type',
-                                                      values = c("#0072B2", "#D55E00"),
-                                                      labels = c('Word-initial', 'Word-final'))
-
-cairo_pdf('../thesis/graphs/exp2_exprt.pdf', width = 6.69, height = 3.15)
-exp2.expose.rt
-dev.off()
-
 ### CATEGORIZATION
 
 plotData <- summarySEwithin(data = subset(categ, Experiment == 'exp1'), measurevar = 'ACC', betweenvars = c('Attention', 'ExposureType'), withinvars = c('Step'), idvar = 'Subject')
@@ -364,6 +317,45 @@ ggsave('../thesis/graphs/exp12_xoverwordresp.pdf', width = 170, height = 80, uni
 
 ### END GROUPED
 
+### EXPERIMENT 4
+
+### CATEGORIZATION
+
+plotData <- summarySEwithin(data = categ, measurevar = 'ACC', betweenvars = c('Experiment','Attention', 'ExposureType'), withinvars = c('Step'), idvar = 'Subject')
+
+contPlotData <- summarySEwithin(data = cont, measurevar = 'ACC', withinvars = c('Step'), idvar = 'Subject')
+contPlotData <- rbind(contPlotData,contPlotData, contPlotData, contPlotData)
+contPlotData <- cbind(contPlotData,data.frame(Experiment = rep('control', 24),
+                                              ExposureType = c(rep('final', 12), rep('initial', 12)),
+                                              Attention = c(rep('noattend',6), rep('attend',6), rep('noattend',6), rep('attend',6))))
+#contPlotData$Experiment <- 'control'
+plotData <- rbind(plotData,contPlotData)
+
+#contPlotData$Step <- as.numeric(as.character(contPlotData$Step)) + 3.5
+plotData$Step <- as.numeric(as.character(plotData$Step)) + 3.5
+
+### MAIN PLOT
+
+exp4.results <- ggplot(plotData, aes(x = Step, y = ACC, colour = Experiment, shape = Experiment, group = Experiment)) 
+exp4.results <- exp4.results + geom_point(size = 1.7) + geom_line() + geom_errorbar(aes(ymin = ACC - ci, ymax = ACC + ci), linetype = 'solid', size = 0.1)
+exp4.results <- exp4.results + facet_grid(Attention~ExposureType, labeller = if_labeller) 
+exp4.results <- exp4.results + ylab('Proportion /s/ response') + xlab('Continua step')
+exp4.results <- exp4.results + theme_bw() 
+exp4.results <- exp4.results + theme(text = element_text(size = 10),
+                                     legend.title = element_text(size = 8),
+                                     legend.text = element_text(size = 8),
+                                     legend.justification = c(0, 0), 
+                                     legend.position = c(0, 0))
+exp4.results <- exp4.results + scale_x_continuous(breaks = 1:6)  
+#exp4.results <- exp4.results +scale_shape_manual(values = c(21, 22, 23),
+#                                                 labels = c('No attention', 'Attention', 'Control'))
+#exp4.results <- exp4.results +scale_colour_manual(values = c("#0072B2", "#D55E00", "#000000"),
+#                                                  labels = c('No attention', 'Attention', 'Control'))
+
+exp4.results
+
+### END EXPERIMENT 4
+
 ### EXPERIMENT 3
 
 ### EXPOSURE
@@ -379,29 +371,6 @@ for.plot[for.plot$Trial < 76 & for.plot$Trial > 50,]$TrialCat <- "51-75"
 for.plot[for.plot$Trial > 75,]$TrialCat <- "75-100"
 
 for.plot$TrialCat <- factor(for.plot$TrialCat)
-
-# RT
-
-plotData <- summarySEwithin(data = for.plot, measurevar = 'RT', betweenvars = c('Attention'), withinvars = c('TrialCat', 'itemtype2'), idvar = 'Subject')
-
-exp3.expose.rt <- ggplot(plotData, aes(x = TrialCat, y = RT, colour = Attention, shape = Attention, group = Attention)) 
-exp3.expose.rt <- exp3.expose.rt + geom_point(size = 1.7) + geom_line() + geom_errorbar(aes(ymin = RT - ci, ymax = RT + ci), linetype = 'solid', size = 0.1)
-exp3.expose.rt <- exp3.expose.rt + facet_grid(~itemtype2, labeller = if_labeller) 
-exp3.expose.rt <- exp3.expose.rt + ylab('Reaction time (ms)') +xlab('Exposure trial block')  
-exp3.expose.rt <- exp3.expose.rt + theme_bw() 
-exp3.expose.rt <- exp3.expose.rt + theme(text = element_text(size = 10),
-                                         legend.title = element_text(size = 8),
-                                         legend.text = element_text(size = 8),
-                                         legend.justification = c(1,1), 
-                                         legend.position = c(1,1), 
-                                         legend.background = element_blank())
-exp3.expose.rt <- exp3.expose.rt +scale_shape_manual(values = c(21, 22),labels = c('No attention', 'Attention'))
-exp3.expose.rt <- exp3.expose.rt +scale_colour_manual(values = c("#0072B2", "#D55E00"),
-                                                      labels = c('No attention', 'Attention'))
-
-CairoPDF('../thesis/graphs/exp3_exprt.pdf', width = 6.69, height = 3.15)
-exp3.expose.rt
-dev.off()
 
 ### CATEGORIZATION
 
@@ -435,6 +404,37 @@ exp3.results <- exp3.results + scale_colour_manual(values = c("#0072B2", "#D55E0
 
 exp3.results
 ggsave('../thesis/graphs/exp3_categresults_present.pdf', width = 170, height = 110, units = 'mm', dpi = 600)
+
+## ISI graphs
+
+plotData <- summarySEwithin(data = categ3.ISI, measurevar = 'ACC', betweenvars = c('ISI'), withinvars = c('Step'), idvar='Subject')
+
+contPlotData <- summarySEwithin(data = cont, measurevar = 'ACC', withinvars = c('Step'), idvar = 'Subject')
+contPlotData <- rbind(contPlotData, contPlotData)
+contPlotData <- cbind(contPlotData, data.frame(ISI=rep('control', 12)))
+plotData <- rbind(plotData,contPlotData)
+
+plotData$Step <- as.numeric(as.character(plotData$Step)) + 3.5
+
+### MAIN PLOT
+
+exp3.results <- ggplot(plotData,aes(x = Step, y = ACC, colour = ISI, shape = ISI, group = ISI)) 
+exp3.results <- exp3.results + geom_point(size=1.7)+ geom_line() + geom_errorbar(aes(ymin = ACC - ci, ymax = ACC + ci), linetype = 'solid', size = 0.1)
+exp3.results <- exp3.results + ylab('Proportion /s/ response') + xlab('Continua step') 
+exp3.results <- exp3.results + scale_x_continuous(breaks = 1:6)  
+exp3.results <- exp3.results + theme_bw() 
+exp3.results <- exp3.results + theme(text = element_text(size = 10),
+                                     legend.title = element_text(size = 8),
+                                     legend.text = element_text(size = 8),
+                                     legend.justification = c(0, 0), 
+                                     legend.position = c(0, 0))
+#exp3.results <- exp3.results + scale_shape_manual(values = c(21, 22, 23),
+#                                                  labels = c('No attention', 'Attention', 'Control'))
+#exp3.results <- exp3.results + scale_colour_manual(values = c("#0072B2", "#D55E00", "#000000"),
+#                                                   labels = c('No attention', 'Attention', 'Control'))
+
+exp3.results
+ggsave('../thesis/graphs/exp3_ISI_categresults_present.pdf', width = 170, height = 110, units = 'mm', dpi = 600)
 
 ggsave('../thesis/graphs/exp3_categresults.pdf',width=170,height=80,units='mm',dpi=600)
 
@@ -526,6 +526,132 @@ exp13.results <- exp13.results + scale_shape_manual(values = c(21, 22, 23),
                                                     labels = c('No attention', 'Attention', 'Control'))
 exp13.results <- exp13.results + scale_colour_manual(values = c("#0072B2", "#D55E00", "#000000"), 
                                                      labels = c('No attention', 'Attention', 'Control'))
+
+exp13.results
+ggsave('../thesis/graphs/exp23_categresults_present.pdf', width = 120, height = 70, units = 'mm', dpi = 600)
+
+
+### END EXPERIMENT 3
+
+### EXPERIMENT 5
+
+plotData <- summarySEwithin(data = categ5, measurevar = 'ACC', betweenvars = c('ExposureType'), withinvars = c('Step'), idvar = 'Subject')
+contPlotData <- summarySEwithin(data=cont, measurevar = 'ACC', withinvars = c('Step'), idvar='Subject')
+contPlotData <- cbind(contPlotData,data.frame(ExposureType=rep('control', 6)))
+plotData <- rbind(plotData, contPlotData)
+
+plotData$Step <- as.numeric(as.character(plotData$Step)) + 3.5
+
+plotData$ExposureType <- factor(plotData$ExposureType, levels = c('control','unpredictive','predictive'))
+
+### MAIN PLOT
+
+exp5.results <- ggplot(plotData,aes(x = Step, y = ACC, colour = ExposureType, shape = ExposureType, group = ExposureType)) 
+exp5.results <- exp5.results + geom_point(size = 2.8) + geom_line(size=1.4) + geom_errorbar(aes(ymin = ACC - ci, ymax = ACC + ci), linetype = 'solid', size = 0.4) 
+exp5.results <- exp5.results + ylab('Proportion /s/ response') + xlab('Continua step') 
+exp5.results <- exp5.results + theme_bw() 
+exp5.results <- exp5.results + theme(text=element_text(size = 22),
+                                       legend.title=element_text(size = 18),
+                                       legend.text=element_text(size = 18),
+                                       legend.justification = c(0, 0), 
+                                       legend.position = c(0, 0), 
+                                       legend.background = element_blank())
+exp5.results <- exp5.results + scale_x_continuous(breaks = 1:6)  
+exp5.results <- exp5.results + scale_shape_manual(values = c(21, 22, 23),
+                                                    labels = c('Control','Unpredictive', 'Predictive' ))
+exp5.results <- exp5.results + scale_colour_manual(values = c( "#000000","#0072B2", "#D55E00"), 
+                                                     labels = c('Control','Unpredictive', 'Predictive'))
+
+exp5.results
+ggsave('../thesis/graphs/exp5_categresults.pdf', width = 10, height = 6, units = 'in', dpi = 600)
+
+#WITH 3
+
+plotData <- summarySEwithin(data = categ35, measurevar = 'ACC', betweenvars = c('Experiment', 'ExposureType'), withinvars = c('Step'), idvar = 'Subject')
+contPlotData <- summarySEwithin(data=cont, measurevar = 'ACC', withinvars = c('Step'), idvar='Subject')
+contPlotData <- rbind(contPlotData, contPlotData)
+contPlotData <- cbind(contPlotData,data.frame(Experiment=rep('control', 12),
+                                              ExposureType=c(rep('predictive', 6), rep('unpredictive', 6))))
+plotData <- rbind(plotData, contPlotData)
+
+plotData$Step <- as.numeric(as.character(plotData$Step)) + 3.5
+
+plotData$Experiment <- factor(plotData$Experiment, levels = c('control','exp3','exp5'))
+
+### MAIN PLOT
+
+exp35.results <- ggplot(plotData,aes(x = Step, y = ACC, colour = Experiment, shape = Experiment, group = Experiment)) 
+exp35.results <- exp35.results + geom_point(size = 2.8) + geom_line(size=1.4) + geom_errorbar(aes(ymin = ACC - ci, ymax = ACC + ci), linetype = 'solid', size = 0.4) 
+exp35.results <- exp35.results + facet_grid(~ExposureType, labeller = if_labeller) 
+exp35.results <- exp35.results + ylab('Proportion /s/ response') + xlab('Continua step') 
+exp35.results <- exp35.results + theme_bw() 
+exp35.results <- exp35.results + theme(text=element_text(size = 22),
+                                       legend.title=element_text(size = 18),
+                                       legend.text=element_text(size = 18),
+                                       legend.justification = c(0, 0), 
+                                       legend.position = c(0, 0), 
+                                       legend.background = element_blank())
+exp35.results <- exp35.results + scale_x_continuous(breaks = 1:6)  
+exp35.results <- exp35.results + scale_shape_manual(values = c(21, 22, 23),
+                                                    labels = c('Control','Picture selection', 'Transcription' ))
+exp35.results <- exp35.results + scale_colour_manual(values = c( "#000000","#0072B2", "#D55E00"), 
+                                                     labels = c('Control','Picture selection', 'Transcription'))
+
+exp35.results
+ggsave('../thesis/graphs/exp35_categresults.pdf', width = 10, height = 6, units = 'in', dpi = 600)
+
+plotData <- summarySEwithin(data = categ35, measurevar = 'ACC', betweenvars = c('Experiment', 'ExposureType'), withinvars = c('Step'), idvar = 'Subject')
+contPlotData <- summarySEwithin(data=cont, measurevar = 'ACC', withinvars = c('Step'), idvar='Subject')
+contPlotData <- rbind(contPlotData, contPlotData)
+contPlotData <- cbind(contPlotData,data.frame(Experiment=rep('control', 12),
+                                              ExposureType=c(rep('predictive', 6), rep('unpredictive', 6))))
+plotData <- rbind(plotData, contPlotData)
+
+isoPlotData <- summarySEwithin(data=subset(categ, Experiment == 'exp1' & ExposureType == 'final' & Attention == 'noattend'), measurevar = 'ACC', withinvars = c('Step'), idvar='Subject')
+isoPlotData <- rbind(isoPlotData, isoPlotData)
+isoPlotData <- cbind(isoPlotData,data.frame(Experiment=rep('isolation', 12),
+                                              ExposureType=c(rep('predictive', 6), rep('unpredictive', 6))))
+plotData <- rbind(plotData, isoPlotData)
+
+plotData$Step <- as.numeric(as.character(plotData$Step)) + 3.5
+
+plotData$Experiment <- factor(plotData$Experiment, levels = c('control','isolation','exp3','exp5'))
+
+### MAIN PLOT
+
+exp235.results <- ggplot(plotData,aes(x = Step, y = ACC, colour = Experiment, shape = Experiment, group = Experiment)) 
+exp235.results <- exp235.results + geom_point(size = 2.8) + geom_line(size=1.4) + geom_errorbar(aes(ymin = ACC - ci, ymax = ACC + ci), linetype = 'solid', size = 0.4) 
+exp235.results <- exp235.results + facet_grid(~ExposureType, labeller = if_labeller) 
+exp235.results <- exp235.results + ylab('Proportion /s/ response') + xlab('Continua step') 
+exp235.results <- exp235.results + theme_bw() 
+exp235.results <- exp235.results + theme(text=element_text(size = 22),
+                                       legend.title=element_text(size = 18),
+                                       legend.text=element_text(size = 18),
+                                       legend.justification = c(0, 0), 
+                                       legend.position = c(0, 0), 
+                                       legend.background = element_blank())
+exp235.results <- exp235.results + scale_x_continuous(breaks = 1:6)  
+exp235.results <- exp235.results + scale_shape_manual(values = c(15, 16, 17, 18),
+                                                    labels = c('Control', 'Isolation','Picture selection', 'Transcription'))
+exp235.results <- exp235.results + scale_colour_manual(values = c( "#000000", "#CC79A7", "#0072B2", "#D55E00"), 
+                                                     labels = c('Control', 'Isolation','Picture selection', 'Transcription'))
+
+exp235.results
+ggsave('../thesis/graphs/exp235_categresults.pdf', width = 10, height = 6, units = 'in', dpi = 600)
+
+exp13.results <- ggplot(plotData,aes(x = Step, y = ACC, colour = Attention, shape = Attention, group = Attention)) 
+exp13.results <- exp13.results + geom_point(size = 1.7) + geom_line() + geom_errorbar(aes(ymin = ACC - ci, ymax = ACC + ci), linetype = 'solid', size = 0.1) 
+exp13.results <- exp13.results + facet_grid(~ExposureType, labeller = if_labeller) 
+exp13.results <- exp13.results + ylab('Proportion /s/ response') + xlab('Continua step') 
+exp13.results <- exp13.results + theme_bw() 
+exp13.results <- exp13.results + theme(text=element_text(size = 12),
+                                       legend.title=element_text(size = 4),
+                                       legend.text=element_text(size = 4))
+exp13.results <- exp13.results + scale_x_continuous(breaks = 1:6)  
+exp13.results <- exp13.results + scale_shape_manual(values = c(21, 22, 23),
+                                                    labels = c('Control','No attention', 'Attention'))
+exp13.results <- exp13.results + scale_colour_manual(values = c("#000000", "#0072B2", "#D55E00"), 
+                                                     labels = c('Control','No attention', 'Attention' ))
 
 exp13.results
 ggsave('../thesis/graphs/exp23_categresults_present.pdf', width = 120, height = 70, units = 'mm', dpi = 600)

@@ -2,7 +2,7 @@ library(lme4)
 library(ggplot2)
 library(plyr)
 library(stringr)
-library(Cairo) # for unicode in saved plots
+#library(Cairo) # for unicode in saved plots
 
 # s100 initial, attend
 # s200 final, noattend
@@ -45,13 +45,30 @@ t[str_detect(t$Subject,'^ns2-4'),]$ExposureType <- 'final'
 t$ExposureType <- factor(t$ExposureType)
 
 expose <- rbind(expose,t)
+
+t <- read.delim('exp4_native_expose.txt')
+
+t$Experiment <- 'exp4'
+t$Attention <- 'attend'
+
+t[str_detect(t$Subject,'^ns4-2'),]$Attention <- 'noattend'
+t[str_detect(t$Subject,'^ns4-3'),]$Attention <- 'noattend'
+
+t$Attention <- factor(t$Attention)
+
+t$ExposureType <- 'initial'
+
+t[str_detect(t$Subject,'^ns4-2'),]$ExposureType <- 'final'
+t[str_detect(t$Subject,'^ns4-4'),]$ExposureType <- 'final'
+
+t$ExposureType <- factor(t$ExposureType)
+
+expose <- rbind(expose,t)
+
 expose$itemtype2 <- 'Filler'
 expose[expose$itemtype%in%c('S-Final','S-Initial'),]$itemtype2 <- 'S'
 expose[expose$itemtype%in%c('SH-Final','SH-Initial'),]$itemtype2 <- 'SH'
 expose$itemtype2 <- factor(expose$itemtype2)
-
-expose$ModACC <- 0.5
-expose[expose$ACC == 0,]$ModACC <- -0.5
 
 expose$Attention <- factor(expose$Attention, levels = c('noattend','attend'))
 
@@ -119,10 +136,26 @@ t[str_detect(t$Subject,'^ns2-3'),]$Attention <- 'noattend'
 
 categ <- rbind(categ,t)
 
-categ$ExposureType <- factor(categ$ExposureType)
-categ$Attention <- factor(categ$Attention)
+t <- read.delim('exp4_native_categ.txt')
+t$Experiment <- 'exp4'
 
-categ$Experiment <- factor(categ$Experiment, levels = c('exp2','exp1'))
+t$ExposureType <- 'initial'
+
+t[str_detect(t$Subject,'^ns4-2'),]$ExposureType <- 'final'
+t[str_detect(t$Subject,'^ns4-4'),]$ExposureType <- 'final'
+
+t$Attention <- 'attend'
+
+t[str_detect(t$Subject,'^ns4-2'),]$Attention <- 'noattend'
+t[str_detect(t$Subject,'^ns4-3'),]$Attention <- 'noattend'
+
+
+categ <- rbind(categ,t)
+
+categ$ExposureType <- factor(categ$ExposureType,levels = c('initial','final'))
+categ$Attention <- factor(categ$Attention,levels=c('noattend','attend'))
+
+categ$Experiment <- factor(categ$Experiment, levels = c('exp2','exp1','exp4'))
 
 categ <- na.omit(categ)
 
@@ -166,6 +199,9 @@ categ$Step <- categ$Step - mean(1:6)
 
 categ$ExposureType <- factor(categ$ExposureType, levels = c('initial','final'))
 categ$Attention <- factor(categ$Attention, levels = c('noattend','attend'))
+
+categ$LogRT <- log(categ$RT)
+categ$cLogRT <- scale(categ$LogRT)
 
 # CONTROL
 
@@ -222,6 +258,9 @@ cont$Step <- cont$Step - mean(1:6)
 cont$Background <- factor(cont$Background)
 contrasts(cont$Background) <- contr.sum
 contrasts(cont$Background) <- contrasts(cont$Background) / 2
+
+cont$LogRT <- log(cont$RT)
+cont$cLogRT <- scale(cont$LogRT)
 #categ <- rbind(categ, cont)
 
 # EXP 3 EXPOSURE
@@ -313,13 +352,71 @@ categ3[categ3$Item == 'sock-shock',]$cStep <- categ3[categ3$Item == 'sock-shock'
 
 categ3$Step <- categ3$Step - mean(1:6)
 
+categ3$LogRT <- log(categ3$RT)
+categ3$cLogRT <- scale(categ3$LogRT)
+
+categ3$ISI = 0
+
+categ3.2000 <- read.delim('exp3_2000_nativeenglish.txt')
+
+categ3.2000 <- na.omit(categ3.2000)
+categ3.2000$ACC = 0
+categ3.2000[categ3.2000$RESP == categ3.2000$SResp,]$ACC <- 1
+categ3.2000$Experiment <- 'exp3'
+
+categ3.2000$ExposureType <- 'predictive'
+
+categ3.2000[str_detect(categ3.2000$Subject,'^2'),]$ExposureType <- 'unpredictive'
+
+#categ3.2000[str_detect(categ3.2000$Subject,'^nns3-2'),]$ExposureType <- 'unpredictive'
+#categ3.2000[str_detect(categ3.2000$Subject,'^nns3-4'),]$ExposureType <- 'unpredictive'
+
+categ3.2000$ExposureType <- factor(categ3.2000$ExposureType, levels = c('unpredictive','predictive'))
+
+categ3.2000$Attention <- 'attend'
+
+categ3.2000[str_detect(categ3.2000$Subject,'^2'),]$Attention <- 'noattend'
+
+categ3.2000$Attention <- factor(categ3.2000$Attention, levels = c('noattend','attend'))
+
+t <- paste(categ3.2000$Label1,categ3.2000$Label2,sep='-')
+
+t[t=='shack-sack'] = 'sack-shack'
+t[t=='shy-sigh'] = 'sigh-shy'
+t[t=='shin-sin'] = 'sin-shin'
+t[t=='shock-sock'] = 'sock-shock'
+
+categ3.2000$Item <- factor(t)
+
+categ3.2000 <- subset(categ3.2000, RT > 200 & RT < 2500)
+categ3.2000$cStep <- 0
+#sack-shack 3.642820
+categ3.2000[categ3.2000$Item == 'sack-shack',]$cStep <- categ3.2000[categ3.2000$Item == 'sack-shack',]$Step - 3.642820
+#sigh-shy 3.979852
+categ3.2000[categ3.2000$Item == 'sigh-shy',]$cStep <- categ3.2000[categ3.2000$Item == 'sigh-shy',]$Step - 3.979852
+#sin-shin 3.233012
+categ3.2000[categ3.2000$Item == 'sin-shin',]$cStep <- categ3.2000[categ3.2000$Item == 'sin-shin',]$Step - 3.233012
+#sock-shock 3.481329
+categ3.2000[categ3.2000$Item == 'sock-shock',]$cStep <- categ3.2000[categ3.2000$Item == 'sock-shock',]$Step - 3.481329
+
+categ3.2000$Step <- categ3.2000$Step - mean(1:6)
+
+categ3.2000$LogRT <- log(categ3.2000$RT)
+categ3.2000$cLogRT <- scale(categ3.2000$LogRT)
+
+categ3.2000$ISI = 2000
+categ3.2000$Subject = factor(categ3.2000$Subject)
+
+categ3.ISI <- rbind(subset(categ3, Attention == 'noattend' & ExposureType == 'unpredictive')[,c('Subject','Step', 'ACC','ExposureType','Attention','Item','cStep','cLogRT','ISI')], categ3.2000[,c('Subject','Step', 'ACC','ExposureType','Attention','Item','cStep','cLogRT','ISI')])
+
+categ3.ISI$ISI <- factor(categ.ISI$ISI)
 # Experiment 1 and 3
 
 categ23 <- subset(categ,Experiment == 'exp2' & ExposureType == 'final')
 
 categ23$ExposureType <- 'isolation'
 
-categ23 <- rbind(categ23[,c('Subject','Trial','ACC','RT','Step','Experiment','ExposureType','Attention','Item', 'cStep')],categ3[,c('Subject','Trial','ACC','RT','Step','Experiment','ExposureType','Attention','Item', 'cStep')])
+categ23 <- rbind(categ23[,c('Subject','ACC','RT','Step','Experiment','ExposureType','Attention','Item', 'cStep')],categ3[,c('Subject','ACC','RT','Step','Experiment','ExposureType','Attention','Item', 'cStep')])
 
 categ23$ExposureType <- factor(categ23$ExposureType, levels = c('isolation','unpredictive','predictive'))
 
@@ -327,6 +424,27 @@ subj.info23 <- unique(categ23[,c('Subject','ExposureType','Attention')])
 
 all.subj.info <- unique(categ[,c('Subject','Experiment','ExposureType','Attention')])
 all.subj.info <- rbind(all.subj.info, unique(categ3[,c('Subject','Experiment','ExposureType','Attention')]))
+all.subj.info <- rbind(all.subj.info, unique(categ5[,c('Subject','Experiment','ExposureType','Attention')]))
+
+categ25 <- subset(categ,Experiment == 'exp2' & ExposureType == 'final' & Attention == 'noattend')
+
+categ25$ExposureType <- 'isolation'
+
+categ25 <- rbind(categ25[,c('Subject','ACC','RT','Step','Experiment','ExposureType','Attention','Item', 'cStep')],categ5[,c('Subject','ACC','RT','Step','Experiment','ExposureType','Attention','Item', 'cStep')])
+
+categ25$ExposureType <- factor(categ25$ExposureType, levels = c('isolation','unpredictive','predictive'))
+
+stuttgart.data <- subset(categ,Experiment == 'exp2' & ExposureType == 'final' & Attention == 'noattend')
+
+stuttgart.data$ExposureType <- 'isolation'
+
+cont$ExposureType <- 'control'
+cont$Experiment <- 'control'
+
+stuttgart.data <- rbind(cont[,c('Subject','ACC','RT','Step','Experiment','ExposureType','Item', 'cStep')], stuttgart.data[,c('Subject','ACC','RT','Step','Experiment','ExposureType','Item', 'cStep')],categ3[categ3$Attention=='noattend',c('Subject','ACC','RT','Step','Experiment','ExposureType','Item', 'cStep')],categ5[,c('Subject','ACC','RT','Step','Experiment','ExposureType','Item', 'cStep')])
+
+stuttgart.data$ExposureType <- factor(stuttgart.data$ExposureType, levels = c('control','isolation','unpredictive','predictive'))
+
 
 contrasts(expose.word$Attention) <- contr.sum
 contrasts(expose.word$Attention) <- contrasts(expose.word$Attention) / 2
@@ -366,6 +484,55 @@ contrasts(categ23$Attention) <- contrasts(categ23$Attention) / 2
 
 #contrasts(categ23$ExposureType) <- contr.sum
 #contrasts(categ23$ExposureType) <- contrasts(categ23$ExposureType) / 2
+
+categ5 <- read.delim('exp5_native_categ.txt')
+
+categ5 <- na.omit(categ5)
+
+categ5$ACC <- as.integer(categ5$RESP == categ5$SResp)
+
+categ5$Experiment <- 'exp5'
+
+categ5$ExposureType <- 'predictive'
+
+categ5[str_detect(categ5$Subject,'^ns5-2'),]$ExposureType <- 'unpredictive'
+
+categ5$ExposureType <- factor(categ5$ExposureType, levels = c('unpredictive','predictive'))
+
+categ5$Attention <- 'noattend'
+
+t <- paste(categ5$Label1,categ5$Label2,sep='-')
+
+t[t=='shack-sack'] = 'sack-shack'
+t[t=='shy-sigh'] = 'sigh-shy'
+t[t=='shin-sin'] = 'sin-shin'
+t[t=='shock-sock'] = 'sock-shock'
+
+categ5$Item <- factor(t)
+
+categ5 <- subset(categ5, RT > 200 & RT < 2500)
+categ5$cStep <- 0
+#sack-shack 3.642820
+categ5[categ5$Item == 'sack-shack',]$cStep <- categ5[categ5$Item == 'sack-shack',]$Step - 3.642820
+#sigh-shy 3.979852
+categ5[categ5$Item == 'sigh-shy',]$cStep <- categ5[categ5$Item == 'sigh-shy',]$Step - 3.979852
+#sin-shin 3.233012
+categ5[categ5$Item == 'sin-shin',]$cStep <- categ5[categ5$Item == 'sin-shin',]$Step - 3.233012
+#sock-shock 3.481329
+categ5[categ5$Item == 'sock-shock',]$cStep <- categ5[categ5$Item == 'sock-shock',]$Step - 3.481329
+
+categ5$Step <- categ5$Step - mean(1:6)
+
+categ5$LogRT <- log(categ5$RT)
+categ5$cLogRT <- scale(categ5$LogRT)
+
+
+categ35 <- rbind(categ3[,c('Subject','ACC','RT','Step','Experiment','ExposureType','Attention','Item', 'cStep')],categ5[,c('Subject','ACC','RT','Step','Experiment','ExposureType','Attention','Item', 'cStep')])
+
+categ35 <- subset(categ35, Attention == 'noattend')
+
+
+categ235 <- rbind(categ23[,c('Subject','ACC','RT','Step','Experiment','ExposureType','Attention','Item', 'cStep')],categ5[,c('Subject','ACC','RT','Step','Experiment','ExposureType','Attention','Item', 'cStep')])
 
 getCrossOver <- function(data){
   data$p <- -1*data[,'(Intercept)']/data[,'cStep']
