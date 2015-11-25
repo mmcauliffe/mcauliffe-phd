@@ -1,7 +1,7 @@
 
 if_labeller <- function(var, value){
   value <- as.character(value)
-  if (var == "ExposureType") { 
+  if (var == "ExposureType" || var == 'itemtype') { 
     value[value == "initial"] <- "Word-initial"
     value[value == "final"]   <- "Word-medial"
     value[value == "S-Initial"] <- "Word-initial"
@@ -18,6 +18,7 @@ if_labeller <- function(var, value){
     value[value == "exp1"] <- "Experiment 2"
     value[value == "exp2"]   <- "Experiment 1"
     value[value == "exp3"]   <- "Experiment 3"
+    value[value == "exp4"]   <- "Experiment 4"
   }
   if (var == 'itemtype2'){ 
     value[value == "S"] <- "/s/"
@@ -321,13 +322,15 @@ ggsave('../thesis/graphs/exp12_xoverwordresp.pdf', width = 170, height = 80, uni
 
 ### CATEGORIZATION
 
-plotData <- summarySEwithin(data = categ, measurevar = 'ACC', betweenvars = c('Experiment','Attention', 'ExposureType'), withinvars = c('Step'), idvar = 'Subject')
+plotData <- summarySEwithin(data = subset(categ, Experiment == 'exp4'), measurevar = 'ACC', betweenvars = c('Attention', 'ExposureType'), withinvars = c('Step'), idvar = 'Subject')
 
 contPlotData <- summarySEwithin(data = cont, measurevar = 'ACC', withinvars = c('Step'), idvar = 'Subject')
-contPlotData <- rbind(contPlotData,contPlotData, contPlotData, contPlotData)
-contPlotData <- cbind(contPlotData,data.frame(Experiment = rep('control', 24),
-                                              ExposureType = c(rep('final', 12), rep('initial', 12)),
-                                              Attention = c(rep('noattend',6), rep('attend',6), rep('noattend',6), rep('attend',6))))
+contPlotData <- rbind(contPlotData,contPlotData)
+contPlotData <- cbind(contPlotData,data.frame(Attention = rep('control', 12),
+                                              ExposureType = c(rep('final', 6), rep('initial', 6))#,
+                                              #Attention = c(rep('noattend',6), rep('attend',6), rep('noattend',6), rep('attend',6))
+                                              )
+                      )
 #contPlotData$Experiment <- 'control'
 plotData <- rbind(plotData,contPlotData)
 
@@ -336,9 +339,9 @@ plotData$Step <- as.numeric(as.character(plotData$Step)) + 3.5
 
 ### MAIN PLOT
 
-exp4.results <- ggplot(plotData, aes(x = Step, y = ACC, colour = Experiment, shape = Experiment, group = Experiment)) 
+exp4.results <- ggplot(plotData, aes(x = Step, y = ACC, colour = Attention, shape = Attention, group = Attention)) 
 exp4.results <- exp4.results + geom_point(size = 1.7) + geom_line() + geom_errorbar(aes(ymin = ACC - ci, ymax = ACC + ci), linetype = 'solid', size = 0.1)
-exp4.results <- exp4.results + facet_grid(Attention~ExposureType, labeller = if_labeller) 
+exp4.results <- exp4.results + facet_grid(~ExposureType, labeller = if_labeller) 
 exp4.results <- exp4.results + ylab('Proportion /s/ response') + xlab('Continua step')
 exp4.results <- exp4.results + theme_bw() 
 exp4.results <- exp4.results + theme(text = element_text(size = 10),
@@ -347,12 +350,13 @@ exp4.results <- exp4.results + theme(text = element_text(size = 10),
                                      legend.justification = c(0, 0), 
                                      legend.position = c(0, 0))
 exp4.results <- exp4.results + scale_x_continuous(breaks = 1:6)  
-#exp4.results <- exp4.results +scale_shape_manual(values = c(21, 22, 23),
-#                                                 labels = c('No attention', 'Attention', 'Control'))
-#exp4.results <- exp4.results +scale_colour_manual(values = c("#0072B2", "#D55E00", "#000000"),
-#                                                  labels = c('No attention', 'Attention', 'Control'))
+exp4.results <- exp4.results +scale_shape_manual(values = c(21, 22, 23),
+                                                 labels = c('No attention', 'Attention', 'Control'))
+exp4.results <- exp4.results +scale_colour_manual(values = c("#0072B2", "#D55E00", "#000000"),
+                                                  labels = c('No attention', 'Attention', 'Control'))
 
 exp4.results
+ggsave('../thesis/graphs/exp4_categresults.pdf', width = 170, height = 110, units = 'mm', dpi = 600)
 
 ### END EXPERIMENT 4
 
@@ -660,6 +664,35 @@ ggsave('../thesis/graphs/exp23_categresults_present.pdf', width = 120, height = 
 ### END EXPERIMENT 3
 
 # XOVER DISTRIBUTIONS
+
+plotData <- xovers[,c('Subject','Xover','Attention','itemtype', 'Experiment')]
+plotData$Xover = plotData$Xover + 3.5
+
+contPlotData <- cont.xover
+contPlotData$itemtype = 'Control'
+contPlotData$Attention <- 'Control'
+contPlotData$Experiment <- 'Control'
+contPlotData$Xover = contPlotData$Xover + 3.5
+
+
+plotData <- rbind(plotData,contPlotData)
+
+plotData$Experiment <- factor(plotData$Experiment, levels = c('Control','exp2','exp1','exp4'))
+
+exp13.dist <- ggplot(plotData,aes(x = itemtype, y = Xover, colour = Attention)) 
+exp13.dist <- exp13.dist + geom_violin()
+exp13.dist <- exp13.dist + geom_hline(y = 3.5, linetype = 2)
+exp13.dist <- exp13.dist + ylab('Crossover step across continua') + xlab('Exposure Condition')
+exp13.dist <- exp13.dist + scale_colour_manual(values = c("#0072B2", "#D55E00", "#000000"),
+                                               labels = c('No attention', 'Attention', 'Control')) 
+exp13.dist <- exp13.dist + scale_x_discrete(labels = c('Word-Medial','Word-Initial','Control')) 
+exp13.dist <- exp13.dist + facet_grid(~Experiment, scales='free', labeller = if_labeller)
+exp13.dist <- exp13.dist + theme_bw() 
+exp13.dist <- exp13.dist + theme(legend.justification = c(0, 1), 
+                                 legend.position = c(0, 1)) 
+
+exp13.dist
+ggsave('../thesis/graphs/exp124_xoverdist.pdf', width = 260, height = 160, units = 'mm', dpi = 600)
 
 
 plotData <- merge(all.xovers, subj.info23)

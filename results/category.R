@@ -105,9 +105,9 @@ grouped.mod.wresp <- glmer(ACC ~ WordResp * cStep * ExposureType * Attention * E
 summary(grouped.mod.wresp)
 
 
-grouped.4.mod <- glmer(ACC ~ cStep * ExposureType * Attention * Experiment + (1 + cStep|Subject)+ (1|Item) + (0 + cStep * Attention * Experiment + ExposureType|Item), 
+grouped.4.mod <- glmer(ACC ~ cStep * ExposureType* Experiment + (1 + cStep|Subject)+ (1+ cStep * Experiment|Item), 
                      family = 'binomial',
-                     data = subset(categ, Experiment %in% c('exp1', 'exp2','exp4')), 
+                     data = subset(categ, Experiment %in% c('exp1', 'exp2','exp4') & Attention == 'noattend'), 
                      control = glmerControl(optCtrl = list(maxfun = 100000000) ))
 summary(grouped.4.mod)
 
@@ -234,9 +234,11 @@ cont.xover <- getCrossOver(coef(cont.mod)$Subject)
 
 cat.mod <- glmer(ACC ~ cStep + (1 + cStep|Subject) + (1 + cStep|Item), family = 'binomial', data = categ)
 xovers <- getCrossOver(coef(cat.mod)$Subject)
+xovers <- merge(xovers, subj.tolerances)
 
 ddply(subset(xovers, Xover > 0), ~Experiment*Attention*itemtype,nrow)
 ddply(subset(xovers, Xover <= 0), ~Experiment*Attention*itemtype,nrow)
+ddply(xovers, ~Experiment*Attention*itemtype,nrow)
 
 cat.mod3 <- glmer(ACC ~ cStep + (1 + cStep|Subject) + (1 + cStep|Item), family = 'binomial',data = categ3)
 xovers3 <- getCrossOver(coef(cat.mod3)$Subject)
@@ -285,6 +287,7 @@ ddply(xovers, ~Experiment * Attention * itemtype, summarise,
 
 ggplot(categ5, aes(x=Step, y = ACC)) + geom_smooth() + facet_wrap(~Subject)
 ggplot(categ, aes(x=Step, y = RT)) + geom_smooth(method='loess') + facet_wrap(~Subject)
+ggplot(subset(categ,Experiment == 'exp4'), aes(x=Step, y = ACC)) + geom_smooth(method='loess') + facet_wrap(~Subject)
 ggplot(categ3, aes(x=Step, y = RT)) + geom_smooth(method='loess') + facet_wrap(~Subject)
 ggplot(categ5, aes(x=Step, y = RT)) + geom_smooth(method='loess') + facet_wrap(~Subject)
 ggplot(categ3.2000, aes(x=Step, y = ACC)) + geom_smooth() + facet_wrap(~Subject)
